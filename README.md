@@ -1,7 +1,7 @@
 Karla
 =====
 
-Karla is ImageMagick wrapper written in php with support for method chaining. 
+Karla is a ImageMagick wrapper written in php with support for method chaining. 
 
 Requirements
 ------------
