@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Karla" default="build" basedir=".">
+	
+	<!-- Php files to syntax check -->
+	<path id="checkphp.fileset">
+		<fileset dir="${basedir}">
+			<include name="**/*.php" />
+			<exclude name="tools/**" />
+			<exclude name="build/**" />
+			<exclude name="demo/**" />
+			<exclude name="deploy/**" />
+		</fileset>
+	</path>
+
+	<!-- Overrides -->
+
+	<!-- Extras -->
+
+	<!-- Imports -->
+	<import file="${basedir}/tools/CommonBuild.xml" />
+	<import file="${basedir}/tools/CommonTasks.xml" />
+</project>

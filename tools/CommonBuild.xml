@@ -1,0 +1,58 @@
+<project name="DefaultBuild">
+	<!-- ================ PHPUNIT Settings ==================== -->
+	<property name="phpunit.testdir" value="${basedir}/tests" />
+
+	<!-- ================ PHPCPD Settings ==================== -->
+	<!-- Comma separated list of folders to include -->
+	<property name="phpcpd.include" value="${basedir}" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phpcpd.exclude" value="*/tools/*,*/tests/*,*/deploy/*,*/build/*,*/demo/*" />
+	<!-- Should we fail the build if copy past violations are detected? -->
+	<property name="phpcpd.failonerror" value="false" />
+
+	<!-- ================ PHPMD Settings ===================== -->
+	<!-- Comma separated list of folders to include -->
+	<property name="phpmd.include" value="${basedir}" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phpmd.exclude" value="*/tools/*,*/tests/*,*/deploy/*,*/build/*,*/demo/*" />
+	<!-- Path to rules file -->
+	<property name="phpmd.rules" value="${basedir}/tools/pmdrules.xml" />
+	<!-- Should we fail the build if pmd violations are detected? -->
+	<property name="phpmd.failonerror" value="false" />
+
+	<!-- ================ PHPCS Settings ===================== -->
+	<!-- SPACE separated list of folders to include -->
+	<property name="phpcs.include" value="${basedir}" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phpcs.exclude" value="*/tools/*,*/tests/*,*/deploy/*,*/build/*,*/demo/*" />
+	<!-- Should we fail the build if coding standart violations are detected? -->
+	<property name="phpcs.failonerror" value="false" />
+
+	<!-- ================ PHPDOC Settings ==================== -->
+	<!-- Comma separated list of folders to include -->
+	<property name="phpdoc.include.dir" value="." />
+	<!-- Comma separated list of files to include -->
+	<property name="phpdoc.include.file" value="" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phpdoc.exclude" value="*/tools/*,*/tests/*,*/deploy/*,*/build/*,*/demo/*" />
+	<!-- Path to example files -->
+	<property name="phpdoc.examples" value="" />
+
+	<!-- ================ PHPLOC Settings ==================== -->
+	<!-- Comma separated list of folders to include -->
+	<property name="phploc.include" value="${basedir}" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phploc.exclude" value="*/tools/*,*/tests/*,*/deploy/*,*/build/*,*/demo/*" />
+
+	<!-- ================ PHPCB Settings ==================== -->
+	<!-- Comma separated list of folders to include -->
+	<property name="phpcb.include" value="${basedir}" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phpcb.exclude" value="tools,tests,deploy,build,demo" />
+
+	<!-- ================ PHPDEPEND Settings ================= -->
+	<!-- Comma separated list of folders to include -->
+	<property name="phpdepend.include" value="${basedir}" />
+	<!-- Comma separated list of files to exclude -->
+	<property name="phpdepend.exclude" value="*/tools/*,*/tests/*,*/deploy/*,*/build/*,*/demo/*" />
+</project>
