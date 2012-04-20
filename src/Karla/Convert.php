@@ -21,24 +21,23 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class Convert extends ImageMagick
-{
+class Convert extends ImageMagick {
 	/**
 	 * Output option
 	 * @var Array
 	 */
-	protected $outputOptions;
+	protected $_outputOptions;
 
 	/**
 	 * Input file
 	 * @var string
 	 */
-	protected $inputFile;
+	protected $_inputFile;
 	/**
 	 * Output file
 	 * @var string
 	 */
-	protected $outputFile;
+	protected $_outputFile;
 
 	/**
 	 * Add input argument
@@ -48,8 +47,7 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws InvalidArgumentException
 	 */
-	public function inputfile($filePath)
-	{
+	public function inputfile($filePath) {
 		if (!file_exists($filePath)) {
 			$message = 'The input file path (' .
 			$filePath . ') is invalid or the file could not be located.';
@@ -57,7 +55,7 @@ class Convert extends ImageMagick
 		}
 		$file = new SplFileObject($filePath);
 		if ($file->isReadable()) {
-			$this->inputFile = '"' . $file->getPathname() . '"';
+			$this->_inputFile = '"' . $file->getPathname() . '"';
 		}
 		$this->dirty();
 		return $this;
@@ -71,8 +69,7 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws InvalidArgumentException
 	 */
-	public function outputfile($filePath, $includeOptions = true)
-	{
+	public function outputfile($filePath, $includeOptions = true) {
 		$pathinfo = pathinfo($filePath);
 		if (!file_exists($pathinfo['dirname'])) {
 			$message = 'The output file path (' . $pathinfo['dirname'] .
@@ -85,7 +82,7 @@ class Convert extends ImageMagick
                        ') is not writable.';
 			throw new InvalidArgumentException($message);
 		}
-		$this->outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
+		$this->_outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
 		$this->dirty();
 		return $this;
 	}
@@ -98,12 +95,11 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws BadMethodCallException if background has already been called
 	 */
-	public function background($color)
-	{
-		if ($this->isOptionSet('background', $this->inputOptions)) {
+	public function background($color) {
+		if ($this->isOptionSet('background', $this->_inputOptions)) {
 			throw new BadMethodCallException('Background can only be called once.');
 		}
-		$this->inputOptions[] = ' -background "' .  $color. '"';
+		$this->_inputOptions[] = ' -background "' .  $color. '"';
 		$this->dirty();
 		return $this;
 	}
@@ -117,9 +113,8 @@ class Convert extends ImageMagick
 	 *
 	 * @todo get list of profiles from image (can be done by identify but might be to expsensive)
 	 */
-	public function removeProfile($profileName)
-	{
-		$this->inputOptions[] = " +profile " . $profileName;
+	public function removeProfile($profileName) {
+		$this->_inputOptions[] = " +profile " . $profileName;
 		$this->dirty();
 		return $this;
 	}
@@ -136,15 +131,14 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if resample, resize or density has already been called
 	 * @throws InvalidArgumentException
 	 */
-	public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "")
-	{
-		if ($this->isOptionSet('resample', $this->inputOptions)) {
+	public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "") {
+		if ($this->isOptionSet('resample', $this->_inputOptions)) {
 			throw new BadMethodCallException('resample can only be called once.');
 		}
-		if ($this->isOptionSet('resize', $this->inputOptions)) {
+		if ($this->isOptionSet('resize', $this->_inputOptions)) {
 			throw new BadMethodCallException('You may not use resample option with resize option');
 		}
-		if ($this->isOptionSet('density', $this->inputOptions)) {
+		if ($this->isOptionSet('density', $this->_inputOptions)) {
 			throw new BadMethodCallException('You may not use resample option with density option');
 		}
 		if (!is_numeric($newWidth)) {
@@ -181,7 +175,7 @@ class Convert extends ImageMagick
 			$option = $option . $newWidth;
 		}
 		$option = $option . "' ";
-		$this->inputOptions[] = $option;
+		$this->_inputOptions[] = $option;
 		$this->dirty();
 		return $this;
 	}
@@ -192,24 +186,22 @@ class Convert extends ImageMagick
 	 * @see lib/Imagemagick#getCommand()
 	 * @return string
 	 */
-	public function getCommandOld()
-	{
-		if ($this->outputFile == '') {
+	public function getCommandOld() {
+		if ($this->_outputFile == '') {
 			throw new RuntimeException('Can not preform convert without an output file');
 		}
-		!is_array($this->outputOptions) ? $this->outputOptions = array() : null;
-		!is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-		$inputFile = ' ' . $this->inputFile . ' ';
-		$outputFile = ' ' . $this->outputFile . ' ';
+		!is_array($this->_outputOptions) ? $this->_outputOptions = array() : null;
+		!is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
+		$inputFile = ' ' . $this->_inputFile . ' ';
+		$outputFile = ' ' . $this->_outputFile . ' ';
 
 		return
-		$this->binPath.$this->bin.' '.
-		$this->prepareOptions($this->inputOptions).' '.
+		$this->_binPath.$this->_bin.' '.
+		$this->prepareOptions($this->_inputOptions).' '.
 		$inputFile.' '.
-		$this->prepareOptions($this->outputOptions).' '.
+		$this->prepareOptions($this->_outputOptions).' '.
 		$outputFile;
 	}
-
 
 	/**
 	 * (non-PHPdoc)
@@ -217,21 +209,20 @@ class Convert extends ImageMagick
 	 * @see lib/Imagemagick#getCommand()
 	 * @return string
 	 */
-	public function getCommand()
-	{
-		if ($this->outputFile == '') {
+	public function getCommand() {
+		if ($this->_outputFile == '') {
 			throw new RuntimeException('Can not perform convert without an output file');
 		}
-		if ($this->inputFile == '') {
+		if ($this->_inputFile == '') {
 			throw new RuntimeException('Can not perform convert without an input file');
 		}
 		
-		!is_array($this->outputOptions) ? $this->outputOptions = array() : null;
-		!is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-		$inOptions = $this->prepareOptions($this->inputOptions) == '' ? '' : $this->prepareOptions($this->inputOptions).' ';
-		$outOptions = $this->prepareOptions($this->outputOptions) == '' ? '' : $this->prepareOptions($this->outputOptions).' ';
+		!is_array($this->_outputOptions) ? $this->_outputOptions = array() : null;
+		!is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
+		$inOptions = $this->prepareOptions($this->_inputOptions) == '' ? '' : $this->prepareOptions($this->_inputOptions).' ';
+		$outOptions = $this->prepareOptions($this->_outputOptions) == '' ? '' : $this->prepareOptions($this->_outputOptions).' ';
 
-		return $this->binPath.$this->bin . ' ' . $inOptions . $this->inputFile . ' ' .$outOptions . $this->outputFile;
+		return $this->_binPath.$this->_bin . ' ' . $inOptions . $this->_inputFile . ' ' .$outOptions . $this->_outputFile;
 	}
 
 	/**
@@ -240,11 +231,10 @@ class Convert extends ImageMagick
 	 * @see lib/Imagemagick#reset()
 	 * @return void
 	 */
-	public function reset()
-	{
-		$this->outputOptions = array();
-		$this->inputFile = '';
-		$this->outputFile = '';
+	public function reset() {
+		$this->_outputOptions = array();
+		$this->_inputFile = '';
+		$this->_outputFile = '';
 		parent::reset();
 	}
 	/**
@@ -254,21 +244,20 @@ class Convert extends ImageMagick
 	 *
 	 * @return string
 	 */
-	public function execute()
-	{
-		if ($this->cache instanceof Cache) {
-			!is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-			if ($this->cache->isCached($this->inputFile, $this->inputOptions)) {
-				return $this->cache->getCached($this->inputFile, $this->inputOptions);
+	public function execute() {
+		if ($this->_cache instanceof Cache) {
+			!is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
+			if ($this->_cache->isCached($this->_inputFile, $this->_inputOptions)) {
+				return $this->_cache->getCached($this->_inputFile, $this->_inputOptions);
 			} else {
-				$this->outputFile = $this->cache->setCache($this->inputFile, $this->inputOptions);
+				$this->_outputFile = $this->_cache->setCache($this->_inputFile, $this->_inputOptions);
 			}
 		} else {
-			$temp = $this->outputFile;
+			$temp = $this->_outputFile;
 			parent::execute();
 			//For some reason php's chmod can't see the file
 			shell_exec('chmod 666 ' . $temp);
-			return $this->outputFile;
+			return $this->_outputFile;
 		}
 	}
 
@@ -282,9 +271,8 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if size has already been called
 	 * @throws InvalidArgumentException
 	 */
-	public function size($width = "", $height = "")
-	{
-		if ($this->isOptionSet('size', $this->inputOptions)) {
+	public function size($width = "", $height = "") {
+		if ($this->isOptionSet('size', $this->_inputOptions)) {
 			throw new BadMethodCallException('Size can only be called once.');
 		}
 		if ($width == "" && $height == "") {
@@ -296,7 +284,7 @@ class Convert extends ImageMagick
 		$option = $option . $width . "x" . $height;
 
 		$option = $option . " ";
-		$this->inputOptions[] = $option;
+		$this->_inputOptions[] = $option;
 		$this->dirty();
 		return $this;
 	}
@@ -311,9 +299,8 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if density has already been called
 	 * @throws InvalidArgumentException
 	 */
-	public function density($width = 72, $height = 72)
-	{
-		if ($this->isOptionSet('density', $this->inputOptions)) {
+	public function density($width = 72, $height = 72) {
+		if ($this->isOptionSet('density', $this->_inputOptions)) {
 			$message = "'density()' can only be called once.";
 			throw new BadMethodCallException($message);
 		}
@@ -325,7 +312,7 @@ class Convert extends ImageMagick
 			$message = 'Height must be numeric values in the density method';
 			throw new InvalidArgumentException($message);
 		}
-		$this->inputOptions[] = " -density " . $width . "x" . $height;
+		$this->_inputOptions[] = " -density " . $width . "x" . $height;
 		$this->dirty();
 		return $this;
 	}
@@ -339,9 +326,8 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if flatten has already been called
 	 * @throws InvalidArgumentException
 	 */
-	public function flatten($flatten = true)
-	{
-		if ($this->isOptionSet('flatten', $this->inputOptions)) {
+	public function flatten($flatten = true) {
+		if ($this->isOptionSet('flatten', $this->_inputOptions)) {
 			$message = "'flatte()' can only be called once.";
 			throw new BadMethodCallException($message);
 		}
@@ -349,7 +335,7 @@ class Convert extends ImageMagick
 			$message = 'Flatten only accepts a boolean value';
 			throw new InvalidArgumentException($message);
 		}
-		$this->inputOptions[] = " -flatten ";
+		$this->_inputOptions[] = " -flatten ";
 		$this->dirty();
 		return $this;
 	}
@@ -363,9 +349,8 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if strip has already been called
 	 * @throws InvalidArgumentException
 	 */
-	public function strip($strip = true)
-	{
-		if ($this->isOptionSet('strip', $this->inputOptions)) {
+	public function strip($strip = true) {
+		if ($this->isOptionSet('strip', $this->_inputOptions)) {
 			$message = "'strip()' can only be called once.";
 			throw new BadMethodCallException($message);
 		}
@@ -373,7 +358,7 @@ class Convert extends ImageMagick
 			$message = 'Strip only accepts a boolean value';
 			throw new InvalidArgumentException($message);
 		}
-		$this->inputOptions[] = " -strip ";
+		$this->_inputOptions[] = " -strip ";
 		$this->dirty();
 		return $this;
 	}
@@ -383,34 +368,31 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws BadMethodCallException if strip has already been called
 	 */
-	public function flip()
-	{
-		if ($this->isOptionSet('flip', $this->inputOptions)) {
+	public function flip() {
+		if ($this->isOptionSet('flip', $this->_inputOptions)) {
 			$message = "'flip()' can only be called once.";
 			throw new BadMethodCallException($message);
 		}
-		$this->inputOptions[] = " -flip ";
+		$this->_inputOptions[] = " -flip ";
 		$this->dirty();
 		return $this;
 	}
+	
 	/**
 	 * Flop image
 	 *
 	 * @return Convert
 	 * @throws BadMethodCallException if strip has already been called
 	 */
-	public function flop()
-	{
-		if ($this->isOptionSet('flop', $this->inputOptions)) {
+	public function flop() {
+		if ($this->isOptionSet('flop', $this->_inputOptions)) {
 			$message = "'flop()' can only be called once.";
 			throw new BadMethodCallException($message);
 		}
-		$this->inputOptions[] = " -flop ";
+		$this->_inputOptions[] = " -flop ";
 		$this->dirty();
 		return $this;
 	}
-	
-	
 	
 	/**
 	 * Set output image type
@@ -421,9 +403,8 @@ class Convert extends ImageMagick
 	 * @throws InvalidArgumentException
 	 * @throws BadMethodCallException if type has already been called
 	 */
-	public function type($type)
-	{
-		if ($this->isOptionSet('type', $this->outputOptions)) {
+	public function type($type) {
+		if ($this->isOptionSet('type', $this->_outputOptions)) {
 			$message = "'type()' can only be called once.";
 			throw new BadMethodCallException($message);
 		}
@@ -432,7 +413,7 @@ class Convert extends ImageMagick
 					$type . ') is not supported by imagemagick';
 			throw new InvalidArgumentException($message);
 		}
-		$this->inputOptions[] = " -type ".$type.' ';
+		$this->_inputOptions[] = " -type ".$type.' ';
 		$this->dirty();
 		return $this;
 	}
@@ -445,14 +426,13 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws InvalidArgumentException
 	 */
-	public function profile($profilePath)
-	{
+	public function profile($profilePath) {
 		if (!file_exists($profilePath)) {
 			$message = 'Could not add profile as input file (' .
 			$profilePath . ') could not be found.';
 			throw new InvalidArgumentException($message);
 		}
-		$this->outputOptions[] = ' -profile "' . $profilePath . '" ';
+		$this->_outputOptions[] = ' -profile "' . $profilePath . '" ';
 		$this->dirty();
 		return $this;
 	}
@@ -467,9 +447,8 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if changeprofile has already been called
 	 * @throws InvalidArgumentException
 	 */
-	public function changeProfile($profilePathFrom, $profilePathTo)
-	{
-		if ($this->isOptionSet('profile', $this->outputOptions)) {
+	public function changeProfile($profilePathFrom, $profilePathTo) {
+		if ($this->isOptionSet('profile', $this->_outputOptions)) {
 			$message = "'changeProfile()' can only be called once and not at the same time as 'profile()'.";
 			throw new BadMethodCallException($message);
 		}
@@ -496,13 +475,12 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws InvalidArgumentException if the layer method wasn't recognized
 	 */
-	public function layers($method)
-	{
+	public function layers($method) {
 		if (!$this->supportedLayerMethod($method)) {
 			$message = 'Tried to apply unknown method to layers';
 			throw new InvalidArgumentException($message);
 		}
-		$this->inputOptions[] = " -layers " . $method;
+		$this->_inputOptions[] = " -layers " . $method;
 		$this->dirty();
 		return $this;
 	}
@@ -519,9 +497,8 @@ class Convert extends ImageMagick
 	 * @throws InvalidArgumentException
 	 * @throws BadMethodCallException if resize has already been called
 	 */
-	public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true)
-	{
-		if ($this->isOptionSet('resize', $this->inputOptions)) {
+	public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true) {
+		if ($this->isOptionSet('resize', $this->_inputOptions)) {
 			throw new BadMethodCallException('resize can only be called once.');
 		}
 		if ($width == "" && $height == "") {
@@ -554,7 +531,7 @@ class Convert extends ImageMagick
 			$option = $option . "\>";
 		}
 		$option = $option . " ";
-		$this->inputOptions[] = $option;
+		$this->_inputOptions[] = $option;
 		$this->dirty();
 		return $this;
 	}
@@ -571,9 +548,8 @@ class Convert extends ImageMagick
 	 * @throws InvalidArgumentException
 	 * @throws BadMethodCallException if crop has already been called
 	 */
-	public function crop($width, $height, $xOffset = 0, $yOffset = 0)
-	{
-		if ($this->isOptionSet('crop', $this->inputOptions)) {
+	public function crop($width, $height, $xOffset = 0, $yOffset = 0) {
+		if ($this->isOptionSet('crop', $this->_inputOptions)) {
 			throw new BadMethodCallException('crop can only be called once.');
 		}
 		if ($width == "" || $height == "") {
@@ -613,7 +589,7 @@ class Convert extends ImageMagick
 
 		//http://www.imagemagick.org/Usage/crop/#crop_repage
 		$option = $option . " +repage ";
-		$this->inputOptions[] = $option;
+		$this->_inputOptions[] = $option;
 		$this->dirty();
 		return $this;
 	}
@@ -629,9 +605,8 @@ class Convert extends ImageMagick
 	 * @throws BadMethodCallException if quality has already been called
 	 * @throws RangeException if quality is not a value between 0 - 100
 	 */
-	public function quality($quality, $format = 'jpeg')
-	{
-		if ($this->isOptionSet('quality', $this->inputOptions)) {
+	public function quality($quality, $format = 'jpeg') {
+		if ($this->isOptionSet('quality', $this->_inputOptions)) {
 			throw new BadMethodCallException("'quality()' can only be called once.");
 		}
 		if (!$this->supportedFormat($format) && ($format != 'jpeg' || $format != 'jpg' || $format != 'png')) {
@@ -646,7 +621,7 @@ class Convert extends ImageMagick
 			$message = "quality argument must be between 0 and 100 both inclusive. Used (".$quality.")";
 			throw new RangeException($message);
 		}
-		$this->inputOptions[] = " -quality " . $quality;
+		$this->_inputOptions[] = " -quality " . $quality;
 		$this->dirty();
 		return $this;
 	}
@@ -660,8 +635,7 @@ class Convert extends ImageMagick
 	 *
 	 * @return Convert
 	 */
-	public function gravity($gravity)
-	{
+	public function gravity($gravity) {
 		return parent::gravity($gravity);
 	}
 
@@ -674,9 +648,8 @@ class Convert extends ImageMagick
 	 * @throws InvalidArgumentException
 	 * @throws BadMethodCallException if colorspace has already been called
 	 */
-	public function colorspace($colorSpace)
-	{
-		if ($this->isOptionSet('colorspace', $this->outputOptions)) {
+	public function colorspace($colorSpace) {
+		if ($this->isOptionSet('colorspace', $this->_outputOptions)) {
 			throw new BadMethodCallException('Colorspace can only be called once.');
 		}
 		if (!$this->supportedColorSpace($colorSpace)) {
@@ -684,7 +657,7 @@ class Convert extends ImageMagick
 			$colorSpace . ') is not supported by imagemagick';
 			throw new InvalidArgumentException($message);
 		}
-		$this->outputOptions[] = " -colorspace " . $colorSpace . ' ';
+		$this->_outputOptions[] = " -colorspace " . $colorSpace . ' ';
 		$this->dirty();
 		return $this;
 	}
@@ -697,9 +670,8 @@ class Convert extends ImageMagick
 	 * @throws InvalidArgumentException
 	 * @throws BadMethodCallException if sepia has already been called
 	 */
-	public function sepia($threshold = 80)
-	{
-		if ($this->isOptionSet('sepia-tone', $this->outputOptions)) {
+	public function sepia($threshold = 80) {
+		if ($this->isOptionSet('sepia-tone', $this->_outputOptions)) {
 			throw new BadMethodCallException('Sepia can only be called once.');
 		}
 		if (!is_integer($threshold)) {
@@ -707,7 +679,7 @@ class Convert extends ImageMagick
 			$threshold . ') must be between 0 - 100';
 			throw new InvalidArgumentException($message);
 		}
-		$this->outputOptions[] = " -sepia-tone " . $threshold . '% ';
+		$this->_outputOptions[] = " -sepia-tone " . $threshold . '% ';
 		$this->dirty();
 		return $this;
 	}
@@ -720,9 +692,8 @@ class Convert extends ImageMagick
 	 * @throws InvalidArgumentException
 	 * @throws BadMethodCallException if angle has already been called
 	 */
-	public function polaroid($angle = 0)
-	{
-		if ($this->isOptionSet('polaroid', $this->inputOptions)) {
+	public function polaroid($angle = 0) {
+		if ($this->isOptionSet('polaroid', $this->_inputOptions)) {
 			throw new BadMethodCallException('Polaroid can only be called once.');
 		}
 		if (!is_numeric($angle)) {
@@ -730,7 +701,7 @@ class Convert extends ImageMagick
 			$angle . ') must be between 0 - 360';
 			throw new InvalidArgumentException($message);
 		}
-		$this->inputOptions[] = " -polaroid " . $angle . '';
+		$this->_inputOptions[] = " -polaroid " . $angle . '';
 		$this->dirty();
 		return $this;
 	}
@@ -742,13 +713,12 @@ class Convert extends ImageMagick
 	 * @return Convert
 	 * @throws BadMethodCallException if borderColor has already been called
 	 */
-	public function borderColor($color = '#DFDFDF')
-	{
-		if ($this->isOptionSet('borderColor', $this->inputOptions)) {
+	public function borderColor($color = '#DFDFDF') {
+		if ($this->isOptionSet('borderColor', $this->_inputOptions)) {
 			throw new BadMethodCallException('BorderColor can only be called once.');
 		}
 		//TODO Check if the color is valid
-		$this->inputOptions[] = " -bordercolor " . $color . '';
+		$this->_inputOptions[] = " -bordercolor " . $color . '';
 		$this->dirty();
 		return $this;
 	}

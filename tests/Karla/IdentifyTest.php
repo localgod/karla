@@ -21,12 +21,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class IdentifyTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var Identify
-     */
-    protected $object;
+class IdentifyTest extends PHPUnit_Framework_TestCase {
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -34,8 +29,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * 
      * @return void
      */
-    protected function setUp()
-    {
+    protected function setUp() {
     }
 
     /**
@@ -44,8 +38,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * 
      * @return void
      */
-    protected function tearDown()
-    {
+    protected function tearDown() {
     }
 
     /**
@@ -54,8 +47,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function inputfile()
-    {
+    public function inputfile() {
     	$karla = Karla::getInstance();
     	$command = $karla->identify()->inputfile('_data/demo.jpg')->getCommand();
     	$this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "_data/demo.jpg"');
@@ -67,8 +59,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @expectedException InvalidArgumentException
      * @return void
      */
-    public function invalidInputfile()
-    {
+    public function invalidInputfile() {
     	$karla = Karla::getInstance();
     	$command = $karla->identify()->inputfile('_data/demo2.jpg')->getCommand();
     }
@@ -79,8 +70,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function execute()
-    {
+    public function execute() {
     	$karla = Karla::getInstance();
     	$result = $karla->identify()->inputfile('_data/demo.jpg')->execute();
     	$this->assertTrue(preg_match('/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\sDirectClass.*/', $result) == 1);
@@ -91,8 +81,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function executeNoRaw()
-    {
+    public function executeNoRaw() {
     	$karla = Karla::getInstance();
     	$result = $karla->identify()->inputfile('_data/demo.jpg')->execute(true, false);
     	$this->assertTrue($result instanceof MetaData);
@@ -103,8 +92,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function executeNoReset()
-    {
+    public function executeNoReset() {
     	$karla = Karla::getInstance();
     	$result = $karla->identify()->inputfile('_data/demo.jpg')->execute(false);
     	$this->assertTrue(preg_match('/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\sDirectClass.*/', $result) == 1);
@@ -115,8 +103,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function executeNoResetNoRaw()
-    {
+    public function executeNoResetNoRaw() {
     	$karla = Karla::getInstance();
     	$result = $karla->identify()->inputfile('_data/demo.jpg')->execute(false, false);
     	$this->assertTrue($result instanceof MetaData);
@@ -128,8 +115,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function verbose()
-    {
+    public function verbose() {
     	$karla = Karla::getInstance();
     	$command = $karla->identify()->inputfile('_data/demo.jpg')->verbose()->getCommand();
     	$this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "_data/demo.jpg"');
@@ -140,8 +126,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function verboseTwice()
-    {
+    public function verboseTwice() {
     	$karla = Karla::getInstance();
     	$command = $karla->identify()->inputfile('_data/demo.jpg')->verbose()->verbose()->getCommand();
     	$this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "_data/demo.jpg"');
@@ -152,8 +137,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function gravity()
-    {
+    public function gravity() {
     	$karla = Karla::getInstance();
     	$command = $karla->identify()->inputfile('_data/demo.jpg')->gravity('center')->getCommand();
     	$this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "_data/demo.jpg"');
@@ -164,8 +148,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function gravityTwice()
-    {
+    public function gravityTwice() {
     	$karla = Karla::getInstance();
     	$command = $karla->identify()->inputfile('_data/demo.jpg')->gravity('center')->gravity('center')->getCommand();
     	$this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "_data/demo.jpg"');

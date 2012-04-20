@@ -21,8 +21,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class FileCache implements Cache
-{
+class FileCache implements Cache {
 	/**
 	 * Cache directory
 	 * @var string
@@ -36,8 +35,7 @@ class FileCache implements Cache
 	 *
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct($dirName)
-	{
+	public function __construct($dirName) {
 		$this->_setCacheDir($dirName);
 	}
 	/**
@@ -48,8 +46,7 @@ class FileCache implements Cache
 	 * @return string the created path
 	 * @throws InvalidArgumentException
 	 */
-	private function _options2Path(array $options)
-	{
+	private function _options2Path(array $options) {
 		if (!is_array($options)) {
 			throw new InvalidArgumentException("options argument must be an array");
 		}
@@ -65,8 +62,7 @@ class FileCache implements Cache
 	 * @throws InvalidArgumentException if path was not writeable
 	 * @throws InvalidArgumentException if path was a directoy
 	 */
-	private function _setCacheDir($dirName)
-	{
+	private function _setCacheDir($dirName) {
 		if (!file_exists($dirName)) {
 			throw new InvalidArgumentException("Path not found", 0);
 		}
@@ -87,8 +83,7 @@ class FileCache implements Cache
 	 *
 	 * @return void
 	 */
-	public function isCached($filename, $options)
-	{
+	public function isCached($filename, $options) {
 		return file_exists($filename, $options);
 	}
 	/**
@@ -99,8 +94,7 @@ class FileCache implements Cache
 	 *
 	 * @return string
 	 */
-	public function getCached($filename, $options)
-	{
+	public function getCached($filename, $options) {
 		//TODO implement
 	}
 
@@ -112,8 +106,7 @@ class FileCache implements Cache
 	 *
 	 * @return void
 	 */
-	public function setCache($filename, $options)
-	{
+	public function setCache($filename, $options) {
 		//TODO implement
 	}
 
@@ -125,8 +118,7 @@ class FileCache implements Cache
 	 *
 	 * @return void
 	 */
-	public function removeOrphans($filename, $options)
-	{
+	public function removeOrphans($filename, $options) {
 		//TODO implement
 	}
 
@@ -137,10 +129,9 @@ class FileCache implements Cache
 	 *
 	 * @return string
 	 */
-	protected function options2String()
-	{
+	protected function options2String() {
 		$output = array();
-		foreach ($this->inputOptions as $option) {
+		foreach ($this->_inputOptions as $option) {
 			if (strstr($option, 'resize')) {
 				$option = str_replace('\>', '', $option);
 				$option = str_replace('\<', '', $option);

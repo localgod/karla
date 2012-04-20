@@ -21,13 +21,12 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class Identify extends ImageMagick
-{
+class Identify extends ImageMagick {
 	/**
 	 * Input file
 	 * @var string
 	 */
-	protected $inputFile;
+	protected $_inputFile;
 
 	/**
 	 * Add input argument
@@ -37,8 +36,7 @@ class Identify extends ImageMagick
 	 * @return Identify
 	 * @throws InvalidArgumentException
 	 */
-	public function inputfile($filePath)
-	{
+	public function inputfile($filePath) {
 		if (!file_exists($filePath)) {
 			$message = 'The input file path (' .
 			$filePath . ') is invalid or the file could not be located.';
@@ -46,7 +44,7 @@ class Identify extends ImageMagick
 		}
 		$file = new SplFileObject($filePath);
 		if ($file->isReadable()) {
-			$this->inputFile = '"' . $file->getPathname() . '"';
+			$this->_inputFile = '"' . $file->getPathname() . '"';
 		}
 		$this->dirty();
 		return $this;
@@ -61,8 +59,7 @@ class Identify extends ImageMagick
 	 * @see lib/Imagemagick#execute()
 	 * @return string|MetaData
 	 */
-	public function execute($reset = true, $raw = true)
-	{
+	public function execute($reset = true, $raw = true) {
 		$result = parent::execute();
 		if ($reset) {
 			$this->reset();
@@ -77,10 +74,9 @@ class Identify extends ImageMagick
 	 *
 	 * @return Identify
 	 */
-	public function verbose()
-	{
-		if (!$this->isOptionSet('verbose', $this->inputOptions)) {
-			$this->inputOptions[] = "-verbose ";
+	public function verbose() {
+		if (!$this->isOptionSet('verbose', $this->_inputOptions)) {
+			$this->_inputOptions[] = "-verbose ";
 		}
 		$this->dirty();
 		return $this;
@@ -92,12 +88,11 @@ class Identify extends ImageMagick
 	 * @see lib/Imagemagick#getCommand()
 	 * @return string
 	 */
-	public function getCommand()
-	{
-		!is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-		$options = $this->prepareOptions($this->inputOptions) == '' ? '' : $this->prepareOptions($this->inputOptions).' ';
+	public function getCommand() {
+		!is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
+		$options = $this->prepareOptions($this->_inputOptions) == '' ? '' : $this->prepareOptions($this->_inputOptions).' ';
 
-		return $this->binPath.$this->bin . ' ' . $options . $this->inputFile;
+		return $this->_binPath.$this->_bin . ' ' . $options . $this->_inputFile;
 	}
 
 	/**
@@ -109,8 +104,7 @@ class Identify extends ImageMagick
 	 *
 	 * @return Identify
 	 */
-	public function gravity($gravity)
-	{
+	public function gravity($gravity) {
 		return $this;
 	}
 }

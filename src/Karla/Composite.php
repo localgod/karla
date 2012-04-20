@@ -21,15 +21,13 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class Composite extends ImageMagick
-{
+class Composite extends ImageMagick {
 	/**
 	 * Add base file argument
 	 *
 	 * @return Composite
 	 */
-	public function basefile() 
-	{
+	public function basefile() {
 		return $this;
 	}
 	/**
@@ -37,8 +35,7 @@ class Composite extends ImageMagick
 	 *
 	 * @return Composite
 	 */
-	public function changefile() 
-	{
+	public function changefile() {
 		return $this;
 	}
 
@@ -47,8 +44,7 @@ class Composite extends ImageMagick
 	 *
 	 * @return Composite
 	 */
-	public function outputfile() 
-	{
+	public function outputfile() {
 		return $this;
 	}
 	/**
@@ -60,8 +56,7 @@ class Composite extends ImageMagick
 	 *
 	 * @return Composite
 	 */
-	public function gravity($gravity)
-	{
+	public function gravity($gravity) {
 		return parent::gravity($gravity);
 	}
 }

@@ -1,0 +1,14 @@
+language: php
+php:
+  - 5.3
+  - 5.4
+before_script:
+  - pyrus channel-discover pear.pdepend.org
+  - pyrus channel-discover pear.phpmd.org
+# - pyrus channel-discover pear.phpdoc.org
+  - pyrus install pear/PHP_CodeSniffer
+# - pyrus install pear.phpmd.org/PHP_PMD
+# - pyrus install pear.pdepend.org/PHP_Depend
+# - pyrus install pear.phpdoc.org/phpDocumentor
+  - phpenv rehash
+script : ant travisbuild

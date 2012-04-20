@@ -22,8 +22,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       http://karla.greenoak.dk/ Karla
  */
-class Karla
-{
+class Karla {
 	/**
 	 * Path to Karla root directory
 	 *
@@ -46,7 +45,7 @@ class Karla
 	 *
 	 * @var Karla $_instance imagmagick object.
 	 */
-	static $_instance;
+	private static $_instance;
 	/**
 	 * Get a instance of Karla.
 	 *
@@ -55,8 +54,7 @@ class Karla
 	 *
 	 * @return Karla
 	 */
-	public static function getInstance($binPath = '/opt/local/bin/', Cache $cache = null)
-	{
+	public static function getInstance($binPath = '/opt/local/bin/', Cache $cache = null) {
 		if (!(self::$_instance instanceof self)) {
 			try {
 				self::$_instance = new self($binPath, $cache);
@@ -75,8 +73,7 @@ class Karla
 	 *
 	 * @return boolean true if the class was loaded, otherwise false
 	 */
-	public static function autoload($className)
-	{
+	public static function autoload($className) {
 		if (class_exists($className, false) || interface_exists($className, false)) {
 			return false;
 		}
@@ -84,7 +81,7 @@ class Karla
 		DIRECTORY_SEPARATOR. str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
 		if (file_exists($class)) {
-			include_once $class;
+			require_once $class;
 			return true;
 		}
 		return false;
@@ -95,8 +92,7 @@ class Karla
 	 *
 	 * @return string
 	 */
-	public static function getPath()
-	{
+	public static function getPath() {
 		if (!self::$_path) {
 			self::$_path = dirname(__FILE__);
 		}
@@ -112,8 +108,7 @@ class Karla
 	 * @return void
 	 * @throws InvalidArgumentException if path for imagemagick is invalid
 	 */
-	private function __construct($binPath, $cache)
-	{
+	private function __construct($binPath, $cache) {
 		if (!file_exists($binPath)) {
 			throw new InvalidArgumentException('Bin path not found');
 		}
@@ -137,8 +132,7 @@ class Karla
 	 * @return string Result of the command if any
 	 * @throws InvalidArgumentException if you try to run a non ImageMagick prohram
 	 */
-	public function raw($program, $arguments = "")
-	{
+	public function raw($program, $arguments = "") {
 		if (!ImageMagick::validProgram($program)) {
 			throw new InvalidArgumentException('ImageMagick could not be located at specified path');
 		}
@@ -150,8 +144,7 @@ class Karla
 	 *
 	 * @return Convert
 	 */
-	public function convert()
-	{
+	public function convert() {
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
 		return new Convert($this->_binPath, $bin, $this->_cache);
 	}
@@ -161,8 +154,7 @@ class Karla
 	 *
 	 * @return Identify
 	 */
-	public function identify()
-	{
+	public function identify() {
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_IDENTIFY.'.exe' : ImageMagick::IMAGEMAGICK_IDENTIFY;
 		return new Identify($this->_binPath, $bin, $this->_cache);
 	}
@@ -171,8 +163,7 @@ class Karla
 	 *
 	 * @return Composite
 	 */
-	public function composite()
-	{
+	public function composite() {
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_COMPOSITE.'.exe' : ImageMagick::IMAGEMAGICK_COMPOSITE;
 		return new Composite($this->_binPath, $bin, $this->_cache);
 	}
@@ -187,8 +178,7 @@ class Karla
 	 *
 	 * @return string - path to generated image
 	 */
-	public function createBackgroundImage($width, $height, $color, $savePath = '')
-	{
+	public function createBackgroundImage($width, $height, $color, $savePath = '') {
 		if ($savePath == '') {
 			$path = dirname(__FILE__).DIRECTORY_SEPARATOR.'tempback.png';
 		} else {

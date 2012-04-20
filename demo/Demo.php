@@ -29,8 +29,7 @@ spl_autoload_register(array('Karla', 'autoload'));
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class Demo
-{
+class Demo {
 
 	/**
 	 * Clean path
@@ -39,8 +38,7 @@ class Demo
 	 * 
 	 * @return string
 	 */
-	private function _cleanPath($path)
-	{
+	private function _cleanPath($path) {
 		return str_replace(dirname(__FILE__), '', str_replace('export PATH=$PATH:/opt/local/bin/;', '', $path));
 	}
 	/**
@@ -48,8 +46,7 @@ class Demo
 	 * 
 	 * @return void
 	 */
-	public function examples()
-	{
+	public function examples() {
 		$examples = array();
 		$examples[] = $this->_example1();
 		$examples[] = $this->_example2();
@@ -67,8 +64,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example1()
-	{
+	private function _example1() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo.png')->execute();
@@ -86,8 +82,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example2()
-	{
+	private function _example2() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->resize(100, 100)->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-100x100.jpg')->execute();
@@ -105,8 +100,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example3()
-	{
+	private function _example3() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->quality(10)->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-low.jpg')->execute();
@@ -124,8 +118,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example4()
-	{
+	private function _example4() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->crop(100, 100, 50, 50)->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-crop.jpg')->execute();
@@ -143,8 +136,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example5()
-	{
+	private function _example5() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->flip()->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-flip.jpg')->execute();
@@ -162,8 +154,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example6()
-	{
+	private function _example6() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->flop()->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-flop.jpg')->execute();
@@ -181,8 +172,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example7()
-	{
+	private function _example7() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->type('Grayscale')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-grayscale.jpg')->execute();
@@ -200,8 +190,7 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example8()
-	{
+	private function _example8() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->sepia(80)->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-sepia.jpg')->execute();
@@ -219,12 +208,13 @@ class Demo
 	 * 
 	 * @return array
 	 */
-	private function _example9()
-	{
+	private function _example9() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->polaroid(-10)->borderColor('"#ffffff"')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->execute();
-        $cleanCommand = $this->_cleanPath($karla->convert()->polaroid(-10)->borderColor('"#ffffff"')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->getCommand());
+        $cleanCommand = $this->_cleanPath(
+        	$karla->convert()->polaroid(-10)->borderColor('"#ffffff"')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->getCommand()
+        );
 		return array(
 		'name' => 'Add polaroid effect to image', 
 		'original' => 'demo.jpg', 

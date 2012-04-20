@@ -21,8 +21,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-abstract class ImageMagick implements Program
-{
+abstract class ImageMagick implements Program {
 	/**
 	 * ImageMagick tool animate
 	 *
@@ -94,22 +93,22 @@ abstract class ImageMagick implements Program
 	 * Input option
 	 * @var Array
 	 */
-	protected $inputOptions;
+	protected $_inputOptions;
 	/**
 	 * Path to binaries
 	 * @var string
 	 */
-	protected $binPath;
+	protected $_binPath;
 	/**
 	 * Name of binary
 	 * @var string
 	 */
-	protected $bin;
+	protected $_bin;
 	/**
 	 * Cache controller
 	 * @var Cache
 	 */
-	protected $cache;
+	protected $_cache;
 	/**
 	 * Is the object dirty (has any arguments been set)
 	 * @var boolean
@@ -126,17 +125,16 @@ abstract class ImageMagick implements Program
 	 * @return void
 	 * @throws InvalidArgumentException
 	 */
-	final public function __construct($binPath, $bin, $cache = null)
-	{
+	final public function __construct($binPath, $bin, $cache = null) {
 		if ($binPath == '') {
 			throw new InvalidArgumentException('Invalid bin path');
 		}
 		if ($bin == '') {
 			throw new InvalidArgumentException('Invalid bin');
 		}
-		$this->binPath = $binPath;
-		$this->bin = $bin;
-		$this->cache = $cache;
+		$this->_binPath = $binPath;
+		$this->_bin = $bin;
+		$this->_cache = $cache;
 		$this->reset();
 	}
 	/**
@@ -146,8 +144,7 @@ abstract class ImageMagick implements Program
 	 * 
 	 * @return boolean
 	 */
-	public function isDirty()
-	{
+	public function isDirty() {
 		return $this->_dirty;
 	}
 	
@@ -158,8 +155,7 @@ abstract class ImageMagick implements Program
 	 * 
 	 * @return void
 	 */
-	protected function dirty()
-	{
+	protected function dirty() {
 		$this->_dirty = true;
 	}
 
@@ -168,8 +164,7 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return void
 	 */
-	public final function __clone()
-	{
+	public final function __clone() {
 		throw new BadMethodCallException("Clone is not allowed");
 	}
 	/**
@@ -177,9 +172,8 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return string
 	 */
-	public function getCommand()
-	{
-		return $this->binPath.$this->bin;
+	public function getCommand() {
+		return $this->_binPath.$this->_bin;
 	}
 
 	/**
@@ -189,8 +183,7 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return string
 	 */
-	public function execute($reset = true) 
-	{
+	public function execute($reset = true) {
 		$result = shell_exec($this->getCommand());
 		if ($reset) {
 			$this->reset();
@@ -202,9 +195,8 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return void
 	 */
-	public function reset() 
-	{
-		$this->inputOptions = array();
+	public function reset() {
+		$this->_inputOptions = array();
 		$this->_dirty = false;
 	}
 	/**
@@ -214,13 +206,12 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return ImageMagick
 	 */
-	public function gravity($gravity)
-	{
-		if ($this->isOptionSet('gravity', $this->inputOptions)) {
+	public function gravity($gravity) {
+		if ($this->isOptionSet('gravity', $this->_inputOptions)) {
 			throw new BadMethodCallException('Gravity can only be called once.');
 		}
 		if ($this->supportedGravity($gravity)) {
-			$this->inputOptions[] = " -gravity " . $gravity;
+			$this->_inputOptions[] = " -gravity " . $gravity;
 			$this->dirty();
 			return $this;
 		}
@@ -233,8 +224,7 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return string
 	 */
-	final protected function prepareOptions(array $options)
-	{
+	final protected function prepareOptions(array $options) {
 		$options = implode(' ', $options);
 		if (trim($options) == '') {
 			return '';
@@ -250,8 +240,7 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return boolean
 	 */
-	final protected function isOptionSet($lookop, array $optionList)
-	{
+	final protected function isOptionSet($lookop, array $optionList) {
 		foreach ($optionList as $option) {
 			if (strstr($option, $lookop)) {
 				return true;
@@ -267,13 +256,12 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return boolean
 	 */
-	final protected function supportedColorSpace($colorSpace)
-	{
+	final protected function supportedColorSpace($colorSpace) {
 		if (!($this instanceof Convert) && !($this instanceof Identify)) {
 			throw new BadMethodCallException('This method can not be used in this context');
 		}
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-		$colorspaces = shell_exec($this->binPath .$bin. ' -list colorspace');
+		$colorspaces = shell_exec($this->_binPath .$bin. ' -list colorspace');
 		$colorspaces = explode("\n", $colorspaces);
 		for ($i = 0; $i < sizeof($colorspaces); $i++) {
 			$colorspaces[$i] = trim(strtolower($colorspaces[$i]));
@@ -287,13 +275,12 @@ abstract class ImageMagick implements Program
 	 *
 	 * @return boolean
 	 */
-	final protected function supportedImageTypes($type)
-	{
+	final protected function supportedImageTypes($type) {
 		if (!($this instanceof Convert) && !($this instanceof Identify)) {
 			throw new BadMethodCallException('This method can not be used in this context');
 		}
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-		$types = shell_exec($this->binPath .$bin. ' -list type');
+		$types = shell_exec($this->_binPath .$bin. ' -list type');
 		$types = explode("\n", $types);
 		for ($i = 0; $i < sizeof($types); $i++) {
 			$types[$i] = trim(strtolower($types[$i]));
@@ -309,13 +296,12 @@ abstract class ImageMagick implements Program
 	 * @return boolean
 	 * @throws BadMethodCallException if called in a wrong context
 	 */
-	final protected function supportedGravity($gravity)
-	{
+	final protected function supportedGravity($gravity) {
 		if (!($this instanceof Convert) && !($this instanceof Composite)) {
 			throw new BadMethodCallException('This method can not be used in this context');
 		}
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-		$gravities = shell_exec($this->binPath .$bin. ' -list gravity');
+		$gravities = shell_exec($this->_binPath .$bin. ' -list gravity');
 		$gravities = explode("\n", $gravities);
 		for ($i = 0; $i < sizeof($gravities); $i++) {
 			$gravities[$i] = trim(strtolower($gravities[$i]));
@@ -331,13 +317,12 @@ abstract class ImageMagick implements Program
 	 * @return boolean
 	 * @throws BadMethodCallException if called in a wrong context
 	 */
-	final protected function supportedLayerMethod($method)
-	{
+	final protected function supportedLayerMethod($method) {
 		if (!($this instanceof Convert) && !($this instanceof Identify)) {
 			throw new BadMethodCallException('This method can not be used in this context');
 		}
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-		$methods = shell_exec($this->binPath .$bin. ' -list layers');
+		$methods = shell_exec($this->_binPath .$bin. ' -list layers');
 		$methods = explode("\n", $methods);
 		for ($i = 0; $i < sizeof($methods); $i++) {
 			$methods[$i] = trim(strtolower($methods[$i]));
@@ -353,13 +338,12 @@ abstract class ImageMagick implements Program
 	 * @return boolean
 	 * @throws BadMethodCallException if called in a wrong context
 	 */
-	final protected function supportedFormat($format)
-	{
+	final protected function supportedFormat($format) {
 		if (!($this instanceof Convert) && !($this instanceof Identify)) {
 			throw new BadMethodCallException('This method can not be used in this context');
 		}
 		$bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-		$formats = shell_exec($this->binPath .$bin. ' -list format');
+		$formats = shell_exec($this->_binPath .$bin. ' -list format');
 		$formats = explode("\n", $formats);
 		for ($i = 0; $i < sizeof($formats); $i++) {
 			preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);
@@ -378,8 +362,7 @@ abstract class ImageMagick implements Program
 	 * 
 	 * @return boolean
 	 */
-	final public static function validProgram($program)
-	{
+	final public static function validProgram($program) {
 		$class = new ReflectionClass(__CLASS__);
 		$constants = $class->getConstants();
 		foreach ($constants as $constant) {

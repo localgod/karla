@@ -13,7 +13,6 @@
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
-	
 
 	<!-- ================================= target: init ================================== -->
 	<target name="init" description="Create requried folders for build">
@@ -32,6 +31,10 @@
 	<!-- ================================= target: basebuild ============================= -->
 	<target name="build" depends="checkphp, clean, init, phpunit, phpmd, phpcs" description="Base build">
 	</target>
+
+	<!-- ================================= target: basebuild ============================= -->
+	<target name="travisbuild" depends="checkphp, clean, init, phpunit, phpcs" description="Build on Travis">
+	</target>
 	
 	<!-- ================================= target: build ================================= -->
 	<target name="buildall" depends="build" description="Build">
@@ -41,7 +44,7 @@
 	</target>
 
 	<!-- ================================= target: ccbuild =============================== -->
-	<target name="ccbuild" depends="build" description="Build on CC">
+	<target name="ccbuild" depends="build" description="Build on cruisecontrol">
 		<antcall target="phpcpd" />
 		<antcall target="phplocCC" />
 		<antcall target="phpcb" />
@@ -133,7 +136,7 @@
 			<then>
 				<exec dir="${basedir}" executable="phpcs" output="${basedir}/${build}/logs/checkstyle.xml">
 					<arg line="--report=checkstyle" />
-					<arg line="--standard=PEAR" />
+					 <arg line="--standard=${basedir}/tools/Karla" />
 					<arg line="--extensions=php" />
 					<arg line="--tab-width=4" />
 					<arg line="-n" />
@@ -143,7 +146,7 @@
 			<else>
 				<exec dir="${basedir}" executable="phpcs" output="${basedir}/${build}/logs/checkstyle.xml">
 					<arg line="--report=checkstyle" />
-					<arg line="--standard=PEAR" />
+					 <arg line="--standard=${basedir}/tools/Karla" />
 					<arg line="--extensions=php" />
 					<arg line="--ignore=${phpcs.exclude}" />
 					<arg line="--tab-width=4" />
@@ -152,9 +155,9 @@
 				</exec>
 			</else>
 		</if>
-		<xslt in="${basedir}/${build}/logs/checkstyle.xml" out="${basedir}/${build}/logs/checkstyle.html" style="tools/CheckStyleReport/codestyle.xsl">
+		<xslt in="${basedir}/${build}/logs/checkstyle.xml" out="${basedir}/${build}/logs/checkstyle.html" style="tools/checkstylereport/codestyle.xsl">
 		</xslt>
-		<copy file="${basedir}/tools/CheckStyleReport/cs.css" tofile="${basedir}/${build}/logs/cs.css" />
+		<copy file="${basedir}/tools/checkstylereport/cs.css" tofile="${basedir}/${build}/logs/cs.css" />
 		<exec executable="grep" outputproperty="phpcs.result">
 			<arg line="--max-count=1" />
 			<arg line="'error'" />
@@ -322,5 +325,4 @@
 			</else>
 		</if>
 	</target>
-
 </project>

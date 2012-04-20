@@ -21,12 +21,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-class KarlaTest extends PHPUnit_Framework_TestCase
-{
-	/**
-	 * @var Karla
-	 */
-	protected $object;
+class KarlaTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
@@ -34,8 +29,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
-	{
+	protected function setUp() {
 	}
 
 	/**
@@ -44,9 +38,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function tearDown()
-	{
-		$this->object = null;
+	protected function tearDown() {
 	}
 
 	/**
@@ -55,8 +47,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 * @test
 	 * @return void
 	 */
-	public function testGetInstance()
-	{
+	public function testGetInstance() {
 		$karla = Karla::getInstance();
 		$this->assertTrue($karla instanceof Karla);
 	}
@@ -67,8 +58,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 * @test
 	 * @return void
 	 */
-	public function testRaw()
-	{
+	public function testRaw() {
 		$karla = Karla::getInstance();
 		$this->assertTrue(preg_match('/Version\:\sImageMagick/', $karla->raw('identify', '--version')) == 1);
 	}
@@ -79,8 +69,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 * @test
 	 * @return void
 	 */
-	public function testConvert()
-	{
+	public function testConvert() {
 		$karla = Karla::getInstance();
 		$this->assertTrue($karla->convert() instanceof Convert);
 	}
@@ -91,8 +80,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 * @test
 	 * @return void
 	 */
-	public function testIdentify()
-	{
+	public function testIdentify() {
 		$karla = Karla::getInstance();
 		$this->assertTrue($karla->identify() instanceof Identify);
 	}
@@ -103,8 +91,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
 	 * @test
 	 * @return void
 	 */
-	public function testComposite()
-	{
+	public function testComposite() {
 		$karla = Karla::getInstance();
 		$this->assertTrue($karla->composite() instanceof Composite);
 	}

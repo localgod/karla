@@ -21,8 +21,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-interface Cache
-{
+interface Cache {
 	/**
 	 * Check if there exists a cached version of the file
 	 *

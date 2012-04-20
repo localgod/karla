@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ruleset name="karla">
+	<description>Karla coding standard</description>
+	<rule ref="Zend">
+		<exclude name="Zend.NamingConventions.ValidVariableName"/>
+	</rule>
+	<rule ref="PEAR">
+		<exclude name="PEAR.Classes.ClassDeclaration"/>
+		<exclude name="PEAR.Commenting.FileComment" />
+		<exclude name="PEAR.Commenting.ClassComment" />
+		<exclude name="PEAR.NamingConventions.ValidFunctionName" />
+		<exclude name="PEAR.Functions.FunctionDeclaration" />
+		<exclude name="PEAR.WhiteSpace.ScopeIndent" />
+		<exclude name="PEAR.NamingConventions.ValidVariableName" />
+		<exclude name="PEAR.Files.IncludingFile.UseIncludeOnce" />
+	</rule>
+	<rule ref="Generic">
+		<exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
+		<exclude name="Generic.PHP.DeprecatedFunctions"/>
+		<exclude name="Generic.PHP.UpperCaseConstant"/>
+		<exclude name="Generic.PHP.LowerCaseConstant"/>
+		<exclude name="Generic.PHP.ForbiddenFunctions"/>
+		<exclude name="Generic.Formatting.DisallowMultipleStatements"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+		<exclude name="Generic.Formatting.NoSpaceAfterCast"/>
+		<exclude name="Generic.Formatting.SpaceAfterCast"/>
+		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
+		<exclude name="Generic.Metrics.CyclomaticComplexity"/>
+		<exclude name="Generic.VersionControl.SubversionProperties"/>
+		<exclude name="Generic.NamingConventions.ConstructorName"/>
+	</rule>
+	<rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+	
+	<!-- Lines can be 120 chars long, show errors at 200 chars -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="200"/>
+		</properties>
+	</rule>
+</ruleset>

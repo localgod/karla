@@ -7,13 +7,14 @@
 			<include name="**/*.php" />
 			<exclude name="tools/**" />
 			<exclude name="build/**" />
-			<exclude name="demo/**" />
+			<exclude name="tests/**" />
 			<exclude name="deploy/**" />
+			<exclude name="demo/**" />
 		</fileset>
 	</path>
 
 	<!-- Overrides -->
-
+	<property name="phpcs.failonerror" value="true" />
 	<!-- Extras -->
 
 	<!-- Imports -->
