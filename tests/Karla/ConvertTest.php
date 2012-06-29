@@ -89,6 +89,43 @@ class ConvertTest extends PHPUnit_Framework_TestCase {
 		$command = $karla->convert()->inputfile('_data/demo.jpg')->background('red')->outputfile('test-1920x1200.png')->getCommand();
 		$this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -background "red" "_data/demo.jpg" "./test-1920x1200.png"', $command);
 	}
+	
+	/**
+	 * Test
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function bordercolorWithColorName() {
+		//You will not be able to see the border in the resulting image, as this test has no border argument.
+		$karla = Karla::getInstance();
+		$command = $karla->convert()->inputfile('_data/demo.jpg')->borderColor('red')->outputfile('test-1920x1200.png')->getCommand();
+		$this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -bordercolor red "_data/demo.jpg" "./test-1920x1200.png"', $command);
+	}
+	/**
+	 * Test
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function bordercolorWithHexColor() {
+		//You will not be able to see the border in the resulting image, as this test has no border argument.
+		$karla = Karla::getInstance();
+		$command = $karla->convert()->inputfile('_data/demo.jpg')->borderColor('#666666')->outputfile('test-1920x1200.png')->getCommand();
+		$this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -bordercolor "#666666" "_data/demo.jpg" "./test-1920x1200.png"', $command);
+	}
+	/**
+	 * Test
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function bordercolorWithRgbColor() {
+		//You will not be able to see the border in the resulting image, as this test has no border argument.
+		$karla = Karla::getInstance();
+		$command = $karla->convert()->inputfile('_data/demo.jpg')->borderColor('rgb(255,255,255)')->outputfile('test-1920x1200.png')->getCommand();
+		$this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -bordercolor "rgb(255,255,255)" "_data/demo.jpg" "./test-1920x1200.png"', $command);
+	}
 
 	/**
 	 * Test

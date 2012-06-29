@@ -27,7 +27,6 @@ class Convert extends ImageMagick {
 	 * @var Array
 	 */
 	protected $_outputOptions;
-
 	/**
 	 * Input file
 	 * @var string
@@ -68,8 +67,9 @@ class Convert extends ImageMagick {
 	 *
 	 * @return Convert
 	 * @throws InvalidArgumentException
+	 * @todo   Implement include options to filename
 	 */
-	public function outputfile($filePath, $includeOptions = true) {
+	public function outputfile($filePath, $includeOptions = false) {
 		$pathinfo = pathinfo($filePath);
 		if (!file_exists($pathinfo['dirname'])) {
 			$message = 'The output file path (' . $pathinfo['dirname'] .
@@ -82,7 +82,12 @@ class Convert extends ImageMagick {
                        ') is not writable.';
 			throw new InvalidArgumentException($message);
 		}
-		$this->_outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
+		if (!$includeOptions) {
+			$this->_outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
+		} else {
+			//TODO implement this feature
+			$this->_outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
+		}
 		$this->dirty();
 		return $this;
 	}
@@ -111,7 +116,7 @@ class Convert extends ImageMagick {
 	 *
 	 * @return Convert
 	 *
-	 * @todo get list of profiles from image (can be done by identify but might be to expsensive)
+	 * @todo get list of profiles from image (can be done by identify but might be to expensive)
 	 */
 	public function removeProfile($profileName) {
 		$this->_inputOptions[] = " +profile " . $profileName;
@@ -717,9 +722,53 @@ class Convert extends ImageMagick {
 		if ($this->isOptionSet('borderColor', $this->_inputOptions)) {
 			throw new BadMethodCallException('BorderColor can only be called once.');
 		}
-		//TODO Check if the color is valid
-		$this->_inputOptions[] = " -bordercolor " . $color . '';
-		$this->dirty();
-		return $this;
+		if (self::_validHexColor($color) || self::_validRgbColor($color) || self::_validColorName($color)) {
+			if (self::_validColorName($color)) {
+				$this->_inputOptions[] = ' -bordercolor ' . $color;
+			} else {
+				$this->_inputOptions[] = ' -bordercolor "' . $color . '"';
+			}
+			$this->dirty();
+			return $this;
+		} else {
+			throw new InvalidArgumentException('The color supplied could not be parsed');
+		}
+	}
+	/**
+	 * Check if supplied color is a valid hex color
+	 * 
+	 * @param string $color Color to check
+	 * 
+	 * @return boolean
+	 */
+	private static function _validHexColor($color) {
+		$expr = '#?(([a-fA-F0-9]){3}){1,2}';
+		return preg_match('/^'.$expr.'$/', $color);
+	}
+	/**
+	 * Check if this is a valid color name
+	 *
+	 * @param string $color Color to check
+	 *
+	 * @return boolean
+	 */
+	private static function _validColorName($color) {
+		$expr = '(aqua)|(black)|(blue)|(fuchsia)|(gray)|(green)|(lime)|(maroon)|(navy)|(olive)|(orange)|(purple)|(red)|(silver)|(teal)|(white)|(yellow)';
+		return preg_match('/^'.$expr.'$/', $color);
+	}
+	
+	/**
+	 * Check if this is a valid rgb color definition
+	 * 
+	 * @param string $color Color to check
+	 * 
+	 * @return boolean
+	 */
+	private static function _validRgbColor($color) {
+		$expr = '(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
+		         \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
+		         \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|
+		         (rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\))';
+		return preg_match('/^'.$expr.'$/x', $color);
 	}
 }

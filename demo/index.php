@@ -6,7 +6,7 @@
 	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeRDark.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <?php 
+    <?php
     require_once 'Demo.php';
     $demo = new Demo();
     $examples = $demo->examples();

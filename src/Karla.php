@@ -137,7 +137,7 @@ class Karla {
 			throw new InvalidArgumentException('ImageMagick could not be located at specified path');
 		}
 		strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? $bin = $program.'.exe' : $bin = $program;
-		return shell_exec($this->_binPath.$bin);
+		return shell_exec($this->_binPath.$bin.' '.$arguments);
 	}
 	/**
 	 * Start a convert operation
