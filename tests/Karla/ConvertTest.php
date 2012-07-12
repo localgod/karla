@@ -192,13 +192,12 @@ class ConvertTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Test
 	 *
-	 * @todo Implement testDensity().
 	 * @return void
 	 */
 	public function testDensity() {
 		$karla = Karla::getInstance();
 		$command = $karla->convert()->inputfile('_data/demo.jpg')->density()->outputfile('test-200x200.png')->getCommand();
-		$this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -density 72x72 "_data/demo.jpg" "./test-200x200.png"', $command);
+		$this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert "_data/demo.jpg" -density 72x72 "./test-200x200.png"', $command);
 	}
 
 	/**

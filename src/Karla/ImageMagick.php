@@ -95,6 +95,11 @@ abstract class ImageMagick implements Program {
 	 */
 	protected $_inputOptions;
 	/**
+	 * Output option
+	 * @var Array
+	 */
+	protected $_outputOptions;
+	/**
 	 * Path to binaries
 	 * @var string
 	 */
@@ -197,6 +202,7 @@ abstract class ImageMagick implements Program {
 	 */
 	public function reset() {
 		$this->_inputOptions = array();
+		$this->_outputOptions = array();
 		$this->_dirty = false;
 	}
 	/**
@@ -215,6 +221,44 @@ abstract class ImageMagick implements Program {
 			$this->dirty();
 			return $this;
 		}
+	}
+	
+	/**
+	 * Set the density of the output image.
+	 *
+	 * @param integer $width  The width of the image
+	 * @param integer $height The height of the image
+	 * @param boolean $output If output is true density is set for the resulting image
+	 *                        If output is false density is used for reading the input image
+	 *
+	 * @return Convert
+	 * @throws BadMethodCallException if density has already been called
+	 * @throws InvalidArgumentException
+	 */
+	public function density($width = 72, $height = 72, $output = true) {
+		if ($this->isOptionSet('density', $this->_inputOptions)) {
+			$message = "'density()' can only be called once as in input argument.";
+			throw new BadMethodCallException($message);
+		}
+		if ($this->isOptionSet('density', $this->_outputOptions)) {
+			$message = "'density()' can only be called once as in input argument.";
+			throw new BadMethodCallException($message);
+		}
+		if (!is_numeric($width)) {
+			$message = 'Width must be numeric values in the density method';
+			throw new InvalidArgumentException($message);
+		}
+		if (!is_numeric($width)) {
+			$message = 'Height must be numeric values in the density method';
+			throw new InvalidArgumentException($message);
+		}
+		if ($output) {
+			$this->_outputOptions[] = " -density " . $width . "x" . $height;
+		} else {
+			$this->_inputOptions[] = " -density " . $width . "x" . $height;
+		}
+		$this->dirty();
+		return $this;
 	}
 
 	/**

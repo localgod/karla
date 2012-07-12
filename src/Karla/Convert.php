@@ -23,11 +23,6 @@
  */
 class Convert extends ImageMagick {
 	/**
-	 * Output option
-	 * @var Array
-	 */
-	protected $_outputOptions;
-	/**
 	 * Input file
 	 * @var string
 	 */
@@ -168,10 +163,10 @@ class Convert extends ImageMagick {
 		}
 
 		if ($originalWidth != "" && $originalHeight != "") {
-			$this->density($originalWidth, $originalHeight);
+			$this->density($originalWidth, $originalHeight, false);
 		}
 		if ($originalWidth != "" && $originalHeight == "") {
-			$this->density($originalWidth, $originalWidth);
+			$this->density($originalWidth, $originalWidth, false);
 		}
 		$option = " -resample '";
 		if ($newWidth != "" && $newHeight != "") {
@@ -186,32 +181,9 @@ class Convert extends ImageMagick {
 	}
 
 	/**
-	 * (non-PHPdoc)
+	 * Get the command to run
 	 *
-	 * @see lib/Imagemagick#getCommand()
-	 * @return string
-	 */
-	public function getCommandOld() {
-		if ($this->_outputFile == '') {
-			throw new RuntimeException('Can not preform convert without an output file');
-		}
-		!is_array($this->_outputOptions) ? $this->_outputOptions = array() : null;
-		!is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
-		$inputFile = ' ' . $this->_inputFile . ' ';
-		$outputFile = ' ' . $this->_outputFile . ' ';
-
-		return
-		$this->_binPath.$this->_bin.' '.
-		$this->prepareOptions($this->_inputOptions).' '.
-		$inputFile.' '.
-		$this->prepareOptions($this->_outputOptions).' '.
-		$outputFile;
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see lib/Imagemagick#getCommand()
+	 * @see ImageMagick::getCommand()
 	 * @return string
 	 */
 	public function getCommand() {
@@ -231,22 +203,21 @@ class Convert extends ImageMagick {
 	}
 
 	/**
-	 * (non-PHPdoc)
+	 * Reset the command
 	 *
-	 * @see lib/Imagemagick#reset()
+	 * @see ImageMagick::reset()
 	 * @return void
 	 */
 	public function reset() {
-		$this->_outputOptions = array();
 		$this->_inputFile = '';
 		$this->_outputFile = '';
 		parent::reset();
 	}
+	
 	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see lib/Imagemagick#execute()
-	 *
+	 * Execute the command
+	 * 
+	 * @see ImageMagick::execute()
 	 * @return string
 	 */
 	public function execute() {
@@ -293,33 +264,19 @@ class Convert extends ImageMagick {
 		$this->dirty();
 		return $this;
 	}
-
+	
 	/**
 	 * Set the density of the output image.
 	 *
 	 * @param integer $width  The width of the image
 	 * @param integer $height The height of the image
+	 * @param boolean $output If output is true density is set for the resulting image
+	 *                        If output is false density is used for reading the input image
 	 *
 	 * @return Convert
-	 * @throws BadMethodCallException if density has already been called
-	 * @throws InvalidArgumentException
 	 */
-	public function density($width = 72, $height = 72) {
-		if ($this->isOptionSet('density', $this->_inputOptions)) {
-			$message = "'density()' can only be called once.";
-			throw new BadMethodCallException($message);
-		}
-		if (!is_numeric($width)) {
-			$message = 'Width must be numeric values in the density method';
-			throw new InvalidArgumentException($message);
-		}
-		if (!is_numeric($width)) {
-			$message = 'Height must be numeric values in the density method';
-			throw new InvalidArgumentException($message);
-		}
-		$this->_inputOptions[] = " -density " . $width . "x" . $height;
-		$this->dirty();
-		return $this;
+	public function density($width = 72, $height = 72, $output = true) {
+		return parent::density($width, $height, $output);
 	}
 
 	/**
