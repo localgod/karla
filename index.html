@@ -29,7 +29,7 @@
         </ul>
       </header>
       <section>
-<h2>Why would you wanner use Karla</h2>
+<h2>Why would you want to use Karla</h2>
 <p>For most people who starts working with <a href=http://www.php.net/"">php</a> and <a href="http://www.imagemagick.org">ImageMagick</a> you either install the PECL extension 
 <a href="http://pecl.php.net/package/imagick">Imagick</a> or work directly with ImageMagick through 
 <a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a>.</p>
@@ -71,7 +71,7 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image = new Imagick();
     $image->readImage('demo.jpg');
     $image->setImageFormat('png');
-    $image->writeImage('demo-100x100.jpg', true);    </pre>
+    $image->writeImage('demo.png', true);    </pre>
     <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->inputfile('demo.jpg')->outputfile('demo.png')->execute();    </pre>
@@ -207,6 +207,36 @@ spl_autoload_register(array('Karla', 'autoload'));
     <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -polaroid -10  -bordercolor "#ffffff"  -background "#000000" "demo.jpg" "demo-polaroid.png"     </pre>
+     <hr/>
+    <h3>Rotate image 45 degrees left</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-rotate.png"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+	$image->readImage('demo.jpg');
+	$image->rotateImage(new ImagickPixel('gray'), -45);
+	$image->writeImage('demo-rotate.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->rotate(-45, 'gray')->inputfile('demo.jpg')->outputfile('demo-rotate.png')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -rotate "-45"  -background "gray" "demo.jpg" "demo-rotate.png"</pre>
+     <hr/>
+
+    <h2>Do 'magic' stuff</h2>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-magic.png"/>
+    <h3>Imagick code</h3>
+    <pre class="prettyprint lang-php">
+    //Not possible (but you can achive a similar result) </pre>
+    <h3>Karla query code</h3>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->raw('-vignette 5x65000 -gaussian-blur 20')->inputfile('demo.jpg')->outputfile('demo-magic.png')->execute();    </pre>
+    <h3>Imagemagick query</h3>
+    <pre class="prettyprint lang-bsh">
+    convert -vignette 5x65000 -gaussian-blur 20 "demo.jpg" "demo-magic.png"</pre>
      <hr/>
       </section>
       <footer>
