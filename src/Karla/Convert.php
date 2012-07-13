@@ -328,7 +328,7 @@ class Convert extends ImageMagick {
 	 * Flip image
 	 *
 	 * @return Convert
-	 * @throws BadMethodCallException if strip has already been called
+	 * @throws BadMethodCallException if flip has already been called
 	 */
 	public function flip() {
 		if ($this->isOptionSet('flip', $this->_inputOptions)) {
@@ -336,6 +336,26 @@ class Convert extends ImageMagick {
 			throw new BadMethodCallException($message);
 		}
 		$this->_inputOptions[] = " -flip ";
+		$this->dirty();
+		return $this;
+	}
+	/**
+	 * Rotate image
+	 *
+	 * @param integer $degree     Degrees to rotate the image
+	 * @param integer $background The background color to apply to empty triangles in the corners, 
+	 *                            left over from rotating the image
+	 *
+	 * @return Convert
+	 * @throws BadMethodCallException if rotate has already been called
+	 */
+	public function rotate($degree, $background = '#ffffff') {
+		if ($this->isOptionSet('roate', $this->_inputOptions)) {
+			$message = "'rotate()' can only be called once.";
+			throw new BadMethodCallException($message);
+		}
+		$this->_inputOptions[] = ' -rotate "'.$degree.'"';
+		$this->background($background);
 		$this->dirty();
 		return $this;
 	}
@@ -691,6 +711,21 @@ class Convert extends ImageMagick {
 			throw new InvalidArgumentException('The color supplied could not be parsed');
 		}
 	}
+	
+	/**
+	 * Raw arguments directly to ImageMagick
+	 *
+	 * @param string  $arguments Arguments
+	 * @param boolean $input     Defaults to an input option, use false to use it as an output option
+	 *
+	 * @return Convert
+	 * @see ImageMagick::raw()
+	 */
+	public function raw($arguments, $input = true) {
+		parent::raw($arguments, $input);
+		return $this;
+	}
+	
 	/**
 	 * Check if supplied color is a valid hex color
 	 * 

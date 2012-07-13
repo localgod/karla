@@ -143,21 +143,21 @@ abstract class ImageMagick implements Program {
 		$this->reset();
 	}
 	/**
-	 * Is the object dirty 
-	 * 
+	 * Is the object dirty
+	 *
 	 * (has any arguments been set)
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function isDirty() {
 		return $this->_dirty;
 	}
-	
+
 	/**
 	 * Set the object as beeing dirty
-	 * 
+	 *
 	 * (Arguments has been set)
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function dirty() {
@@ -183,7 +183,7 @@ abstract class ImageMagick implements Program {
 
 	/**
 	 * Execute the command
-	 * 
+	 *
 	 * @param boolean $reset Reset the query
 	 *
 	 * @return string
@@ -205,6 +205,22 @@ abstract class ImageMagick implements Program {
 		$this->_outputOptions = array();
 		$this->_dirty = false;
 	}
+
+	/**
+	 * Raw arguments directly to ImageMagick
+	 *
+	 * @param string  $arguments Arguments
+	 * @param boolean $input     Defaults to an input option, use false to use it as an output option
+	 * 
+	 * @return void
+	 */
+	public function raw($arguments, $input = true) {
+		if ($input) {
+			$this->_inputOptions[] = $arguments;
+		} else {
+			$this->_outputOptions[] = $arguments;
+		}
+	}
 	/**
 	 * Set the gravity
 	 *
@@ -222,7 +238,7 @@ abstract class ImageMagick implements Program {
 			return $this;
 		}
 	}
-	
+
 	/**
 	 * Set the density of the output image.
 	 *
@@ -275,7 +291,7 @@ abstract class ImageMagick implements Program {
 		}
 		return trim($options);
 	}
-	
+
 	/**
 	 * Check if an option is already set
 	 *
@@ -403,7 +419,7 @@ abstract class ImageMagick implements Program {
 	 * Check if the input is a valid ImageMagick program
 	 *
 	 * @param string $program Program name
-	 * 
+	 *
 	 * @return boolean
 	 */
 	final public static function validProgram($program) {

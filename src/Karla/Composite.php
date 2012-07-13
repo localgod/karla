@@ -47,6 +47,21 @@ class Composite extends ImageMagick {
 	public function outputfile() {
 		return $this;
 	}
+	
+	/**
+	 * Raw arguments directly to ImageMagick
+	 *
+	 * @param string  $arguments Arguments
+	 * @param boolean $input     Defaults to an input option, use false to use it as an output option
+	 *
+	 * @return Composite
+	 * @see ImageMagick::raw()
+	 */
+	public function raw($arguments, $input = true) {
+		parent::raw($arguments, $input);
+		return $this;
+	}
+	
 	/**
 	 * Set the gravity
 	 * 

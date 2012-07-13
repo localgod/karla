@@ -57,6 +57,8 @@ class Demo {
 		$examples[] = $this->_example7();
 		$examples[] = $this->_example8();
 		$examples[] = $this->_example9();
+		$examples[] = $this->_example10();
+		$examples[] = $this->_example11();
 		return $examples;
 	}
 	/**
@@ -66,14 +68,18 @@ class Demo {
 	 */
 	private function _example1() {
         $karla = Karla::getInstance();
-        $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
+        $basepath = ''.dirname(__FILE__).DIRECTORY_SEPARATOR;
         $karla->convert()->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo.png')->execute();
         $cleanCommand = $this->_cleanPath($karla->convert()->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo.png')->getCommand());
 		return array(
 		'name' => 'Change format to png.', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo.png',
-		'code' => '$karla->convert()->inputfile("demo.jpg")->outputfile("demo.png")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->setImageFormat(\'png\');
+    $image->writeImage(\'demo-100x100.jpg\', true);',
+		'code' => '$karla->convert()->inputfile(\'demo.jpg\')->outputfile(\'demo.png\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -91,7 +97,11 @@ class Demo {
 		'name' => 'Resize image', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-100x100.jpg',
-		'code' => '$karla->convert()->resize(100, 100)->inputfile("demo.jpg")->outputfile("demo-100x100.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->resizeImage(200, 200, Imagick::FILTER_LANCZOS, 0.9, true);
+    $image->writeImage(\'demo-100x100.jpg\', true);',
+		'code' => '$karla->convert()->resize(100, 100)->inputfile(\'demo.jpg\')->outputfile(\'demo-100x100.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -109,7 +119,12 @@ class Demo {
 		'name' => 'Change quality', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-low.jpg',
-		'code' => '$karla->convert()->quality(10)->inputfile("demo.jpg")->outputfile("demo-low.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->setImageCompression(imagick::COMPRESSION_JPEG);
+    $image->setImageCompressionQuality(10);
+    $image->writeImage(\'demo-low.jpg\'); ',
+		'code' => '$karla->convert()->quality(10)->inputfile(\'demo.jpg\')->outputfile(\'demo-low.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -127,7 +142,11 @@ class Demo {
 		'name' => 'Crop image', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-crop.jpg',
-		'code' => '$karla->convert()->crop(100, 100, 50, 50)->inputfile("demo.jpg")->outputfile("demo-crop.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->cropImage(100, 100, 50, 50);
+    $image->writeImage(\'demo-crop.jpg\'); ',
+		'code' => '$karla->convert()->crop(100, 100, 50, 50)->inputfile(\'demo.jpg\')->outputfile(\'demo-crop.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -145,7 +164,11 @@ class Demo {
 		'name' => 'Mirror image vertical', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-flip.jpg',
-		'code' => '$karla->convert()->flip()->inputfile("demo.jpg")->outputfile("demo-flip.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->flipImage();
+    $image->writeImage(\'demo-flip.jpg\'); ',
+		'code' => '$karla->convert()->flip()->inputfile(\'demo.jpg\')->outputfile(\'demo-flip.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -163,7 +186,11 @@ class Demo {
 		'name' => 'Mirror image horizontal', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-flop.jpg',
-		'code' => '$karla->convert()->flop()->inputfile("demo.jpg")->outputfile("demo-flop.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->flopImage();
+    $image->writeImage(\'demo-flop.jpg\'); ',
+		'code' => '$karla->convert()->flop()->inputfile(\'demo.jpg\')->outputfile(\'demo-flop.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -181,7 +208,11 @@ class Demo {
 		'name' => 'Grayscale image', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-grayscale.jpg',
-		'code' => '$karla->convert()->type("Grayscale")->inputfile("demo.jpg")->outputfile("demo-grayscale.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->modulateImage(100,0,100);  
+    $image->writeImage(\'demo-grayscale.jpg\'); ',
+		'code' => '$karla->convert()->type(\'Grayscale\')->inputfile(\'demo.jpg\')->outputfile(\'demo-grayscale.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -199,7 +230,11 @@ class Demo {
 		'name' => 'Sepia tone image', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-sepia.jpg',
-		'code' => '$karla->convert()->sepia(80)->inputfile("demo.jpg")->outputfile("demo-sepia.jpg")->execute();',
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->sepiaToneImage();  
+    $image->writeImage(\'demo-sepia.jpg\'); ',
+		'code' => '$karla->convert()->sepia(80)->inputfile(\'demo.jpg\')->outputfile(\'demo-sepia.jpg\')->execute();',
 		'console' => $cleanCommand 
 		);
 	}
@@ -211,16 +246,66 @@ class Demo {
 	private function _example9() {
         $karla = Karla::getInstance();
         $basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
-        $karla->convert()->polaroid(-10)->borderColor('"#ffffff"')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->execute();
+        $karla->convert()->polaroid(-10)->borderColor('#ffffff')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->execute();
         $cleanCommand = $this->_cleanPath(
-        	$karla->convert()->polaroid(-10)->borderColor('"#ffffff"')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->getCommand()
+        	$karla->convert()->polaroid(-10)->borderColor('#ffffff')->background('#000000')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-polaroid.png')->getCommand()
         );
 		return array(
 		'name' => 'Add polaroid effect to image', 
 		'original' => 'demo.jpg', 
 		'result' => 'demo-polaroid.png',
-		'code' => '$karla->convert()->polaroid(-10)->borderColor("#ffffff")->background("#000000")->inputfile("demo.jpg")->outputfile("demo-polaroid.png")->execute();', 
+		'imagick' => '$image = new Imagick();
+    $image->readImage(\'demo.jpg\');
+    $image->polaroid();  
+    $image->writeImage(\'demo-polaroid.jpg\'); ',
+		'code' => '$karla->convert()->polaroid(-10)->borderColor(\'#ffffff\')->background(\'#000000\')->inputfile(\'demo.jpg\')->outputfile(\'demo-polaroid.png\')->execute();', 
 		'console' => $cleanCommand 
+		);
+	}
+	
+	/**
+	 * Example 10
+	 *
+	 * @return array
+	 */
+	private function _example10() {
+		$karla = Karla::getInstance();
+		$basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
+		$karla->convert()->rotate(-45, 'gray')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-rotate.png')->execute();
+		$cleanCommand = $this->_cleanPath(
+			$karla->convert()->rotate(-45, 'gray')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-rotate.png')->getCommand()
+		);
+		return array(
+		'name' => 'Rotate image 45 degrees left',
+		'original' => 'demo.jpg',
+		'result' => 'demo-rotate.png',
+		'imagick' => '$image = new Imagick();
+	$image->readImage(\'demo.jpg\');
+	$image->rotateImage(new ImagickPixel(\'gray\'), -45);
+	$image->writeImage(\'demo-rotate.jpg\'); ',
+		'code' => '$karla->convert()->rotate(-45, \'gray\')->inputfile(\'demo.jpg\')->outputfile(\'demo-rotate.png\')->execute();',
+		'console' => $cleanCommand
+		);
+	}
+	/**
+	 * Example 11
+	 *
+	 * @return array
+	 */
+	private function _example11() {
+		$karla = Karla::getInstance();
+		$basepath = dirname(__FILE__).DIRECTORY_SEPARATOR;
+		$karla->convert()->raw('-vignette 5x65000 -gaussian-blur 20')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-magic.png')->execute();
+		$cleanCommand = $this->_cleanPath(
+			$karla->convert()->raw('-vignette 5x65000 -gaussian-blur 20')->inputfile($basepath.'demo.jpg')->outputfile($basepath.'demo-magic.png')->getCommand()
+		);
+		return array(
+		'name' => 'Do \'magic\' stuff',
+		'original' => 'demo.jpg',
+		'result' => 'demo-magic.png',
+		'imagick' => '//Not possible',
+		'code' => '$karla->convert()->raw(\'-vignette 5x65000 -gaussian-blur 20\')->inputfile(\'demo.jpg\')->outputfile(\'demo-magic.png\')->execute();',
+		'console' => $cleanCommand
 		);
 	}
 }
