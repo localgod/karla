@@ -11,8 +11,6 @@ Requirements
  * Your php setup need to allow shell_exec()
  * ImageMagick
 
-Installation
-------------
+You can read more about Karla at http://localgod.github.com/Karla/
 
-Comming...
 
