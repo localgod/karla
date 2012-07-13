@@ -7,16 +7,17 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/prettyprint.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body onload="prettyPrint()">
     <div class="wrapper">
       <header>
         <h1>Karla</h1>
-        <p>ImageMagick wrapper with method chaining,</p>
+        <p>Php ImageMagick wrapper with method chaining</p>
 
         <p class="view"><a href="https://github.com/localgod/Karla">View the Project on GitHub <small>localgod/Karla</small></a></p>
 
@@ -28,32 +29,169 @@
         </ul>
       </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<h2>Why would you wanner use Karla</h2>
+<p>Karla offers many of the functinalities that <a href="http://pecl.php.net/package/imagick">Imagick</a> provides, but with two destinct 
+differences which is why Karla was written in the first place:</p>
+<ul>
+<li>You can chain your argument so your image operations are more readable.</li>
+<li>You have direct access to ImageMagick's console tools in a convenient way, should you need the full power of ImageMagick.</li>
+</ul>
+<p>While Imagick has a much bigger feature set that Karla ever will, it is still a limited implementation of all the features available
+in ImageMagick's toolbox. Karla allows you to access all of ImageMagick, and have focused on making some commen operation convinient.
+</p>
+<p>Karla is tested php 5.3 and 5.4 complient and have a decent suite of unittests.</p>
+<h2>Requirements</h2>
+<ul>
+<li>Php version 5.1.2&lt; build with the following extension: pcre, SPL (default build-in in most distributions)</li>
+<li>Your php setup need to allow <a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a></li>
+<li><a href="http://www.imagemagick.org">ImageMagick</a></li>
+</ul>
+<h2>Examples</h2>
+<h3>Change format to png.</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo.png"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->setImageFormat('png');
+    $image->writeImage('demo-100x100.jpg', true);    </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->inputfile('demo.jpg')->outputfile('demo.png')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert "demo.jpg" "demo.png"     </pre>
+     <hr/>
+         <h3>Resize image</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-100x100.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->resizeImage(200, 200, Imagick::FILTER_LANCZOS, 0.9, true);
+    $image->writeImage('demo-100x100.jpg', true);    </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->resize(100, 100)->inputfile('demo.jpg')->outputfile('demo-100x100.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -resize 100x100\> "demo.jpg" "demo-100x100.jpg"     </pre>
+     <hr/>
+         <h3>Change quality</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-low.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->setImageCompression(imagick::COMPRESSION_JPEG);
+    $image->setImageCompressionQuality(10);
+    $image->writeImage('demo-low.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->quality(10)->inputfile('demo.jpg')->outputfile('demo-low.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -quality 10 "demo.jpg" "demo-low.jpg"     </pre>
+     <hr/>
+         <h3>Crop image</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-crop.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->cropImage(100, 100, 50, 50);
+    $image->writeImage('demo-crop.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->crop(100, 100, 50, 50)->inputfile('demo.jpg')->outputfile('demo-crop.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -crop 100x100+50+50 +repage "demo.jpg" "demo-crop.jpg"     </pre>
+     <hr/>
+         <h3>Mirror image vertical</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-flip.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->flipImage();
+    $image->writeImage('demo-flip.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->flip()->inputfile('demo.jpg')->outputfile('demo-flip.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -flip "demo.jpg" "demo-flip.jpg"     </pre>
+     <hr/>
+         <h3>Mirror image horizontal</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-flop.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->flopImage();
+    $image->writeImage('demo-flop.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->flop()->inputfile('demo.jpg')->outputfile('demo-flop.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -flop "demo.jpg" "demo-flop.jpg"     </pre>
+     <hr/>
+         <h3>Grayscale image</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-grayscale.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->modulateImage(100,0,100);  
+    $image->writeImage('demo-grayscale.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->type('Grayscale')->inputfile('demo.jpg')->outputfile('demo-grayscale.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -type Grayscale "demo.jpg" "demo-grayscale.jpg"     </pre>
+     <hr/>
+         <h3>Sepia tone image</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-sepia.jpg"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->sepiaToneImage();  
+    $image->writeImage('demo-sepia.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->sepia(80)->inputfile('demo.jpg')->outputfile('demo-sepia.jpg')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert "demo.jpg" -sepia-tone 80% "demo-sepia.jpg"     </pre>
+     <hr/>
+         <h3>Add polaroid effect to image</h3>
+    <img alt="demo" src="images/demo.jpg"/>
+    <img alt="demo" src="images/demo-polaroid.png"/>
+    <h4>Imagick code</h4>
+    <pre class="prettyprint lang-php">
+    $image = new Imagick();
+    $image->readImage('demo.jpg');
+    $image->polaroidImage(new ImagickDraw(), 25);
+    $image->writeImage('demo-sepia.jpg');     </pre>
+    <h4>Karla query code</h4>
+    <pre class="prettyprint lang-php">
+    Karla::getInstance()->convert()->polaroid(-10)->borderColor('#ffffff')->background('#000000')->inputfile('demo.jpg')->outputfile('demo-polaroid.png')->execute();    </pre>
+    <h4>Imagemagick query</h4>
+    <pre class="prettyprint lang-bsh">
+    convert -polaroid -10  -bordercolor "#ffffff"  -background "#000000" "demo.jpg" "demo-polaroid.png"     </pre>
+     <hr/>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/localgod">localgod</a></p>
@@ -61,6 +199,7 @@ $ git checkout gh-pages
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
   </body>
 </html>
