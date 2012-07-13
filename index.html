@@ -30,15 +30,18 @@
       </header>
       <section>
 <h2>Why would you wanner use Karla</h2>
-<p>Karla offers many of the functinalities that <a href="http://pecl.php.net/package/imagick">Imagick</a> provides, but with two destinct 
-differences which is why Karla was written in the first place:</p>
+<p>For most people who starts working with php and ImageMagick you either install the PECL extension 
+<a href="http://pecl.php.net/package/imagick">Imagick</a> or work directly with ImageMagick through 
+<a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a>. </p>
+<p>While Imagick has a much bigger feature set that Karla ever will, it is still a limited implementation of all the features available
+in ImageMagick's toolbox. Karla allows you to access all of ImageMagick, and have focused on making some commen operation convinient.
+</p>
+<p>Karla offers a subset of the functionalities that Imagick provides, but with two destinct 
+differences which is why Karla was written:</p>
 <ul>
 <li>You can chain your argument so your image operations are more readable.</li>
 <li>You have direct access to ImageMagick's console tools in a convenient way, should you need the full power of ImageMagick.</li>
 </ul>
-<p>While Imagick has a much bigger feature set that Karla ever will, it is still a limited implementation of all the features available
-in ImageMagick's toolbox. Karla allows you to access all of ImageMagick, and have focused on making some commen operation convinient.
-</p>
 <p>Karla is tested php 5.3 and 5.4 complient and have a decent suite of unittests.</p>
 <h2>Requirements</h2>
 <ul>
@@ -46,6 +49,17 @@ in ImageMagick's toolbox. Karla allows you to access all of ImageMagick, and hav
 <li>Your php setup need to allow <a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a></li>
 <li><a href="http://www.imagemagick.org">ImageMagick</a></li>
 </ul>
+<h2>Installation</h2>
+<p>Copy Karla.php and the Karla folder to your site, and add the following lines to you script:</p>
+<pre class="prettyprint lang-php">
+if (false === spl_autoload_functions()) {
+	if (function_exists('__autoload')) {
+		spl_autoload_register('__autoload', false);
+	}
+}
+require_once dirname(__FILE__).'/Karla.php';
+spl_autoload_register(array('Karla', 'autoload'));
+</pre>
 <h2>Examples</h2>
 <h3>Change format to png.</h3>
     <img alt="demo" src="images/demo.jpg"/>
