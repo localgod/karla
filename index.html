@@ -30,24 +30,25 @@
       </header>
       <section>
 <h2>Why would you wanner use Karla</h2>
-<p>For most people who starts working with php and ImageMagick you either install the PECL extension 
+<p>For most people who starts working with <a href=http://www.php.net/"">php</a> and <a href="http://www.imagemagick.org">ImageMagick</a> you either install the PECL extension 
 <a href="http://pecl.php.net/package/imagick">Imagick</a> or work directly with ImageMagick through 
-<a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a>. </p>
+<a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a>.</p>
 <p>While Imagick has a much bigger feature set that Karla ever will, it is still a limited implementation of all the features available
-in ImageMagick's toolbox. Karla allows you to access all of ImageMagick, and have focused on making some commen operation convinient.
+in ImageMagick's toolbox. Karla allows you to access all of ImageMagick like with the <em>shell_exec()</em> approche, and have focused on making 
+some commen operations convinient.
 </p>
 <p>Karla offers a subset of the functionalities that Imagick provides, but with two destinct 
 differences which is why Karla was written:</p>
 <ul>
-<li>You can chain your argument so your image operations are more readable.</li>
+<li>You can chain your argument so your image operations are more query like.</li>
 <li>You have direct access to ImageMagick's console tools in a convenient way, should you need the full power of ImageMagick.</li>
 </ul>
-<p>Karla is tested php 5.3 and 5.4 complient and have a decent suite of unittests.</p>
+<p>Karla is tested complient with the 5.3 and 5.4 version of php, and have a decent suite of unittests.</p>
 <h2>Requirements</h2>
 <ul>
 <li>Php version 5.1.2&lt; build with the following extension: pcre, SPL (default build-in in most distributions)</li>
-<li>Your php setup need to allow <a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a></li>
-<li><a href="http://www.imagemagick.org">ImageMagick</a></li>
+<li>Your php setup need to allow <em>shell_exec()</em></li>
+<li>ImageMagick</li>
 </ul>
 <h2>Installation</h2>
 <p>Copy Karla.php and the Karla folder to your site, and add the following lines to you script:</p>
@@ -61,6 +62,7 @@ require_once dirname(__FILE__).'/Karla.php';
 spl_autoload_register(array('Karla', 'autoload'));
 </pre>
 <h2>Examples</h2>
+<p>The following sections illustrates common operations performed with Imagick, Karla and in the console.</p>
 <h3>Change format to png.</h3>
     <img alt="demo" src="images/demo.jpg"/>
     <img alt="demo" src="images/demo.png"/>
@@ -70,10 +72,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->setImageFormat('png');
     $image->writeImage('demo-100x100.jpg', true);    </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->inputfile('demo.jpg')->outputfile('demo.png')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert "demo.jpg" "demo.png"     </pre>
      <hr/>
@@ -86,10 +88,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->resizeImage(200, 200, Imagick::FILTER_LANCZOS, 0.9, true);
     $image->writeImage('demo-100x100.jpg', true);    </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->resize(100, 100)->inputfile('demo.jpg')->outputfile('demo-100x100.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -resize 100x100\> "demo.jpg" "demo-100x100.jpg"     </pre>
      <hr/>
@@ -103,10 +105,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->setImageCompression(imagick::COMPRESSION_JPEG);
     $image->setImageCompressionQuality(10);
     $image->writeImage('demo-low.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->quality(10)->inputfile('demo.jpg')->outputfile('demo-low.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -quality 10 "demo.jpg" "demo-low.jpg"     </pre>
      <hr/>
@@ -119,10 +121,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->cropImage(100, 100, 50, 50);
     $image->writeImage('demo-crop.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->crop(100, 100, 50, 50)->inputfile('demo.jpg')->outputfile('demo-crop.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -crop 100x100+50+50 +repage "demo.jpg" "demo-crop.jpg"     </pre>
      <hr/>
@@ -135,10 +137,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->flipImage();
     $image->writeImage('demo-flip.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->flip()->inputfile('demo.jpg')->outputfile('demo-flip.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -flip "demo.jpg" "demo-flip.jpg"     </pre>
      <hr/>
@@ -151,10 +153,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->flopImage();
     $image->writeImage('demo-flop.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->flop()->inputfile('demo.jpg')->outputfile('demo-flop.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -flop "demo.jpg" "demo-flop.jpg"     </pre>
      <hr/>
@@ -167,10 +169,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->modulateImage(100,0,100);  
     $image->writeImage('demo-grayscale.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->type('Grayscale')->inputfile('demo.jpg')->outputfile('demo-grayscale.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -type Grayscale "demo.jpg" "demo-grayscale.jpg"     </pre>
      <hr/>
@@ -183,10 +185,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->sepiaToneImage();  
     $image->writeImage('demo-sepia.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->sepia(80)->inputfile('demo.jpg')->outputfile('demo-sepia.jpg')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert "demo.jpg" -sepia-tone 80% "demo-sepia.jpg"     </pre>
      <hr/>
@@ -199,10 +201,10 @@ spl_autoload_register(array('Karla', 'autoload'));
     $image->readImage('demo.jpg');
     $image->polaroidImage(new ImagickDraw(), 25);
     $image->writeImage('demo-sepia.jpg');     </pre>
-    <h4>Karla query code</h4>
+    <h4>Karla code</h4>
     <pre class="prettyprint lang-php">
     Karla::getInstance()->convert()->polaroid(-10)->borderColor('#ffffff')->background('#000000')->inputfile('demo.jpg')->outputfile('demo-polaroid.png')->execute();    </pre>
-    <h4>Imagemagick query</h4>
+    <h4>Imagemagick in console</h4>
     <pre class="prettyprint lang-bsh">
     convert -polaroid -10  -bordercolor "#ffffff"  -background "#000000" "demo.jpg" "demo-polaroid.png"     </pre>
      <hr/>
