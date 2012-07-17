@@ -47,9 +47,9 @@ class Convert extends ImageMagick {
 			$filePath . ') is invalid or the file could not be located.';
 			throw new InvalidArgumentException($message);
 		}
-		$file = new SplFileObject($filePath);
-		if ($file->isReadable()) {
-			$this->_inputFile = '"' . $file->getPathname() . '"';
+		
+		if (is_writeable($filePath)) {
+			$this->_inputFile = '"' . $filePath . '"';
 		}
 		$this->dirty();
 		return $this;
@@ -71,17 +71,16 @@ class Convert extends ImageMagick {
                        ') is invalid or could not be located.';
 			throw new InvalidArgumentException($message);
 		}
-		$file = new SplFileObject($pathinfo['dirname']);
-		if (!$file->isWritable()) {
+		if (!is_writeable($pathinfo['dirname'])) {
 			$message = 'The output file path (' . $pathinfo['dirname'] .
                        ') is not writable.';
 			throw new InvalidArgumentException($message);
 		}
 		if (!$includeOptions) {
-			$this->_outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
+			$this->_outputFile = '"' . $pathinfo['dirname'] . '/' . $pathinfo['basename'] . '"';
 		} else {
 			//TODO implement this feature
-			$this->_outputFile = '"' . $file->getPathname() . '/' . $pathinfo['basename'] . '"';
+			$this->_outputFile = '"' . $pathinfo['dirname'] . '/' . $pathinfo['basename'] . '"';
 		}
 		$this->dirty();
 		return $this;
