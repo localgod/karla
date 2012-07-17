@@ -698,8 +698,8 @@ class Convert extends ImageMagick {
 		if ($this->isOptionSet('borderColor', $this->_inputOptions)) {
 			throw new BadMethodCallException('BorderColor can only be called once.');
 		}
-		if (self::_validHexColor($color) || self::_validRgbColor($color) || self::_validColorName($color)) {
-			if (self::_validColorName($color)) {
+		if (self::validHexColor($color) || self::validRgbColor($color) || self::validColorName($color)) {
+			if (self::validColorName($color)) {
 				$this->_inputOptions[] = ' -bordercolor ' . $color;
 			} else {
 				$this->_inputOptions[] = ' -bordercolor "' . $color . '"';
@@ -732,7 +732,7 @@ class Convert extends ImageMagick {
 	 * 
 	 * @return boolean
 	 */
-	private static function _validHexColor($color) {
+	private static function validHexColor($color) {
 		$expr = '#?(([a-fA-F0-9]){3}){1,2}';
 		return preg_match('/^'.$expr.'$/', $color);
 	}
@@ -743,7 +743,7 @@ class Convert extends ImageMagick {
 	 *
 	 * @return boolean
 	 */
-	private static function _validColorName($color) {
+	private static function validColorName($color) {
 		$expr = '(aqua)|(black)|(blue)|(fuchsia)|(gray)|(green)|(lime)|(maroon)|(navy)|(olive)|(orange)|(purple)|(red)|(silver)|(teal)|(white)|(yellow)';
 		return preg_match('/^'.$expr.'$/', $color);
 	}
@@ -755,7 +755,7 @@ class Convert extends ImageMagick {
 	 * 
 	 * @return boolean
 	 */
-	private static function _validRgbColor($color) {
+	private static function validRgbColor($color) {
 		$expr = '(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
 		         \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
 		         \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|

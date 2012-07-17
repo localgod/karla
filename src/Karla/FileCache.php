@@ -36,7 +36,7 @@ class FileCache implements Cache {
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct($dirName) {
-		$this->_setCacheDir($dirName);
+		$this->setCacheDir($dirName);
 	}
 	/**
 	 * Create a path based on the option array
@@ -46,7 +46,7 @@ class FileCache implements Cache {
 	 * @return string the created path
 	 * @throws InvalidArgumentException
 	 */
-	private function _options2Path(array $options) {
+	private function options2Path(array $options) {
 		if (!is_array($options)) {
 			throw new InvalidArgumentException("options argument must be an array");
 		}
@@ -62,7 +62,7 @@ class FileCache implements Cache {
 	 * @throws InvalidArgumentException if path was not writeable
 	 * @throws InvalidArgumentException if path was a directoy
 	 */
-	private function _setCacheDir($dirName) {
+	private function setCacheDir($dirName) {
 		if (!file_exists($dirName)) {
 			throw new InvalidArgumentException("Path not found", 0);
 		}

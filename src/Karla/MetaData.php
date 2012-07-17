@@ -77,13 +77,13 @@ class MetaData extends SplFileInfo {
      */
     public function __construct($imageinfo) {
         $this->_imageinfo = explode("\n", $imageinfo);
-        $this->_parseFileformat();
-        $this->_parseGeometry();
-        $this->_parseResolution();
-        $this->_parseUnits();
-        $this->_parseDepth();
-        $this->_parseColorspace();
-        parent::__construct($this->_parseFilename());
+        $this->parseFileformat();
+        $this->parseGeometry();
+        $this->parseResolution();
+        $this->parseUnits();
+        $this->parseDepth();
+        $this->parseColorspace();
+        parent::__construct($this->parseFilename());
     }
     /**
      * Get the image resolution.
@@ -91,12 +91,12 @@ class MetaData extends SplFileInfo {
      *
      * @return array
      */
-    private function _getResolution() {
+    private function getResolution() {
         if ($this->_isPpc) {
             //Here we convert to ppi
             $this->_resolution = array(
-                $this->_ppc2ppi($this->_resolution[0]) ,
-                $this->_ppc2ppi($this->_resolution[1])
+                $this->ppc2ppi($this->_resolution[0]) ,
+                $this->ppc2ppi($this->_resolution[1])
             );
             $this->_isPpc = false;
             $this->_isPpi = true;
@@ -109,7 +109,7 @@ class MetaData extends SplFileInfo {
      * @return integer
      */
     public function getResolutionHeight() {
-        $res = $this->_getResolution();
+        $res = $this->getResolution();
         return $res[1];
     }
     /**
@@ -118,7 +118,7 @@ class MetaData extends SplFileInfo {
      * @return integer
      */
     public function getResolutionWidth() {
-        $res = $this->_getResolution();
+        $res = $this->getResolution();
         return $res[0];
     }
     /**
@@ -188,16 +188,16 @@ class MetaData extends SplFileInfo {
      *
      * @return string
      */
-    private function _parseFilename() {
-        return $this->_parse('Image');
+    private function parseFilename() {
+        return $this->parse('Image');
     }
     /**
      * Search for file format
      *
      * @return string
      */
-    private function _parseFileformat() {
-        preg_match("/^[\s]*[A-Z0-9]+/", $this->_parse('Format'), $matches);
+    private function parseFileformat() {
+        preg_match("/^[\s]*[A-Z0-9]+/", $this->parse('Format'), $matches);
         if (is_array($matches) && sizeof($matches) == 1) {
             $this->_format = strtolower(trim($matches[0]));
         } else {
@@ -211,8 +211,8 @@ class MetaData extends SplFileInfo {
      *
      * @return void
      */
-    private function _parseGeometry() {
-        preg_match("/^[0-9]*x[0-9]*/", $this->_parse('Geometry'), $matches);
+    private function parseGeometry() {
+        preg_match("/^[0-9]*x[0-9]*/", $this->parse('Geometry'), $matches);
         if (is_array($matches) && sizeof($matches) == 1) {
             $this->_geometry = explode("x", $matches[0]);
         } else {
@@ -224,8 +224,8 @@ class MetaData extends SplFileInfo {
      *
      * @return void
      */
-    private function _parseColorspace() {
-        preg_match("/^[a-zA-Z0-9]*/", $this->_parse('Colorspace'), $matches);
+    private function parseColorspace() {
+        preg_match("/^[a-zA-Z0-9]*/", $this->parse('Colorspace'), $matches);
         if (is_array($matches)) {
             $this->_colorspace = strtolower(trim($matches[0]));
         } else {
@@ -237,8 +237,8 @@ class MetaData extends SplFileInfo {
      *
      * @return void
      */
-    private function _parseDepth() {
-        preg_match("/^[0-9]*/", $this->_parse('Depth'), $matches);
+    private function parseDepth() {
+        preg_match("/^[0-9]*/", $this->parse('Depth'), $matches);
         if (is_array($matches)) {
             $this->_depth = $matches[0];
         } else {
@@ -250,8 +250,8 @@ class MetaData extends SplFileInfo {
      *
      * @return void
      */
-    private function _parseResolution() {
-        $this->_resolution = explode("x", $this->_parse('Resolution'));
+    private function parseResolution() {
+        $this->_resolution = explode("x", $this->parse('Resolution'));
     }
     /**
      * Parse the image info array for the search line and return it for futher processing
@@ -260,7 +260,7 @@ class MetaData extends SplFileInfo {
      *
      * @return string
      */
-    private function _parse($search) {
+    private function parse($search) {
         foreach ($this->_imageinfo as $line) {
             if (preg_match("/^" . $search . ":/", trim($line))) {
                 return trim(str_replace($search . ':', '', $line));
@@ -274,8 +274,8 @@ class MetaData extends SplFileInfo {
      *
      * @return void
      */
-    private function _parseUnits() {
-        switch ($this->_parse('Units')) {
+    private function parseUnits() {
+        switch ($this->parse('Units')) {
         case 'PixelsPerCentimeter':
             $this->_isPpc = true;
             $this->_isPpi = false;
@@ -328,7 +328,7 @@ class MetaData extends SplFileInfo {
      *
      * @return integer
      */
-    private function _ppc2ppi($value) {
+    private function ppc2ppi($value) {
         return intval(floor($value * 0.3937008));
     }
     /**
@@ -338,7 +338,7 @@ class MetaData extends SplFileInfo {
      *
      * @return integer
      */
-    private function _ppi2ppc($value) {
+    private function ppi2ppc($value) {
         return intval(floor($value * 2.54));
     }
 }

@@ -236,8 +236,7 @@
 					<then>
 						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
 							<arg line="--directory ${phpdoc.include.dir}" />
-							<arg line="--quiet on" />
-							<arg line="--sourcecode on" />
+							<arg line="--sourcecode" />
 							<arg line="--defaultpackagename ${modulename}" />
 							<arg line="--title 'Phpdoc for ${ant.project.name}'" />
 							<arg line="--target ${basedir}/${build}/api" />
@@ -246,7 +245,7 @@
 					<else>
 						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
 							<arg line="--directory ${phpdoc.include.dir}" />
-							<arg line="--quiet on" />
+							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${ant.project.name}'" />
 							<arg line="--defaultpackagename ${modulename}" />
 							<arg line="--target ${basedir}/${build}/api" />
@@ -261,8 +260,7 @@
 					<then>
 						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
 							<arg line="--directory ${phpdoc.include.dir}" />
-							<arg line="--quiet on" />
-							<arg line="--sourcecode on" />
+							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${ant.project.name}'" />
 							<arg line="--defaultpackagename ${modulename}" />
 							<arg line="--target ${basedir}/${build}/api" />
@@ -272,8 +270,7 @@
 					<else>
 						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
 							<arg line="--directory ${phpdoc.include.dir}" />
-							<arg line="--quiet on" />
-							<arg line="--sourcecode on" />
+							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${ant.project.name}'" />
 							<arg line="--defaultpackagename ${modulename}" />
 							<arg line="--target ${basedir}/${build}/api" />
