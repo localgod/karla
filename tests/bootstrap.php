@@ -13,9 +13,9 @@
  * @since    2010-06-05
  */
 if (false === spl_autoload_functions()) {
-	if (function_exists('__autoload')) {
-		spl_autoload_register('__autoload', false);
-	}
+    if (function_exists('__autoload')) {
+        spl_autoload_register('__autoload', false);
+    }
 }
 require_once dirname(__FILE__).'/../src/Karla.php';
 spl_autoload_register(array('Karla', 'autoload'));

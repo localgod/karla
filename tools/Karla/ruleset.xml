@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="karla">
-	<description>Karla coding standard</description>
+	<description>Karla coding standard, which is PSR-0, PSR-1 and PSR-2 complient</description>
 	<rule ref="Zend">
 		<exclude name="Zend.NamingConventions.ValidVariableName"/>
 	</rule>
@@ -15,27 +15,34 @@
 		<exclude name="PEAR.Files.IncludingFile.UseIncludeOnce" />
 	</rule>
 	<rule ref="Generic">
-		<exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
-		<exclude name="Generic.PHP.DeprecatedFunctions"/>
+		<exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
 		<exclude name="Generic.PHP.UpperCaseConstant"/>
-		<exclude name="Generic.PHP.LowerCaseConstant"/>
-		<exclude name="Generic.PHP.ForbiddenFunctions"/>
 		<exclude name="Generic.Formatting.DisallowMultipleStatements"/>
 		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>
-		<exclude name="Generic.Formatting.NoSpaceAfterCast"/>
-		<exclude name="Generic.Formatting.SpaceAfterCast"/>
-		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
-		<exclude name="Generic.Metrics.CyclomaticComplexity"/>
 		<exclude name="Generic.VersionControl.SubversionProperties"/>
-		<exclude name="Generic.NamingConventions.ConstructorName"/>
 	</rule>
-	<rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
-	
-	<!-- Lines can be 120 chars long, show errors at 200 chars -->
-	<rule ref="Generic.Files.LineLength">
-		<properties>
-			<property name="lineLimit" value="120"/>
-			<property name="absoluteLineLimit" value="200"/>
-		</properties>
-	</rule>
+    <rule ref="Squiz.Classes.ValidClassName"/>
+    <rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+    <rule ref="Squiz.ControlStructures.ControlSignature"/>
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+    <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
+    <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+    <rule ref="Squiz.Scope.MemberVarScope"/>
+    <rule ref="Squiz.Scope.MethodScope"/>
+    
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="80"/>
+            <property name="absoluteLineLimit" value="120"/>
+        </properties>
+    </rule>
+    
+    <rule ref="Generic.Files.LineEndings">
+        <properties>
+            <property name="eolChar" value="\n"/>
+        </properties>
+    </rule>
+    
+    <rule ref="Zend.Files.ClosingTag"/>
+    <rule ref="PSR.NamingConventions.ValidFunctionName"/>
 </ruleset>

@@ -21,23 +21,24 @@
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
-interface Program {
-	/**
-	 * Execute the command
-	 *
-	 * @return string
-	 */
-	public function execute();
-	/**
-	 * Get the command to run
-	 *
-	 * @return string
-	 */
-	public function getCommand();
-	/**
-	 * Reset the command
-	 *
-	 * @return void
-	 */
-	public function reset();
+interface Program
+{
+    /**
+     * Execute the command
+     *
+     * @return string
+     */
+    public function execute();
+    /**
+     * Get the command to run
+     *
+     * @return string
+     */
+    public function getCommand();
+    /**
+     * Reset the command
+     *
+     * @return void
+     */
+    public function reset();
 }
