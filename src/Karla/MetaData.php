@@ -28,6 +28,13 @@ class MetaData extends SplFileInfo
      *
      * @var string
      */
+    private $verboseImageinfo;
+
+    /**
+     * Raw image info
+     *
+     * @var string
+     */
     private $imageinfo;
 
     /**
@@ -78,22 +85,48 @@ class MetaData extends SplFileInfo
     private $isPpc;
 
     /**
+     * Are we scanning in verbose output from identify
+     * @var boolean
+     */
+    private $verbose;
+
+    /**
      * Construct a new image file.
      *
      * @param string $imageinfo Image info as string
      *
      * @return void
      */
-    public function __construct($imageinfo)
+    public function __construct($imageinfo, $verbose = false)
     {
-        $this->imageinfo = explode("\n", $imageinfo);
-        $this->parseFileformat();
-        $this->parseGeometry();
-        $this->parseResolution();
-        $this->parseUnits();
-        $this->parseDepth();
-        $this->parseColorspace();
-        parent::__construct($this->parseFilename());
+        $this->verbose = $verbose;
+        if ($this->verbose) {
+            //exit('not here');
+            $this->verboseImageinfo = explode("\n", $imageinfo);
+            $this->parseFileformat();
+            $this->parseGeometry();
+            $this->parseResolution();
+            $this->parseUnits();
+            $this->parseDepth();
+            $this->parseColorspace();
+            parent::__construct($this->parseFilename());
+        } else {
+            $info = explode(" ", $imageinfo);
+            $this->imageinfo['Image'] = $info[0];
+            $this->imageinfo['Format'] = $info[1];
+            $this->imageinfo['Geometry'] = $info[3];
+            $this->imageinfo['Depth'] = $info[4];
+            $this->imageinfo['Colorspace'] = $info[5];
+            $this->imageinfo['Resolution'] = 'x';
+            $this->imageinfo['Units'] = '';
+            $this->parseFileformat();
+            $this->parseGeometry();
+            $this->parseResolution();
+            $this->parseUnits();
+            $this->parseDepth();
+            $this->parseColorspace();
+            parent::__construct($this->parseFilename());
+        }
     }
 
     /**
@@ -104,14 +137,15 @@ class MetaData extends SplFileInfo
      */
     private function getResolution()
     {
-        if ($this->isPpc) {
-            //Here we convert to ppi
-            $this->resolution = array(
-                    $this->ppc2ppi($this->resolution[0]) ,
-                    $this->ppc2ppi($this->resolution[1])
-            );
-            $this->isPpc = false;
-            $this->isPpi = true;
+        if ($this->verbose) {
+            if ($this->isPpc) {
+                //Here we convert to ppi
+                $this->resolution = array($this->ppc2ppi($this->resolution[0]), $this->ppc2ppi($this->resolution[1]));
+                $this->isPpc = false;
+                $this->isPpi = true;
+            }
+        } else {
+            $this->resolution = array();
         }
 
         return $this->resolution;
@@ -126,7 +160,7 @@ class MetaData extends SplFileInfo
     {
         $res = $this->getResolution();
 
-        return $res[1];
+        return isset($res[1]) ? $res[1] : null;
     }
 
     /**
@@ -138,7 +172,7 @@ class MetaData extends SplFileInfo
     {
         $res = $this->getResolution();
 
-        return $res[0];
+        return isset($res[0]) ? $res[0] : null;
     }
 
     /**
@@ -209,8 +243,13 @@ class MetaData extends SplFileInfo
     {
         $output = array();
         $output[] = "<ul>";
-        foreach ($this->imageinfo as $line) {
-            $output[] = "<li>" . $line . "</li>";
+        $list = $this->verbose ? $this->verboseImageinfo : $this->imageinfo;
+        foreach ($list as $key => $line) {
+            if ($this->verbose) {
+                $output[] = "<li>" . $line . "</li>";
+            } else {
+                $output[] = "<li>" . $key . ' : ' . $line . "</li>";
+            }
         }
         $output[] = "<ul>";
 
@@ -224,7 +263,7 @@ class MetaData extends SplFileInfo
      */
     private function parseFilename()
     {
-        return $this->parse('Image');
+        return $this->verbose ? $this->parseVerbose('Image') : $this->parse('Image');
     }
 
     /**
@@ -234,7 +273,8 @@ class MetaData extends SplFileInfo
      */
     private function parseFileformat()
     {
-        preg_match("/^[\s]*[A-Z0-9]+/", $this->parse('Format'), $matches);
+        $format = $this->verbose ? $this->parseVerbose('Format') : $this->parse('Format');
+        preg_match("/^[\s]*[A-Z0-9]+/", $format, $matches);
         if (is_array($matches) && count($matches) == 1) {
             $this->format = strtolower(trim($matches[0]));
         } else {
@@ -251,7 +291,9 @@ class MetaData extends SplFileInfo
      */
     private function parseGeometry()
     {
-        preg_match("/^[0-9]*x[0-9]*/", $this->parse('Geometry'), $matches);
+        $geometry = $this->verbose ? $this->parseVerbose('Geometry') : $this->parse('Geometry');
+        preg_match("/^[0-9]*x[0-9]*/", $geometry, $matches);
+        //var_dump(explode("x", $matches[0]));
         if (is_array($matches) && count($matches) == 1) {
             $this->geometry = explode("x", $matches[0]);
         } else {
@@ -266,7 +308,8 @@ class MetaData extends SplFileInfo
      */
     private function parseColorspace()
     {
-        preg_match("/^[a-zA-Z0-9]*/", $this->parse('Colorspace'), $matches);
+        $colorspace = $this->verbose ? $this->parseVerbose('Colorspace') : $this->parse('Colorspace');
+        preg_match("/^[a-zA-Z0-9]*/", $colorspace, $matches);
         if (is_array($matches)) {
             $this->colorspace = strtolower(trim($matches[0]));
         } else {
@@ -281,7 +324,8 @@ class MetaData extends SplFileInfo
      */
     private function parseDepth()
     {
-        preg_match("/^[0-9]*/", $this->parse('Depth'), $matches);
+        $depth = $this->verbose ? $this->parseVerbose('Depth') : $this->parse('Depth');
+        preg_match("/^[0-9]*/", $depth, $matches);
         if (is_array($matches)) {
             $this->depth = $matches[0];
         } else {
@@ -296,8 +340,10 @@ class MetaData extends SplFileInfo
      */
     private function parseResolution()
     {
-        $this->resolution = explode("x", $this->parse('Resolution'));
+        $resolution = $this->verbose ? $this->parseVerbose('Resolution') : $this->parse('Resolution');
+        $this->resolution = explode("x", $resolution);
     }
+
     /**
      * Parse the image info array for the search line and
      * return it for futher processing
@@ -306,13 +352,26 @@ class MetaData extends SplFileInfo
      *
      * @return string
      */
-    private function parse($search)
+    private function parseVerbose($search)
     {
-        foreach ($this->imageinfo as $line) {
+        foreach ($this->verboseImageinfo as $line) {
             if (preg_match("/^" . $search . ":/", trim($line))) {
                 return trim(str_replace($search . ':', '', $line));
             }
         }
+    }
+
+    /**
+     * Parse the image info string for the search line and
+     * return it for futher processing
+     *
+     * @param string $search Search string
+     *
+     * @return string
+     */
+    private function parse($search)
+    {
+        return $this->imageinfo[$search];
     }
 
     /**
@@ -324,24 +383,25 @@ class MetaData extends SplFileInfo
      */
     private function parseUnits()
     {
-        switch ($this->parse('Units')) {
-            case 'PixelsPerCentimeter':
-                $this->isPpc = true;
-                $this->isPpi = false;
-                break;
+        $units = $this->verbose ? $this->parseVerbose('Units') : $this->parse('Units');
+        switch ($units) {
+        case 'PixelsPerCentimeter' :
+            $this->isPpc = true;
+            $this->isPpi = false;
+            break;
 
-            case 'PixelsPerInch':
-                $this->isPpc = false;
-                $this->isPpi = true;
-                break;
+        case 'PixelsPerInch' :
+            $this->isPpc = false;
+            $this->isPpi = true;
+            break;
 
-            case 'Undefined':
-                $this->isPpc = false;
-                $this->isPpi = true;
-            default:
-                $this->isPpc = false;
-                $this->isPpi = true;
-                break;
+        case 'Undefined' :
+            $this->isPpc = false;
+            $this->isPpi = true;
+        default :
+            $this->isPpc = false;
+            $this->isPpi = true;
+            break;
         }
     }
 
@@ -371,7 +431,7 @@ class MetaData extends SplFileInfo
         if ($hash = 'md5') {
             return md5_file($this->getPathname());
         } else {
-            throw new InvalidArgumentException($hash.' is not a supported hash algorithm');
+            throw new InvalidArgumentException($hash . ' is not a supported hash algorithm');
         }
     }
 

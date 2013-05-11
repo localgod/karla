@@ -40,8 +40,7 @@ class Identify extends ImageMagick
     public function inputfile($filePath)
     {
         if (!file_exists($filePath)) {
-            $message = 'The input file path (' .
-                    $filePath . ') is invalid or the file could not be located.';
+            $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
             throw new InvalidArgumentException($message);
         }
         $file = new SplFileObject($filePath);
@@ -59,19 +58,23 @@ class Identify extends ImageMagick
      * @param boolean $reset Reset the query
      * @param boolean $raw   Get the raw output
      *
-     * @see lib/Imagemagick#execute()
+     * @see Imagemagick#execute()
      * @return string|MetaData
      */
     public function execute($reset = true, $raw = true)
     {
-        $result = parent::execute();
-        if ($reset) {
-            $this->reset();
-        }
+        $result = parent::execute(false);
+
         if (!$raw) {
+            if ($this->isOptionSet('verbose', $this->inputOptions)) {
+                $reset == true ? $this->reset() : null;
+                return new MetaData($result, true);
+            }
+            $reset == true ? $this->reset() : null;
             return new MetaData($result);
         }
 
+        $reset == true ? $this->reset() : null;
         return trim($result);
     }
 
@@ -93,16 +96,16 @@ class Identify extends ImageMagick
     /**
      * (non-PHPdoc)
      *
-     * @see lib/Imagemagick#getCommand()
+     * @see Imagemagick#getCommand()
      * @return string
      */
     public function getCommand()
     {
         !is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-        $options = $this->prepareOptions($this->inputOptions) == '' ?
-        '' : $this->prepareOptions($this->inputOptions).' ';
+        $options = $this->prepareOptions($this->inputOptions) == '' ? ''
+                : $this->prepareOptions($this->inputOptions) . ' ';
 
-        return $this->binPath.$this->bin . ' ' . $options . $this->inputFile;
+        return $this->binPath . $this->bin . ' ' . $options . $this->inputFile;
     }
 
     /**
