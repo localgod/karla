@@ -33,12 +33,12 @@ interface Program
      * Get the command to run
      *
      * @return string
-     */
+    */
     public function getCommand();
     /**
      * Reset the command
      *
      * @return void
-     */
+    */
     public function reset();
 }

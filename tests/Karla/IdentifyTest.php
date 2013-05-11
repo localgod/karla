@@ -52,8 +52,8 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function inputfile()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('_data/demo.jpg')->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "_data/demo.jpg"');
+        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->getCommand();
+        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -65,7 +65,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function invalidInputfile()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('_data/demo2.jpg')->getCommand();
+        $command = $karla->identify()->inputfile('tests/_data/demo2.jpg')->getCommand();
     }
 
     /**
@@ -77,8 +77,8 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function execute()
     {
         $karla = Karla::getInstance();
-        $result = $karla->identify()->inputfile('_data/demo.jpg')->execute();
-        $this->assertTrue(preg_match('/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\sDirectClass.*/', $result) == 1);
+        $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute();
+        $this->assertTrue(preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
     }
     /**
      * Test
@@ -89,7 +89,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function executeNoRaw()
     {
         $karla = Karla::getInstance();
-        $result = $karla->identify()->inputfile('_data/demo.jpg')->execute(true, false);
+        $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertTrue($result instanceof MetaData);
     }
     /**
@@ -101,8 +101,9 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function executeNoReset()
     {
         $karla = Karla::getInstance();
-        $result = $karla->identify()->inputfile('_data/demo.jpg')->execute(false);
-        $this->assertTrue(preg_match('/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\sDirectClass.*/', $result) == 1);
+        $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(false);
+        $this->assertTrue(preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
+
     }
     /**
      * Test
@@ -113,7 +114,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function executeNoResetNoRaw()
     {
         $karla = Karla::getInstance();
-        $result = $karla->identify()->inputfile('_data/demo.jpg')->execute(false, false);
+        $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(false, false);
         $this->assertTrue($result instanceof MetaData);
     }
 
@@ -126,8 +127,8 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function verbose()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('_data/demo.jpg')->verbose()->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "_data/demo.jpg"');
+        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->verbose()->getCommand();
+        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -138,8 +139,8 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function verboseTwice()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('_data/demo.jpg')->verbose()->verbose()->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "_data/demo.jpg"');
+        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->verbose()->verbose()->getCommand();
+        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -150,8 +151,8 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function gravity()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('_data/demo.jpg')->gravity('center')->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "_data/demo.jpg"');
+        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->getCommand();
+        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -162,7 +163,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function gravityTwice()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('_data/demo.jpg')->gravity('center')->gravity('center')->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "_data/demo.jpg"');
+        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->gravity('center')->getCommand();
+        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
     }
 }

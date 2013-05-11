@@ -46,7 +46,7 @@ class Convert extends ImageMagick
     {
         if (!file_exists($filePath)) {
             $message = 'The input file path (' .
-            $filePath . ') is invalid or the file could not be located.';
+                    $filePath . ') is invalid or the file could not be located.';
             throw new InvalidArgumentException($message);
         }
 
@@ -72,12 +72,12 @@ class Convert extends ImageMagick
         $pathinfo = pathinfo($filePath);
         if (!file_exists($pathinfo['dirname'])) {
             $message = 'The output file path (' . $pathinfo['dirname'] .
-                       ') is invalid or could not be located.';
+            ') is invalid or could not be located.';
             throw new InvalidArgumentException($message);
         }
         if (!is_writeable($pathinfo['dirname'])) {
             $message = 'The output file path (' . $pathinfo['dirname'] .
-                       ') is not writable.';
+            ') is not writable.';
             throw new InvalidArgumentException($message);
         }
         if (!$includeOptions) {
@@ -152,22 +152,22 @@ class Convert extends ImageMagick
         }
         if (!is_numeric($newWidth)) {
             $message = 'You must supply new width as a integer.
-                        Was (' . $newWidth . ')';
+                    Was (' . $newWidth . ')';
             throw new InvalidArgumentException($message);
         }
         if ($newHeight != '' && !is_numeric($newHeight)) {
             $message = 'You must supply new height as a integer or as an empty string.
-                        Was (' . $newHeight . ')';
+                    Was (' . $newHeight . ')';
             throw new InvalidArgumentException($message);
         }
         if ($originalWidth != '' && !is_numeric($originalWidth)) {
             $message = 'You must supply original width as a integer or as an empty string.
-                        Was (' . $originalWidth . ')';
+                    Was (' . $originalWidth . ')';
             throw new InvalidArgumentException($message);
         }
         if ($originalHeight != '' && !is_numeric($originalHeight)) {
             $message = 'You must supply original height as a integer or as an empty string.
-                        Was (' . $originalHeight . ')';
+                    Was (' . $originalHeight . ')';
             throw new InvalidArgumentException($message);
         }
 
@@ -207,13 +207,13 @@ class Convert extends ImageMagick
 
         !is_array($this->_outputOptions) ? $this->_outputOptions = array() : null;
         !is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
-        $inOptions = $this->prepareOptions($this->_inputOptions) == '' ? 
-        	'' : $this->prepareOptions($this->_inputOptions).' ';
-        $outOptions = $this->prepareOptions($this->_outputOptions) == '' ? 
-        	'' : $this->prepareOptions($this->_outputOptions).' ';
+        $inOptions = $this->prepareOptions($this->_inputOptions) == '' ?
+        '' : $this->prepareOptions($this->_inputOptions).' ';
+        $outOptions = $this->prepareOptions($this->_outputOptions) == '' ?
+        '' : $this->prepareOptions($this->_outputOptions).' ';
 
-        return $this->_binPath.$this->_bin . ' ' . 
-        	   $inOptions . $this->_inputFile . ' ' .$outOptions . $this->_outputFile;
+        return $this->_binPath.$this->_bin . ' ' .
+                $inOptions . $this->_inputFile . ' ' .$outOptions . $this->_outputFile;
     }
 
     /**
@@ -444,7 +444,7 @@ class Convert extends ImageMagick
     {
         if (!file_exists($profilePath)) {
             $message = 'Could not add profile as input file (' .
-            $profilePath . ') could not be found.';
+                    $profilePath . ') could not be found.';
             throw new InvalidArgumentException($message);
         }
         $this->_outputOptions[] = ' -profile "' . $profilePath . '" ';
@@ -471,12 +471,12 @@ class Convert extends ImageMagick
         }
         if (!file_exists($profilePathFrom)) {
             $message = 'Could not add input profile as input file (' .
-            $profilePath . ') could not be found.';
+                    $profilePath . ') could not be found.';
             throw new InvalidArgumentException($message);
         }
         if (!file_exists($profilePathTo)) {
             $message = 'Could not add output profile as input file (' .
-            $profilePath . ') could not be found.';
+                    $profilePath . ') could not be found.';
             throw new InvalidArgumentException($message);
         }
         $this->profile($profilePathFrom);
@@ -682,7 +682,7 @@ class Convert extends ImageMagick
         }
         if (!$this->supportedColorSpace($colorSpace)) {
             $message = 'The supplied colorspace (' .
-            $colorSpace . ') is not supported by imagemagick';
+                    $colorSpace . ') is not supported by imagemagick';
             throw new InvalidArgumentException($message);
         }
         $this->_outputOptions[] = " -colorspace " . $colorSpace . ' ';
@@ -706,7 +706,7 @@ class Convert extends ImageMagick
         }
         if (!is_integer($threshold)) {
             $message = 'The supplied threshold (' .
-            $threshold . ') must be between 0 - 100';
+                    $threshold . ') must be between 0 - 100';
             throw new InvalidArgumentException($message);
         }
         $this->_outputOptions[] = " -sepia-tone " . $threshold . '% ';
@@ -730,7 +730,7 @@ class Convert extends ImageMagick
         }
         if (!is_numeric($angle)) {
             $message = 'The supplied angle (' .
-            $angle . ') must be between 0 - 360';
+                    $angle . ') must be between 0 - 360';
             throw new InvalidArgumentException($message);
         }
         $this->_inputOptions[] = " -polaroid " . $angle . '';
@@ -804,7 +804,7 @@ class Convert extends ImageMagick
     private static function validColorName($color)
     {
         $expr = '(aqua)|(black)|(blue)|(fuchsia)|(gray)|(green)|(lime)|(maroon)|(navy)|
-        		 (olive)|(orange)|(purple)|(red)|(silver)|(teal)|(white)|(yellow)';
+                (olive)|(orange)|(purple)|(red)|(silver)|(teal)|(white)|(yellow)';
 
         return preg_match('/^'.$expr.'$/', $color);
     }
@@ -819,9 +819,9 @@ class Convert extends ImageMagick
     private static function validRgbColor($color)
     {
         $expr = '(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
-                 \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
-                 \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|
-                 (rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\))';
+                \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
+                \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|
+                (rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\))';
 
         return preg_match('/^'.$expr.'$/x', $color);
     }

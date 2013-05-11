@@ -1,13 +1,16 @@
 <?php
 /**
- * Karla_Sniffs_NamingConventions_ValidFunctionNameSniff.
+ * PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff.
  *
  * PHP version 5
  *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
- * @link     http://pear.php.net/package/PHP_CodeSniffer
+ * @category  PHP
+ * @package   PHP_CodeSniffer
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+ * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 
 if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false) {
@@ -15,16 +18,19 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false
 }
 
 /**
- * Karla_Sniffs_NamingConventions_ValidFunctionNameSniff based on PSR1_Sniffs_NamingConventions_ValidFunctionNameSniff
+ * PSR1_Sniffs_NamingConventions_ValidFunctionNameSniff based on PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff.
  *
  * Ensures method names are correct depending on camelCaps, and that functions are named correctly.
  *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
- * @link     http://pear.php.net/package/PHP_CodeSniffer
+ * @category  PHP
+ * @package   PHP_CodeSniffer
+ * @author    Miro Svrtan <miro@mirosvrtan.me>
+ * @license   BSD Licence
+ * @version   Release: 1.0.0
+ * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class Karla_Sniffs_NamingConventions_ValidFunctionNameSniff extends PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff
+class PSR_Sniffs_NamingConventions_ValidFunctionNameSniff 
+    extends PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff
 {
 
     /**
@@ -52,7 +58,8 @@ class Karla_Sniffs_NamingConventions_ValidFunctionNameSniff extends PEAR_Sniffs_
         if (preg_match('|^__|', $methodName) !== 0) {
             $magicPart = substr($methodName, 2);
             if (in_array($magicPart, $this->magicMethods) === false) {
-                 $error = 'Method name "%s" is invalid; only PHP magic methods should be prefixed with a double underscore';
+                 $error = 'Method name "%s" is invalid; 
+                         only PHP magic methods should be prefixed with a double underscore';
                  
                  $phpcsFile->addError($error, $stackPtr, 'MethodDoubleUnderscore', $errorData);
             }

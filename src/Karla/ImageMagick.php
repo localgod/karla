@@ -339,8 +339,8 @@ abstract class ImageMagick implements Program
         if (!($this instanceof Convert) && !($this instanceof Identify)) {
             throw new BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $colorspaces = shell_exec($this->_binPath .$bin. ' -list colorspace');
         $colorspaces = explode("\n", $colorspaces);
         for ($i = 0; $i < count($colorspaces); $i++) {
@@ -361,8 +361,8 @@ abstract class ImageMagick implements Program
         if (!($this instanceof Convert) && !($this instanceof Identify)) {
             throw new BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $types = shell_exec($this->_binPath .$bin. ' -list type');
         $types = explode("\n", $types);
         for ($i = 0; $i < count($types); $i++) {
@@ -385,8 +385,8 @@ abstract class ImageMagick implements Program
         if (!($this instanceof Convert) && !($this instanceof Composite)) {
             throw new BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $gravities = shell_exec($this->_binPath .$bin. ' -list gravity');
         $gravities = explode("\n", $gravities);
         for ($i = 0; $i < count($gravities); $i++) {
@@ -409,8 +409,8 @@ abstract class ImageMagick implements Program
         if (!($this instanceof Convert) && !($this instanceof Identify)) {
             throw new BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $methods = shell_exec($this->_binPath .$bin. ' -list layers');
         $methods = explode("\n", $methods);
         for ($i = 0; $i < count($methods); $i++) {
@@ -433,8 +433,8 @@ abstract class ImageMagick implements Program
         if (!($this instanceof Convert) && !($this instanceof Identify)) {
             throw new BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $formats = shell_exec($this->_binPath .$bin. ' -list format');
         $formats = explode("\n", $formats);
         for ($i = 0; $i < count($formats); $i++) {

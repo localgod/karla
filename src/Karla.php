@@ -156,8 +156,8 @@ class Karla
      */
     public function convert()
     {
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
 
         return new Convert($this->_binPath, $bin, $this->_cache);
     }
@@ -169,8 +169,8 @@ class Karla
      */
     public function identify()
     {
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_IDENTIFY.'.exe' : ImageMagick::IMAGEMAGICK_IDENTIFY;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_IDENTIFY.'.exe' : ImageMagick::IMAGEMAGICK_IDENTIFY;
 
         return new Identify($this->_binPath, $bin, $this->_cache);
     }
@@ -181,8 +181,8 @@ class Karla
      */
     public function composite()
     {
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
-        	ImageMagick::IMAGEMAGICK_COMPOSITE.'.exe' : ImageMagick::IMAGEMAGICK_COMPOSITE;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
+        ImageMagick::IMAGEMAGICK_COMPOSITE.'.exe' : ImageMagick::IMAGEMAGICK_COMPOSITE;
 
         return new Composite($this->_binPath, $bin, $this->_cache);
     }
@@ -205,7 +205,7 @@ class Karla
             $pathinfo = pathinfo($savePath);
             if (!file_exists($pathinfo['dirname'])) {
                 $message = 'The output file path (' . $pathinfo['dirname'] .
-                       ') is invalid or could not be located.';
+                ') is invalid or could not be located.';
                 throw new InvalidArgumentException($message);
             }
 

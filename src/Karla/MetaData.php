@@ -98,8 +98,8 @@ class MetaData extends SplFileInfo
         if ($this->_isPpc) {
             //Here we convert to ppi
             $this->_resolution = array(
-                $this->ppc2ppi($this->_resolution[0]) ,
-                $this->ppc2ppi($this->_resolution[1])
+                    $this->ppc2ppi($this->_resolution[0]) ,
+                    $this->ppc2ppi($this->_resolution[1])
             );
             $this->_isPpc = false;
             $this->_isPpi = true;
@@ -300,23 +300,23 @@ class MetaData extends SplFileInfo
     private function parseUnits()
     {
         switch ($this->parse('Units')) {
-	        case 'PixelsPerCentimeter':
-	            $this->_isPpc = true;
-	            $this->_isPpi = false;
-	            break;
-	
-	        case 'PixelsPerInch':
-	            $this->_isPpc = false;
-	            $this->_isPpi = true;
-	            break;
-	
-	        case 'Undefined':
-	            $this->_isPpc = false;
-	            $this->_isPpi = true;
-	        default:
-	            $this->_isPpc = false;
-	            $this->_isPpi = true;
-	            break;
+            case 'PixelsPerCentimeter':
+                $this->_isPpc = true;
+                $this->_isPpi = false;
+                break;
+
+            case 'PixelsPerInch':
+                $this->_isPpc = false;
+                $this->_isPpi = true;
+                break;
+
+            case 'Undefined':
+                $this->_isPpc = false;
+                $this->_isPpi = true;
+            default:
+                $this->_isPpc = false;
+                $this->_isPpi = true;
+                break;
         }
     }
     /**

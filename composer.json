@@ -1,0 +1,29 @@
+{
+	"name" : "localgod/Karla",
+	"description" : "ImageMagick wrapper",
+	"type" : "library",
+	"authors" : [{
+			"name" : "Johannes Skov Frandsen",
+			"email" : "localgod@heaven.dk",
+			"homepage" : "https://github.com/localgod",
+			"role" : "Lead"
+		}
+	],
+	"keywords" : [
+		"Imagemagick"
+	],
+	"homepage" : "http://localgod.github.io/Karla/",
+	"license" : [
+		"MIT"
+	],
+	"autoload" : {
+		"psr-0" : {
+			"Karla" : "src/"
+		}
+	},
+	"support" : {
+		"source" : "https://github.com/localgod/Karla",
+		"issues" : "https://github.com/localgod/Karla/issues",
+		"wiki" : "https://github.com/localgod/Karla/wiki"
+	}
+}

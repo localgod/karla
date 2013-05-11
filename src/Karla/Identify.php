@@ -41,7 +41,7 @@ class Identify extends ImageMagick
     {
         if (!file_exists($filePath)) {
             $message = 'The input file path (' .
-            $filePath . ') is invalid or the file could not be located.';
+                    $filePath . ') is invalid or the file could not be located.';
             throw new InvalidArgumentException($message);
         }
         $file = new SplFileObject($filePath);
@@ -98,8 +98,8 @@ class Identify extends ImageMagick
     public function getCommand()
     {
         !is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
-        $options = $this->prepareOptions($this->_inputOptions) == '' ? 
-        	'' : $this->prepareOptions($this->_inputOptions).' ';
+        $options = $this->prepareOptions($this->_inputOptions) == '' ?
+        '' : $this->prepareOptions($this->_inputOptions).' ';
 
         return $this->_binPath.$this->_bin . ' ' . $options . $this->_inputFile;
     }

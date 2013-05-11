@@ -11,4 +11,4 @@ before_script:
 # - pyrus install pear.pdepend.org/PHP_Depend
 # - pyrus install pear.phpdoc.org/phpDocumentor
   - phpenv rehash
-script : ant travisbuild
+script : ant travis

@@ -40,7 +40,7 @@ interface Cache
      * @param string $options  Options
      *
      * @return string
-     */
+    */
     public function getCached($filename, $options);
 
     /**
@@ -50,7 +50,7 @@ interface Cache
      * @param string $options  Options
      *
      * @return void
-     */
+    */
     public function setCache($filename, $options);
 
     /**
@@ -60,6 +60,6 @@ interface Cache
      * @param string $options  Options
      *
      * @return void
-     */
+    */
     public function removeOrphans($filename, $options);
 }
