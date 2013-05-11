@@ -6,7 +6,7 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
@@ -25,7 +25,7 @@ spl_autoload_register(array('Karla', 'autoload'));
  * @category   Utility
  * @package    Karla
  * @subpackage Karla
- * @author     Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author     Johannes Skov Frandsen <localgod@heaven.dk>
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */

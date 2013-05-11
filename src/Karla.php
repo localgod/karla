@@ -6,10 +6,9 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @version  SVN: <1>
- * @link     http://www.greenoak.dk/ GreenOak
+ * @link     https://github.com/localgod/Karla Karla
  * @since    2010-06-05
  */
 /**
@@ -18,9 +17,9 @@
  * @category   Utility
  * @package    Karla
  * @subpackage Karla
- * @author     Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author     Johannes Skov Frandsen <localgod@heaven.dk>
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       http://karla.greenoak.dk/ Karla
+ * @link       https://github.com/localgod/Karla Karla
  */
 class Karla
 {
@@ -29,24 +28,28 @@ class Karla
      *
      * @var string $path Karla root directory
      */
-    private static $_path;
+    private static $path;
+
     /**
      * Path to imagemagick binary
      *
-     * @var string $_binPath imagemagick binary
+     * @var string $binPath imagemagick binary
      */
-    private $_binPath;
+    private $binPath;
+
     /**
      * Cache controller
      * @var Cache
      */
-    private $_cache;
+    private $cache;
+
     /**
      * Instance of a imagmagick object.
      *
-     * @var Karla $_instance imagmagick object.
+     * @var Karla $instance imagmagick object.
      */
-    private static $_instance;
+    private static $instance;
+
     /**
      * Get a instance of Karla.
      *
@@ -57,15 +60,15 @@ class Karla
      */
     public static function getInstance($binPath = '/opt/local/bin/', Cache $cache = null)
     {
-        if (!(self::$_instance instanceof self)) {
+        if (!(self::$instance instanceof self)) {
             try {
-                self::$_instance = new self($binPath, $cache);
+                self::$instance = new self($binPath, $cache);
             } catch (InvalidArgumentException $e) {
                 exit($e->getMessage().'('.$binPath.')');
             }
         }
 
-        return self::$_instance;
+        return self::$instance;
     }
 
     /**
@@ -99,11 +102,11 @@ class Karla
      */
     public static function getPath()
     {
-        if (!self::$_path) {
-            self::$_path = dirname(__FILE__);
+        if (!self::$path) {
+            self::$path = dirname(__FILE__);
         }
 
-        return self::$_path;
+        return self::$path;
     }
 
     /**
@@ -124,21 +127,22 @@ class Karla
         if (shell_exec($binPath . 'convert -version | grep ImageMagick') == "") {
             throw new InvalidArgumentException('ImageMagick could not be located at specified path');
         }
-        $this->_binPath = 'export PATH=$PATH:'.$binPath.';';
-        $this->_cache = $cache;
+        $this->binPath = 'export PATH=$PATH:'.$binPath.';';
+        $this->cache = $cache;
     }
+
     /**
      * Run a raw ImageMagick command
      *
      * Karla was never intended to wrap all of the functionality of ImageMagick
-     * and likely never will, you will from time to time need to write arguments to
-     * ImageMagick like you would have done directly in the consol.
+     * and likely never will, you will from time to time need to write arguments
+     * to ImageMagick like you would have done directly in the consol.
      *
      * @param string $program   Imagemagick tool to use
      * @param string $arguments Arguments for the tool
      *
      * @return string                   Result of the command if any
-     * @throws InvalidArgumentException if you try to run a non ImageMagick prohram
+     * @throws InvalidArgumentException if you try to run a non ImageMagick program
      */
     public function raw($program, $arguments = "")
     {
@@ -147,8 +151,9 @@ class Karla
         }
         strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? $bin = $program.'.exe' : $bin = $program;
 
-        return shell_exec($this->_binPath.$bin.' '.$arguments);
+        return shell_exec($this->binPath.$bin.' '.$arguments);
     }
+
     /**
      * Start a convert operation
      *
@@ -159,7 +164,7 @@ class Karla
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
 
-        return new Convert($this->_binPath, $bin, $this->_cache);
+        return new Convert($this->binPath, $bin, $this->cache);
     }
 
     /**
@@ -172,8 +177,9 @@ class Karla
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_IDENTIFY.'.exe' : ImageMagick::IMAGEMAGICK_IDENTIFY;
 
-        return new Identify($this->_binPath, $bin, $this->_cache);
+        return new Identify($this->binPath, $bin, $this->cache);
     }
+
     /**
      * Start a composite operation
      *
@@ -184,7 +190,7 @@ class Karla
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_COMPOSITE.'.exe' : ImageMagick::IMAGEMAGICK_COMPOSITE;
 
-        return new Composite($this->_binPath, $bin, $this->_cache);
+        return new Composite($this->binPath, $bin, $this->cache);
     }
 
     /**

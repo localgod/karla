@@ -6,7 +6,7 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
@@ -17,7 +17,7 @@
  * @category   Utility
  * @package    Karla
  * @subpackage Karla
- * @author     Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author     Johannes Skov Frandsen <localgod@heaven.dk>
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
@@ -29,60 +29,70 @@ abstract class ImageMagick implements Program
      * @var string
      */
     const IMAGEMAGICK_ANIMATE = 'animate';
+
     /**
      * ImageMagick tool compare
      *
      * @var string
      */
     const IMAGEMAGICK_COMPARE = 'compare';
+
     /**
      * ImageMagick tool composite
      *
      * @var string
      */
     const IMAGEMAGICK_COMPOSITE = 'composite';
+
     /**
      * ImageMagick tool
      *
      * @var string
      */
     const IMAGEMAGICK_CONJURE = 'conjure';
+
     /**
      * ImageMagick tool conjure
      *
      * @var string
      */
     const IMAGEMAGICK_CONVERT = 'convert';
+
     /**
      * ImageMagick tool display
      *
      * @var string
      */
     const IMAGEMAGICK_DISPLAY = 'display';
+
     /**
      * ImageMagick tool identify
      *
      * @var string
      */
     const IMAGEMAGICK_IDENTIFY = 'identify';
+
     /**
      * ImageMagick tool import
      *
      * @var string
      */
     const IMAGEMAGICK_IMPORT = 'import';
+
     /**
      * ImageMagick tool mogrify
      *
      * @var string
      */
     const IMAGEMAGICK_MOGRIFY = 'mogrify';
+
     /**
      * ImageMagick tool montage
      *
      * @var string
      */
     const IMAGEMAGICK_MONTAGE = 'montage';
+
     /**
      * ImageMagick tool stream
      *
@@ -90,36 +100,42 @@ abstract class ImageMagick implements Program
      */
     const IMAGEMAGICK_STREAM = 'stream';
 
+
     /**
      * Input option
      * @var Array
      */
-    protected $_inputOptions;
+    protected $inputOptions;
+
     /**
      * Output option
      * @var Array
      */
-    protected $_outputOptions;
+    protected $outputOptions;
+
     /**
      * Path to binaries
      * @var string
      */
-    protected $_binPath;
+    protected $binPath;
+
     /**
      * Name of binary
      * @var string
      */
-    protected $_bin;
+    protected $bin;
+
     /**
      * Cache controller
      * @var Cache
      */
-    protected $_cache;
+    protected $cache;
+
     /**
      * Is the object dirty (has any arguments been set)
      * @var boolean
      */
-    private $_dirty;
+    private $dirty;
 
     /**
      * Contructs a new program
@@ -139,11 +155,12 @@ abstract class ImageMagick implements Program
         if ($bin == '') {
             throw new InvalidArgumentException('Invalid bin');
         }
-        $this->_binPath = $binPath;
-        $this->_bin = $bin;
-        $this->_cache = $cache;
+        $this->binPath = $binPath;
+        $this->bin = $bin;
+        $this->cache = $cache;
         $this->reset();
     }
+
     /**
      * Is the object dirty
      *
@@ -153,7 +170,7 @@ abstract class ImageMagick implements Program
      */
     public function isDirty()
     {
-        return $this->_dirty;
+        return $this->dirty;
     }
 
     /**
@@ -165,7 +182,7 @@ abstract class ImageMagick implements Program
      */
     protected function dirty()
     {
-        $this->_dirty = true;
+        $this->dirty = true;
     }
 
     /**
@@ -177,6 +194,7 @@ abstract class ImageMagick implements Program
     {
         throw new BadMethodCallException("Clone is not allowed");
     }
+
     /**
      * Get the command to run
      *
@@ -184,7 +202,7 @@ abstract class ImageMagick implements Program
      */
     public function getCommand()
     {
-        return $this->_binPath.$this->_bin;
+        return $this->binPath.$this->bin;
     }
 
     /**
@@ -203,6 +221,7 @@ abstract class ImageMagick implements Program
 
         return $result;
     }
+
     /**
      * Reset the command
      *
@@ -210,9 +229,9 @@ abstract class ImageMagick implements Program
      */
     public function reset()
     {
-        $this->_inputOptions = array();
-        $this->_outputOptions = array();
-        $this->_dirty = false;
+        $this->inputOptions = array();
+        $this->outputOptions = array();
+        $this->dirty = false;
     }
 
     /**
@@ -226,11 +245,12 @@ abstract class ImageMagick implements Program
     public function raw($arguments, $input = true)
     {
         if ($input) {
-            $this->_inputOptions[] = $arguments;
+            $this->inputOptions[] = $arguments;
         } else {
-            $this->_outputOptions[] = $arguments;
+            $this->outputOptions[] = $arguments;
         }
     }
+
     /**
      * Set the gravity
      *
@@ -240,11 +260,11 @@ abstract class ImageMagick implements Program
      */
     public function gravity($gravity)
     {
-        if ($this->isOptionSet('gravity', $this->_inputOptions)) {
+        if ($this->isOptionSet('gravity', $this->inputOptions)) {
             throw new BadMethodCallException('Gravity can only be called once.');
         }
         if ($this->supportedGravity($gravity)) {
-            $this->_inputOptions[] = " -gravity " . $gravity;
+            $this->inputOptions[] = " -gravity " . $gravity;
             $this->dirty();
 
             return $this;
@@ -265,11 +285,11 @@ abstract class ImageMagick implements Program
      */
     public function density($width = 72, $height = 72, $output = true)
     {
-        if ($this->isOptionSet('density', $this->_inputOptions)) {
+        if ($this->isOptionSet('density', $this->inputOptions)) {
             $message = "'density()' can only be called once as in input argument.";
             throw new BadMethodCallException($message);
         }
-        if ($this->isOptionSet('density', $this->_outputOptions)) {
+        if ($this->isOptionSet('density', $this->outputOptions)) {
             $message = "'density()' can only be called once as in input argument.";
             throw new BadMethodCallException($message);
         }
@@ -282,9 +302,9 @@ abstract class ImageMagick implements Program
             throw new InvalidArgumentException($message);
         }
         if ($output) {
-            $this->_outputOptions[] = " -density " . $width . "x" . $height;
+            $this->outputOptions[] = " -density " . $width . "x" . $height;
         } else {
-            $this->_inputOptions[] = " -density " . $width . "x" . $height;
+            $this->inputOptions[] = " -density " . $width . "x" . $height;
         }
         $this->dirty();
 
@@ -341,7 +361,7 @@ abstract class ImageMagick implements Program
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $colorspaces = shell_exec($this->_binPath .$bin. ' -list colorspace');
+        $colorspaces = shell_exec($this->binPath .$bin. ' -list colorspace');
         $colorspaces = explode("\n", $colorspaces);
         for ($i = 0; $i < count($colorspaces); $i++) {
             $colorspaces[$i] = trim(strtolower($colorspaces[$i]));
@@ -363,7 +383,7 @@ abstract class ImageMagick implements Program
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $types = shell_exec($this->_binPath .$bin. ' -list type');
+        $types = shell_exec($this->binPath .$bin. ' -list type');
         $types = explode("\n", $types);
         for ($i = 0; $i < count($types); $i++) {
             $types[$i] = trim(strtolower($types[$i]));
@@ -387,7 +407,7 @@ abstract class ImageMagick implements Program
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $gravities = shell_exec($this->_binPath .$bin. ' -list gravity');
+        $gravities = shell_exec($this->binPath .$bin. ' -list gravity');
         $gravities = explode("\n", $gravities);
         for ($i = 0; $i < count($gravities); $i++) {
             $gravities[$i] = trim(strtolower($gravities[$i]));
@@ -411,7 +431,7 @@ abstract class ImageMagick implements Program
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $methods = shell_exec($this->_binPath .$bin. ' -list layers');
+        $methods = shell_exec($this->binPath .$bin. ' -list layers');
         $methods = explode("\n", $methods);
         for ($i = 0; $i < count($methods); $i++) {
             $methods[$i] = trim(strtolower($methods[$i]));
@@ -435,7 +455,7 @@ abstract class ImageMagick implements Program
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
         ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $formats = shell_exec($this->_binPath .$bin. ' -list format');
+        $formats = shell_exec($this->binPath .$bin. ' -list format');
         $formats = explode("\n", $formats);
         for ($i = 0; $i < count($formats); $i++) {
             preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);

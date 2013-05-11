@@ -6,7 +6,7 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
@@ -17,7 +17,7 @@
  * @category   Utility
  * @package    Karla
  * @subpackage Karla
- * @author     Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author     Johannes Skov Frandsen <localgod@heaven.dk>
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
@@ -27,7 +27,7 @@ class Identify extends ImageMagick
      * Input file
      * @var string
      */
-    protected $_inputFile;
+    protected $inputFile;
 
     /**
      * Add input argument
@@ -46,7 +46,7 @@ class Identify extends ImageMagick
         }
         $file = new SplFileObject($filePath);
         if ($file->isReadable()) {
-            $this->_inputFile = '"' . $file->getPathname() . '"';
+            $this->inputFile = '"' . $file->getPathname() . '"';
         }
         $this->dirty();
 
@@ -74,6 +74,7 @@ class Identify extends ImageMagick
 
         return trim($result);
     }
+
     /**
      * Add verbose argument
      *
@@ -81,8 +82,8 @@ class Identify extends ImageMagick
      */
     public function verbose()
     {
-        if (!$this->isOptionSet('verbose', $this->_inputOptions)) {
-            $this->_inputOptions[] = "-verbose ";
+        if (!$this->isOptionSet('verbose', $this->inputOptions)) {
+            $this->inputOptions[] = "-verbose ";
         }
         $this->dirty();
 
@@ -97,11 +98,11 @@ class Identify extends ImageMagick
      */
     public function getCommand()
     {
-        !is_array($this->_inputOptions) ? $this->_inputOptions = array() : null;
-        $options = $this->prepareOptions($this->_inputOptions) == '' ?
-        '' : $this->prepareOptions($this->_inputOptions).' ';
+        !is_array($this->inputOptions) ? $this->inputOptions = array() : null;
+        $options = $this->prepareOptions($this->inputOptions) == '' ?
+        '' : $this->prepareOptions($this->inputOptions).' ';
 
-        return $this->_binPath.$this->_bin . ' ' . $options . $this->_inputFile;
+        return $this->binPath.$this->bin . ' ' . $options . $this->inputFile;
     }
 
     /**

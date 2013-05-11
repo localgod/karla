@@ -6,10 +6,10 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @version  SVN: <1>
- * @link     http://www.greenoak.dk/ GreenOak
+
+ * @link     https://github.com/localgod/Karla Karla
  * @since    2010-06-05
  */
 if (false === spl_autoload_functions()) {

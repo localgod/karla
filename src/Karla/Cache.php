@@ -6,7 +6,7 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
@@ -17,7 +17,7 @@
  * @category   Utility
  * @package    Karla
  * @subpackage Karla
- * @author     Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author     Johannes Skov Frandsen <localgod@heaven.dk>
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
@@ -40,7 +40,7 @@ interface Cache
      * @param string $options  Options
      *
      * @return string
-    */
+     */
     public function getCached($filename, $options);
 
     /**
@@ -50,7 +50,7 @@ interface Cache
      * @param string $options  Options
      *
      * @return void
-    */
+     */
     public function setCache($filename, $options);
 
     /**
@@ -60,6 +60,6 @@ interface Cache
      * @param string $options  Options
      *
      * @return void
-    */
+     */
     public function removeOrphans($filename, $options);
 }

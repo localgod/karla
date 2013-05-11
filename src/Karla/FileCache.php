@@ -6,7 +6,7 @@
  *
  * @category Utility
  * @package  Karla
- * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
@@ -17,7 +17,7 @@
  * @category   Utility
  * @package    Karla
  * @subpackage Karla
- * @author     Johannes Skov Frandsen <jsf@greenoak.dk>
+ * @author     Johannes Skov Frandsen <localgod@heaven.dk>
  * @license    http://www.opensource.org/licenses/mit-license.php MIT
  * @link       https://github.com/localgod/Karla Karla
  */
@@ -27,7 +27,7 @@ class FileCache implements Cache
      * Cache directory
      * @var string
      */
-    private $_cacheDir;
+    private $cacheDir;
 
     /**
      * Create a new file cache
@@ -77,7 +77,7 @@ class FileCache implements Cache
         if (!is_dir($dirName)) {
             throw new InvalidArgumentException("Path not a directory", 2);
         }
-        $this->_cacheDir = $dirName;
+        $this->cacheDir = $dirName;
     }
 
     /**
@@ -141,7 +141,7 @@ class FileCache implements Cache
     protected function options2String()
     {
         $output = array();
-        foreach ($this->_inputOptions as $option) {
+        foreach ($this->inputOptions as $option) {
             if (strstr($option, 'resize')) {
                 $option = str_replace('\>', '', $option);
                 $option = str_replace('\<', '', $option);
