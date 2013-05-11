@@ -1,0 +1,761 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Phpdoc for Karla » \Identify</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Phpdoc for Karla</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Karla.html"><i class="icon-folder-open"></i> Karla</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___clone" title="__clone :: It should not be possible to clon the ImageMagick object."><span class="description">It should not be possible to clon the ImageMagick object.</span><pre>__clone()</pre></a></li>
+<li class="method public inherited"><a href="#method___construct" title="__construct :: Contructs a new program"><span class="description">Contructs a new program</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_density" title="density :: Set the density of the output image."><span class="description">Set the density of the output image.</span><pre>density()</pre></a></li>
+<li class="method public "><a href="#method_execute" title="execute :: Execute the command"><span class="description">Execute the command</span><pre>execute()</pre></a></li>
+<li class="method public "><a href="#method_getCommand" title="getCommand :: (non-PHPdoc)"><span class="description">(non-PHPdoc)</span><pre>getCommand()</pre></a></li>
+<li class="method public "><a href="#method_gravity" title="gravity :: Set the gravity"><span class="description">Set the gravity</span><pre>gravity()</pre></a></li>
+<li class="method public "><a href="#method_inputfile" title="inputfile :: Add input argument"><span class="description">Add input argument</span><pre>inputfile()</pre></a></li>
+<li class="method public inherited"><a href="#method_isDirty" title="isDirty :: Is the object dirty"><span class="description">Is the object dirty</span><pre>isDirty()</pre></a></li>
+<li class="method public inherited"><a href="#method_raw" title="raw :: Raw arguments directly to ImageMagick"><span class="description">Raw arguments directly to ImageMagick</span><pre>raw()</pre></a></li>
+<li class="method public inherited"><a href="#method_reset" title="reset :: Reset the command"><span class="description">Reset the command</span><pre>reset()</pre></a></li>
+<li class="method public inherited"><a href="#method_validProgram" title="validProgram :: Check if the input is a valid ImageMagick program"><span class="description">Check if the input is a valid ImageMagick program</span><pre>validProgram()</pre></a></li>
+<li class="method public "><a href="#method_verbose" title="verbose :: Add verbose argument"><span class="description">Add verbose argument</span><pre>verbose()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected inherited"><a href="#method_dirty" title="dirty :: Set the object as beeing dirty"><span class="description">Set the object as beeing dirty</span><pre>dirty()</pre></a></li>
+<li class="method protected inherited"><a href="#method_isOptionSet" title="isOptionSet :: Check if an option is already set"><span class="description">Check if an option is already set</span><pre>isOptionSet()</pre></a></li>
+<li class="method protected inherited"><a href="#method_prepareOptions" title="prepareOptions :: Prepare option collection"><span class="description">Prepare option collection</span><pre>prepareOptions()</pre></a></li>
+<li class="method protected inherited"><a href="#method_supportedColorSpace" title="supportedColorSpace :: Check if a colorspace is supported by ImageMagick."><span class="description">Check if a colorspace is supported by ImageMagick.</span><pre>supportedColorSpace()</pre></a></li>
+<li class="method protected inherited"><a href="#method_supportedFormat" title="supportedFormat :: Check if a format is supported by ImageMagick."><span class="description">Check if a format is supported by ImageMagick.</span><pre>supportedFormat()</pre></a></li>
+<li class="method protected inherited"><a href="#method_supportedGravity" title="supportedGravity :: Check if a gravity is supported by ImageMagick."><span class="description">Check if a gravity is supported by ImageMagick.</span><pre>supportedGravity()</pre></a></li>
+<li class="method protected inherited"><a href="#method_supportedImageTypes" title="supportedImageTypes :: Check if a image type is supported by ImageMagick."><span class="description">Check if a image type is supported by ImageMagick.</span><pre>supportedImageTypes()</pre></a></li>
+<li class="method protected inherited"><a href="#method_supportedLayerMethod" title="supportedLayerMethod :: Check if a method is supported by ImageMagick."><span class="description">Check if a method is supported by ImageMagick.</span><pre>supportedLayerMethod()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_bin" title="$bin :: Name of binary"><span class="description"></span><pre>$bin</pre></a></li>
+<li class="property protected inherited"><a href="#property_binPath" title="$binPath :: Path to binaries"><span class="description"></span><pre>$binPath</pre></a></li>
+<li class="property protected inherited"><a href="#property_cache" title="$cache :: Cache controller"><span class="description"></span><pre>$cache</pre></a></li>
+<li class="property protected "><a href="#property_inputFile" title="$inputFile :: Input file"><span class="description"></span><pre>$inputFile</pre></a></li>
+<li class="property protected inherited"><a href="#property_inputOptions" title="$inputOptions :: Input option"><span class="description"></span><pre>$inputOptions</pre></a></li>
+<li class="property protected inherited"><a href="#property_outputOptions" title="$outputOptions :: Output option"><span class="description"></span><pre>$outputOptions</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private inherited"><a href="#property_dirty" title="$dirty :: Is the object dirty (has any arguments been set)"><span class="description"></span><pre>$dirty</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_ANIMATE" title="IMAGEMAGICK_ANIMATE :: ImageMagick tool animate"><span class="description">ImageMagick tool animate</span><pre>IMAGEMAGICK_ANIMATE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_COMPARE" title="IMAGEMAGICK_COMPARE :: ImageMagick tool compare"><span class="description">ImageMagick tool compare</span><pre>IMAGEMAGICK_COMPARE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_COMPOSITE" title="IMAGEMAGICK_COMPOSITE :: ImageMagick tool composite"><span class="description">ImageMagick tool composite</span><pre>IMAGEMAGICK_COMPOSITE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_CONJURE" title="IMAGEMAGICK_CONJURE :: ImageMagick tool"><span class="description">ImageMagick tool</span><pre>IMAGEMAGICK_CONJURE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_CONVERT" title="IMAGEMAGICK_CONVERT :: ImageMagick tool conjure"><span class="description">ImageMagick tool conjure</span><pre>IMAGEMAGICK_CONVERT</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_DISPLAY" title="IMAGEMAGICK_DISPLAY :: ImageMagick tool display"><span class="description">ImageMagick tool display</span><pre>IMAGEMAGICK_DISPLAY</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_IDENTIFY" title="IMAGEMAGICK_IDENTIFY :: ImageMagick tool identify"><span class="description">ImageMagick tool identify</span><pre>IMAGEMAGICK_IDENTIFY</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_IMPORT" title="IMAGEMAGICK_IMPORT :: ImageMagick tool import"><span class="description">ImageMagick tool import</span><pre>IMAGEMAGICK_IMPORT</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_MOGRIFY" title="IMAGEMAGICK_MOGRIFY :: ImageMagick tool mogrify"><span class="description">ImageMagick tool mogrify</span><pre>IMAGEMAGICK_MOGRIFY</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_MONTAGE" title="IMAGEMAGICK_MONTAGE :: ImageMagick tool montage"><span class="description">ImageMagick tool montage</span><pre>IMAGEMAGICK_MONTAGE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_IMAGEMAGICK_STREAM" title="IMAGEMAGICK_STREAM :: ImageMagick tool stream"><span class="description">ImageMagick tool stream</span><pre>IMAGEMAGICK_STREAM</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\Identify"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Identify.html">Identify</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Class for wrapping ImageMagicks identify tool</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>Utility</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Karla.Karla.html">Karla</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>Karla</td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:localgod@heaven.dk">Johannes Skov Frandsen</a></td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="http://www.opensource.org/licenses/mit-license.php">MIT</a></td>
+</tr>
+<tr>
+<th>link</th>
+<td><a href="https://github.com/localgod/Karla">Karla</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+<h2>It should not be possible to clon the ImageMagick object.</h2>
+<pre>__clone() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::__clone()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Contructs a new program</h2>
+<pre>__construct(string $binPath, string $bin, <a href="../classes/Cache.html">\Cache</a> $cache) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$binPath</h4>
+<code>string</code><p>Path to binaries</p></div>
+<div class="subelement argument">
+<h4>$bin</h4>
+<code>string</code><p>Binary</p></div>
+<div class="subelement argument">
+<h4>$cache</h4>
+<code><a href="../classes/Cache.html">\Cache</a></code><p>Cache controller (default null = no cache)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_density"></a><div class="element clickable method public method_density" data-toggle="collapse" data-target=".method_density .collapse">
+<h2>Set the density of the output image.</h2>
+<pre>density(integer $width, integer $height, boolean $output) : <a href="../classes/Identify.html">\Identify</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Desity has no effect when used in this context</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$width</h4>
+<code>integer</code><p>The width of the image</p></div>
+<div class="subelement argument">
+<h4>$height</h4>
+<code>integer</code><p>The height of the image</p></div>
+<div class="subelement argument">
+<h4>$output</h4>
+<code>boolean</code><p>If output is true density is set for the resulting image
+                       If output is false density is used for reading the input image</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if density has already been called</td>
+</tr>
+<tr>
+<th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Identify.html">\Identify</a></code></div>
+</div></div>
+</div>
+<a id="method_execute"></a><div class="element clickable method public method_execute" data-toggle="collapse" data-target=".method_execute .collapse">
+<h2>Execute the command</h2>
+<pre>execute(boolean $reset, boolean $raw) : string | <a href="../classes/MetaData.html">\MetaData</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\lib/Imagemagick#execute()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reset</h4>
+<code>boolean</code><p>Reset the query</p></div>
+<div class="subelement argument">
+<h4>$raw</h4>
+<code>boolean</code><p>Get the raw output</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code><a href="../classes/MetaData.html">\MetaData</a></code>
+</div>
+</div></div>
+</div>
+<a id="method_getCommand"></a><div class="element clickable method public method_getCommand" data-toggle="collapse" data-target=".method_getCommand .collapse">
+<h2>(non-PHPdoc)</h2>
+<pre>getCommand() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\lib/Imagemagick#getCommand()</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_gravity"></a><div class="element clickable method public method_gravity" data-toggle="collapse" data-target=".method_gravity .collapse">
+<h2>Set the gravity</h2>
+<pre>gravity(string $gravity) : <a href="../classes/Identify.html">\Identify</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Gravity has no effect when used in this context</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$gravity</h4>
+<code>string</code><p>Gravity</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Identify.html">\Identify</a></code></div>
+</div></div>
+</div>
+<a id="method_inputfile"></a><div class="element clickable method public method_inputfile" data-toggle="collapse" data-target=".method_inputfile .collapse">
+<h2>Add input argument</h2>
+<pre>inputfile(string $filePath) : <a href="../classes/Identify.html">\Identify</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filePath</h4>
+<code>string</code><p>Input file path</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Identify.html">\Identify</a></code></div>
+</div></div>
+</div>
+<a id="method_isDirty"></a><div class="element clickable method public method_isDirty" data-toggle="collapse" data-target=".method_isDirty .collapse">
+<h2>Is the object dirty</h2>
+<pre>isDirty() : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>(has any arguments been set)</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::isDirty()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_raw"></a><div class="element clickable method public method_raw" data-toggle="collapse" data-target=".method_raw .collapse">
+<h2>Raw arguments directly to ImageMagick</h2>
+<pre>raw(string $arguments, boolean $input) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::raw()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$arguments</h4>
+<code>string</code><p>Arguments</p></div>
+<div class="subelement argument">
+<h4>$input</h4>
+<code>boolean</code><p>Defaults to an input option, use false to use it as an output option</p></div>
+</div></div>
+</div>
+<a id="method_reset"></a><div class="element clickable method public method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
+<h2>Reset the command</h2>
+<pre>reset() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::reset()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_validProgram"></a><div class="element clickable method public method_validProgram" data-toggle="collapse" data-target=".method_validProgram .collapse">
+<h2>Check if the input is a valid ImageMagick program</h2>
+<pre>validProgram(string $program) : boolean</pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::validProgram()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$program</h4>
+<code>string</code><p>Program name</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_verbose"></a><div class="element clickable method public method_verbose" data-toggle="collapse" data-target=".method_verbose .collapse">
+<h2>Add verbose argument</h2>
+<pre>verbose() : <a href="../classes/Identify.html">\Identify</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Identify.html">\Identify</a></code></div>
+</div></div>
+</div>
+<a id="method_dirty"></a><div class="element clickable method protected method_dirty" data-toggle="collapse" data-target=".method_dirty .collapse">
+<h2>Set the object as beeing dirty</h2>
+<pre>dirty() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>(Arguments has been set)</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::dirty()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_isOptionSet"></a><div class="element clickable method protected method_isOptionSet" data-toggle="collapse" data-target=".method_isOptionSet .collapse">
+<h2>Check if an option is already set</h2>
+<pre>isOptionSet(string $lookop, array $optionList) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::isOptionSet()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$lookop</h4>
+<code>string</code><p>Option to look up</p></div>
+<div class="subelement argument">
+<h4>$optionList</h4>
+<code>array</code><p>Optionlist to look in</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_prepareOptions"></a><div class="element clickable method protected method_prepareOptions" data-toggle="collapse" data-target=".method_prepareOptions .collapse">
+<h2>Prepare option collection</h2>
+<pre>prepareOptions(array $options) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::prepareOptions()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>Options</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_supportedColorSpace"></a><div class="element clickable method protected method_supportedColorSpace" data-toggle="collapse" data-target=".method_supportedColorSpace .collapse">
+<h2>Check if a colorspace is supported by ImageMagick.</h2>
+<pre>supportedColorSpace(string $colorSpace) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::supportedColorSpace()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$colorSpace</h4>
+<code>string</code><p>Colorspace to check</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_supportedFormat"></a><div class="element clickable method protected method_supportedFormat" data-toggle="collapse" data-target=".method_supportedFormat .collapse">
+<h2>Check if a format is supported by ImageMagick.</h2>
+<pre>supportedFormat(string $format) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::supportedFormat()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Format to check</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if called in a wrong context</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_supportedGravity"></a><div class="element clickable method protected method_supportedGravity" data-toggle="collapse" data-target=".method_supportedGravity .collapse">
+<h2>Check if a gravity is supported by ImageMagick.</h2>
+<pre>supportedGravity(string $gravity) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::supportedGravity()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$gravity</h4>
+<code>string</code><p>Gravity to check</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if called in a wrong context</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_supportedImageTypes"></a><div class="element clickable method protected method_supportedImageTypes" data-toggle="collapse" data-target=".method_supportedImageTypes .collapse">
+<h2>Check if a image type is supported by ImageMagick.</h2>
+<pre>supportedImageTypes(string $type) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::supportedImageTypes()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code><p>Type to check</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_supportedLayerMethod"></a><div class="element clickable method protected method_supportedLayerMethod" data-toggle="collapse" data-target=".method_supportedLayerMethod .collapse">
+<h2>Check if a method is supported by ImageMagick.</h2>
+<pre>supportedLayerMethod(string $method) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::supportedLayerMethod()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>Method to check</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if called in a wrong context</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_bin"> </a><div class="element clickable property protected property_bin" data-toggle="collapse" data-target=".property_bin .collapse">
+<h2></h2>
+<pre>$bin : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::$$bin</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_binPath"> </a><div class="element clickable property protected property_binPath" data-toggle="collapse" data-target=".property_binPath .collapse">
+<h2></h2>
+<pre>$binPath : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::$$binPath</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_cache"> </a><div class="element clickable property protected property_cache" data-toggle="collapse" data-target=".property_cache .collapse">
+<h2></h2>
+<pre>$cache : <a href="../classes/Cache.html">\Cache</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::$$cache</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_inputFile"> </a><div class="element clickable property protected property_inputFile" data-toggle="collapse" data-target=".property_inputFile .collapse">
+<h2></h2>
+<pre>$inputFile : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_inputOptions"> </a><div class="element clickable property protected property_inputOptions" data-toggle="collapse" data-target=".property_inputOptions .collapse">
+<h2></h2>
+<pre>$inputOptions : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::$$inputOptions</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_outputOptions"> </a><div class="element clickable property protected property_outputOptions" data-toggle="collapse" data-target=".property_outputOptions .collapse">
+<h2></h2>
+<pre>$outputOptions : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::$$outputOptions</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_dirty"> </a><div class="element clickable property private property_dirty" data-toggle="collapse" data-target=".property_dirty .collapse">
+<h2></h2>
+<pre>$dirty : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::$$dirty</td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_IMAGEMAGICK_ANIMATE"> </a><div class="element clickable constant  constant_IMAGEMAGICK_ANIMATE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_ANIMATE .collapse">
+<h2>ImageMagick tool animate</h2>
+<pre>IMAGEMAGICK_ANIMATE : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_ANIMATE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_COMPARE"> </a><div class="element clickable constant  constant_IMAGEMAGICK_COMPARE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_COMPARE .collapse">
+<h2>ImageMagick tool compare</h2>
+<pre>IMAGEMAGICK_COMPARE : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_COMPARE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_COMPOSITE"> </a><div class="element clickable constant  constant_IMAGEMAGICK_COMPOSITE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_COMPOSITE .collapse">
+<h2>ImageMagick tool composite</h2>
+<pre>IMAGEMAGICK_COMPOSITE : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_COMPOSITE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_CONJURE"> </a><div class="element clickable constant  constant_IMAGEMAGICK_CONJURE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_CONJURE .collapse">
+<h2>ImageMagick tool</h2>
+<pre>IMAGEMAGICK_CONJURE : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_CONJURE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_CONVERT"> </a><div class="element clickable constant  constant_IMAGEMAGICK_CONVERT" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_CONVERT .collapse">
+<h2>ImageMagick tool conjure</h2>
+<pre>IMAGEMAGICK_CONVERT : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_CONVERT</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_DISPLAY"> </a><div class="element clickable constant  constant_IMAGEMAGICK_DISPLAY" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_DISPLAY .collapse">
+<h2>ImageMagick tool display</h2>
+<pre>IMAGEMAGICK_DISPLAY : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_DISPLAY</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_IDENTIFY"> </a><div class="element clickable constant  constant_IMAGEMAGICK_IDENTIFY" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_IDENTIFY .collapse">
+<h2>ImageMagick tool identify</h2>
+<pre>IMAGEMAGICK_IDENTIFY : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_IDENTIFY</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_IMPORT"> </a><div class="element clickable constant  constant_IMAGEMAGICK_IMPORT" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_IMPORT .collapse">
+<h2>ImageMagick tool import</h2>
+<pre>IMAGEMAGICK_IMPORT : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_IMPORT</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_MOGRIFY"> </a><div class="element clickable constant  constant_IMAGEMAGICK_MOGRIFY" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_MOGRIFY .collapse">
+<h2>ImageMagick tool mogrify</h2>
+<pre>IMAGEMAGICK_MOGRIFY : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_MOGRIFY</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_MONTAGE"> </a><div class="element clickable constant  constant_IMAGEMAGICK_MONTAGE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_MONTAGE .collapse">
+<h2>ImageMagick tool montage</h2>
+<pre>IMAGEMAGICK_MONTAGE : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_MONTAGE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_IMAGEMAGICK_STREAM"> </a><div class="element clickable constant  constant_IMAGEMAGICK_STREAM" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_STREAM .collapse">
+<h2>ImageMagick tool stream</h2>
+<pre>IMAGEMAGICK_STREAM : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\ImageMagick::IMAGEMAGICK_STREAM</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-05-11T15:44:45+02:00.<br></footer></div>
+</div>
+</body>
+</html>
