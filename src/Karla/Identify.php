@@ -139,4 +139,20 @@ class Identify extends ImageMagick
         return $this;
     }
 
+    /**
+     * Raw arguments directly to ImageMagick
+     *
+     * @param string  $arguments Arguments
+     * @param boolean $input     Defaults to an input option, use false to use it as an output option
+     *
+     * @return Identify
+     * @see ImageMagick::raw()
+     */
+    public function raw($arguments, $input = true)
+    {
+        parent::raw($arguments, $input);
+
+        return $this;
+    }
+
 }

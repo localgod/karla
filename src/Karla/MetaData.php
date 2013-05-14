@@ -12,7 +12,7 @@
  * @since    2012-04-05
  */
 /**
- * Class for wrapping image metda data
+ * Class for wrapping image metadata
  *
  * @category   Utility
  * @package    Karla

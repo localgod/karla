@@ -24,29 +24,10 @@
 class ConvertTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
      * Test
      *
      * @test
+     * @covers Convert::inputfile
      * @expectedException RuntimeException
      * @return void
      */
@@ -60,6 +41,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::outputfile
      * @expectedException RuntimeException
      * @return void
      */
@@ -73,6 +55,8 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::inputfile
+     * @covers Convert::outputfile
      * @return void
      */
     public function inputfileAndOutputfile()
@@ -86,6 +70,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::background
      * @return void
      */
     public function background()
@@ -99,6 +84,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::borderColor
      * @return void
      */
     public function bordercolorWithColorName()
@@ -112,6 +98,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::borderColor
      * @return void
      */
     public function bordercolorWithHexColor()
@@ -125,6 +112,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::borderColor
      * @return void
      */
     public function bordercolorWithRgbColor()
@@ -139,6 +127,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::removeProfile
      * @return void
      */
     public function removeProfile()
@@ -152,9 +141,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::resample
      * @return void
      */
-    public function testResample()
+    public function resample()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->resample(200, 200, 72, 72)->outputfile('test-200x200.png')->getCommand();
@@ -164,9 +154,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::resample
      * @return void
      */
-    public function testResampleWithOnlyWidth()
+    public function resampleWithOnlyWidth()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->resample(200)->outputfile('test-200x200.png')->getCommand();
@@ -177,9 +168,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Composite::reset
      * @return void
      */
-    public function testReset()
+    public function reset()
     {
         $karla = Karla::getInstance();
         $convert = $karla->convert();
@@ -193,9 +185,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::size
      * @return void
      */
-    public function testSize()
+    public function size()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->size(200, 200)->outputfile('test-200x200.png')->getCommand();
@@ -205,9 +198,11 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     /**
      * Test
      *
+     * @test
+     * @covers Convert::density
      * @return void
      */
-    public function testDensity()
+    public function density()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->density()->outputfile('test-200x200.png')->getCommand();
@@ -218,9 +213,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::flatten
      * @return void
      */
-    public function testFlatten()
+    public function flatten()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->flatten()->outputfile('test-200x200.png')->getCommand();
@@ -231,9 +227,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::strip
      * @return void
      */
-    public function testStrip()
+    public function strip()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->strip()->outputfile('test-200x200.png')->getCommand();
@@ -244,9 +241,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::profile
      * @return void
      */
-    public function testProfile()
+    public function profile()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->profile('tests/_data/sRGB_Color_Space_Profile.icm')->outputfile('test-200x200.png')->getCommand();
@@ -257,9 +255,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::changeProfile
      * @return void
      */
-    public function testChangeProfile()
+    public function changeProfile()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')
@@ -271,9 +270,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::layers
      * @return void
      */
-    public function testLayers()
+    public function layers()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->layers('flatten')->outputfile('test-200x200.png')->getCommand();
@@ -284,9 +284,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::resize
      * @return void
      */
-    public function testResize()
+    public function resize()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->resize(100, 100)->outputfile('test-200x200.png')->getCommand();
@@ -297,9 +298,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::crop
      * @return crop
      */
-    public function testCrop()
+    public function crop()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->crop(100, 100)->outputfile('test-200x200.png')->getCommand();
@@ -310,9 +312,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::quality
      * @return void
      */
-    public function testQuality()
+    public function quality()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->crop(100, 100)->outputfile('test-200x200.png')->getCommand();
@@ -323,9 +326,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Convert::colorspace
      * @return void
      */
-    public function testColorspace()
+    public function colorspace()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->colorspace('rgb')->outputfile('test-200x200.png')->getCommand();
@@ -335,13 +339,88 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     /**
      * Test
      *
-     * @todo Implement testGravity().
+     * @test
+     * @covers Convert::gravity
      * @return void
      */
-    public function testGravity()
+    public function gravity()
     {
         $karla = Karla::getInstance();
         $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->gravity('center')->outputfile('test-200x200.png')->getCommand();
         $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::isDirty
+     * @return void
+     */
+    public function isDirty()
+    {
+        $this->assertTrue(!Karla::getInstance()->convert()->isDirty());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::__clone
+     * @expectedException BadMethodCallException
+     * @return void
+     */
+    public function __clone()
+    {
+        $object = clone Karla::getInstance()->convert();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::getCommand
+     * @return void
+     */
+    public function getCommand()
+    {
+        $this->assertNotNull(Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->outputfile('test-1920x1200.png')->getCommand());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::execute
+     * @return void
+     */
+    public function execute()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::raw
+     * @return void
+     */
+    public function raw()
+    {
+        $this->assertInstanceOf('Convert', Karla::getInstance()->convert()->raw(''));
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::validProgram
+     * @return void
+     */
+    public function validProgram()
+    {
+        $this->assertTrue(Karla::getInstance()->convert()->validProgram('convert'));
+        $this->assertFalse(Karla::getInstance()->convert()->validProgram('git'));
     }
 }

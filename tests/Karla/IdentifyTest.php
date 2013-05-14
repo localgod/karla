@@ -24,29 +24,10 @@
 class IdentifyTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
      * Test
      *
      * @test
+     * @covers Identify::inputfile
      * @return void
      */
     public function inputfile()
@@ -59,6 +40,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::inputfile
      * @expectedException InvalidArgumentException
      * @return void
      */
@@ -72,6 +54,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::execute
      * @return void
      */
     public function execute()
@@ -84,6 +67,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::execute
      * @return void
      */
     public function executeNoRaw()
@@ -96,6 +80,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::execute
      * @return void
      */
     public function executeNoReset()
@@ -109,6 +94,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::execute
      * @return void
      */
     public function executeNoResetNoRaw()
@@ -122,6 +108,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::verbose
      * @return void
      */
     public function verbose()
@@ -134,6 +121,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::verbose
      * @return void
      */
     public function verboseTwice()
@@ -146,11 +134,13 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::gravity
      * @return void
      */
     public function gravity()
     {
         $karla = Karla::getInstance();
+        $this->assertInstanceOf('Identify', $karla->identify()->gravity(''));
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
     }
@@ -158,6 +148,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
+     * @covers Identify::gravity
      * @return void
      */
     public function gravityTwice()
@@ -165,5 +156,91 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
         $karla = Karla::getInstance();
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->gravity('center')->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::isDirty
+     * @return void
+     */
+    public function isDirty()
+    {
+        $this->assertTrue(!Karla::getInstance()->composite()->isDirty());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::__clone
+     * @expectedException BadMethodCallException
+     * @return void
+     */
+    public function __clone()
+    {
+        $object = clone Karla::getInstance()->identify();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::getCommand
+     * @return void
+     */
+    public function getCommand()
+    {
+        $this->assertNotNull(Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->getCommand());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::reset
+     * @return void
+     */
+    public function reset()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::raw
+     * @return void
+     */
+    public function raw()
+    {
+        $this->assertInstanceOf('Identify', Karla::getInstance()->identify()->raw(''));
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::density
+     * @return void
+     */
+    public function density()
+    {
+       $this->assertInstanceOf('Identify', Karla::getInstance()->identify()->density());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Identify::validProgram
+     * @return void
+     */
+    public function validProgram()
+    {
+        $this->assertTrue(Karla::getInstance()->composite()->validProgram('identify'));
+        $this->assertFalse(Karla::getInstance()->composite()->validProgram('git'));
     }
 }
