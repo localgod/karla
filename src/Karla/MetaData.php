@@ -93,7 +93,8 @@ class MetaData extends SplFileInfo
     /**
      * Construct a new image file.
      *
-     * @param string $imageinfo Image info as string
+     * @param string  $imageinfo Image info as string
+     * @param boolean $verbose   Should input be parsed as verbose
      *
      * @return void
      */
@@ -385,23 +386,23 @@ class MetaData extends SplFileInfo
     {
         $units = $this->verbose ? $this->parseVerbose('Units') : $this->parse('Units');
         switch ($units) {
-        case 'PixelsPerCentimeter' :
-            $this->isPpc = true;
-            $this->isPpi = false;
-            break;
+            case 'PixelsPerCentimeter' :
+                $this->isPpc = true;
+                $this->isPpi = false;
+                break;
 
-        case 'PixelsPerInch' :
-            $this->isPpc = false;
-            $this->isPpi = true;
-            break;
+            case 'PixelsPerInch' :
+                $this->isPpc = false;
+                $this->isPpi = true;
+                break;
 
-        case 'Undefined' :
-            $this->isPpc = false;
-            $this->isPpi = true;
-        default :
-            $this->isPpc = false;
-            $this->isPpi = true;
-            break;
+            case 'Undefined' :
+                $this->isPpc = false;
+                $this->isPpi = true;
+            default :
+                $this->isPpc = false;
+                $this->isPpi = true;
+                break;
         }
     }
 

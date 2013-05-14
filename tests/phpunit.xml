@@ -8,7 +8,7 @@
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
 	processIsolation="false"
-	stopOnFailure="false"
+	stopOnFailure="true"
 	syntaxCheck="true">
 
 	<testsuites>
@@ -19,11 +19,10 @@
 
 	<logging>
 		<log type="coverage-html" target="../target/phpunit/coverage" 
-		     title="Riak" charset="UTF-8" yui="true" highlight="true" 
+		     title="Karla" charset="UTF-8" yui="true" highlight="true" 
 		     lowUpperBound="35" highLowerBound="70" />
 		<log type="coverage-xml" target="../target/phpunit/coverage.xml" />
 		<log type="coverage-clover" target="../target/phpunit/clover.xml" />
-		<log type="junit" target="../target/phpunit/junit.xml" 
-		     logIncompleteSkipped="false" />
+		<log type="junit" target="../target/phpunit/junit.xml" logIncompleteSkipped="false" />
 	</logging>
 </phpunit>

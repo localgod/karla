@@ -1,14 +1,45 @@
+---
 language: php
 php:
-  - 5.3
-  - 5.4
+- 5.3
+- 5.4
+- 5.5
 before_script:
-  - pyrus channel-discover pear.pdepend.org
-  - pyrus channel-discover pear.phpmd.org
-# - pyrus channel-discover pear.phpdoc.org
-  - pyrus install pear/PHP_CodeSniffer
-# - pyrus install pear.phpmd.org/PHP_PMD
-# - pyrus install pear.pdepend.org/PHP_Depend
-# - pyrus install pear.phpdoc.org/phpDocumentor
-  - phpenv rehash
-script : ant travis
+- sudo apt-get install -qq expect graphviz libmagickwand-dev
+- expect tools/build/tools.expect
+- pear channel-discover pear.phpunit.de
+- pear channel-discover pear.pdepend.org
+- pear channel-discover pear.phpmd.org
+- pear channel-discover pear.phpdoc.org
+- pear channel-discover pear.phpqatools.org
+- pear install -f phpunit/PHPUnit
+#- pear install -f phpunit/DbUnit
+#- pear install -f phpunit/FinderFacade
+#- pear install -f phpunit/PHPUnit_Selenium
+#- pear install -f phpunit/PHPUnit_Story
+#- pear install -f phpunit/PHP_Invoker
+- pear install -f phpdoc/phpDocumentor-alpha
+- pear install -f --alldeps pear/PHP_CodeSniffer
+- pear install -f phpqatools/PHP_CodeBrowser
+- pear install -f pdepend/PHP_Depend
+- pear install -f phpmd/PHP_PMD
+- pear install -f phpunit/phpdcd
+- pear install -f phpunit/phploc
+- pear install -f phpunit/phpcpd
+- pear list-channels
+- pear list -a
+- phpenv rehash
+
+after_success: ./tools/build/update-gh-pages.sh
+
+matrix:
+  allow_failures:
+  - php: 5.5
+script:
+- ant travis
+env:
+  global:
+  - secure: |-
+      mXV3RbUlgDSt6tRvOhkbERypbTF29ceqDWtwNmw/gXvqcteH4HqOKJZoUcqO
+      keS1zZ2PrnG0OD2/9Fy6GGoQ9Y2gS9bIsdD2RJJLjg6ueG6jc4nIU2jywlNC
+      ZprS+6Z91rtQ/peF4wvOgAxliGvzlgc8am4MGPu1oPU0LQ9WN+w=
