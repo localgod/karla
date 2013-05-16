@@ -61,7 +61,10 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     {
         $karla = Karla::getInstance();
         $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute();
-        $this->assertTrue(preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
+        $this
+                ->assertTrue(
+                        preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result)
+                                == 1);
     }
     /**
      * Test
@@ -87,7 +90,10 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     {
         $karla = Karla::getInstance();
         $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(false);
-        $this->assertTrue(preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
+        $this
+                ->assertTrue(
+                        preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result)
+                                == 1);
 
     }
     /**
@@ -154,7 +160,8 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     public function gravityTwice()
     {
         $karla = Karla::getInstance();
-        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->gravity('center')->getCommand();
+        $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->gravity('center')
+                ->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
     }
 
@@ -228,7 +235,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function density()
     {
-       $this->assertInstanceOf('Identify', Karla::getInstance()->identify()->density());
+        $this->assertInstanceOf('Identify', Karla::getInstance()->identify()->density());
     }
 
     /**

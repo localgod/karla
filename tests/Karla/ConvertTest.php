@@ -33,8 +33,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function inputfileWithoutOutputfile()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->getCommand();
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->getCommand();
     }
 
     /**
@@ -47,8 +46,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function outputfileWithoutInputfile()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->outputfile('test-1920x1200.png')->getCommand();
+        $actual = Karla::getInstance()->convert()->outputfile('test-1920x1200.png')->getCommand();
     }
 
     /**
@@ -61,9 +59,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function inputfileAndOutputfile()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->outputfile('test-1920x1200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" "./test-1920x1200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->outputfile('test-1920x1200.png')
+                ->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -75,9 +74,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function background()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->background('red')->outputfile('test-1920x1200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -background "red" "tests/_data/demo.jpg" "./test-1920x1200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->background('red')
+                ->outputfile('test-1920x1200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -background "red" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -90,9 +90,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function bordercolorWithColorName()
     {
         //You will not be able to see the border in the resulting image, as this test has no border argument.
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->borderColor('red')->outputfile('test-1920x1200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->borderColor('red')
+                ->outputfile('test-1920x1200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
     /**
      * Test
@@ -104,9 +105,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function bordercolorWithHexColor()
     {
         //You will not be able to see the border in the resulting image, as this test has no border argument.
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->borderColor('#666666')->outputfile('test-1920x1200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->borderColor('#666666')
+                ->outputfile('test-1920x1200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
     /**
      * Test
@@ -118,9 +120,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function bordercolorWithRgbColor()
     {
         //You will not be able to see the border in the resulting image, as this test has no border argument.
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->borderColor('rgb(255,255,255)')->outputfile('test-1920x1200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->borderColor('rgb(255,255,255)')
+                ->outputfile('test-1920x1200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -132,9 +135,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function removeProfile()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->removeProfile('iptc')->outputfile('test-1920x1200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->removeProfile('iptc')
+                ->outputfile('test-1920x1200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -146,9 +150,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function resample()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->resample(200, 200, 72, 72)->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->resample(200, 200, 72, 72)
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
     /**
      * Test
@@ -159,9 +164,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function resampleWithOnlyWidth()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->resample(200)->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->resample(200)
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -173,12 +179,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function reset()
     {
-        $karla = Karla::getInstance();
-        $convert = $karla->convert();
-        $convert->inputfile('tests/_data/demo.jpg')->resample(200)->outputfile('test-200x200.png')->getCommand();
-        $this->assertTrue($convert->isDirty());
-        $convert->reset();
-        $this->assertFalse($convert->isDirty());
+        $command = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg');
+        $this->assertTrue($command->isDirty());
+        $command->reset();
+        $this->assertFalse($command->isDirty());
     }
 
     /**
@@ -190,9 +194,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function size()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->size(200, 200)->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->size(200, 200)
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -204,9 +209,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function density()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->density()->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->density()
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -218,9 +224,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function flatten()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->flatten()->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -flatten "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->flatten()
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -flatten "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -232,9 +239,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function strip()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->strip()->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -strip "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->strip()
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -strip "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -246,9 +254,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function profile()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->profile('tests/_data/sRGB_Color_Space_Profile.icm')->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')
+                ->profile('tests/_data/sRGB_Color_Space_Profile.icm')->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -260,10 +269,11 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function changeProfile()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')
-            ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')
+                ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -275,9 +285,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function layers()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->layers('flatten')->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->layers('flatten')
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -289,9 +300,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function resize()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->resize(100, 100)->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->resize(100, 100)
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -303,9 +315,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function crop()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->crop(100, 100)->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->crop(100, 100)
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -317,9 +330,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function quality()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->crop(100, 100)->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->crop(100, 100)
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -331,9 +345,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function colorspace()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->colorspace('rgb')->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -colorspace rgb "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->colorspace('rgb')
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -colorspace rgb "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -345,9 +360,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function gravity()
     {
-        $karla = Karla::getInstance();
-        $command = $karla->convert()->inputfile('tests/_data/demo.jpg')->gravity('center')->outputfile('test-200x200.png')->getCommand();
-        $this->assertEquals('export PATH=$PATH:/opt/local/bin/;convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"', $command);
+        $actual = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->gravity('center')
+                ->outputfile('test-200x200.png')->getCommand();
+        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -384,7 +400,9 @@ class ConvertTest extends PHPUnit_Framework_TestCase
      */
     public function getCommand()
     {
-        $this->assertNotNull(Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->outputfile('test-1920x1200.png')->getCommand());
+        $command = Karla::getInstance()->convert()->inputfile('tests/_data/demo.jpg')->outputfile('test-1920x1200.png')
+                ->getCommand();
+        $this->assertNotNull($command);
     }
 
     /**
@@ -423,4 +441,77 @@ class ConvertTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(Karla::getInstance()->convert()->validProgram('convert'));
         $this->assertFalse(Karla::getInstance()->convert()->validProgram('git'));
     }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::flip
+     * @return void
+     */
+    public function flip()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::rotate
+     * @return void
+     */
+    public function rotate()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::flop
+     * @return void
+     */
+    public function flop()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::type
+     * @return void
+     */
+    public function type()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::sepia
+     * @return void
+     */
+    public function sepia()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::polaroid
+     * @return void
+     */
+    public function polaroid()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
 }
