@@ -28,7 +28,9 @@ before_script:
 - pear install -f phpunit/phpcpd
 - pear list-channels
 - pear list -a
-- phpenv rehash
+- export PATH=$PATH:$HOME/.phpenv/bin
+- eval "$(phpenv init -)"
+- phpenv rehash 2>/dev/null
 
 after_success: ./tools/build/update-gh-pages.sh
 
