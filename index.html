@@ -49,21 +49,25 @@ differences which is why Karla was written:</p>
 <p>Karla is tested complient with the 5.3 and 5.4 version of php, and have a decent suite of unittests.</p>
 <h2>Requirements</h2>
 <ul>
-<li>Php version 5.1.2&lt; build with the following extension: pcre, SPL (default build-in in most distributions)</li>
-<li>Your php setup need to allow <em>shell_exec()</em></li>
-<li>ImageMagick</li>
+<li>Php version 5.3&lt; build with the following extension: pcre, SPL (default build-in in most distributions)</li>
+<li>Your php setup need to allow <em><a href="http://php.net/manual/en/function.shell-exec.php">shell_exec()</a></em></li>
+<li><a href="http://www.imagemagick.org">ImageMagick</a></li>
 </ul>
 <h2>Installation</h2>
-<p>Copy Karla.php and the Karla folder to your site, and add the following lines to you script:</p>
+<p>Copy the Karla folder to your site, and add the following lines to you script:</p>
 <pre class="prettyprint lang-php">
-if (false === spl_autoload_functions()) {
-	if (function_exists('__autoload')) {
-		spl_autoload_register('__autoload', false);
-	}
-}
-require_once dirname(__FILE__).'/Karla.php';
-spl_autoload_register(array('Karla', 'autoload'));
+spl_autoload_register(
+function ($name)
+{
+    if ('Karla\\' == substr($name, 0, 6)) {
+        $path = __DIR__ . '/../src' . DIRECTORY_SEPARATOR
+        . str_replace('\\', DIRECTORY_SEPARATOR, $name)
+        . '.php';
+        require_once $path;
+    }
+});
 </pre>
+<p>Or you can just use <a href="http://getcomposer.org/">Composer</a>.</p>
 <h2>Examples</h2>
 <p>The following sections illustrates common operations performed with Imagick, Karla and in the console.</p>
 <h3>Change format to png.</h3>
