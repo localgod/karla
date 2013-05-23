@@ -1,8 +1,9 @@
 <?php
+namespace Karla\Program;
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -14,15 +15,15 @@
 /**
  * Class for wrapping ImageMagick arguments used by all tools
  *
- * @category   Utility
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Utility
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
-abstract class ImageMagick implements Program
+abstract class ImageMagick implements \Karla\Program
 {
+
     /**
      * ImageMagick tool animate
      *
@@ -100,39 +101,44 @@ abstract class ImageMagick implements Program
      */
     const IMAGEMAGICK_STREAM = 'stream';
 
-
     /**
      * Input option
+     *
      * @var Array
      */
     protected $inputOptions;
 
     /**
      * Output option
+     *
      * @var Array
      */
     protected $outputOptions;
 
     /**
      * Path to binaries
+     *
      * @var string
      */
     protected $binPath;
 
     /**
      * Name of binary
+     *
      * @var string
      */
     protected $bin;
 
     /**
      * Cache controller
+     *
      * @var Cache
      */
     protected $cache;
 
     /**
      * Is the object dirty (has any arguments been set)
+     *
      * @var boolean
      */
     private $dirty;
@@ -140,9 +146,12 @@ abstract class ImageMagick implements Program
     /**
      * Contructs a new program
      *
-     * @param string $binPath Path to binaries
-     * @param string $bin     Binary
-     * @param Cache  $cache   Cache controller (default null = no cache)
+     * @param string $binPath
+     *            Path to binaries
+     * @param string $bin
+     *            Binary
+     * @param Cache $cache
+     *            Cache controller (default null = no cache)
      *
      * @return void
      * @throws InvalidArgumentException
@@ -150,10 +159,10 @@ abstract class ImageMagick implements Program
     final public function __construct($binPath, $bin, $cache = null)
     {
         if ($binPath == '') {
-            throw new InvalidArgumentException('Invalid bin path');
+            throw new \InvalidArgumentException('Invalid bin path');
         }
         if ($bin == '') {
-            throw new InvalidArgumentException('Invalid bin');
+            throw new \InvalidArgumentException('Invalid bin');
         }
         $this->binPath = $binPath;
         $this->bin = $bin;
@@ -192,7 +201,7 @@ abstract class ImageMagick implements Program
      */
     final public function __clone()
     {
-        throw new BadMethodCallException("Clone is not allowed");
+        throw new \BadMethodCallException("Clone is not allowed");
     }
 
     /**
@@ -202,13 +211,14 @@ abstract class ImageMagick implements Program
      */
     public function getCommand()
     {
-        return $this->binPath.$this->bin;
+        return $this->binPath . $this->bin;
     }
 
     /**
      * Execute the command
      *
-     * @param boolean $reset Reset the query
+     * @param boolean $reset
+     *            Reset the query
      *
      * @return string
      */
@@ -237,8 +247,10 @@ abstract class ImageMagick implements Program
     /**
      * Raw arguments directly to ImageMagick
      *
-     * @param string  $arguments Arguments
-     * @param boolean $input     Defaults to an input option, use false to use it as an output option
+     * @param string $arguments
+     *            Arguments
+     * @param boolean $input
+     *            Defaults to an input option, use false to use it as an output option
      *
      * @return void
      */
@@ -254,14 +266,15 @@ abstract class ImageMagick implements Program
     /**
      * Set the gravity
      *
-     * @param string $gravity Gravity
+     * @param string $gravity
+     *            Gravity
      *
      * @return ImageMagick
      */
     public function gravity($gravity)
     {
         if ($this->isOptionSet('gravity', $this->inputOptions)) {
-            throw new BadMethodCallException('Gravity can only be called once.');
+            throw new \BadMethodCallException('Gravity can only be called once.');
         }
         if ($this->supportedGravity($gravity)) {
             $this->inputOptions[] = " -gravity " . $gravity;
@@ -274,32 +287,35 @@ abstract class ImageMagick implements Program
     /**
      * Set the density of the output image.
      *
-     * @param integer $width  The width of the image
-     * @param integer $height The height of the image
-     * @param boolean $output If output is true density is set for the resulting image
-     *                        If output is false density is used for reading the input image
+     * @param integer $width
+     *            The width of the image
+     * @param integer $height
+     *            The height of the image
+     * @param boolean $output
+     *            If output is true density is set for the resulting image
+     *            If output is false density is used for reading the input image
      *
      * @return Convert
-     * @throws BadMethodCallException   if density has already been called
+     * @throws BadMethodCallException if density has already been called
      * @throws InvalidArgumentException
      */
     public function density($width = 72, $height = 72, $output = true)
     {
         if ($this->isOptionSet('density', $this->inputOptions)) {
             $message = "'density()' can only be called once as in input argument.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         if ($this->isOptionSet('density', $this->outputOptions)) {
             $message = "'density()' can only be called once as in input argument.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
-        if (!is_numeric($width)) {
+        if (! is_numeric($width)) {
             $message = 'Width must be numeric values in the density method';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
-        if (!is_numeric($width)) {
+        if (! is_numeric($width)) {
             $message = 'Height must be numeric values in the density method';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if ($output) {
             $this->outputOptions[] = " -density " . $width . "x" . $height;
@@ -314,7 +330,8 @@ abstract class ImageMagick implements Program
     /**
      * Prepare option collection
      *
-     * @param array $options Options
+     * @param array $options
+     *            Options
      *
      * @return string
      */
@@ -331,8 +348,10 @@ abstract class ImageMagick implements Program
     /**
      * Check if an option is already set
      *
-     * @param string $lookop     Option to look up
-     * @param array  $optionList Optionlist to look in
+     * @param string $lookop
+     *            Option to look up
+     * @param array $optionList
+     *            Optionlist to look in
      *
      * @return boolean
      */
@@ -350,42 +369,45 @@ abstract class ImageMagick implements Program
     /**
      * Check if a colorspace is supported by ImageMagick.
      *
-     * @param string $colorSpace Colorspace to check
+     * @param string $colorSpace
+     *            Colorspace to check
      *
      * @return boolean
      */
     final protected function supportedColorSpace($colorSpace)
     {
-        if (!($this instanceof Convert) && !($this instanceof Identify)) {
-            throw new BadMethodCallException('This method can not be used in this context');
+        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
+            throw new \BadMethodCallException('This method can not be used in this context');
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $colorspaces = shell_exec($this->binPath .$bin. ' -list colorspace');
+            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $colorspaces = shell_exec($this->binPath . $bin . ' -list colorspace');
         $colorspaces = explode("\n", $colorspaces);
-        for ($i = 0; $i < count($colorspaces); $i++) {
+        for ($i = 0; $i < count($colorspaces); $i ++) {
             $colorspaces[$i] = trim(strtolower($colorspaces[$i]));
         }
 
         return in_array(strtolower(trim($colorSpace)), $colorspaces);
     }
+
     /**
      * Check if a image type is supported by ImageMagick.
      *
-     * @param string $type Type to check
+     * @param string $type
+     *            Type to check
      *
      * @return boolean
      */
     final protected function supportedImageTypes($type)
     {
-        if (!($this instanceof Convert) && !($this instanceof Identify)) {
-            throw new BadMethodCallException('This method can not be used in this context');
+        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
+            throw new \BadMethodCallException('This method can not be used in this context');
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $types = shell_exec($this->binPath .$bin. ' -list type');
+            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $types = shell_exec($this->binPath . $bin . ' -list type');
         $types = explode("\n", $types);
-        for ($i = 0; $i < count($types); $i++) {
+        for ($i = 0; $i < count($types); $i ++) {
             $types[$i] = trim(strtolower($types[$i]));
         }
 
@@ -395,21 +417,22 @@ abstract class ImageMagick implements Program
     /**
      * Check if a gravity is supported by ImageMagick.
      *
-     * @param string $gravity Gravity to check
+     * @param string $gravity
+     *            Gravity to check
      *
      * @return boolean
      * @throws BadMethodCallException if called in a wrong context
      */
     final protected function supportedGravity($gravity)
     {
-        if (!($this instanceof Convert) && !($this instanceof Composite)) {
-            throw new BadMethodCallException('This method can not be used in this context');
+        if (! ($this instanceof Convert) && ! ($this instanceof Composite)) {
+            throw new \BadMethodCallException('This method can not be used in this context');
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $gravities = shell_exec($this->binPath .$bin. ' -list gravity');
+            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $gravities = shell_exec($this->binPath . $bin . ' -list gravity');
         $gravities = explode("\n", $gravities);
-        for ($i = 0; $i < count($gravities); $i++) {
+        for ($i = 0; $i < count($gravities); $i ++) {
             $gravities[$i] = trim(strtolower($gravities[$i]));
         }
 
@@ -419,21 +442,22 @@ abstract class ImageMagick implements Program
     /**
      * Check if a method is supported by ImageMagick.
      *
-     * @param string $method Method to check
+     * @param string $method
+     *            Method to check
      *
      * @return boolean
      * @throws BadMethodCallException if called in a wrong context
      */
     final protected function supportedLayerMethod($method)
     {
-        if (!($this instanceof Convert) && !($this instanceof Identify)) {
-            throw new BadMethodCallException('This method can not be used in this context');
+        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
+            throw new \BadMethodCallException('This method can not be used in this context');
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $methods = shell_exec($this->binPath .$bin. ' -list layers');
+            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $methods = shell_exec($this->binPath . $bin . ' -list layers');
         $methods = explode("\n", $methods);
-        for ($i = 0; $i < count($methods); $i++) {
+        for ($i = 0; $i < count($methods); $i ++) {
             $methods[$i] = trim(strtolower($methods[$i]));
         }
 
@@ -443,24 +467,25 @@ abstract class ImageMagick implements Program
     /**
      * Check if a format is supported by ImageMagick.
      *
-     * @param string $format Format to check
+     * @param string $format
+     *            Format to check
      *
      * @return boolean
      * @throws BadMethodCallException if called in a wrong context
      */
     final protected function supportedFormat($format)
     {
-        if (!($this instanceof Convert) && !($this instanceof Identify)) {
-            throw new BadMethodCallException('This method can not be used in this context');
+        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
+            throw new \BadMethodCallException('This method can not be used in this context');
         }
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-        ImageMagick::IMAGEMAGICK_CONVERT.'.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $formats = shell_exec($this->binPath .$bin. ' -list format');
+            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $formats = shell_exec($this->binPath . $bin . ' -list format');
         $formats = explode("\n", $formats);
-        for ($i = 0; $i < count($formats); $i++) {
+        for ($i = 0; $i < count($formats); $i ++) {
             preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);
             if (isset($matches[0])) {
-                if (!strpos($matches[0], 'Format')) {
+                if (! strpos($matches[0], 'Format')) {
                     $formats[$i] = strtolower(trim($matches[0]));
                 }
             }
@@ -468,16 +493,18 @@ abstract class ImageMagick implements Program
 
         return in_array(strtolower(trim($format)), $formats);
     }
+
     /**
      * Check if the input is a valid ImageMagick program
      *
-     * @param string $program Program name
+     * @param string $program
+     *            Program name
      *
      * @return boolean
      */
     final public static function validProgram($program)
     {
-        $class = new ReflectionClass(__CLASS__);
+        $class = new \ReflectionClass(__CLASS__);
         $constants = $class->getConstants();
         foreach ($constants as $constant) {
             if ($constant == $program) {

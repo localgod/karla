@@ -1,35 +1,35 @@
 <?php
+use Karla\Karla;
 
 /**
  * Identify Test file
  *
- * PHP Version 5.1.2
+ * PHP Version 5.3
  *
- * @category Test
- * @package  Karla
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
- * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
- * @since    2012-04-05
+ * @category Utility
+ * @package Karla
+ * @author Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license http://www.opensource.org/licenses/mit-license.php MIT
+ * @link https://github.com/localgod/Karla Karla
+ * @since 2012-04-05
  */
 /**
  * Identify Test class
  *
  * @category Test
  * @package Karla
- * @subpackage Karla
  * @author Johannes Skov Frandsen <localgod@heaven.dk>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  * @link https://github.com/localgod/Karla Karla
  */
-class IdentifyTest extends PHPUnit_Framework_TestCase
+class IdentifyTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
      * Test
      *
      * @test
-     * @covers Identify::inputfile
+     * @covers Karla\Program\Identify::inputfile
      *
      * @return void
      */
@@ -46,7 +46,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::inputfile
+     * @covers Karla\Program\Identify::inputfile
      * @expectedException InvalidArgumentException
      *
      * @return void
@@ -63,7 +63,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::execute
+     * @covers Karla\Program\Identify::execute
      *
      * @return void
      */
@@ -79,8 +79,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     /**
      * Test
      *
-     * @test
-     * @covers Identify::execute
+     * @covers Karla\Program\Identify::execute
      *
      * @return void
      */
@@ -90,14 +89,14 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
         $result = $karla->identify()
             ->inputfile('tests/_data/demo.jpg')
             ->execute(true, false);
-        $this->assertTrue($result instanceof MetaData);
+        $this->assertInstanceOf('Karla\Program\Metadata', $result);
     }
 
     /**
      * Test
      *
      * @test
-     * @covers Identify::execute
+     * @covers Karla\Program\Identify::execute
      *
      * @return void
      */
@@ -114,7 +113,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::execute
+     * @covers Karla\Program\Identify::execute
      *
      * @return void
      */
@@ -124,14 +123,14 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
         $result = $karla->identify()
             ->inputfile('tests/_data/demo.jpg')
             ->execute(false, false);
-        $this->assertTrue($result instanceof MetaData);
+        $this->assertInstanceOf('Karla\Program\Metadata', $result);
     }
 
     /**
      * Test
      *
      * @test
-     * @covers Identify::verbose
+     * @covers Karla\Program\Identify::verbose
      *
      * @return void
      */
@@ -149,7 +148,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::verbose
+     * @covers Karla\Program\Identify::verbose
      *
      * @return void
      */
@@ -168,14 +167,14 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::gravity
+     * @covers Karla\Program\Identify::gravity
      *
      * @return void
      */
     public function gravity()
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertInstanceOf('Identify', $karla->identify()
+        $this->assertInstanceOf('Karla\Program\Identify', $karla->identify()
             ->gravity(''));
         $command = $karla->identify()
             ->inputfile('tests/_data/demo.jpg')
@@ -188,7 +187,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::gravity
+     * @covers Karla\Program\Identify::gravity
      *
      * @return void
      */
@@ -207,7 +206,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::isDirty
+     * @covers Karla\Program\Identify::isDirty
      *
      * @return void
      */
@@ -221,7 +220,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::__clone
+     * @covers Karla\Program\Identify::__clone
      * @expectedException BadMethodCallException
      *
      * @return void
@@ -235,7 +234,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::getCommand
+     * @covers Karla\Program\Identify::getCommand
      *
      * @return void
      */
@@ -250,7 +249,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::reset
+     * @covers Karla\Program\Identify::reset
      *
      * @return void
      */
@@ -263,13 +262,13 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::raw
+     * @covers Karla\Program\Identify::raw
      *
      * @return void
      */
     public function raw()
     {
-        $this->assertInstanceOf('Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+        $this->assertInstanceOf('Karla\Program\Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->raw(''));
     }
 
@@ -277,13 +276,13 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::density
+     * @covers Karla\Program\Identify::density
      *
      * @return void
      */
     public function density()
     {
-        $this->assertInstanceOf('Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+        $this->assertInstanceOf('Karla\Program\Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->density());
     }
 
@@ -291,7 +290,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Identify::validProgram
+     * @covers Karla\Program\Identify::validProgram
      *
      * @return void
      */

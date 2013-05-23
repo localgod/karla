@@ -1,8 +1,10 @@
 <?php
+namespace Karla;
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -14,15 +16,15 @@
 /**
  * Class for wrapping image metadata
  *
- * @category   Utility
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Utility
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
-class MetaData extends SplFileInfo
+class MetaData extends \SplFileInfo
 {
+
     /**
      * Raw image info
      *
@@ -74,18 +76,21 @@ class MetaData extends SplFileInfo
 
     /**
      * The resolution unit is measured in Pixels Per Inch
+     *
      * @var boolean
      */
     private $isPpi;
 
     /**
      * The resolution unit is measured in Pixels Per Centimeter
+     *
      * @var boolean
      */
     private $isPpc;
 
     /**
      * Are we scanning in verbose output from identify
+     *
      * @var boolean
      */
     private $verbose;
@@ -93,8 +98,10 @@ class MetaData extends SplFileInfo
     /**
      * Construct a new image file.
      *
-     * @param string  $imageinfo Image info as string
-     * @param boolean $verbose   Should input be parsed as verbose
+     * @param string $imageinfo
+     *            Image info as string
+     * @param boolean $verbose
+     *            Should input be parsed as verbose
      *
      * @return void
      */
@@ -102,7 +109,7 @@ class MetaData extends SplFileInfo
     {
         $this->verbose = $verbose;
         if ($this->verbose) {
-            //exit('not here');
+            // exit('not here');
             $this->verboseImageinfo = explode("\n", $imageinfo);
             $this->parseFileformat();
             $this->parseGeometry();
@@ -140,8 +147,11 @@ class MetaData extends SplFileInfo
     {
         if ($this->verbose) {
             if ($this->isPpc) {
-                //Here we convert to ppi
-                $this->resolution = array($this->ppc2ppi($this->resolution[0]), $this->ppc2ppi($this->resolution[1]));
+                // Here we convert to ppi
+                $this->resolution = array(
+                    $this->ppc2ppi($this->resolution[0]),
+                    $this->ppc2ppi($this->resolution[1])
+                );
                 $this->isPpc = false;
                 $this->isPpi = true;
             }
@@ -205,6 +215,7 @@ class MetaData extends SplFileInfo
     {
         return $this->colorspace;
     }
+
     /**
      * Get the image geometry
      *
@@ -294,7 +305,6 @@ class MetaData extends SplFileInfo
     {
         $geometry = $this->verbose ? $this->parseVerbose('Geometry') : $this->parse('Geometry');
         preg_match("/^[0-9]*x[0-9]*/", $geometry, $matches);
-        //var_dump(explode("x", $matches[0]));
         if (is_array($matches) && count($matches) == 1) {
             $this->geometry = explode("x", $matches[0]);
         } else {
@@ -349,7 +359,8 @@ class MetaData extends SplFileInfo
      * Parse the image info array for the search line and
      * return it for futher processing
      *
-     * @param string $search Search string
+     * @param string $search
+     *            Search string
      *
      * @return string
      */
@@ -366,7 +377,8 @@ class MetaData extends SplFileInfo
      * Parse the image info string for the search line and
      * return it for futher processing
      *
-     * @param string $search Search string
+     * @param string $search
+     *            Search string
      *
      * @return string
      */
@@ -386,20 +398,20 @@ class MetaData extends SplFileInfo
     {
         $units = $this->verbose ? $this->parseVerbose('Units') : $this->parse('Units');
         switch ($units) {
-            case 'PixelsPerCentimeter' :
+            case 'PixelsPerCentimeter':
                 $this->isPpc = true;
                 $this->isPpi = false;
                 break;
 
-            case 'PixelsPerInch' :
+            case 'PixelsPerInch':
                 $this->isPpc = false;
                 $this->isPpi = true;
                 break;
 
-            case 'Undefined' :
+            case 'Undefined':
                 $this->isPpc = false;
                 $this->isPpi = true;
-            default :
+            default:
                 $this->isPpc = false;
                 $this->isPpi = true;
                 break;
@@ -423,7 +435,8 @@ class MetaData extends SplFileInfo
     /**
      * Get hash of file
      *
-     * @param string $hash Name of hash algorithm to use; default is md5
+     * @param string $hash
+     *            Name of hash algorithm to use; default is md5
      *
      * @return string
      */
@@ -432,14 +445,15 @@ class MetaData extends SplFileInfo
         if ($hash = 'md5') {
             return md5_file($this->getPathname());
         } else {
-            throw new InvalidArgumentException($hash . ' is not a supported hash algorithm');
+            throw new \InvalidArgumentException($hash . ' is not a supported hash algorithm');
         }
     }
 
     /**
      * Convert Pixels Per Centimeter (ppc) to Pixels Per Inch (ppi)
      *
-     * @param integer $value Input value
+     * @param integer $value
+     *            Input value
      *
      * @return integer
      */
@@ -451,7 +465,8 @@ class MetaData extends SplFileInfo
     /**
      * Convert Pixels Per Inch (ppi) to Pixels Per Centimeter (ppc)
      *
-     * @param integer $value Input value
+     * @param integer $value
+     *            Input value
      *
      * @return integer
      */

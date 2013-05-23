@@ -1,8 +1,9 @@
 <?php
+use Karla\Karla;
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -14,20 +15,19 @@
 /**
  * FileCache Test class
  *
- * @category   Utility
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Test
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
-class FileCacheTest extends PHPUnit_Framework_TestCase
+class FileTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test
      *
      * @test
-     * @covers FileCache::isCached
+     * @covers Karla\FileCache::isCached
      * @todo   Implement testIsCached().
      */
     public function isCached()
@@ -39,7 +39,7 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers FileCache::getCached
+     * @covers Karla\FileCache::getCached
      * @todo   Implement testGetCached().
      */
     public function getCached()
@@ -51,7 +51,7 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers FileCache::setCache
+     * @covers Karla\FileCache::setCache
      * @todo   Implement testSetCache().
      */
     public function setCache()
@@ -63,7 +63,7 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers FileCache::removeOrphans
+     * @covers Karla\FileCache::removeOrphans
      * @todo   Implement testRemoveOrphans().
      */
     public function removeOrphans()

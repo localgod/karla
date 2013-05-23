@@ -2,7 +2,7 @@
 /**
  * Karla Imagemagick wrapper library test bootstrap file
  *
- * PHP Version 5.1.2
+ * PHP Version 5.3.1.2
  *
  * @category Utility
  * @package  Karla
@@ -22,8 +22,15 @@ if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
 } else {
     define('PATH_TO_IMAGEMAGICK', '/opt/local/bin/');
 }
-require_once dirname(__FILE__) . '/../src/Karla.php';
-spl_autoload_register(array(
-    'Karla',
-    'autoload'
-));
+
+spl_autoload_register(
+function ($name)
+{
+    if ('Karla\\' == substr($name, 0, 6)) {
+        $path = __DIR__ . '/../src' . DIRECTORY_SEPARATOR
+        . str_replace('\\', DIRECTORY_SEPARATOR, $name)
+        . '.php';
+        var_dump($path);
+        require_once $path;
+    }
+});

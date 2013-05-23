@@ -1,9 +1,10 @@
 <?php
+namespace Karla\Program;
 
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -16,11 +17,10 @@
  * Class for wrapping ImageMagicks convert tool
  *
  * @category Utility
- * @package Karla
- * @subpackage Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/Karla Karla
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
 class Convert extends ImageMagick
 {
@@ -52,7 +52,7 @@ class Convert extends ImageMagick
     {
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
 
         if (is_writeable($filePath)) {
@@ -80,11 +80,11 @@ class Convert extends ImageMagick
         $pathinfo = pathinfo($filePath);
         if (! file_exists($pathinfo['dirname'])) {
             $message = 'The output file path (' . $pathinfo['dirname'] . ') is invalid or could not be located.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_writeable($pathinfo['dirname'])) {
             $message = 'The output file path (' . $pathinfo['dirname'] . ') is not writable.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! $includeOptions) {
             $this->outputFile = '"' . $pathinfo['dirname'] . '/' . $pathinfo['basename'] . '"';
@@ -109,7 +109,7 @@ class Convert extends ImageMagick
     public function background($color)
     {
         if ($this->isOptionSet('background', $this->inputOptions)) {
-            throw new BadMethodCallException('Background can only be called once.');
+            throw new \BadMethodCallException('Background can only be called once.');
         }
         $this->inputOptions[] = ' -background "' . $color . '"';
         $this->dirty();
@@ -154,33 +154,33 @@ class Convert extends ImageMagick
     public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "")
     {
         if ($this->isOptionSet('resample', $this->inputOptions)) {
-            throw new BadMethodCallException('resample can only be called once.');
+            throw new \BadMethodCallException('resample can only be called once.');
         }
         if ($this->isOptionSet('resize', $this->inputOptions)) {
-            throw new BadMethodCallException('You may not use resample option with resize option');
+            throw new \BadMethodCallException('You may not use resample option with resize option');
         }
         if ($this->isOptionSet('density', $this->inputOptions)) {
-            throw new BadMethodCallException('You may not use resample option with density option');
+            throw new \BadMethodCallException('You may not use resample option with density option');
         }
         if (! is_numeric($newWidth)) {
             $message = 'You must supply new width as a integer.
                     Was (' . $newWidth . ')';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if ($newHeight != '' && ! is_numeric($newHeight)) {
             $message = 'You must supply new height as a integer or as an empty string.
                     Was (' . $newHeight . ')';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if ($originalWidth != '' && ! is_numeric($originalWidth)) {
             $message = 'You must supply original width as a integer or as an empty string.
                     Was (' . $originalWidth . ')';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if ($originalHeight != '' && ! is_numeric($originalHeight)) {
             $message = 'You must supply original height as a integer or as an empty string.
                     Was (' . $originalHeight . ')';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
 
         if ($originalWidth != "" && $originalHeight != "") {
@@ -211,10 +211,10 @@ class Convert extends ImageMagick
     public function getCommand()
     {
         if ($this->outputFile == '') {
-            throw new RuntimeException('Can not perform convert without an output file');
+            throw new \RuntimeException('Can not perform convert without an output file');
         }
         if ($this->inputFile == '') {
-            throw new RuntimeException('Can not perform convert without an input file');
+            throw new \RuntimeException('Can not perform convert without an input file');
         }
 
         ! is_array($this->outputOptions) ? $this->outputOptions = array() : null;
@@ -278,11 +278,11 @@ class Convert extends ImageMagick
     public function size($width = "", $height = "")
     {
         if ($this->isOptionSet('size', $this->inputOptions)) {
-            throw new BadMethodCallException('Size can only be called once.');
+            throw new \BadMethodCallException('Size can only be called once.');
         }
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to size the image';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $option = " -size ";
 
@@ -311,7 +311,7 @@ class Convert extends ImageMagick
     public function density($width = 72, $height = 72, $output = true)
     {
         if ($this->isOptionSet('resample', $this->inputOptions)) {
-            throw new BadMethodCallException('You may not use resample option with density option');
+            throw new \BadMethodCallException('You may not use resample option with density option');
         }
         return parent::density($width, $height, $output);
     }
@@ -327,7 +327,7 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('flatten', $this->inputOptions)) {
             $message = "'flatte()' can only be called once.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         $this->inputOptions[] = " -flatten ";
         $this->dirty();
@@ -346,7 +346,7 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('strip', $this->inputOptions)) {
             $message = "'strip()' can only be called once.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         $this->inputOptions[] = " -strip ";
         $this->dirty();
@@ -364,7 +364,7 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('flip', $this->inputOptions)) {
             $message = "'flip()' can only be called once.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         $this->inputOptions[] = " -flip ";
         $this->dirty();
@@ -388,7 +388,7 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('rotate', $this->inputOptions)) {
             $message = "'rotate()' can only be called once.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         $this->inputOptions[] = ' -rotate "' . $degree . '"';
         $this->background($background);
@@ -407,7 +407,7 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('flop', $this->inputOptions)) {
             $message = "'flop()' can only be called once.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         $this->inputOptions[] = " -flop ";
         $this->dirty();
@@ -429,11 +429,11 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('type', $this->outputOptions)) {
             $message = "'type()' can only be called once.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         if (! $this->supportedImageTypes($type)) {
             $message = 'The supplied colorspace (' . $type . ') is not supported by imagemagick';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->outputOptions[] = " -type " . $type . ' ';
         $this->dirty();
@@ -454,7 +454,7 @@ class Convert extends ImageMagick
     {
         if (! file_exists($profilePath)) {
             $message = 'Could not add profile as input file (' . $profilePath . ') could not be found.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->outputOptions[] = ' -profile "' . $profilePath . '" ';
         $this->dirty();
@@ -478,15 +478,15 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('profile', $this->outputOptions)) {
             $message = "'changeProfile()' can only be called once and not at the same time as 'profile()'.";
-            throw new BadMethodCallException($message);
+            throw new \BadMethodCallException($message);
         }
         if (! file_exists($profilePathFrom)) {
             $message = 'Could not add input profile as input file (' . $profilePathFrom . ') could not be found.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! file_exists($profilePathTo)) {
             $message = 'Could not add output profile as input file (' . $profilePathTo . ') could not be found.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->profile($profilePathFrom);
         $this->profile($profilePathTo);
@@ -507,7 +507,7 @@ class Convert extends ImageMagick
     {
         if (! $this->supportedLayerMethod($method)) {
             $message = 'Tried to apply unknown method to layers';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->inputOptions[] = " -layers " . $method;
         $this->dirty();
@@ -534,23 +534,23 @@ class Convert extends ImageMagick
     public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true)
     {
         if ($this->isOptionSet('resize', $this->inputOptions)) {
-            throw new BadMethodCallException('resize can only be called once.');
+            throw new \BadMethodCallException('resize can only be called once.');
         }
 
         if ($this->isOptionSet('resample', $this->inputOptions)) {
-            throw new BadMethodCallException('You may not use resample option with resize option');
+            throw new \BadMethodCallException('You may not use resample option with resize option');
         }
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_numeric($width) && $width != '') {
             $message = 'width must be an integer value or empty.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_numeric($height) && $height != '') {
             $message = 'height must be an integer value or empty.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
 
         $option = " -resize ";
@@ -595,24 +595,24 @@ class Convert extends ImageMagick
     public function crop($width, $height, $xOffset = 0, $yOffset = 0)
     {
         if ($this->isOptionSet('crop', $this->inputOptions)) {
-            throw new BadMethodCallException('crop can only be called once.');
+            throw new \BadMethodCallException('crop can only be called once.');
         }
 
         if (! is_numeric($width) && $width != '') {
             $message = 'width must be an integer value or empty.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_numeric($height) && $height != '') {
             $message = 'height must be an integer value or empty.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_numeric($xOffset)) {
             $message = 'xOffset must be an integer value.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_numeric($yOffset)) {
             $message = 'yOffset must be an integer value.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
 
         $option = " -crop " . $width . "x" . $height;
@@ -648,26 +648,26 @@ class Convert extends ImageMagick
      * @return Convert
      * @throws InvalidArgumentException
      * @throws BadMethodCallException if quality has already been called
-     * @throws RangeException if quality is not a value between 0 - 100
+     * @throws \RangeException if quality is not a value between 0 - 100
      *
      * @return Convert
      */
     public function quality($quality, $format = 'jpeg')
     {
         if ($this->isOptionSet('quality', $this->inputOptions)) {
-            throw new BadMethodCallException("'quality()' can only be called once.");
+            throw new \BadMethodCallException("'quality()' can only be called once.");
         }
         if (! preg_match('/^jpeg|jpg|png$/', $format)) {
             $message = "'quality()' is only supported for the jpeg and png format. Used (" . $format . ")";
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! is_numeric($quality)) {
             $message = "quality argument must be an integer value. Used (" . $quality . ")";
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         if (! ($quality >= 0 && $quality <= 100)) {
             $message = "quality argument must be between 0 and 100 both inclusive. Used (" . $quality . ")";
-            throw new RangeException($message);
+            throw new \RangeException($message);
         }
         $this->inputOptions[] = " -quality " . $quality;
         $this->dirty();
@@ -703,11 +703,11 @@ class Convert extends ImageMagick
     public function colorspace($colorSpace)
     {
         if ($this->isOptionSet('colorspace', $this->outputOptions)) {
-            throw new BadMethodCallException('Colorspace can only be called once.');
+            throw new \BadMethodCallException('Colorspace can only be called once.');
         }
         if (! $this->supportedColorSpace($colorSpace)) {
             $message = 'The supplied colorspace (' . $colorSpace . ') is not supported by imagemagick';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->outputOptions[] = " -colorspace " . $colorSpace . ' ';
         $this->dirty();
@@ -728,11 +728,11 @@ class Convert extends ImageMagick
     public function sepia($threshold = 80)
     {
         if ($this->isOptionSet('sepia-tone', $this->outputOptions)) {
-            throw new BadMethodCallException('Sepia can only be called once.');
+            throw new \BadMethodCallException('Sepia can only be called once.');
         }
         if (! is_integer($threshold) || $threshold > 100 || $threshold < 0) {
             $message = 'The supplied threshold (' . $threshold . ') must be between 0 - 100';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->outputOptions[] = " -sepia-tone " . $threshold . '% ';
         $this->dirty();
@@ -753,11 +753,11 @@ class Convert extends ImageMagick
     public function polaroid($angle = 0)
     {
         if ($this->isOptionSet('polaroid', $this->inputOptions)) {
-            throw new BadMethodCallException('Polaroid can only be called once.');
+            throw new \BadMethodCallException('Polaroid can only be called once.');
         }
         if (! is_numeric($angle) || $angle > 360 || $angle < 0) {
             $message = 'The supplied angle (' . $angle . ') must be an integer between 0 - 360';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
         $this->inputOptions[] = " -polaroid " . $angle . '';
         $this->dirty();
@@ -777,7 +777,7 @@ class Convert extends ImageMagick
     public function borderColor($color = '#DFDFDF')
     {
         if ($this->isOptionSet('bordercolor', $this->inputOptions)) {
-            throw new BadMethodCallException('BorderColor can only be called once.');
+            throw new \BadMethodCallException('BorderColor can only be called once.');
         }
         if (self::validHexColor($color) || self::validRgbColor($color) || self::validColorName($color)) {
             if (self::validColorName($color)) {
@@ -789,7 +789,7 @@ class Convert extends ImageMagick
 
             return $this;
         } else {
-            throw new InvalidArgumentException('The color supplied could not be parsed');
+            throw new \InvalidArgumentException('The color supplied could not be parsed');
         }
     }
 

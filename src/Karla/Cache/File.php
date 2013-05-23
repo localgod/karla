@@ -1,8 +1,10 @@
 <?php
+namespace Karla\Cache;
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -14,17 +16,18 @@
 /**
  * Class for file caching
  *
- * @category   Utility
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Utility
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
-class FileCache implements Cache
+class File implements Cache
 {
+
     /**
      * Cache directory
+     *
      * @var string
      */
     private $cacheDir;
@@ -32,7 +35,8 @@ class FileCache implements Cache
     /**
      * Create a new file cache
      *
-     * @param string $dirName Path to cach directory
+     * @param string $dirName
+     *            Path to cach directory
      *
      * @throws InvalidArgumentException
      */
@@ -40,26 +44,30 @@ class FileCache implements Cache
     {
         $this->setCacheDir($dirName);
     }
+
     /**
      * Create a path based on the option array
      *
-     * @param array $options List of options
+     * @param array $options
+     *            List of options
      *
-     * @return string                   the created path
+     * @return string the created path
      * @throws InvalidArgumentException
      */
     private function options2Path(array $options)
     {
-        if (!is_array($options)) {
-            throw new InvalidArgumentException("options argument must be an array");
+        if (! is_array($options)) {
+            throw new \InvalidArgumentException("options argument must be an array");
         }
 
         return "";
     }
+
     /**
      * Set the cache directory
      *
-     * @param string $dirName Path to the cache directory
+     * @param string $dirName
+     *            Path to the cache directory
      *
      * @return void
      * @throws InvalidArgumentException if path was not found
@@ -68,14 +76,14 @@ class FileCache implements Cache
      */
     private function setCacheDir($dirName)
     {
-        if (!file_exists($dirName)) {
-            throw new InvalidArgumentException("Path not found", 0);
+        if (! file_exists($dirName)) {
+            throw new \InvalidArgumentException("Path not found", 0);
         }
-        if (!is_writeable($dirName)) {
-            throw new InvalidArgumentException("Path not writable", 1);
+        if (! is_writeable($dirName)) {
+            throw new \InvalidArgumentException("Path not writable", 1);
         }
-        if (!is_dir($dirName)) {
-            throw new InvalidArgumentException("Path not a directory", 2);
+        if (! is_dir($dirName)) {
+            throw new \InvalidArgumentException("Path not a directory", 2);
         }
         $this->cacheDir = $dirName;
     }
@@ -83,8 +91,10 @@ class FileCache implements Cache
     /**
      * Check if there exists a cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return void
      */
@@ -92,43 +102,50 @@ class FileCache implements Cache
     {
         return file_exists($filename, $options);
     }
+
     /**
      * Get cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return string
      */
     public function getCached($filename, $options)
     {
-        //TODO implement
+        // TODO implement
     }
 
     /**
      * Set cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return void
      */
     public function setCache($filename, $options)
     {
-        //TODO implement
+        // TODO implement
     }
 
     /**
      * Set cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return void
      */
     public function removeOrphans($filename, $options)
     {
-        //TODO implement
+        // TODO implement
     }
 
     /**
@@ -155,6 +172,6 @@ class FileCache implements Cache
             $output[] = $option;
         }
 
-        return '#'.implode('#', $output);
+        return '#' . implode('#', $output);
     }
 }

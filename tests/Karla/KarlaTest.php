@@ -1,10 +1,11 @@
 <?php
+use Karla\Karla;
 /**
  * Karla Test file
  *
- * PHP Version 5.1.2
+ * PHP Version 5.3
  *
- * @category Test
+ * @category Utility
  * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
@@ -14,14 +15,13 @@
 /**
  * Karla Test class
  *
- * @category   Test
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Test
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
-class KarlaTest extends PHPUnit_Framework_TestCase
+class KarlaTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test
@@ -29,10 +29,10 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function testGetInstance()
+    public function getInstance()
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertTrue($karla instanceof Karla);
+        $this->assertInstanceOf('Karla\Karla', $karla);
     }
 
     /**
@@ -41,7 +41,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function testRaw()
+    public function raw()
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertTrue(preg_match('/Version\:\sImageMagick/', $karla->raw('identify', '--version')) == 1);
@@ -53,10 +53,21 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function testConvert()
+    public function convert()
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertTrue($karla->convert() instanceof Convert);
+        $this->assertInstanceOf('Karla\Program\Convert', $karla->convert());
+    }
+
+    /**
+     * Test
+     *
+     * @return void
+     */
+    public function identify()
+    {
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $this->assertInstanceOf('Karla\Program\Identify', $karla->identify());
     }
 
     /**
@@ -65,21 +76,9 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      * @test
      * @return void
      */
-    public function testIdentify()
+    public function composite()
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertTrue($karla->identify() instanceof Identify);
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function testComposite()
-    {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertTrue($karla->composite() instanceof Composite);
+        $this->assertInstanceOf('Karla\Program\Composite', $karla->composite());
     }
 }

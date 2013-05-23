@@ -1,8 +1,10 @@
 <?php
+namespace Karla\Program;
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -14,17 +16,18 @@
 /**
  * Class for wrapping ImageMagicks identify tool
  *
- * @category   Utility
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Utility
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
 class Identify extends ImageMagick
 {
+
     /**
      * Input file
+     *
      * @var string
      */
     protected $inputFile;
@@ -32,18 +35,19 @@ class Identify extends ImageMagick
     /**
      * Add input argument
      *
-     * @param string $filePath Input file path
+     * @param string $filePath
+     *            Input file path
      *
      * @return Identify
      * @throws InvalidArgumentException
      */
     public function inputfile($filePath)
     {
-        if (!file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
-            throw new InvalidArgumentException($message);
+            throw new \InvalidArgumentException($message);
         }
-        $file = new SplFileObject($filePath);
+        $file = new \SplFileObject($filePath);
         if ($file->isReadable()) {
             $this->inputFile = '"' . $file->getPathname() . '"';
         }
@@ -55,23 +59,25 @@ class Identify extends ImageMagick
     /**
      * Execute the command
      *
-     * @param boolean $reset Reset the query
-     * @param boolean $raw   Get the raw output
+     * @param boolean $reset
+     *            Reset the query
+     * @param boolean $raw
+     *            Get the raw output
      *
      * @see Imagemagick#execute()
-     * @return string|MetaData
+     * @return string MetaData
      */
     public function execute($reset = true, $raw = true)
     {
         $result = parent::execute(false);
 
-        if (!$raw) {
+        if (! $raw) {
             if ($this->isOptionSet('verbose', $this->inputOptions)) {
                 $reset == true ? $this->reset() : null;
-                return new MetaData($result, true);
+                return new \Karla\MetaData($result, true);
             }
             $reset == true ? $this->reset() : null;
-            return new MetaData($result);
+            return new \Karla\MetaData($result);
         }
 
         $reset == true ? $this->reset() : null;
@@ -85,7 +91,7 @@ class Identify extends ImageMagick
      */
     public function verbose()
     {
-        if (!$this->isOptionSet('verbose', $this->inputOptions)) {
+        if (! $this->isOptionSet('verbose', $this->inputOptions)) {
             $this->inputOptions[] = "-verbose ";
         }
         $this->dirty();
@@ -101,9 +107,9 @@ class Identify extends ImageMagick
      */
     public function getCommand()
     {
-        !is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-        $options = $this->prepareOptions($this->inputOptions) == '' ? ''
-                : $this->prepareOptions($this->inputOptions) . ' ';
+        ! is_array($this->inputOptions) ? $this->inputOptions = array() : null;
+        $options = $this->prepareOptions($this->inputOptions) == '' ?
+            '' : $this->prepareOptions($this->inputOptions) . ' ';
 
         return $this->binPath . $this->bin . ' ' . $options . $this->inputFile;
     }
@@ -113,7 +119,8 @@ class Identify extends ImageMagick
      *
      * Gravity has no effect when used in this context
      *
-     * @param string $gravity Gravity
+     * @param string $gravity
+     *            Gravity
      *
      * @return Identify
      */
@@ -127,10 +134,13 @@ class Identify extends ImageMagick
      *
      * Desity has no effect when used in this context
      *
-     * @param integer $width  The width of the image
-     * @param integer $height The height of the image
-     * @param boolean $output If output is true density is set for the resulting image
-     *                        If output is false density is used for reading the input image
+     * @param integer $width
+     *            The width of the image
+     * @param integer $height
+     *            The height of the image
+     * @param boolean $output
+     *            If output is true density is set for the resulting image
+     *            If output is false density is used for reading the input image
      *
      * @return Identify
      */
@@ -142,8 +152,10 @@ class Identify extends ImageMagick
     /**
      * Raw arguments directly to ImageMagick
      *
-     * @param string  $arguments Arguments
-     * @param boolean $input     Defaults to an input option, use false to use it as an output option
+     * @param string $arguments
+     *            Arguments
+     * @param boolean $input
+     *            Defaults to an input option, use false to use it as an output option
      *
      * @return Identify
      * @see ImageMagick::raw()
@@ -154,5 +166,4 @@ class Identify extends ImageMagick
 
         return $this;
     }
-
 }

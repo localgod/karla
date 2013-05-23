@@ -1,8 +1,10 @@
 <?php
+namespace Karla;
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5
+ * PHP Version 5.3
  *
  * @category Utility
  * @package  Karla
@@ -14,20 +16,22 @@
 /**
  * Interface for Karla caching tools
  *
- * @category   Utility
- * @package    Karla
- * @subpackage Karla
- * @author     Johannes Skov Frandsen <localgod@heaven.dk>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT
- * @link       https://github.com/localgod/Karla Karla
+ * @category Utility
+ * @package  Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/Karla Karla
  */
 interface Cache
 {
+
     /**
      * Check if there exists a cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return void
      */
@@ -36,8 +40,10 @@ interface Cache
     /**
      * Get cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return string
      */
@@ -46,8 +52,10 @@ interface Cache
     /**
      * Set cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return void
      */
@@ -56,8 +64,10 @@ interface Cache
     /**
      * Remove orphants cached version of the file
      *
-     * @param string $filename Path to file
-     * @param string $options  Options
+     * @param string $filename
+     *            Path to file
+     * @param string $options
+     *            Options
      *
      * @return void
      */
