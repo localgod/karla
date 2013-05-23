@@ -27,6 +27,7 @@ before_script:
 - pear install -f phpunit/phploc
 - pear install -f phpunit/phpcpd
 - phpenv rehash
+- which -a phpunit
 
 after_success: ./tools/build/update-gh-pages.sh
 
