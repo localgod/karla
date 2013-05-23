@@ -36,7 +36,7 @@ matrix:
   - php: 5.5
 script:
 #- ant travis -Dphpunitpath="/home/travis/.phpenv/shims/"
-- phpunit --configuration tests/phpunit.xml --testdox
+- phpunit --configuration tests/phpunit.xml
 env:
   global:
   - secure: |-
