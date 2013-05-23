@@ -31,7 +31,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      */
     public function testGetInstance()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertTrue($karla instanceof Karla);
     }
 
@@ -43,7 +43,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      */
     public function testRaw()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertTrue(preg_match('/Version\:\sImageMagick/', $karla->raw('identify', '--version')) == 1);
     }
 
@@ -55,7 +55,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      */
     public function testConvert()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertTrue($karla->convert() instanceof Convert);
     }
 
@@ -67,7 +67,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      */
     public function testIdentify()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertTrue($karla->identify() instanceof Identify);
     }
 
@@ -79,7 +79,7 @@ class KarlaTest extends PHPUnit_Framework_TestCase
      */
     public function testComposite()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertTrue($karla->composite() instanceof Composite);
     }
 }

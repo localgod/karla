@@ -53,7 +53,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getResolutionHeight()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals(null, $this->object->getResolutionHeight());
     }
 
@@ -65,7 +65,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getResolutionHeightVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals(300, $this->object->getResolutionHeight());
     }
@@ -78,7 +78,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getResolutionWidthVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals(300, $this->object->getResolutionWidth());
     }
@@ -91,7 +91,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getResolutionWidth()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals(null, $this->object->getResolutionWidth());
     }
 
@@ -103,7 +103,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getFormatVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals('jpeg', $this->object->getFormat());
     }
@@ -115,7 +115,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getFormat()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals('jpeg', $this->object->getFormat());
     }
 
@@ -127,7 +127,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getDepthVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals(8, $this->object->getDepth());
     }
@@ -139,7 +139,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getDepth()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals(8, $this->object->getDepth());
     }
 
@@ -151,7 +151,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getColorspaceVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals('srgb', $this->object->getColorspace());
     }
@@ -163,7 +163,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getColorspace()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals('srgb', $this->object->getColorspace());
     }
 
@@ -175,7 +175,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getGeometryVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertArrayHasKey(0, $this->object->getGeometry());
         $this->assertArrayHasKey(1, $this->object->getGeometry());
@@ -188,7 +188,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getGeometry()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertArrayHasKey(0, $this->object->getGeometry());
         $this->assertArrayHasKey(1, $this->object->getGeometry());
     }
@@ -201,7 +201,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getHeightVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals(155, $this->object->getHeight());
     }
@@ -213,7 +213,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getHeight()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals(155, $this->object->getHeight());
     }
 
@@ -225,7 +225,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getWidthVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals(200, $this->object->getWidth());
     }
@@ -238,7 +238,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getWidth()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals(200, $this->object->getWidth());
     }
 
@@ -251,7 +251,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function listRawVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertStringStartsWith('<ul>', $this->object->listRaw());
     }
@@ -265,7 +265,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function listRaw()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertStringStartsWith('<ul>', $this->object->listRaw());
     }
 
@@ -277,7 +277,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getUnitVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals('Pixels Per Inch', $this->object->getUnit());
     }
@@ -290,7 +290,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getUnit()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals('Pixels Per Inch', $this->object->getUnit());
     }
 
@@ -302,7 +302,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getHashVerbose()
     {
-        $this->object = Karla::getInstance()->identify()->verbose()->inputfile('tests/_data/demo.jpg')
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->verbose()->inputfile('tests/_data/demo.jpg')
                 ->execute(true, false);
         $this->assertEquals('b48a66ad34a1942857d8b22325ac9898', $this->object->getHash());
     }
@@ -314,7 +314,7 @@ class MetaDataTest extends PHPUnit_Framework_TestCase
      */
     public function getHash()
     {
-        $this->object = Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertEquals('b48a66ad34a1942857d8b22325ac9898', $this->object->getHash());
     }
 }

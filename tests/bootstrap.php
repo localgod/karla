@@ -17,5 +17,13 @@ if (false === spl_autoload_functions()) {
         spl_autoload_register('__autoload', false);
     }
 }
-require_once dirname(__FILE__).'/../src/Karla.php';
-spl_autoload_register(array('Karla', 'autoload'));
+if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
+    define('PATH_TO_IMAGEMAGICK', '/bin/');
+} else {
+    define('PATH_TO_IMAGEMAGICK', '/opt/local/bin/');
+}
+require_once dirname(__FILE__) . '/../src/Karla.php';
+spl_autoload_register(array(
+    'Karla',
+    'autoload'
+));

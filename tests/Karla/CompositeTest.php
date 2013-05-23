@@ -32,7 +32,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function basefile()
     {
-        $this->assertInstanceOf('Composite', Karla::getInstance()->composite()->basefile());
+        $this->assertInstanceOf('Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->basefile());
     }
 
     /**
@@ -44,7 +44,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function changefile()
     {
-        $this->assertInstanceOf('Composite', Karla::getInstance()->composite()->changefile());
+        $this->assertInstanceOf('Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->changefile());
     }
 
     /**
@@ -56,7 +56,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function outputfile()
     {
-        $this->assertInstanceOf('Composite', Karla::getInstance()->composite()->outputfile());
+        $this->assertInstanceOf('Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->outputfile());
     }
 
     /**
@@ -68,7 +68,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function raw()
     {
-        $this->assertInstanceOf('Composite', Karla::getInstance()->composite()->raw(''));
+        $this->assertInstanceOf('Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->raw(''));
     }
 
     /**
@@ -80,7 +80,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function gravity()
     {
-        $this->assertInstanceOf('Composite', Karla::getInstance()->composite()->gravity(''));
+        $this->assertInstanceOf('Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->gravity(''));
     }
 
     /**
@@ -92,7 +92,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function isDirty()
     {
-        $this->assertTrue(!Karla::getInstance()->composite()->isDirty());
+        $this->assertTrue(!Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->isDirty());
     }
 
     /**
@@ -105,7 +105,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function __clone()
     {
-        $object = clone Karla::getInstance()->composite();
+        $object = clone Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite();
     }
 
     /**
@@ -117,7 +117,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function getCommand()
     {
-        $this->assertNotNull(Karla::getInstance()->composite()->getCommand());
+        $this->assertNotNull(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->getCommand());
     }
 
     /**
@@ -153,7 +153,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function density()
     {
-       $this->assertInstanceOf('Composite', Karla::getInstance()->composite()->density());
+       $this->assertInstanceOf('Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->density());
     }
 
     /**
@@ -165,7 +165,7 @@ class CompositeTest extends PHPUnit_Framework_TestCase
      */
     public function validProgram()
     {
-        $this->assertTrue(Karla::getInstance()->composite()->validProgram('composite'));
-        $this->assertFalse(Karla::getInstance()->composite()->validProgram('git'));
+        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->validProgram('composite'));
+        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->validProgram('git'));
     }
 }

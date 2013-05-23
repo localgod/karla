@@ -32,7 +32,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function inputfile()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
     }
@@ -46,7 +46,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function invalidInputfile()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo2.jpg')->getCommand();
     }
 
@@ -59,7 +59,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function execute()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute();
         $this
                 ->assertTrue(
@@ -75,7 +75,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function executeNoRaw()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(true, false);
         $this->assertTrue($result instanceof MetaData);
     }
@@ -88,7 +88,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function executeNoReset()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(false);
         $this
                 ->assertTrue(
@@ -105,7 +105,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function executeNoResetNoRaw()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $result = $karla->identify()->inputfile('tests/_data/demo.jpg')->execute(false, false);
         $this->assertTrue($result instanceof MetaData);
     }
@@ -119,7 +119,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function verbose()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->verbose()->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "tests/_data/demo.jpg"');
     }
@@ -132,7 +132,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function verboseTwice()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->verbose()->verbose()->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "tests/_data/demo.jpg"');
     }
@@ -145,7 +145,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function gravity()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Identify', $karla->identify()->gravity(''));
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
@@ -159,7 +159,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function gravityTwice()
     {
-        $karla = Karla::getInstance();
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->gravity('center')
                 ->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
@@ -174,7 +174,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function isDirty()
     {
-        $this->assertTrue(!Karla::getInstance()->composite()->isDirty());
+        $this->assertTrue(!Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->isDirty());
     }
 
     /**
@@ -187,7 +187,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function __clone()
     {
-        $object = clone Karla::getInstance()->identify();
+        $object = clone Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify();
     }
 
     /**
@@ -199,7 +199,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function getCommand()
     {
-        $this->assertNotNull(Karla::getInstance()->identify()->inputfile('tests/_data/demo.jpg')->getCommand());
+        $this->assertNotNull(Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->inputfile('tests/_data/demo.jpg')->getCommand());
     }
 
     /**
@@ -223,7 +223,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function raw()
     {
-        $this->assertInstanceOf('Identify', Karla::getInstance()->identify()->raw(''));
+        $this->assertInstanceOf('Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->raw(''));
     }
 
     /**
@@ -235,7 +235,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function density()
     {
-        $this->assertInstanceOf('Identify', Karla::getInstance()->identify()->density());
+        $this->assertInstanceOf('Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()->density());
     }
 
     /**
@@ -247,7 +247,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
      */
     public function validProgram()
     {
-        $this->assertTrue(Karla::getInstance()->composite()->validProgram('identify'));
-        $this->assertFalse(Karla::getInstance()->composite()->validProgram('git'));
+        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->validProgram('identify'));
+        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()->validProgram('git'));
     }
 }
