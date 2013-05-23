@@ -18,7 +18,7 @@ if (false === spl_autoload_functions()) {
     }
 }
 if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
-    define('PATH_TO_IMAGEMAGICK', '/bin/');
+    define('PATH_TO_IMAGEMAGICK', '/usr/bin/');
 } else {
     define('PATH_TO_IMAGEMAGICK', '/opt/local/bin/');
 }
