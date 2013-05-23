@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="Phpdoc for Karla">
-  <file path="Program.php" hash="3b9649c59b673f3f857cb9337e7b1457" package="Karla">
+  <file path="MetaData.php" hash="f7e4af8c545078b22faf387601a8087c" package="Karla">
     <docblock line="2">
       <description>Karla ImageMagick wrapper library</description>
       <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
@@ -11,11 +11,12 @@
       <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
       <tag line="2" name="since" description="2012-04-05"/>
     </docblock>
-    <interface namespace="Karla" line="24" package="Karla">
-      <name>Program</name>
-      <full_name>\Karla\Program</full_name>
+    <class final="false" abstract="false" namespace="Karla" line="24" package="Karla">
+      <extends>\SplFileInfo</extends>
+      <name>MetaData</name>
+      <full_name>\Karla\MetaData</full_name>
       <docblock line="15">
-        <description>Interface for all classes wrapping ImageMagick tools</description>
+        <description>Class for wrapping image metadata</description>
         <long-description></long-description>
         <tag line="15" name="category" description="Utility"/>
         <tag line="15" name="package" description="Karla"/>
@@ -23,41 +24,441 @@
         <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
         <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="32" package="Karla">
-        <name>execute</name>
-        <full_name>execute</full_name>
+      <property final="false" static="false" visibility="private" line="32" namespace="Karla" package="Karla">
+        <name>$verboseImageinfo</name>
+        <default></default>
         <docblock line="27">
-          <description>Execute the command</description>
+          <description>Raw image info</description>
           <long-description></long-description>
-          <tag line="27" name="return" description="" type="string">
+          <tag line="27" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="39" package="Karla">
-        <name>getCommand</name>
-        <full_name>getCommand</full_name>
+      </property>
+      <property final="false" static="false" visibility="private" line="39" namespace="Karla" package="Karla">
+        <name>$imageinfo</name>
+        <default></default>
         <docblock line="34">
-          <description>Get the command to run</description>
+          <description>Raw image info</description>
           <long-description></long-description>
-          <tag line="34" name="return" description="" type="string">
+          <tag line="34" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="46" namespace="Karla" package="Karla">
+        <name>$format</name>
+        <default></default>
+        <docblock line="41">
+          <description>The image format.</description>
+          <long-description></long-description>
+          <tag line="41" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="53" namespace="Karla" package="Karla">
+        <name>$depth</name>
+        <default></default>
+        <docblock line="48">
+          <description>The image depth.</description>
+          <long-description></long-description>
+          <tag line="48" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="60" namespace="Karla" package="Karla">
+        <name>$colorspace</name>
+        <default></default>
+        <docblock line="55">
+          <description>The image colorspace.</description>
+          <long-description></long-description>
+          <tag line="55" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="67" namespace="Karla" package="Karla">
+        <name>$geometry</name>
+        <default></default>
+        <docblock line="62">
+          <description>The image geometry</description>
+          <long-description></long-description>
+          <tag line="62" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="74" namespace="Karla" package="Karla">
+        <name>$resolution</name>
+        <default></default>
+        <docblock line="69">
+          <description>The image resolution</description>
+          <long-description></long-description>
+          <tag line="69" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="81" namespace="Karla" package="Karla">
+        <name>$isPpi</name>
+        <default></default>
+        <docblock line="76">
+          <description>The resolution unit is measured in Pixels Per Inch</description>
+          <long-description></long-description>
+          <tag line="76" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="88" namespace="Karla" package="Karla">
+        <name>$isPpc</name>
+        <default></default>
+        <docblock line="83">
+          <description>The resolution unit is measured in Pixels Per Centimeter</description>
+          <long-description></long-description>
+          <tag line="83" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="95" namespace="Karla" package="Karla">
+        <name>$verbose</name>
+        <default></default>
+        <docblock line="90">
+          <description>Are we scanning in verbose output from identify</description>
+          <long-description></long-description>
+          <tag line="90" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="107" package="Karla">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="97">
+          <description>Construct a new image file.</description>
+          <long-description></long-description>
+          <tag line="97" name="param" description="Image info as string" type="string" variable="$imageinfo">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="97" name="param" description="Should input be parsed as verbose" type="boolean" variable="$verbose">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="97" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="107">
+          <name>$imageinfo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="107">
+          <name>$verbose</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="145" package="Karla">
+        <name>getResolution</name>
+        <full_name>getResolution</full_name>
+        <docblock line="139">
+          <description>Get the image resolution.</description>
+          <long-description>&lt;p&gt;If the resolution is in ppc we convert it to ppi&lt;/p&gt;</long-description>
+          <tag line="139" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="169" package="Karla">
+        <name>getResolutionHeight</name>
+        <full_name>getResolutionHeight</full_name>
+        <docblock line="164">
+          <description>Get the resolution height.</description>
+          <long-description></long-description>
+          <tag line="164" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="181" package="Karla">
+        <name>getResolutionWidth</name>
+        <full_name>getResolutionWidth</full_name>
+        <docblock line="176">
+          <description>Get the resolution width.</description>
+          <long-description></long-description>
+          <tag line="176" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="193" package="Karla">
+        <name>getFormat</name>
+        <full_name>getFormat</full_name>
+        <docblock line="188">
+          <description>Get file format</description>
+          <long-description></long-description>
+          <tag line="188" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="46" package="Karla">
-        <name>reset</name>
-        <full_name>reset</full_name>
-        <docblock line="41">
-          <description>Reset the command</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="203" package="Karla">
+        <name>getDepth</name>
+        <full_name>getDepth</full_name>
+        <docblock line="198">
+          <description>Get image depth</description>
           <long-description></long-description>
-          <tag line="41" name="return" description="" type="void">
+          <tag line="198" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="213" package="Karla">
+        <name>getColorspace</name>
+        <full_name>getColorspace</full_name>
+        <docblock line="208">
+          <description>Get colorspace</description>
+          <long-description></long-description>
+          <tag line="208" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="223" package="Karla">
+        <name>getGeometry</name>
+        <full_name>getGeometry</full_name>
+        <docblock line="218">
+          <description>Get the image geometry</description>
+          <long-description></long-description>
+          <tag line="218" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="233" package="Karla">
+        <name>getHeight</name>
+        <full_name>getHeight</full_name>
+        <docblock line="228">
+          <description>Get the image height</description>
+          <long-description></long-description>
+          <tag line="228" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="243" package="Karla">
+        <name>getWidth</name>
+        <full_name>getWidth</full_name>
+        <docblock line="238">
+          <description>Get the image width</description>
+          <long-description></long-description>
+          <tag line="238" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="253" package="Karla">
+        <name>listRaw</name>
+        <full_name>listRaw</full_name>
+        <docblock line="248">
+          <description>List the raw image information as a unorder list</description>
+          <long-description></long-description>
+          <tag line="248" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="275" package="Karla">
+        <name>parseFilename</name>
+        <full_name>parseFilename</full_name>
+        <docblock line="270">
+          <description>Search for the name of the file</description>
+          <long-description></long-description>
+          <tag line="270" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="285" package="Karla">
+        <name>parseFileformat</name>
+        <full_name>parseFileformat</full_name>
+        <docblock line="280">
+          <description>Search for file format</description>
+          <long-description></long-description>
+          <tag line="280" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="303" package="Karla">
+        <name>parseGeometry</name>
+        <full_name>parseGeometry</full_name>
+        <docblock line="296">
+          <description>Search for image geometry</description>
+          <long-description></long-description>
+          <tag line="296" name="todo" description="output not sanetized yet"/>
+          <tag line="296" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-    </interface>
-    <source>eJzdkkFPGzEQhe/7K+bYRso6ULgURCNVhYYKKSot94kz8VrrtVfj2YSo6n+vvbuhICgHjvXF2ufx92ae9/xTW7WFmkwKmMA3ZIewaNDQDRqra9gxti0xOLti5H0qynXLr0u4I442eDgtP4zqXKOQCbyHn2KdlX0vtqjrxIMB3kvYSRUYAK5Dhd5ThNs6bOGS0a8jeTh3QaMzYT2vCLfky3V90V90VpOPiVWJtB+V2u12ZWiTFDrWVAY2aiyJqrEyHT/KNCLcLH6MDF9DXpkRE8RYqbpVqUOjDr5qCOJvx9F6TfnS8ezoeDo7mc5Ok64Kjw3FNCENtWeHIBdeiDdZ36RB0TnQDmNqawjUevMkZQnBxf89RVXYh1SWHAxjU/wqigzpU8trAl/uSXdCIBVBgjVpmPHoUDFnko49ROGU46iqfm+7VWoWNp3Xkv9NGmDv3p8987kieeyRngC482+3MiSfB9RLbt8pPvX7h9E22PWrNpxB2eF38Qd/nSP4</source>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="319" package="Karla">
+        <name>parseColorspace</name>
+        <full_name>parseColorspace</full_name>
+        <docblock line="314">
+          <description>Search for image colorspace</description>
+          <long-description></long-description>
+          <tag line="314" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="335" package="Karla">
+        <name>parseDepth</name>
+        <full_name>parseDepth</full_name>
+        <docblock line="330">
+          <description>Search for image depth</description>
+          <long-description></long-description>
+          <tag line="330" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="351" package="Karla">
+        <name>parseResolution</name>
+        <full_name>parseResolution</full_name>
+        <docblock line="346">
+          <description>Search for image resolution</description>
+          <long-description></long-description>
+          <tag line="346" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="366" package="Karla">
+        <name>parseVerbose</name>
+        <full_name>parseVerbose</full_name>
+        <docblock line="357">
+          <description>Parse the image info array for the search line and
+return it for futher processing</description>
+          <long-description></long-description>
+          <tag line="357" name="param" description="Search string" type="string" variable="$search">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="357" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="366">
+          <name>$search</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="384" package="Karla">
+        <name>parse</name>
+        <full_name>parse</full_name>
+        <docblock line="375">
+          <description>Parse the image info string for the search line and
+return it for futher processing</description>
+          <long-description></long-description>
+          <tag line="375" name="param" description="Search string" type="string" variable="$search">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="375" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="384">
+          <name>$search</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="396" package="Karla">
+        <name>parseUnits</name>
+        <full_name>parseUnits</full_name>
+        <docblock line="389">
+          <description>Search for print unit.</description>
+          <long-description>&lt;p&gt;If not found we default to Pixels Per Inch.&lt;/p&gt;</long-description>
+          <tag line="389" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="425" package="Karla">
+        <name>getUnit</name>
+        <full_name>getUnit</full_name>
+        <docblock line="420">
+          <description>Get the resolution unit</description>
+          <long-description></long-description>
+          <tag line="420" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="442" package="Karla">
+        <name>getHash</name>
+        <full_name>getHash</full_name>
+        <docblock line="434">
+          <description>Get hash of file</description>
+          <long-description></long-description>
+          <tag line="434" name="param" description="Name of hash algorithm to use; default is md5" type="string" variable="$hash">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="434" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="442">
+          <name>$hash</name>
+          <default>'md5'</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="459" package="Karla">
+        <name>ppc2ppi</name>
+        <full_name>ppc2ppi</full_name>
+        <docblock line="451">
+          <description>Convert Pixels Per Centimeter (ppc) to Pixels Per Inch (ppi)</description>
+          <long-description></long-description>
+          <tag line="451" name="param" description="Input value" type="integer" variable="$value">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="451" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+        <argument line="459">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="472" package="Karla">
+        <name>ppi2ppc</name>
+        <full_name>ppi2ppc</full_name>
+        <docblock line="464">
+          <description>Convert Pixels Per Inch (ppi) to Pixels Per Centimeter (ppc)</description>
+          <long-description></long-description>
+          <tag line="464" name="param" description="Input value" type="integer" variable="$value">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="464" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+        <argument line="472">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>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</source>
   </file>
   <file path="Cache.php" hash="1bf9375be03fc16ed00d44fd20125848" package="Karla">
     <docblock line="2">
@@ -192,6 +593,901 @@
       </method>
     </interface>
     <source>eJzdk01v1DAQhu/5FXPgACs2Xgq90AoqVQIWVHXVQu9eZxJbSWxrPMmyQvx37CS79IOP9tj6YuX1vK89T+zj9177TMxmGczgi6RGwrKVFZ7JyqgaNiS9R4LGrEnSNhalutWnFVwhBeMsHOavJ/VEScbK0Ra+sWkMbwfRS1XHPBjDB0l2rB0BwGenpbUY4LJ2PXwgaYuAFo4bp2RTueJEo+zR5kX9bjA2RqENMUsz+7dCbDab3PkouY4U5o4qMZUE0RqeTx95bBHOll+nDFtDGikjxJDKsO7WuXKt2O0rRhC/TxyMVZhMB4tXB/PFm/niMOois7LFEDvEsfZoB3JpGalMehkbHdOUVNrYCti5Jjx1ZCIzewSnsXHMfmRZihgApTGDU43xhpkSWCMh4HcTOMAICgvopwvmhgIoTYOTcxcQQZFsITAlrs9SRfohu+VrYyVZR/DXQ267nee4W/iD+fzGyt5OyB1Z6J0pJk0Ms+/WESKUnVXJByYMAIrn+wO+3O/24ugOlY/Ij4zA6P8ngwr5QRAuHx2E/16DMCG4J4ELbF2P4MjH9x6fxROjQUN750N34S9Ifma/AJt/7PU=</source>
+  </file>
+  <file path="Program/Identify.php" hash="7c7db47ed58566235e672f28f610765e" package="Karla">
+    <docblock line="2">
+      <description>Karla ImageMagick wrapper library</description>
+      <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
+      <tag line="2" name="category" description="Utility"/>
+      <tag line="2" name="package" description="Karla"/>
+      <tag line="2" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+      <tag line="2" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+      <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+      <tag line="2" name="since" description="2012-04-05"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Karla\Program" line="24" package="Karla">
+      <extends>\Karla\Program\ImageMagick</extends>
+      <name>Identify</name>
+      <full_name>\Karla\Program\Identify</full_name>
+      <docblock line="15">
+        <description>Class for wrapping ImageMagicks identify tool</description>
+        <long-description></long-description>
+        <tag line="15" name="category" description="Utility"/>
+        <tag line="15" name="package" description="Karla"/>
+        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Karla\Program" package="Karla">
+        <name>$inputFile</name>
+        <default></default>
+        <docblock line="27">
+          <description>Input file</description>
+          <long-description></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="43" package="Karla">
+        <name>inputfile</name>
+        <full_name>inputfile</full_name>
+        <docblock line="34">
+          <description>Add input argument</description>
+          <long-description></long-description>
+          <tag line="34" name="param" description="Input file path" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="34" name="return" description="" type="\Karla\Program\Identify">
+            <type by_reference="false">\Karla\Program\Identify</type>
+          </tag>
+          <tag line="34" name="throws" description="" type="\InvalidArgumentException">
+            <type by_reference="false">\InvalidArgumentException</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$filePath</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="69" package="Karla">
+        <name>execute</name>
+        <full_name>execute</full_name>
+        <docblock line="58">
+          <description>Execute the command</description>
+          <long-description></long-description>
+          <tag line="58" name="param" description="Reset the query" type="boolean" variable="$reset">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="58" name="param" description="Get the raw output" type="boolean" variable="$raw">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="58" name="see" description="\Karla\Program\Imagemagick#execute()" refers="\Karla\Program\Imagemagick#execute()"/>
+          <tag line="58" name="return" description="MetaData" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="69">
+          <name>$reset</name>
+          <default>true</default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$raw</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="91" package="Karla">
+        <name>verbose</name>
+        <full_name>verbose</full_name>
+        <docblock line="86">
+          <description>Add verbose argument</description>
+          <long-description></long-description>
+          <tag line="86" name="return" description="" type="\Karla\Program\Identify">
+            <type by_reference="false">\Karla\Program\Identify</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="107" package="Karla">
+        <name>getCommand</name>
+        <full_name>getCommand</full_name>
+        <docblock line="101">
+          <description>(non-PHPdoc)</description>
+          <long-description></long-description>
+          <tag line="101" name="see" description="\Karla\Program\Imagemagick#getCommand()" refers="\Karla\Program\Imagemagick#getCommand()"/>
+          <tag line="101" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="126" package="Karla">
+        <name>gravity</name>
+        <full_name>gravity</full_name>
+        <docblock line="116">
+          <description>Set the gravity</description>
+          <long-description>&lt;p&gt;Gravity has no effect when used in this context&lt;/p&gt;</long-description>
+          <tag line="116" name="param" description="Gravity" type="string" variable="$gravity">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="116" name="return" description="" type="\Karla\Program\Identify">
+            <type by_reference="false">\Karla\Program\Identify</type>
+          </tag>
+        </docblock>
+        <argument line="126">
+          <name>$gravity</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="146" package="Karla">
+        <name>density</name>
+        <full_name>density</full_name>
+        <docblock line="131">
+          <description>Set the density of the output image.</description>
+          <long-description>&lt;p&gt;Desity has no effect when used in this context&lt;/p&gt;</long-description>
+          <tag line="131" name="param" description="The width of the image" type="integer" variable="$width">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="131" name="param" description="The height of the image" type="integer" variable="$height">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="131" name="param" description="If output is true density is set for the resulting image&#10;           If output is false density is used for reading the input image" type="boolean" variable="$output">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="131" name="return" description="" type="\Karla\Program\Identify">
+            <type by_reference="false">\Karla\Program\Identify</type>
+          </tag>
+        </docblock>
+        <argument line="146">
+          <name>$width</name>
+          <default>72</default>
+          <type/>
+        </argument>
+        <argument line="146">
+          <name>$height</name>
+          <default>72</default>
+          <type/>
+        </argument>
+        <argument line="146">
+          <name>$output</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="162" package="Karla">
+        <name>raw</name>
+        <full_name>raw</full_name>
+        <docblock line="151">
+          <description>Raw arguments directly to ImageMagick</description>
+          <long-description></long-description>
+          <tag line="151" name="param" description="Arguments" type="string" variable="$arguments">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="151" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="151" name="return" description="" type="\Karla\Program\Identify">
+            <type by_reference="false">\Karla\Program\Identify</type>
+          </tag>
+          <tag line="151" name="see" description="\Karla\Program\ImageMagick::raw()" refers="\Karla\Program\ImageMagick::raw()"/>
+        </docblock>
+        <argument line="162">
+          <name>$arguments</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="162">
+          <name>$input</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>eJzdV1lv20YQftevmLgGRBk6XLdBATn1gRyuWhgx7LQvTRGsyKG4NcVld5eWhcD/vbMHKZKi7MTpU/kicXbOb76dXb46zZO8Nzk46MEB/MZkymC2ZAu8ZAse3sJKsjxHCSmfSybXpGT0rn65gj9QKi4yeDn+wUvPQqZxIeQaftc85XpthTkLb8kfOOdWxAqdCAkAv4qEZRkquLkVd/BOsixSmMGrVIQsXYjoLEF2h9k4uj2xhikPMVPkK9E6n04mq9VqLHISiUKGOBZyMfEqarLkeuRfxlQiXM4+eB/ZLZjH+FDkZMF1UszHoVhOyrgTB8QmY8WzEI3R0eH3R6PDH0eHL0k+6WVsiYoqRKf78UqKhWTL4xLQ1ylTCmIq1gLJs0UdXQU8wkzzeA1aiPT/DuOkF1o4ZmXReK+RUq1D0vvc6xmvFj/zHMAsywsNMU/RS8qFszsmQWlJqHrRxP7mUmgMNUawz43tOzI93nJ7HkVgl4HJRbGklNruc0at9AFg3yRwxXRSLteeTYaQbzQqPxJ1IbOq7EquEylWCj7OsjuW8ujcp/H2PsRc09ZqFlXMqQ0QF1lo1lzqJmRQZTawip97ZVo8huCFTesT3nOlVU11UNMzzz7xWBl+/Qz9Dwl6ZKqSIOjDeIMB/e8PgBN/XepANNRkZfVDUaQRZELDHMFQgTox7h83wtnSIcPV7uqDMqXBxvSh+mdToWSti5s8NT1+P/+b2l4r8rgBhZWPTri6RhaxOSG3jYJOuCKVkjUGjb2q8tHJArVxbHZ9MDAg7PU7k3NuIi71Ohh46pnHM8GuO8OHLV6+vcew0GjxpM20pM3cTcw5jQxk5E2iQt1By2sjt37+KVCud5qzVYfxhTelVRCFJkDaWShEt3OXdud+hy7xYNAmvt9Bl6jZG6bZo7QunbiiCH8tCxzaJP1Lm+VGs0iNKtVFBJpOSx8xSxXW4XcbwvhqN97ywzdfvbf8u0Ed9O9QzoXC/rBBDaegtuhTpmMSd8nCaWloxUSaKWRFmh5v2XmsLJ/dWVLiFfgKh678pulDk7/PCP504MYG7D03lo9DXFi2HG/vATObPfQ7p3P3VO1mlfcVdE/Ib298h86ffxEj90ZlFXv/+ZwIMpGN6CIWiXDQxqa9NWluvXajZNfufBS+LfNN9S/oFPjEpGTroAuoDS3qYkLGmWyzZF9UKt4wl2g2tjftjkIk7PfhtNETEky/xgdNc+jv6MHoZM4zf/BtBM7EiMqkx1snyK7u3fjxSrfFO3vFazTwwkkhYYoOUsA4poMNVgld6gqF5t4CJg6dD5mmS9TjF5dmiDpEF53Bv2pneedBGaXNjy9hcokFxVOmahHbV3fqADc8HrdyfIPqm/HhtLagT5v9FY86r3XmHmTXyoxsKru8JMgXSdcxbNy4xcf8VMdx47Ct+5nFFSTKzdwSMHo3ozj2tzA3XE3vG4F2ubLHZN2XhdA4k3RRMm50dSGsO3wWX3yYwIFOu/yno2GJXfnmU+s+7r+EUNd0WSiPDQU0XokdqfnGanxpdJKi3DSVeQd65+21dgstVh2GbzBm1BllMmH+Cg9udgwN6r4VtGpeOH2ZKKPn8RD1j4InPy6qI8BVO53Sraca/t29MRqbwoe+jh19KC9b3UZPHWYPvX8BWDe5MA==</source>
+  </file>
+  <file path="Program/Composite.php" hash="b1ba7b9849b2735df9e578860b7b32cb" package="Karla">
+    <docblock line="2">
+      <description>Karla ImageMagick wrapper library</description>
+      <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
+      <tag line="2" name="category" description="Utility"/>
+      <tag line="2" name="package" description="Karla"/>
+      <tag line="2" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+      <tag line="2" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+      <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+      <tag line="2" name="since" description="2012-04-05"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Karla\Program" line="24" package="Karla">
+      <extends>\Karla\Program\ImageMagick</extends>
+      <name>Composite</name>
+      <full_name>\Karla\Program\Composite</full_name>
+      <docblock line="15">
+        <description>Class for wrapping ImageMagicks composite tool</description>
+        <long-description></long-description>
+        <tag line="15" name="category" description="Utility"/>
+        <tag line="15" name="package" description="Karla"/>
+        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="32" package="Karla">
+        <name>basefile</name>
+        <full_name>basefile</full_name>
+        <docblock line="27">
+          <description>Add base file argument</description>
+          <long-description></long-description>
+          <tag line="27" name="return" description="" type="\Karla\Program\Composite">
+            <type by_reference="false">\Karla\Program\Composite</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="42" package="Karla">
+        <name>changefile</name>
+        <full_name>changefile</full_name>
+        <docblock line="37">
+          <description>Add change file argument</description>
+          <long-description></long-description>
+          <tag line="37" name="return" description="" type="\Karla\Program\Composite">
+            <type by_reference="false">\Karla\Program\Composite</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="52" package="Karla">
+        <name>outputfile</name>
+        <full_name>outputfile</full_name>
+        <docblock line="47">
+          <description>Add output file argument</description>
+          <long-description></long-description>
+          <tag line="47" name="return" description="" type="\Karla\Program\Composite">
+            <type by_reference="false">\Karla\Program\Composite</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="68" package="Karla">
+        <name>raw</name>
+        <full_name>raw</full_name>
+        <docblock line="57">
+          <description>Raw arguments directly to ImageMagick</description>
+          <long-description></long-description>
+          <tag line="57" name="param" description="Arguments" type="string" variable="$arguments">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="57" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="57" name="return" description="" type="\Karla\Program\Composite">
+            <type by_reference="false">\Karla\Program\Composite</type>
+          </tag>
+          <tag line="57" name="see" description="\Karla\Program\ImageMagick::raw()" refers="\Karla\Program\ImageMagick::raw()"/>
+        </docblock>
+        <argument line="68">
+          <name>$arguments</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="68">
+          <name>$input</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="85" package="Karla">
+        <name>gravity</name>
+        <full_name>gravity</full_name>
+        <docblock line="75">
+          <description>Set the gravity</description>
+          <long-description>&lt;p&gt;(This method is only redefined to support autocompletion in ide's like Eclipse)&lt;/p&gt;</long-description>
+          <tag line="75" name="param" description="Gravity" type="string" variable="$gravity">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="75" name="return" description="" type="\Karla\Program\Composite">
+            <type by_reference="false">\Karla\Program\Composite</type>
+          </tag>
+        </docblock>
+        <argument line="85">
+          <name>$gravity</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>eJzdVU1PGzEQve+vmANSIYIspeUCtAXRL1ohoUJ76mXinexa8dqWPwgR4r937N2F8FWVllOtSMmO37x982bs7L2zjS3K0aiAEXxFpxCOWqzpGGspZjB3aC05UHLi0C0YlHAnn0/gBzkvjYbt8as+ui8wUG3cAr4HqWRY5KBFMWM+6MhzCGNojAOAL6ZBrcnD6cycw0eHuvKkYU8Zgao21X5DeE56XM3e5kQlBWnPXE0Idqcs5/P52FgOmegEjY2ryx7iy1aGjf5hzCXC8dFZz6FnkFbi8ExSy9DEyViYthzeW3ZG3Cj2UgtKSVubL7c2Nl9vbG5zvCw0tuS5QuqwP0+cqR22u4Ohhwq9hykXm42Uul521wO/1BovA0EwRv3vPpaFyH4cXldNF4FY67IpxWVRJNrsYFojOKgqmCDrnUpFgK6OLenQ7w6gfUchOn1D3m+U+dvGCRcB06hFSFOb6BLb6lrevuzAvHqWldBIv5ujVw/qEex4/ZyKOsJ/0mRisDE8o6aO8K81fcP5tQ4PlXQkglrwqN/q9x2BFvkAgQ8uHZaV6/Rhf2kd3N3rcyd8lAhZm9Ss/oHE9zTFqFgSK2FchoGxqeR1iGnOUPl0JPODDIA+4Xp7O+Af+spXB9FyuTs7Due9m4/ZnhA3la/3hcAbCC7S3UZwzYzqaO8nre0WT2rZKQUIDQHfYuf55rlV5eoZp0JLfO1UwL+M5nY6qnhsNVXJMB+tNY4di8Gky01Rrkjyp6IXnv9HZgQfhJLW09rvW39bwnL/Pj0o7mmj3bOvDq95ZL4Hd+/BBwOvil9yqibc</source>
+  </file>
+  <file path="Program/ImageMagick.php" hash="427bc90a545da6a88a415ceb4ccf8fc1" package="Karla">
+    <docblock line="2">
+      <description>Karla ImageMagick wrapper library</description>
+      <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
+      <tag line="2" name="category" description="Utility"/>
+      <tag line="2" name="package" description="Karla"/>
+      <tag line="2" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+      <tag line="2" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+      <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+      <tag line="2" name="since" description="2012-04-05"/>
+    </docblock>
+    <class final="false" abstract="true" namespace="Karla\Program" line="24" package="Karla">
+      <extends/>
+      <implements>\Karla\Program</implements>
+      <name>ImageMagick</name>
+      <full_name>\Karla\Program\ImageMagick</full_name>
+      <docblock line="15">
+        <description>Class for wrapping ImageMagick arguments used by all tools</description>
+        <long-description></long-description>
+        <tag line="15" name="category" description="Utility"/>
+        <tag line="15" name="package" description="Karla"/>
+        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+      </docblock>
+      <constant namespace="Karla\Program" line="32" package="Karla">
+        <name>IMAGEMAGICK_ANIMATE</name>
+        <full_name>IMAGEMAGICK_ANIMATE</full_name>
+        <value>'animate'</value>
+        <docblock line="27">
+          <description>ImageMagick tool animate</description>
+          <long-description></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="39" package="Karla">
+        <name>IMAGEMAGICK_COMPARE</name>
+        <full_name>IMAGEMAGICK_COMPARE</full_name>
+        <value>'compare'</value>
+        <docblock line="34">
+          <description>ImageMagick tool compare</description>
+          <long-description></long-description>
+          <tag line="34" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="46" package="Karla">
+        <name>IMAGEMAGICK_COMPOSITE</name>
+        <full_name>IMAGEMAGICK_COMPOSITE</full_name>
+        <value>'composite'</value>
+        <docblock line="41">
+          <description>ImageMagick tool composite</description>
+          <long-description></long-description>
+          <tag line="41" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="53" package="Karla">
+        <name>IMAGEMAGICK_CONJURE</name>
+        <full_name>IMAGEMAGICK_CONJURE</full_name>
+        <value>'conjure'</value>
+        <docblock line="48">
+          <description>ImageMagick tool</description>
+          <long-description></long-description>
+          <tag line="48" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="60" package="Karla">
+        <name>IMAGEMAGICK_CONVERT</name>
+        <full_name>IMAGEMAGICK_CONVERT</full_name>
+        <value>'convert'</value>
+        <docblock line="55">
+          <description>ImageMagick tool conjure</description>
+          <long-description></long-description>
+          <tag line="55" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="67" package="Karla">
+        <name>IMAGEMAGICK_DISPLAY</name>
+        <full_name>IMAGEMAGICK_DISPLAY</full_name>
+        <value>'display'</value>
+        <docblock line="62">
+          <description>ImageMagick tool display</description>
+          <long-description></long-description>
+          <tag line="62" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="74" package="Karla">
+        <name>IMAGEMAGICK_IDENTIFY</name>
+        <full_name>IMAGEMAGICK_IDENTIFY</full_name>
+        <value>'identify'</value>
+        <docblock line="69">
+          <description>ImageMagick tool identify</description>
+          <long-description></long-description>
+          <tag line="69" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="81" package="Karla">
+        <name>IMAGEMAGICK_IMPORT</name>
+        <full_name>IMAGEMAGICK_IMPORT</full_name>
+        <value>'import'</value>
+        <docblock line="76">
+          <description>ImageMagick tool import</description>
+          <long-description></long-description>
+          <tag line="76" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="88" package="Karla">
+        <name>IMAGEMAGICK_MOGRIFY</name>
+        <full_name>IMAGEMAGICK_MOGRIFY</full_name>
+        <value>'mogrify'</value>
+        <docblock line="83">
+          <description>ImageMagick tool mogrify</description>
+          <long-description></long-description>
+          <tag line="83" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="95" package="Karla">
+        <name>IMAGEMAGICK_MONTAGE</name>
+        <full_name>IMAGEMAGICK_MONTAGE</full_name>
+        <value>'montage'</value>
+        <docblock line="90">
+          <description>ImageMagick tool montage</description>
+          <long-description></long-description>
+          <tag line="90" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="Karla\Program" line="102" package="Karla">
+        <name>IMAGEMAGICK_STREAM</name>
+        <full_name>IMAGEMAGICK_STREAM</full_name>
+        <value>'stream'</value>
+        <docblock line="97">
+          <description>ImageMagick tool stream</description>
+          <long-description></long-description>
+          <tag line="97" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="109" namespace="Karla\Program" package="Karla">
+        <name>$inputOptions</name>
+        <default></default>
+        <docblock line="104">
+          <description>Input option</description>
+          <long-description></long-description>
+          <tag line="104" name="var" description="" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="116" namespace="Karla\Program" package="Karla">
+        <name>$outputOptions</name>
+        <default></default>
+        <docblock line="111">
+          <description>Output option</description>
+          <long-description></long-description>
+          <tag line="111" name="var" description="" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="123" namespace="Karla\Program" package="Karla">
+        <name>$binPath</name>
+        <default></default>
+        <docblock line="118">
+          <description>Path to binaries</description>
+          <long-description></long-description>
+          <tag line="118" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="130" namespace="Karla\Program" package="Karla">
+        <name>$bin</name>
+        <default></default>
+        <docblock line="125">
+          <description>Name of binary</description>
+          <long-description></long-description>
+          <tag line="125" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="137" namespace="Karla\Program" package="Karla">
+        <name>$cache</name>
+        <default></default>
+        <docblock line="132">
+          <description>Cache controller</description>
+          <long-description></long-description>
+          <tag line="132" name="var" description="" type="\Karla\Program\Cache">
+            <type by_reference="false">\Karla\Program\Cache</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="144" namespace="Karla\Program" package="Karla">
+        <name>$dirty</name>
+        <default></default>
+        <docblock line="139">
+          <description>Is the object dirty (has any arguments been set)</description>
+          <long-description></long-description>
+          <tag line="139" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="true" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="159" package="Karla">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="146">
+          <description>Contructs a new program</description>
+          <long-description></long-description>
+          <tag line="146" name="param" description="Path to binaries" type="string" variable="$binPath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="146" name="param" description="Binary" type="string" variable="$bin">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="146" name="param" description="Cache controller (default null = no cache)" type="\Karla\Cache|null" variable="$cache">
+            <type by_reference="false">\Karla\Cache</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="146" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="146" name="throws" description="" type="\InvalidArgumentException">
+            <type by_reference="false">\InvalidArgumentException</type>
+          </tag>
+        </docblock>
+        <argument line="159">
+          <name>$binPath</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="159">
+          <name>$bin</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="159">
+          <name>$cache</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="180" package="Karla">
+        <name>isDirty</name>
+        <full_name>isDirty</full_name>
+        <docblock line="173">
+          <description>Is the object dirty</description>
+          <long-description>&lt;p&gt;(has any arguments been set)&lt;/p&gt;</long-description>
+          <tag line="173" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="192" package="Karla">
+        <name>dirty</name>
+        <full_name>dirty</full_name>
+        <docblock line="185">
+          <description>Set the object as beeing dirty</description>
+          <long-description>&lt;p&gt;(Arguments has been set)&lt;/p&gt;</long-description>
+          <tag line="185" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="202" package="Karla">
+        <name>__clone</name>
+        <full_name>__clone</full_name>
+        <docblock line="197">
+          <description>It should not be possible to clon the ImageMagick object.</description>
+          <long-description></long-description>
+          <tag line="197" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="212" package="Karla">
+        <name>getCommand</name>
+        <full_name>getCommand</full_name>
+        <docblock line="207">
+          <description>Get the command to run</description>
+          <long-description></long-description>
+          <tag line="207" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="225" package="Karla">
+        <name>execute</name>
+        <full_name>execute</full_name>
+        <docblock line="217">
+          <description>Execute the command</description>
+          <long-description></long-description>
+          <tag line="217" name="param" description="Reset the query" type="boolean" variable="$reset">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="217" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="225">
+          <name>$reset</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="240" package="Karla">
+        <name>reset</name>
+        <full_name>reset</full_name>
+        <docblock line="235">
+          <description>Reset the command</description>
+          <long-description></long-description>
+          <tag line="235" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="257" package="Karla">
+        <name>raw</name>
+        <full_name>raw</full_name>
+        <docblock line="247">
+          <description>Raw arguments directly to ImageMagick</description>
+          <long-description></long-description>
+          <tag line="247" name="param" description="Arguments" type="string" variable="$arguments">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="247" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="247" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="257">
+          <name>$arguments</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="257">
+          <name>$input</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="274" package="Karla">
+        <name>gravity</name>
+        <full_name>gravity</full_name>
+        <docblock line="266">
+          <description>Set the gravity</description>
+          <long-description></long-description>
+          <tag line="266" name="param" description="Gravity" type="string" variable="$gravity">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="266" name="return" description="" type="\Karla\Program\ImageMagick">
+            <type by_reference="false">\Karla\Program\ImageMagick</type>
+          </tag>
+        </docblock>
+        <argument line="274">
+          <name>$gravity</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="302" package="Karla">
+        <name>density</name>
+        <full_name>density</full_name>
+        <docblock line="287">
+          <description>Set the density of the output image.</description>
+          <long-description></long-description>
+          <tag line="287" name="param" description="The width of the image" type="integer" variable="$width">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="287" name="param" description="The height of the image" type="integer" variable="$height">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="287" name="param" description="If output is true density is set for the resulting image&#10;           If output is false density is used for reading the input image" type="boolean" variable="$output">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="287" name="return" description="" type="\Karla\Program\Convert">
+            <type by_reference="false">\Karla\Program\Convert</type>
+          </tag>
+          <tag line="287" name="throws" description="if density has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+          <tag line="287" name="throws" description="" type="\InvalidArgumentException">
+            <type by_reference="false">\InvalidArgumentException</type>
+          </tag>
+        </docblock>
+        <argument line="302">
+          <name>$width</name>
+          <default>72</default>
+          <type/>
+        </argument>
+        <argument line="302">
+          <name>$height</name>
+          <default>72</default>
+          <type/>
+        </argument>
+        <argument line="302">
+          <name>$output</name>
+          <default>true</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="338" package="Karla">
+        <name>prepareOptions</name>
+        <full_name>prepareOptions</full_name>
+        <docblock line="330">
+          <description>Prepare option collection</description>
+          <long-description></long-description>
+          <tag line="330" name="param" description="Options" type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="330" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="338">
+          <name>$options</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="358" package="Karla">
+        <name>isOptionSet</name>
+        <full_name>isOptionSet</full_name>
+        <docblock line="348">
+          <description>Check if an option is already set</description>
+          <long-description></long-description>
+          <tag line="348" name="param" description="Option to look up" type="string" variable="$lookop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="348" name="param" description="Optionlist to look in" type="array" variable="$optionList">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="348" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="358">
+          <name>$lookop</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="358">
+          <name>$optionList</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="377" package="Karla">
+        <name>supportedColorSpace</name>
+        <full_name>supportedColorSpace</full_name>
+        <docblock line="369">
+          <description>Check if a colorspace is supported by ImageMagick.</description>
+          <long-description></long-description>
+          <tag line="369" name="param" description="Colorspace to check" type="string" variable="$colorSpace">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="369" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="377">
+          <name>$colorSpace</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="401" package="Karla">
+        <name>supportedImageTypes</name>
+        <full_name>supportedImageTypes</full_name>
+        <docblock line="393">
+          <description>Check if a image type is supported by ImageMagick.</description>
+          <long-description></long-description>
+          <tag line="393" name="param" description="Type to check" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="393" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="401">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="426" package="Karla">
+        <name>supportedGravity</name>
+        <full_name>supportedGravity</full_name>
+        <docblock line="417">
+          <description>Check if a gravity is supported by ImageMagick.</description>
+          <long-description></long-description>
+          <tag line="417" name="param" description="Gravity to check" type="string" variable="$gravity">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="417" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="417" name="throws" description="if called in a wrong context" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+        </docblock>
+        <argument line="426">
+          <name>$gravity</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="451" package="Karla">
+        <name>supportedLayerMethod</name>
+        <full_name>supportedLayerMethod</full_name>
+        <docblock line="442">
+          <description>Check if a method is supported by ImageMagick.</description>
+          <long-description></long-description>
+          <tag line="442" name="param" description="Method to check" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="442" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="442" name="throws" description="if called in a wrong context" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+        </docblock>
+        <argument line="451">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="476" package="Karla">
+        <name>supportedFormat</name>
+        <full_name>supportedFormat</full_name>
+        <docblock line="467">
+          <description>Check if a format is supported by ImageMagick.</description>
+          <long-description></long-description>
+          <tag line="467" name="param" description="Format to check" type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="467" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="467" name="throws" description="if called in a wrong context" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+        </docblock>
+        <argument line="476">
+          <name>$format</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="true" abstract="false" static="true" visibility="public" namespace="Karla\Program" line="505" package="Karla">
+        <name>validProgram</name>
+        <full_name>validProgram</full_name>
+        <docblock line="497">
+          <description>Check if the input is a valid ImageMagick program</description>
+          <long-description></long-description>
+          <tag line="497" name="param" description="Program name" type="string" variable="$program">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="497" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="505">
+          <name>$program</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>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</source>
   </file>
   <file path="Program/Convert.php" hash="3ea8aedeec2bdc2a07c708b39a5c519d" package="Karla">
     <docblock line="2">
@@ -1023,9 +2319,9 @@
     <markers>
       <todo line="91">implement this feature</todo>
     </markers>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <file path="Program/ImageMagick.php" hash="427bc90a545da6a88a415ceb4ccf8fc1" package="Karla">
+  <file path="Program.php" hash="3b9649c59b673f3f857cb9337e7b1457" package="Karla">
     <docblock line="2">
       <description>Karla ImageMagick wrapper library</description>
       <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
@@ -1036,13 +2332,11 @@
       <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
       <tag line="2" name="since" description="2012-04-05"/>
     </docblock>
-    <class final="false" abstract="true" namespace="Karla\Program" line="24" package="Karla">
-      <extends/>
-      <implements>\Karla\Program</implements>
-      <name>ImageMagick</name>
-      <full_name>\Karla\Program\ImageMagick</full_name>
+    <interface namespace="Karla" line="24" package="Karla">
+      <name>Program</name>
+      <full_name>\Karla\Program</full_name>
       <docblock line="15">
-        <description>Class for wrapping ImageMagick arguments used by all tools</description>
+        <description>Interface for all classes wrapping ImageMagick tools</description>
         <long-description></long-description>
         <tag line="15" name="category" description="Utility"/>
         <tag line="15" name="package" description="Karla"/>
@@ -1050,875 +2344,41 @@
         <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
         <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
       </docblock>
-      <constant namespace="Karla\Program" line="32" package="Karla">
-        <name>IMAGEMAGICK_ANIMATE</name>
-        <full_name>IMAGEMAGICK_ANIMATE</full_name>
-        <value>'animate'</value>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="32" package="Karla">
+        <name>execute</name>
+        <full_name>execute</full_name>
         <docblock line="27">
-          <description>ImageMagick tool animate</description>
+          <description>Execute the command</description>
           <long-description></long-description>
-          <tag line="27" name="var" description="" type="string">
+          <tag line="27" name="return" description="" type="string">
             <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="39" package="Karla">
-        <name>IMAGEMAGICK_COMPARE</name>
-        <full_name>IMAGEMAGICK_COMPARE</full_name>
-        <value>'compare'</value>
-        <docblock line="34">
-          <description>ImageMagick tool compare</description>
-          <long-description></long-description>
-          <tag line="34" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="46" package="Karla">
-        <name>IMAGEMAGICK_COMPOSITE</name>
-        <full_name>IMAGEMAGICK_COMPOSITE</full_name>
-        <value>'composite'</value>
-        <docblock line="41">
-          <description>ImageMagick tool composite</description>
-          <long-description></long-description>
-          <tag line="41" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="53" package="Karla">
-        <name>IMAGEMAGICK_CONJURE</name>
-        <full_name>IMAGEMAGICK_CONJURE</full_name>
-        <value>'conjure'</value>
-        <docblock line="48">
-          <description>ImageMagick tool</description>
-          <long-description></long-description>
-          <tag line="48" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="60" package="Karla">
-        <name>IMAGEMAGICK_CONVERT</name>
-        <full_name>IMAGEMAGICK_CONVERT</full_name>
-        <value>'convert'</value>
-        <docblock line="55">
-          <description>ImageMagick tool conjure</description>
-          <long-description></long-description>
-          <tag line="55" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="67" package="Karla">
-        <name>IMAGEMAGICK_DISPLAY</name>
-        <full_name>IMAGEMAGICK_DISPLAY</full_name>
-        <value>'display'</value>
-        <docblock line="62">
-          <description>ImageMagick tool display</description>
-          <long-description></long-description>
-          <tag line="62" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="74" package="Karla">
-        <name>IMAGEMAGICK_IDENTIFY</name>
-        <full_name>IMAGEMAGICK_IDENTIFY</full_name>
-        <value>'identify'</value>
-        <docblock line="69">
-          <description>ImageMagick tool identify</description>
-          <long-description></long-description>
-          <tag line="69" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="81" package="Karla">
-        <name>IMAGEMAGICK_IMPORT</name>
-        <full_name>IMAGEMAGICK_IMPORT</full_name>
-        <value>'import'</value>
-        <docblock line="76">
-          <description>ImageMagick tool import</description>
-          <long-description></long-description>
-          <tag line="76" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="88" package="Karla">
-        <name>IMAGEMAGICK_MOGRIFY</name>
-        <full_name>IMAGEMAGICK_MOGRIFY</full_name>
-        <value>'mogrify'</value>
-        <docblock line="83">
-          <description>ImageMagick tool mogrify</description>
-          <long-description></long-description>
-          <tag line="83" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="95" package="Karla">
-        <name>IMAGEMAGICK_MONTAGE</name>
-        <full_name>IMAGEMAGICK_MONTAGE</full_name>
-        <value>'montage'</value>
-        <docblock line="90">
-          <description>ImageMagick tool montage</description>
-          <long-description></long-description>
-          <tag line="90" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <constant namespace="Karla\Program" line="102" package="Karla">
-        <name>IMAGEMAGICK_STREAM</name>
-        <full_name>IMAGEMAGICK_STREAM</full_name>
-        <value>'stream'</value>
-        <docblock line="97">
-          <description>ImageMagick tool stream</description>
-          <long-description></long-description>
-          <tag line="97" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </constant>
-      <property final="false" static="false" visibility="protected" line="109" namespace="Karla\Program" package="Karla">
-        <name>$inputOptions</name>
-        <default></default>
-        <docblock line="104">
-          <description>Input option</description>
-          <long-description></long-description>
-          <tag line="104" name="var" description="" type="Array">
-            <type by_reference="false">Array</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="116" namespace="Karla\Program" package="Karla">
-        <name>$outputOptions</name>
-        <default></default>
-        <docblock line="111">
-          <description>Output option</description>
-          <long-description></long-description>
-          <tag line="111" name="var" description="" type="Array">
-            <type by_reference="false">Array</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="123" namespace="Karla\Program" package="Karla">
-        <name>$binPath</name>
-        <default></default>
-        <docblock line="118">
-          <description>Path to binaries</description>
-          <long-description></long-description>
-          <tag line="118" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="130" namespace="Karla\Program" package="Karla">
-        <name>$bin</name>
-        <default></default>
-        <docblock line="125">
-          <description>Name of binary</description>
-          <long-description></long-description>
-          <tag line="125" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="137" namespace="Karla\Program" package="Karla">
-        <name>$cache</name>
-        <default></default>
-        <docblock line="132">
-          <description>Cache controller</description>
-          <long-description></long-description>
-          <tag line="132" name="var" description="" type="\Karla\Program\Cache">
-            <type by_reference="false">\Karla\Program\Cache</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="144" namespace="Karla\Program" package="Karla">
-        <name>$dirty</name>
-        <default></default>
-        <docblock line="139">
-          <description>Is the object dirty (has any arguments been set)</description>
-          <long-description></long-description>
-          <tag line="139" name="var" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="true" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="159" package="Karla">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="146">
-          <description>Contructs a new program</description>
-          <long-description></long-description>
-          <tag line="146" name="param" description="Path to binaries" type="string" variable="$binPath">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="146" name="param" description="Binary" type="string" variable="$bin">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="146" name="param" description="Cache controller (default null = no cache)" type="\Karla\Cache|null" variable="$cache">
-            <type by_reference="false">\Karla\Cache</type>
-            <type by_reference="false">null</type>
-          </tag>
-          <tag line="146" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-          <tag line="146" name="throws" description="" type="\InvalidArgumentException">
-            <type by_reference="false">\InvalidArgumentException</type>
-          </tag>
-        </docblock>
-        <argument line="159">
-          <name>$binPath</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="159">
-          <name>$bin</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="159">
-          <name>$cache</name>
-          <default>null</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="180" package="Karla">
-        <name>isDirty</name>
-        <full_name>isDirty</full_name>
-        <docblock line="173">
-          <description>Is the object dirty</description>
-          <long-description>&lt;p&gt;(has any arguments been set)&lt;/p&gt;</long-description>
-          <tag line="173" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="192" package="Karla">
-        <name>dirty</name>
-        <full_name>dirty</full_name>
-        <docblock line="185">
-          <description>Set the object as beeing dirty</description>
-          <long-description>&lt;p&gt;(Arguments has been set)&lt;/p&gt;</long-description>
-          <tag line="185" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="202" package="Karla">
-        <name>__clone</name>
-        <full_name>__clone</full_name>
-        <docblock line="197">
-          <description>It should not be possible to clon the ImageMagick object.</description>
-          <long-description></long-description>
-          <tag line="197" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="212" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="39" package="Karla">
         <name>getCommand</name>
         <full_name>getCommand</full_name>
-        <docblock line="207">
+        <docblock line="34">
           <description>Get the command to run</description>
           <long-description></long-description>
-          <tag line="207" name="return" description="" type="string">
+          <tag line="34" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="225" package="Karla">
-        <name>execute</name>
-        <full_name>execute</full_name>
-        <docblock line="217">
-          <description>Execute the command</description>
-          <long-description></long-description>
-          <tag line="217" name="param" description="Reset the query" type="boolean" variable="$reset">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="217" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="225">
-          <name>$reset</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="240" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="46" package="Karla">
         <name>reset</name>
         <full_name>reset</full_name>
-        <docblock line="235">
+        <docblock line="41">
           <description>Reset the command</description>
           <long-description></long-description>
-          <tag line="235" name="return" description="" type="void">
+          <tag line="41" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="257" package="Karla">
-        <name>raw</name>
-        <full_name>raw</full_name>
-        <docblock line="247">
-          <description>Raw arguments directly to ImageMagick</description>
-          <long-description></long-description>
-          <tag line="247" name="param" description="Arguments" type="string" variable="$arguments">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="247" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="247" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="257">
-          <name>$arguments</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="257">
-          <name>$input</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="274" package="Karla">
-        <name>gravity</name>
-        <full_name>gravity</full_name>
-        <docblock line="266">
-          <description>Set the gravity</description>
-          <long-description></long-description>
-          <tag line="266" name="param" description="Gravity" type="string" variable="$gravity">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="266" name="return" description="" type="\Karla\Program\ImageMagick">
-            <type by_reference="false">\Karla\Program\ImageMagick</type>
-          </tag>
-        </docblock>
-        <argument line="274">
-          <name>$gravity</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="302" package="Karla">
-        <name>density</name>
-        <full_name>density</full_name>
-        <docblock line="287">
-          <description>Set the density of the output image.</description>
-          <long-description></long-description>
-          <tag line="287" name="param" description="The width of the image" type="integer" variable="$width">
-            <type by_reference="false">integer</type>
-          </tag>
-          <tag line="287" name="param" description="The height of the image" type="integer" variable="$height">
-            <type by_reference="false">integer</type>
-          </tag>
-          <tag line="287" name="param" description="If output is true density is set for the resulting image&#10;           If output is false density is used for reading the input image" type="boolean" variable="$output">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="287" name="return" description="" type="\Karla\Program\Convert">
-            <type by_reference="false">\Karla\Program\Convert</type>
-          </tag>
-          <tag line="287" name="throws" description="if density has already been called" type="\BadMethodCallException">
-            <type by_reference="false">\BadMethodCallException</type>
-          </tag>
-          <tag line="287" name="throws" description="" type="\InvalidArgumentException">
-            <type by_reference="false">\InvalidArgumentException</type>
-          </tag>
-        </docblock>
-        <argument line="302">
-          <name>$width</name>
-          <default>72</default>
-          <type/>
-        </argument>
-        <argument line="302">
-          <name>$height</name>
-          <default>72</default>
-          <type/>
-        </argument>
-        <argument line="302">
-          <name>$output</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="338" package="Karla">
-        <name>prepareOptions</name>
-        <full_name>prepareOptions</full_name>
-        <docblock line="330">
-          <description>Prepare option collection</description>
-          <long-description></long-description>
-          <tag line="330" name="param" description="Options" type="array" variable="$options">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="330" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="338">
-          <name>$options</name>
-          <default></default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="358" package="Karla">
-        <name>isOptionSet</name>
-        <full_name>isOptionSet</full_name>
-        <docblock line="348">
-          <description>Check if an option is already set</description>
-          <long-description></long-description>
-          <tag line="348" name="param" description="Option to look up" type="string" variable="$lookop">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="348" name="param" description="Optionlist to look in" type="array" variable="$optionList">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="348" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-        <argument line="358">
-          <name>$lookop</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="358">
-          <name>$optionList</name>
-          <default></default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="377" package="Karla">
-        <name>supportedColorSpace</name>
-        <full_name>supportedColorSpace</full_name>
-        <docblock line="369">
-          <description>Check if a colorspace is supported by ImageMagick.</description>
-          <long-description></long-description>
-          <tag line="369" name="param" description="Colorspace to check" type="string" variable="$colorSpace">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="369" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-        <argument line="377">
-          <name>$colorSpace</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="401" package="Karla">
-        <name>supportedImageTypes</name>
-        <full_name>supportedImageTypes</full_name>
-        <docblock line="393">
-          <description>Check if a image type is supported by ImageMagick.</description>
-          <long-description></long-description>
-          <tag line="393" name="param" description="Type to check" type="string" variable="$type">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="393" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-        <argument line="401">
-          <name>$type</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="426" package="Karla">
-        <name>supportedGravity</name>
-        <full_name>supportedGravity</full_name>
-        <docblock line="417">
-          <description>Check if a gravity is supported by ImageMagick.</description>
-          <long-description></long-description>
-          <tag line="417" name="param" description="Gravity to check" type="string" variable="$gravity">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="417" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="417" name="throws" description="if called in a wrong context" type="\BadMethodCallException">
-            <type by_reference="false">\BadMethodCallException</type>
-          </tag>
-        </docblock>
-        <argument line="426">
-          <name>$gravity</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="451" package="Karla">
-        <name>supportedLayerMethod</name>
-        <full_name>supportedLayerMethod</full_name>
-        <docblock line="442">
-          <description>Check if a method is supported by ImageMagick.</description>
-          <long-description></long-description>
-          <tag line="442" name="param" description="Method to check" type="string" variable="$method">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="442" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="442" name="throws" description="if called in a wrong context" type="\BadMethodCallException">
-            <type by_reference="false">\BadMethodCallException</type>
-          </tag>
-        </docblock>
-        <argument line="451">
-          <name>$method</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="476" package="Karla">
-        <name>supportedFormat</name>
-        <full_name>supportedFormat</full_name>
-        <docblock line="467">
-          <description>Check if a format is supported by ImageMagick.</description>
-          <long-description></long-description>
-          <tag line="467" name="param" description="Format to check" type="string" variable="$format">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="467" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="467" name="throws" description="if called in a wrong context" type="\BadMethodCallException">
-            <type by_reference="false">\BadMethodCallException</type>
-          </tag>
-        </docblock>
-        <argument line="476">
-          <name>$format</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="true" abstract="false" static="true" visibility="public" namespace="Karla\Program" line="505" package="Karla">
-        <name>validProgram</name>
-        <full_name>validProgram</full_name>
-        <docblock line="497">
-          <description>Check if the input is a valid ImageMagick program</description>
-          <long-description></long-description>
-          <tag line="497" name="param" description="Program name" type="string" variable="$program">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="497" name="return" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-        <argument line="505">
-          <name>$program</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <source>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</source>
-  </file>
-  <file path="Program/Composite.php" hash="b1ba7b9849b2735df9e578860b7b32cb" package="Karla">
-    <docblock line="2">
-      <description>Karla ImageMagick wrapper library</description>
-      <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
-      <tag line="2" name="category" description="Utility"/>
-      <tag line="2" name="package" description="Karla"/>
-      <tag line="2" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-      <tag line="2" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-      <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
-      <tag line="2" name="since" description="2012-04-05"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="Karla\Program" line="24" package="Karla">
-      <extends>\Karla\Program\ImageMagick</extends>
-      <name>Composite</name>
-      <full_name>\Karla\Program\Composite</full_name>
-      <docblock line="15">
-        <description>Class for wrapping ImageMagicks composite tool</description>
-        <long-description></long-description>
-        <tag line="15" name="category" description="Utility"/>
-        <tag line="15" name="package" description="Karla"/>
-        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="32" package="Karla">
-        <name>basefile</name>
-        <full_name>basefile</full_name>
-        <docblock line="27">
-          <description>Add base file argument</description>
-          <long-description></long-description>
-          <tag line="27" name="return" description="" type="\Karla\Program\Composite">
-            <type by_reference="false">\Karla\Program\Composite</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="42" package="Karla">
-        <name>changefile</name>
-        <full_name>changefile</full_name>
-        <docblock line="37">
-          <description>Add change file argument</description>
-          <long-description></long-description>
-          <tag line="37" name="return" description="" type="\Karla\Program\Composite">
-            <type by_reference="false">\Karla\Program\Composite</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="52" package="Karla">
-        <name>outputfile</name>
-        <full_name>outputfile</full_name>
-        <docblock line="47">
-          <description>Add output file argument</description>
-          <long-description></long-description>
-          <tag line="47" name="return" description="" type="\Karla\Program\Composite">
-            <type by_reference="false">\Karla\Program\Composite</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="68" package="Karla">
-        <name>raw</name>
-        <full_name>raw</full_name>
-        <docblock line="57">
-          <description>Raw arguments directly to ImageMagick</description>
-          <long-description></long-description>
-          <tag line="57" name="param" description="Arguments" type="string" variable="$arguments">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="57" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="57" name="return" description="" type="\Karla\Program\Composite">
-            <type by_reference="false">\Karla\Program\Composite</type>
-          </tag>
-          <tag line="57" name="see" description="\Karla\Program\ImageMagick::raw()" refers="\Karla\Program\ImageMagick::raw()"/>
-        </docblock>
-        <argument line="68">
-          <name>$arguments</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="68">
-          <name>$input</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="85" package="Karla">
-        <name>gravity</name>
-        <full_name>gravity</full_name>
-        <docblock line="75">
-          <description>Set the gravity</description>
-          <long-description>&lt;p&gt;(This method is only redefined to support autocompletion in ide's like Eclipse)&lt;/p&gt;</long-description>
-          <tag line="75" name="param" description="Gravity" type="string" variable="$gravity">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="75" name="return" description="" type="\Karla\Program\Composite">
-            <type by_reference="false">\Karla\Program\Composite</type>
-          </tag>
-        </docblock>
-        <argument line="85">
-          <name>$gravity</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <source>eJzdVU1PGzEQve+vmANSIYIspeUCtAXRL1ohoUJ76mXinexa8dqWPwgR4r937N2F8FWVllOtSMmO37x982bs7L2zjS3K0aiAEXxFpxCOWqzpGGspZjB3aC05UHLi0C0YlHAnn0/gBzkvjYbt8as+ui8wUG3cAr4HqWRY5KBFMWM+6MhzCGNojAOAL6ZBrcnD6cycw0eHuvKkYU8Zgao21X5DeE56XM3e5kQlBWnPXE0Idqcs5/P52FgOmegEjY2ryx7iy1aGjf5hzCXC8dFZz6FnkFbi8ExSy9DEyViYthzeW3ZG3Cj2UgtKSVubL7c2Nl9vbG5zvCw0tuS5QuqwP0+cqR22u4Ohhwq9hykXm42Uul521wO/1BovA0EwRv3vPpaFyH4cXldNF4FY67IpxWVRJNrsYFojOKgqmCDrnUpFgK6OLenQ7w6gfUchOn1D3m+U+dvGCRcB06hFSFOb6BLb6lrevuzAvHqWldBIv5ujVw/qEex4/ZyKOsJ/0mRisDE8o6aO8K81fcP5tQ4PlXQkglrwqN/q9x2BFvkAgQ8uHZaV6/Rhf2kd3N3rcyd8lAhZm9Ss/oHE9zTFqFgSK2FchoGxqeR1iGnOUPl0JPODDIA+4Xp7O+Af+spXB9FyuTs7Due9m4/ZnhA3la/3hcAbCC7S3UZwzYzqaO8nre0WT2rZKQUIDQHfYuf55rlV5eoZp0JLfO1UwL+M5nY6qnhsNVXJMB+tNY4di8Gky01Rrkjyp6IXnv9HZgQfhJLW09rvW39bwnL/Pj0o7mmj3bOvDq95ZL4Hd+/BBwOvil9yqibc</source>
-  </file>
-  <file path="Program/Identify.php" hash="7c7db47ed58566235e672f28f610765e" package="Karla">
-    <docblock line="2">
-      <description>Karla ImageMagick wrapper library</description>
-      <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
-      <tag line="2" name="category" description="Utility"/>
-      <tag line="2" name="package" description="Karla"/>
-      <tag line="2" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-      <tag line="2" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-      <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
-      <tag line="2" name="since" description="2012-04-05"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="Karla\Program" line="24" package="Karla">
-      <extends>\Karla\Program\ImageMagick</extends>
-      <name>Identify</name>
-      <full_name>\Karla\Program\Identify</full_name>
-      <docblock line="15">
-        <description>Class for wrapping ImageMagicks identify tool</description>
-        <long-description></long-description>
-        <tag line="15" name="category" description="Utility"/>
-        <tag line="15" name="package" description="Karla"/>
-        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
-      </docblock>
-      <property final="false" static="false" visibility="protected" line="32" namespace="Karla\Program" package="Karla">
-        <name>$inputFile</name>
-        <default></default>
-        <docblock line="27">
-          <description>Input file</description>
-          <long-description></long-description>
-          <tag line="27" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="43" package="Karla">
-        <name>inputfile</name>
-        <full_name>inputfile</full_name>
-        <docblock line="34">
-          <description>Add input argument</description>
-          <long-description></long-description>
-          <tag line="34" name="param" description="Input file path" type="string" variable="$filePath">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="34" name="return" description="" type="\Karla\Program\Identify">
-            <type by_reference="false">\Karla\Program\Identify</type>
-          </tag>
-          <tag line="34" name="throws" description="" type="\InvalidArgumentException">
-            <type by_reference="false">\InvalidArgumentException</type>
-          </tag>
-        </docblock>
-        <argument line="43">
-          <name>$filePath</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="69" package="Karla">
-        <name>execute</name>
-        <full_name>execute</full_name>
-        <docblock line="58">
-          <description>Execute the command</description>
-          <long-description></long-description>
-          <tag line="58" name="param" description="Reset the query" type="boolean" variable="$reset">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="58" name="param" description="Get the raw output" type="boolean" variable="$raw">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="58" name="see" description="\Karla\Program\Imagemagick#execute()" refers="\Karla\Program\Imagemagick#execute()"/>
-          <tag line="58" name="return" description="MetaData" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="69">
-          <name>$reset</name>
-          <default>true</default>
-          <type/>
-        </argument>
-        <argument line="69">
-          <name>$raw</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="91" package="Karla">
-        <name>verbose</name>
-        <full_name>verbose</full_name>
-        <docblock line="86">
-          <description>Add verbose argument</description>
-          <long-description></long-description>
-          <tag line="86" name="return" description="" type="\Karla\Program\Identify">
-            <type by_reference="false">\Karla\Program\Identify</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="107" package="Karla">
-        <name>getCommand</name>
-        <full_name>getCommand</full_name>
-        <docblock line="101">
-          <description>(non-PHPdoc)</description>
-          <long-description></long-description>
-          <tag line="101" name="see" description="\Karla\Program\Imagemagick#getCommand()" refers="\Karla\Program\Imagemagick#getCommand()"/>
-          <tag line="101" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="126" package="Karla">
-        <name>gravity</name>
-        <full_name>gravity</full_name>
-        <docblock line="116">
-          <description>Set the gravity</description>
-          <long-description>&lt;p&gt;Gravity has no effect when used in this context&lt;/p&gt;</long-description>
-          <tag line="116" name="param" description="Gravity" type="string" variable="$gravity">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="116" name="return" description="" type="\Karla\Program\Identify">
-            <type by_reference="false">\Karla\Program\Identify</type>
-          </tag>
-        </docblock>
-        <argument line="126">
-          <name>$gravity</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="146" package="Karla">
-        <name>density</name>
-        <full_name>density</full_name>
-        <docblock line="131">
-          <description>Set the density of the output image.</description>
-          <long-description>&lt;p&gt;Desity has no effect when used in this context&lt;/p&gt;</long-description>
-          <tag line="131" name="param" description="The width of the image" type="integer" variable="$width">
-            <type by_reference="false">integer</type>
-          </tag>
-          <tag line="131" name="param" description="The height of the image" type="integer" variable="$height">
-            <type by_reference="false">integer</type>
-          </tag>
-          <tag line="131" name="param" description="If output is true density is set for the resulting image&#10;           If output is false density is used for reading the input image" type="boolean" variable="$output">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="131" name="return" description="" type="\Karla\Program\Identify">
-            <type by_reference="false">\Karla\Program\Identify</type>
-          </tag>
-        </docblock>
-        <argument line="146">
-          <name>$width</name>
-          <default>72</default>
-          <type/>
-        </argument>
-        <argument line="146">
-          <name>$height</name>
-          <default>72</default>
-          <type/>
-        </argument>
-        <argument line="146">
-          <name>$output</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="162" package="Karla">
-        <name>raw</name>
-        <full_name>raw</full_name>
-        <docblock line="151">
-          <description>Raw arguments directly to ImageMagick</description>
-          <long-description></long-description>
-          <tag line="151" name="param" description="Arguments" type="string" variable="$arguments">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="151" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="151" name="return" description="" type="\Karla\Program\Identify">
-            <type by_reference="false">\Karla\Program\Identify</type>
-          </tag>
-          <tag line="151" name="see" description="\Karla\Program\ImageMagick::raw()" refers="\Karla\Program\ImageMagick::raw()"/>
-        </docblock>
-        <argument line="162">
-          <name>$arguments</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="162">
-          <name>$input</name>
-          <default>true</default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <source>eJzdV1lv20YQftevmLgGRBk6XLdBATn1gRyuWhgx7LQvTRGsyKG4NcVld5eWhcD/vbMHKZKi7MTpU/kicXbOb76dXb46zZO8Nzk46MEB/MZkymC2ZAu8ZAse3sJKsjxHCSmfSybXpGT0rn65gj9QKi4yeDn+wUvPQqZxIeQaftc85XpthTkLb8kfOOdWxAqdCAkAv4qEZRkquLkVd/BOsixSmMGrVIQsXYjoLEF2h9k4uj2xhikPMVPkK9E6n04mq9VqLHISiUKGOBZyMfEqarLkeuRfxlQiXM4+eB/ZLZjH+FDkZMF1UszHoVhOyrgTB8QmY8WzEI3R0eH3R6PDH0eHL0k+6WVsiYoqRKf78UqKhWTL4xLQ1ylTCmIq1gLJs0UdXQU8wkzzeA1aiPT/DuOkF1o4ZmXReK+RUq1D0vvc6xmvFj/zHMAsywsNMU/RS8qFszsmQWlJqHrRxP7mUmgMNUawz43tOzI93nJ7HkVgl4HJRbGklNruc0at9AFg3yRwxXRSLteeTYaQbzQqPxJ1IbOq7EquEylWCj7OsjuW8ujcp/H2PsRc09ZqFlXMqQ0QF1lo1lzqJmRQZTawip97ZVo8huCFTesT3nOlVU11UNMzzz7xWBl+/Qz9Dwl6ZKqSIOjDeIMB/e8PgBN/XepANNRkZfVDUaQRZELDHMFQgTox7h83wtnSIcPV7uqDMqXBxvSh+mdToWSti5s8NT1+P/+b2l4r8rgBhZWPTri6RhaxOSG3jYJOuCKVkjUGjb2q8tHJArVxbHZ9MDAg7PU7k3NuIi71Ohh46pnHM8GuO8OHLV6+vcew0GjxpM20pM3cTcw5jQxk5E2iQt1By2sjt37+KVCud5qzVYfxhTelVRCFJkDaWShEt3OXdud+hy7xYNAmvt9Bl6jZG6bZo7QunbiiCH8tCxzaJP1Lm+VGs0iNKtVFBJpOSx8xSxXW4XcbwvhqN97ywzdfvbf8u0Ed9O9QzoXC/rBBDaegtuhTpmMSd8nCaWloxUSaKWRFmh5v2XmsLJ/dWVLiFfgKh678pulDk7/PCP504MYG7D03lo9DXFi2HG/vATObPfQ7p3P3VO1mlfcVdE/Ib298h86ffxEj90ZlFXv/+ZwIMpGN6CIWiXDQxqa9NWluvXajZNfufBS+LfNN9S/oFPjEpGTroAuoDS3qYkLGmWyzZF9UKt4wl2g2tjftjkIk7PfhtNETEky/xgdNc+jv6MHoZM4zf/BtBM7EiMqkx1snyK7u3fjxSrfFO3vFazTwwkkhYYoOUsA4poMNVgld6gqF5t4CJg6dD5mmS9TjF5dmiDpEF53Bv2pneedBGaXNjy9hcokFxVOmahHbV3fqADc8HrdyfIPqm/HhtLagT5v9FY86r3XmHmTXyoxsKru8JMgXSdcxbNy4xcf8VMdx47Ct+5nFFSTKzdwSMHo3ozj2tzA3XE3vG4F2ubLHZN2XhdA4k3RRMm50dSGsO3wWX3yYwIFOu/yno2GJXfnmU+s+7r+EUNd0WSiPDQU0XokdqfnGanxpdJKi3DSVeQd65+21dgstVh2GbzBm1BllMmH+Cg9udgwN6r4VtGpeOH2ZKKPn8RD1j4InPy6qI8BVO53Sraca/t29MRqbwoe+jh19KC9b3UZPHWYPvX8BWDe5MA==</source>
+    </interface>
+    <source>eJzdkkFPGzEQhe/7K+bYRso6ULgURCNVhYYKKSot94kz8VrrtVfj2YSo6n+vvbuhICgHjvXF2ufx92ae9/xTW7WFmkwKmMA3ZIewaNDQDRqra9gxti0xOLti5H0qynXLr0u4I442eDgtP4zqXKOQCbyHn2KdlX0vtqjrxIMB3kvYSRUYAK5Dhd5ThNs6bOGS0a8jeTh3QaMzYT2vCLfky3V90V90VpOPiVWJtB+V2u12ZWiTFDrWVAY2aiyJqrEyHT/KNCLcLH6MDF9DXpkRE8RYqbpVqUOjDr5qCOJvx9F6TfnS8ezoeDo7mc5Ok64Kjw3FNCENtWeHIBdeiDdZ36RB0TnQDmNqawjUevMkZQnBxf89RVXYh1SWHAxjU/wqigzpU8trAl/uSXdCIBVBgjVpmPHoUDFnko49ROGU46iqfm+7VWoWNp3Xkv9NGmDv3p8987kieeyRngC482+3MiSfB9RLbt8pPvX7h9E22PWrNpxB2eF38Qd/nSP4</source>
   </file>
   <file path="Karla.php" hash="ae8659f41b9684325d60440fa442d67c" package="Karla">
     <docblock line="2">
@@ -2398,466 +2858,6 @@ to ImageMagick like you would have done directly in the consol.&lt;/p&gt;</long-
       <todo line="147">implement</todo>
     </markers>
     <source>eJztV21v2zYQ/u5fcXMDWM1iK83WL8vLMqTtlm2dA6Tbl2UwaIq2CEukQFJ2vSL/fUeKkmVbUl66Lx1GBEhC3stzzx2Pp7PvszjrhYeHPTiEX4hKCFynZM7ekzmnC1gpkmVMQcKniqg1Clm5m59u4A+mNJcCXo++8buXlBg2l2oNvxuecLN2mxmhC7QHhXG3RXITSwUAP8uYCME03C7kEt4pIiLNBJwlkpJkLqPLmJElE6NoceEUE06Z0GgrNib7LgxXq9VIZrglc0XZSKp56EV0mHIz9P+MMER4f/3B2xALsMva0Ghkzk2cT0dUpmHpNyyI2CDWXFBmlU6OX50Mj78dHr/G/bAnSMo0RsgK2bsrQmN2WtJ5lRCtYYahznjCgOIhF/P/Olthj7q439mYeZolLGXCaLirUdT71OtZq44ou5Asuw8RV4waaSvNbZenl0uiQBvl+HNbofudKb5EHuHAksvecHW6b1gxK0FAsNUmEWzXQUYUSb0LOEAcv2Fuy9PauiEmBiOdkXa4JlZyhTFfiyVJePSDmueWhbcfKcsMXpvtIPIpcg+zXFB7BpMJlQKR5NQEJZKXTvJTr4RxYGKuhxeamSsf+Ub01EndtzOR2RimRLMI0J1B3qVDBUQpshdLwYw7goNCUDcQ8yvXBuQMtiUqK4qZXImSYOuTOjiRQ/NM4nz2K+a87xObpGAb8S6BfAbBV8D1xIkFldjLmoxdDpCrnVZMQd8rI0nFEaQ5kjFFrj2nfZ+UWmLs8qT0+20pu2Wm4Kr7djy1eB9h0kNbSh49OjmWVFdbK6JBSIO9Lxefob5S3DAyTdjzTJAyunV31TReosZyse1jwj5ipeuN5LMqxmWioqh/BMdbFbJXpRUV/5Zfa9DaQ9evul1HdVo+zynZ1Bv6PWn06ztb2dDhvCro1r4WMxxVEC+WtWJQ5Ad9ORMRLP2kIp2Ay2H3/bESovsC1Yzsard3yHFnZ6zdtOZngWtXpVFQATxq7W7e5la9Nmi1Mfojtp0vi72m2WCHv7m/5o8iMAzhw/jNeDPAdDToL4upB+usbIf/09RJk2KpXLKxynAqb75dz+SqGtN8CIpliuGkb4ip8VaOHDlOcTshXAua5BEO3zh8FLK5yXIDJURYxRyHV4rDCY4oCD9au68U/4EyesIVU9JgO8es7o1gt0462JtbPZbzYi4Kak8AQmB2qA78C8AFCo7LyUqXvO6+QPadQmj4Uw5xRzBAwvjfbLD3XBUQilHh3EY0QXYT/IALBncXA1QcVPmrIXtI86xT8/5huFTJ7Elg4Wv8Ez8Un+B4YwkzkwbNKm3urJ9Jq6MWrWEnOl8Jf/5lX/hComtGHrwYwMjdHRmh7RfOrrNQvWL3vX8AGbvKgw==</source>
-  </file>
-  <file path="MetaData.php" hash="f7e4af8c545078b22faf387601a8087c" package="Karla">
-    <docblock line="2">
-      <description>Karla ImageMagick wrapper library</description>
-      <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
-      <tag line="2" name="category" description="Utility"/>
-      <tag line="2" name="package" description="Karla"/>
-      <tag line="2" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-      <tag line="2" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-      <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
-      <tag line="2" name="since" description="2012-04-05"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="Karla" line="24" package="Karla">
-      <extends>\SplFileInfo</extends>
-      <name>MetaData</name>
-      <full_name>\Karla\MetaData</full_name>
-      <docblock line="15">
-        <description>Class for wrapping image metadata</description>
-        <long-description></long-description>
-        <tag line="15" name="category" description="Utility"/>
-        <tag line="15" name="package" description="Karla"/>
-        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
-      </docblock>
-      <property final="false" static="false" visibility="private" line="32" namespace="Karla" package="Karla">
-        <name>$verboseImageinfo</name>
-        <default></default>
-        <docblock line="27">
-          <description>Raw image info</description>
-          <long-description></long-description>
-          <tag line="27" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="39" namespace="Karla" package="Karla">
-        <name>$imageinfo</name>
-        <default></default>
-        <docblock line="34">
-          <description>Raw image info</description>
-          <long-description></long-description>
-          <tag line="34" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="46" namespace="Karla" package="Karla">
-        <name>$format</name>
-        <default></default>
-        <docblock line="41">
-          <description>The image format.</description>
-          <long-description></long-description>
-          <tag line="41" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="53" namespace="Karla" package="Karla">
-        <name>$depth</name>
-        <default></default>
-        <docblock line="48">
-          <description>The image depth.</description>
-          <long-description></long-description>
-          <tag line="48" name="var" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="60" namespace="Karla" package="Karla">
-        <name>$colorspace</name>
-        <default></default>
-        <docblock line="55">
-          <description>The image colorspace.</description>
-          <long-description></long-description>
-          <tag line="55" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="67" namespace="Karla" package="Karla">
-        <name>$geometry</name>
-        <default></default>
-        <docblock line="62">
-          <description>The image geometry</description>
-          <long-description></long-description>
-          <tag line="62" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="74" namespace="Karla" package="Karla">
-        <name>$resolution</name>
-        <default></default>
-        <docblock line="69">
-          <description>The image resolution</description>
-          <long-description></long-description>
-          <tag line="69" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="81" namespace="Karla" package="Karla">
-        <name>$isPpi</name>
-        <default></default>
-        <docblock line="76">
-          <description>The resolution unit is measured in Pixels Per Inch</description>
-          <long-description></long-description>
-          <tag line="76" name="var" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="88" namespace="Karla" package="Karla">
-        <name>$isPpc</name>
-        <default></default>
-        <docblock line="83">
-          <description>The resolution unit is measured in Pixels Per Centimeter</description>
-          <long-description></long-description>
-          <tag line="83" name="var" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="private" line="95" namespace="Karla" package="Karla">
-        <name>$verbose</name>
-        <default></default>
-        <docblock line="90">
-          <description>Are we scanning in verbose output from identify</description>
-          <long-description></long-description>
-          <tag line="90" name="var" description="" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="107" package="Karla">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="97">
-          <description>Construct a new image file.</description>
-          <long-description></long-description>
-          <tag line="97" name="param" description="Image info as string" type="string" variable="$imageinfo">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="97" name="param" description="Should input be parsed as verbose" type="boolean" variable="$verbose">
-            <type by_reference="false">boolean</type>
-          </tag>
-          <tag line="97" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="107">
-          <name>$imageinfo</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="107">
-          <name>$verbose</name>
-          <default>false</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="145" package="Karla">
-        <name>getResolution</name>
-        <full_name>getResolution</full_name>
-        <docblock line="139">
-          <description>Get the image resolution.</description>
-          <long-description>&lt;p&gt;If the resolution is in ppc we convert it to ppi&lt;/p&gt;</long-description>
-          <tag line="139" name="return" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="169" package="Karla">
-        <name>getResolutionHeight</name>
-        <full_name>getResolutionHeight</full_name>
-        <docblock line="164">
-          <description>Get the resolution height.</description>
-          <long-description></long-description>
-          <tag line="164" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="181" package="Karla">
-        <name>getResolutionWidth</name>
-        <full_name>getResolutionWidth</full_name>
-        <docblock line="176">
-          <description>Get the resolution width.</description>
-          <long-description></long-description>
-          <tag line="176" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="193" package="Karla">
-        <name>getFormat</name>
-        <full_name>getFormat</full_name>
-        <docblock line="188">
-          <description>Get file format</description>
-          <long-description></long-description>
-          <tag line="188" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="203" package="Karla">
-        <name>getDepth</name>
-        <full_name>getDepth</full_name>
-        <docblock line="198">
-          <description>Get image depth</description>
-          <long-description></long-description>
-          <tag line="198" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="213" package="Karla">
-        <name>getColorspace</name>
-        <full_name>getColorspace</full_name>
-        <docblock line="208">
-          <description>Get colorspace</description>
-          <long-description></long-description>
-          <tag line="208" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="223" package="Karla">
-        <name>getGeometry</name>
-        <full_name>getGeometry</full_name>
-        <docblock line="218">
-          <description>Get the image geometry</description>
-          <long-description></long-description>
-          <tag line="218" name="return" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="233" package="Karla">
-        <name>getHeight</name>
-        <full_name>getHeight</full_name>
-        <docblock line="228">
-          <description>Get the image height</description>
-          <long-description></long-description>
-          <tag line="228" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="243" package="Karla">
-        <name>getWidth</name>
-        <full_name>getWidth</full_name>
-        <docblock line="238">
-          <description>Get the image width</description>
-          <long-description></long-description>
-          <tag line="238" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="253" package="Karla">
-        <name>listRaw</name>
-        <full_name>listRaw</full_name>
-        <docblock line="248">
-          <description>List the raw image information as a unorder list</description>
-          <long-description></long-description>
-          <tag line="248" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="275" package="Karla">
-        <name>parseFilename</name>
-        <full_name>parseFilename</full_name>
-        <docblock line="270">
-          <description>Search for the name of the file</description>
-          <long-description></long-description>
-          <tag line="270" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="285" package="Karla">
-        <name>parseFileformat</name>
-        <full_name>parseFileformat</full_name>
-        <docblock line="280">
-          <description>Search for file format</description>
-          <long-description></long-description>
-          <tag line="280" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="303" package="Karla">
-        <name>parseGeometry</name>
-        <full_name>parseGeometry</full_name>
-        <docblock line="296">
-          <description>Search for image geometry</description>
-          <long-description></long-description>
-          <tag line="296" name="todo" description="output not sanetized yet"/>
-          <tag line="296" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="319" package="Karla">
-        <name>parseColorspace</name>
-        <full_name>parseColorspace</full_name>
-        <docblock line="314">
-          <description>Search for image colorspace</description>
-          <long-description></long-description>
-          <tag line="314" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="335" package="Karla">
-        <name>parseDepth</name>
-        <full_name>parseDepth</full_name>
-        <docblock line="330">
-          <description>Search for image depth</description>
-          <long-description></long-description>
-          <tag line="330" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="351" package="Karla">
-        <name>parseResolution</name>
-        <full_name>parseResolution</full_name>
-        <docblock line="346">
-          <description>Search for image resolution</description>
-          <long-description></long-description>
-          <tag line="346" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="366" package="Karla">
-        <name>parseVerbose</name>
-        <full_name>parseVerbose</full_name>
-        <docblock line="357">
-          <description>Parse the image info array for the search line and
-return it for futher processing</description>
-          <long-description></long-description>
-          <tag line="357" name="param" description="Search string" type="string" variable="$search">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="357" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="366">
-          <name>$search</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="384" package="Karla">
-        <name>parse</name>
-        <full_name>parse</full_name>
-        <docblock line="375">
-          <description>Parse the image info string for the search line and
-return it for futher processing</description>
-          <long-description></long-description>
-          <tag line="375" name="param" description="Search string" type="string" variable="$search">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="375" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="384">
-          <name>$search</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="396" package="Karla">
-        <name>parseUnits</name>
-        <full_name>parseUnits</full_name>
-        <docblock line="389">
-          <description>Search for print unit.</description>
-          <long-description>&lt;p&gt;If not found we default to Pixels Per Inch.&lt;/p&gt;</long-description>
-          <tag line="389" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="425" package="Karla">
-        <name>getUnit</name>
-        <full_name>getUnit</full_name>
-        <docblock line="420">
-          <description>Get the resolution unit</description>
-          <long-description></long-description>
-          <tag line="420" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla" line="442" package="Karla">
-        <name>getHash</name>
-        <full_name>getHash</full_name>
-        <docblock line="434">
-          <description>Get hash of file</description>
-          <long-description></long-description>
-          <tag line="434" name="param" description="Name of hash algorithm to use; default is md5" type="string" variable="$hash">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="434" name="return" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="442">
-          <name>$hash</name>
-          <default>'md5'</default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="459" package="Karla">
-        <name>ppc2ppi</name>
-        <full_name>ppc2ppi</full_name>
-        <docblock line="451">
-          <description>Convert Pixels Per Centimeter (ppc) to Pixels Per Inch (ppi)</description>
-          <long-description></long-description>
-          <tag line="451" name="param" description="Input value" type="integer" variable="$value">
-            <type by_reference="false">integer</type>
-          </tag>
-          <tag line="451" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-        <argument line="459">
-          <name>$value</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="Karla" line="472" package="Karla">
-        <name>ppi2ppc</name>
-        <full_name>ppi2ppc</full_name>
-        <docblock line="464">
-          <description>Convert Pixels Per Inch (ppi) to Pixels Per Centimeter (ppc)</description>
-          <long-description></long-description>
-          <tag line="464" name="param" description="Input value" type="integer" variable="$value">
-            <type by_reference="false">integer</type>
-          </tag>
-          <tag line="464" name="return" description="" type="integer">
-            <type by_reference="false">integer</type>
-          </tag>
-        </docblock>
-        <argument line="472">
-          <name>$value</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <source>eJztWm1v2zYQ/u5fQQRBbWeJ7bQNtiZN2iJdW2/rEPRtwNosYCTaIiKLAknFSYv+9x0pSqIkSpadbsOG+UPjknfHu3uOx+PRj5/EQdwb7+z00A76GfMQo+kCz8lrPKfeFVpyHMeEo5BecsxvgUjRnb06Qx8IF5RF6GD0wIw+9bAkc8Zv0XtJQypv9WCMvSuQh1LheggnMmAcIfQTC3AUEYHeXrFr9ILjyBckQo9D5uFwzvynAcHXJBr5VyeaMaQeiQTICqSMD8fj5XI5YjEMsYR7ZMT4fGxIxHhB5Z75zwhMRK+n74yM6Aqpj5IhQMicyiC5HHlsMc7WHaeOKDQWNPKIYro/2b+/N3m4NzmA8XEvwgsiwEKS0h5ljjwNsRBoBkZqB9JojqjyKloQiX0s8X/dZeOep13wGux9DvYiciMJqIo+vY3DFzQk02jGel96PSVWO019dtAbvDSeooogHc0mn15jjoTk4E4zNNZ/Y06vwY9o+5rwSyaIDmDFf/SN5dNmwe8CYgQD6gssR+vKTtnaBPskloFTLo0gigh3C9ZsbXI9FjKuo3htpQvWtgXmhEHcq+xRl445x7du4Rlbm2hOBAsTCYloTeEFo1t8MY+SiEpEBexdLBJOfHA3OqM3JBToDFLjNPIC1+KXjIUER+7lqTiL6V1XPiWRpOCiHPn11vfq6z/jBC0JEh7kGJ20ImT2FGKJjBOJZpwtEPXVyjMnoK3LGmH1hU9ZBHGWeBJhFJFsj84gUdRiMsYcL0xUWlsym7c+03yjIyzKcZyJMdrmmjmkvA1YEirXK/MvCQJGAVCAxDJPLpkTmXBwHKN+2QvJJWRXNEsiT6N7ceFlVg8KO3ZzXdAxmuFQkKHm/tLLFNqWARV7JwVV4daMhM7QoEw2tARo348hJVM56EdMooBw0h8elQjK7HlKheXITRwynwy2PkVbuxYCbgHaXSrjpwlu0EL10mz4Npo3+e5oo3oPG0e0ETxXSbGN4DTPbFUqmIboPzwswVexVdUFg6HF+BXBpiUVDLarDkUd/JlPf+xrUPrnKgL0wOR8FccLjYHFsr+SJQPFYnqwkkm71+J4uJKj8LfFdrCSrQgHzda/6a/i0KGRErtp/w9Y9fnaS/+tJuqXRCLpOH6zNI2mMz1vnWJwgME5EseeOlpABUgpcKqBGAaDtCF7Nh/def6cE2k7t5IlV6dAi0Ifh9V5bfkYvSLpoZhpbqtdx8Ky+zg1YlAjtaGLvfsgbVDjhs083N2Mc/98WGOshIQlR5ueHTWtVBSoIHoqRF9X5LhGt5SCLf9q4K+xHa2IR2uBgNB5UC/AjWRnrVw5mUuR9UqLq8WXqiBVokoVrcTiUc0gKgSBbQdMCh/0BJmv6BBFSRiuYd6S+o5rwKbW/aakfUPjJoVxky7GqRLPXJkaTHLdP+oWvTDJumJIOZyyO1azOtZN624eNvm6VR1zM2vWprhe3ck39tHQqpB9nWuPx/aLXXMOrytXnKGtqhWXwS6KpSngbgg27Hu3WnkhtUozvXvvpph7yzboNWnU6xcqTG4p9UTUDlELwf0GwwWUcV+3/8QdtqfifoOX9Sxj7pSOE8FMfVR12tbjJDzZsuaUvCI7ZfegJ41XlsNaGVgIA4MJ9gKoBLRUsHr7ityi4xO1TNRWMzRUFXXtQ3qyhUapPPi79XisRiqnqOvsbBalVByhPljWXym5V//m8m4tpy9Kt7yUY9gUTG8J5uBF1fFUIaXKScTSSlBl+DVip1rlVUrU1qivhYJm/pCODsx9aVjEg57OxzvYttlp1WjSzH1omV5gS4iX7TK3urph2UQRETEn8wsY84LB1viPj5/E+c7HZ3u/T/YenX83VjinS8MXTUSExatin4qLdK/m8+jePTinkkhaQ8fHaL+6L0pHMJgGjpJw3CwJH4DLFjm3qiBWXpwrsuybXNPFxUKx/fCSzGdZt0s1RwSOiKSfiY9uSRPq9V6PE/PGsy7vdXbGPL+W11EvphpxV3jv3KR/NOzZ+n8d8JaFeb/jZqtYT+HeDXZL0kbAr6yqOqLZUlZZjfHOiFodkDqm9mQjqnjvs9nLKaiFEmvA2gBfyaBvsHdL8jaCsa1I74igu0hPX0w645b2uuqQmfH2Pahx0uvdHaJc7QKNblhkjBvB0PwCsx4WLa2c7VL3oBsqVmOwDo09adWVjlZFOVUVU43Fwplawar309cHhV9eHInUhbpow1Hmm7zukmmlkQApB18xjwhRlBS5d8vPIKnMbNL6GLxKZcnGNUvmXbNcFaeilm4oxFV13VRVl3eHrnKNo6CwPVT7JE01mr+2BdTHWKPJwKQLTuJQJedCTv+wvwtRvmu0qDTFqpVyR3ANBP9+dJtgLdfYRSvdkDdeMK1UAQtGUj9nVhtX05kusmZQSPiqy+qTGU5C3WWtvLE2tbw65hfTYa+mFqWT6JxV0seDekIx40U8iSWVeido+dVo9TAs0U/tA/OKd9z+YS2qK23aegO2QkSbe7mXsD2vrJueQxXl6NVKbNorblfifQTgw7bx/zoFTHT9HQZm/131kFJ57l9jE9c7QyoM2x5CtOLVYDQr9Cvbrb+idnCwWXHczf4Ai0C1CVwtgnIGVJSO/Per6TNoQep3SJzKYKGSRwL45clE/YTCP7iTa1/BCgOthiqUQFrf6ecSgdtjMHWhDB7k1xl5hmXQ7clYBpwt9S8kPk2jaxxS/xmfJwtw/I83HpRxqnxKlVDtIbBbJVeMRBLHjEu4w5Y91e/w4ndq3r2cQMO5rR7O6tlaTdChG1TT50TbYEDi+snFVP/Wwp6tgtb2i6ci72dPZFpSw7EGkmB6MAsZ44YS1pmMHjx68P1k8sOwsdJz+KUwvOKRqsP+ab9Q8Iu3iV/ujw4eFi752vsTaniYWA==</source>
   </file>
   <package name="Karla" full_name="Karla"/>
   <namespace name="Karla" full_name="Karla">
