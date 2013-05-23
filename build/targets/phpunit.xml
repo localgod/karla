@@ -8,8 +8,8 @@
     		<mkdir dir="${target.dir}/phpunit" />
    	</target>
 
-    <target name="${phpunitpath}phpunit" depends="phpunit-clean,phpunit-init">
-        <exec executable="phpunit">
+    <target name="phpunit" depends="phpunit-clean,phpunit-init">
+        <exec executable="${phpunitpath}phpunit">
             <arg line="--bootstrap ${test.dir}/bootstrap.php" />
             <arg line="--configuration ${test.dir}/phpunit.xml" />
         </exec>
