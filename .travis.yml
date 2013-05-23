@@ -9,7 +9,7 @@ before_script:
 - expect tools/build/tools.expect
 - pear channel-discover pear.phpunit.de
 #- pear channel-discover pear.pdepend.org
-- pear channel-discover pear.phpmd.org
+#- pear channel-discover pear.phpmd.org
 - pear channel-discover pear.phpdoc.org
 #- pear channel-discover pear.phpqatools.org
 - pear install -f phpunit/PHPUnit
@@ -22,7 +22,7 @@ before_script:
 - pear install -f --alldeps pear/PHP_CodeSniffer
 #- pear install -f phpqatools/PHP_CodeBrowser
 #- pear install -f pdepend/PHP_Depend
-- pear install -f phpmd/PHP_PMD
+#- pear install -f phpmd/PHP_PMD
 - pear install -f phpunit/phpdcd
 - pear install -f phpunit/phploc
 - pear install -f phpunit/phpcpd

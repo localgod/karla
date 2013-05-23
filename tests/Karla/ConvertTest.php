@@ -318,6 +318,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->outputfile('test-200x200.png')
             ->getCommand();
     }
+
     /**
      * Test
      *
@@ -331,11 +332,104 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
             ->inputfile('tests/_data/demo.jpg')
-            ->resize(200, 200)
             ->resample(200, 200, 72, 72)
+            ->resize(200, 200)
             ->outputfile('test-200x200.png')
             ->getCommand();
     }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resize
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function resizeTwice()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize(200, 200)
+            ->resize(200, 200)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resize
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resizeWithNoArguments()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize()
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resize
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resizeWithNonNumericWidth()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize('christmas')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resize
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resizeWithNonNumericHeight()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize(200, 'christmas')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resize
+     *
+     * @return void
+     */
+    public function resizeWithoutMaintainingAspectRatio()
+    {
+        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize(200, 200, false)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 200x200!\> "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
+    }
+
     /**
      * Test
      *
@@ -367,10 +461,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function resampleWidthNotNumeric()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->resample("christmas", 200, 72, 72)
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample("christmas", 200, 72, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -385,10 +479,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function resampleHeightNotNumeric()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->resample(200, "christmas", 72, 72)
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample(200, "christmas", 72, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -403,10 +497,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function resampleOriginalHeightNotNumeric()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->resample(200, 200, 72, "christmas")
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample(200, 200, 72, "christmas")
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -421,10 +515,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function resampleOriginalWidthNotNumeric()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->resample(200, 200, "christmas", 72)
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample(200, 200, "christmas", 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -555,12 +649,14 @@ class ConvertTest extends PHPUnit_Framework_TestCase
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
+
     /**
      * Test
      *
      * @test
      * @covers Convert::density
      * @expectedException BadMethodCallException
+     *
      * @return void
      */
     public function densityWithResample()
@@ -833,6 +929,132 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     *
+     * @return crop
+     */
+    public function cropWidthOffset()
+    {
+        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->crop(100, 100, 10, 10)
+        ->outputfile('test-200x200.png')
+        ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+10+10 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     *
+     * @return crop
+     */
+    public function cropWidthNegativeOffset()
+    {
+        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->crop(100, 100, -10, -10)
+        ->outputfile('test-200x200.png')
+        ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100-10-10 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     * @expectedException BadMethodCallException
+     *
+     * @return crop
+     */
+    public function cropTwice()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->crop(100, 100)
+            ->crop(100, 100)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     * @expectedException InvalidArgumentException
+     *
+     * @return crop
+     */
+    public function cropWithInvalidWidth()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->crop('chrismas', 100)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     * @expectedException InvalidArgumentException
+     *
+     * @return crop
+     */
+    public function cropWithInvalidHeight()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->crop(100, 'chrismas')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     * @expectedException InvalidArgumentException
+     *
+     * @return crop
+     */
+    public function cropWithInvalidXOffset()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->crop(100, 100, 'chrismas')
+        ->outputfile('test-200x200.png')
+        ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::crop
+     * @expectedException InvalidArgumentException
+     *
+     * @return crop
+     */
+    public function cropWithInvalidYOffset()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->crop(100, 100, 0, 'chrismas')
+        ->outputfile('test-200x200.png')
+        ->getCommand();
     }
 
     /**

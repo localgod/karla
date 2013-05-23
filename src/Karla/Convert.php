@@ -597,10 +597,7 @@ class Convert extends ImageMagick
         if ($this->isOptionSet('crop', $this->inputOptions)) {
             throw new BadMethodCallException('crop can only be called once.');
         }
-        if ($width == "" || $height == "") {
-            $message = 'You must supply height and width to crop the image';
-            throw new InvalidArgumentException($message);
-        }
+
         if (! is_numeric($width) && $width != '') {
             $message = 'width must be an integer value or empty.';
             throw new InvalidArgumentException($message);
