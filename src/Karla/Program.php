@@ -1,6 +1,4 @@
 <?php
-namespace Karla;
-
 /**
  * Karla ImageMagick wrapper library
  *
@@ -13,6 +11,7 @@ namespace Karla;
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
  */
+namespace Karla;
 /**
  * Interface for all classes wrapping ImageMagick tools
  *

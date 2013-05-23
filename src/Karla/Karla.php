@@ -1,6 +1,4 @@
 <?php
-namespace Karla;
-
 /**
  * Karla Imagemagick wrapper library
  *
@@ -13,6 +11,7 @@ namespace Karla;
  * @link     https://github.com/localgod/Karla Karla
  * @since    2010-06-05
  */
+namespace Karla;
 /**
  * Karla core class
  *
@@ -99,7 +98,7 @@ class Karla
      *            Cache controller
      *
      * @return void
-     * @throws InvalidArgumentException if path for imagemagick is invalid
+     * @throws \InvalidArgumentException if path for imagemagick is invalid
      */
     private function __construct($binPath, $cache)
     {
@@ -127,7 +126,7 @@ class Karla
      *            Arguments for the tool
      *
      * @return string Result of the command if any
-     * @throws InvalidArgumentException if you try to run a non ImageMagick program
+     * @throws \InvalidArgumentException if you try to run a non ImageMagick program
      */
     public function raw($program, $arguments = "")
     {

@@ -1,5 +1,4 @@
 <?php
-namespace Karla\Program;
 /**
  * Karla ImageMagick wrapper library
  *
@@ -12,6 +11,7 @@ namespace Karla\Program;
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
  */
+namespace Karla\Program;
 /**
  * Class for wrapping ImageMagick arguments used by all tools
  *
@@ -150,11 +150,11 @@ abstract class ImageMagick implements \Karla\Program
      *            Path to binaries
      * @param string $bin
      *            Binary
-     * @param Cache $cache
+     * @param \Karla\Cache|null $cache
      *            Cache controller (default null = no cache)
      *
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     final public function __construct($binPath, $bin, $cache = null)
     {
@@ -296,8 +296,8 @@ abstract class ImageMagick implements \Karla\Program
      *            If output is false density is used for reading the input image
      *
      * @return Convert
-     * @throws BadMethodCallException if density has already been called
-     * @throws InvalidArgumentException
+     * @throws \BadMethodCallException if density has already been called
+     * @throws \InvalidArgumentException
      */
     public function density($width = 72, $height = 72, $output = true)
     {
@@ -421,7 +421,7 @@ abstract class ImageMagick implements \Karla\Program
      *            Gravity to check
      *
      * @return boolean
-     * @throws BadMethodCallException if called in a wrong context
+     * @throws \BadMethodCallException if called in a wrong context
      */
     final protected function supportedGravity($gravity)
     {
@@ -446,7 +446,7 @@ abstract class ImageMagick implements \Karla\Program
      *            Method to check
      *
      * @return boolean
-     * @throws BadMethodCallException if called in a wrong context
+     * @throws \BadMethodCallException if called in a wrong context
      */
     final protected function supportedLayerMethod($method)
     {
@@ -471,7 +471,7 @@ abstract class ImageMagick implements \Karla\Program
      *            Format to check
      *
      * @return boolean
-     * @throws BadMethodCallException if called in a wrong context
+     * @throws \BadMethodCallException if called in a wrong context
      */
     final protected function supportedFormat($format)
     {

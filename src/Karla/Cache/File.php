@@ -1,6 +1,4 @@
 <?php
-namespace Karla\Cache;
-
 /**
  * Karla ImageMagick wrapper library
  *
@@ -13,6 +11,7 @@ namespace Karla\Cache;
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
  */
+namespace Karla\Cache;
 /**
  * Class for file caching
  *
@@ -22,7 +21,7 @@ namespace Karla\Cache;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  */
-class File implements Cache
+class File implements \Karla\Cache
 {
 
     /**
@@ -38,7 +37,7 @@ class File implements Cache
      * @param string $dirName
      *            Path to cach directory
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function __construct($dirName)
     {
@@ -52,7 +51,7 @@ class File implements Cache
      *            List of options
      *
      * @return string the created path
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function options2Path(array $options)
     {
@@ -70,9 +69,9 @@ class File implements Cache
      *            Path to the cache directory
      *
      * @return void
-     * @throws InvalidArgumentException if path was not found
-     * @throws InvalidArgumentException if path was not writeable
-     * @throws InvalidArgumentException if path was a directoy
+     * @throws \InvalidArgumentException if path was not found
+     * @throws \InvalidArgumentException if path was not writeable
+     * @throws \InvalidArgumentException if path was a directoy
      */
     private function setCacheDir($dirName)
     {

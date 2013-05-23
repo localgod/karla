@@ -1,6 +1,4 @@
 <?php
-namespace Karla\Program;
-
 /**
  * Karla ImageMagick wrapper library
  *
@@ -13,6 +11,7 @@ namespace Karla\Program;
  * @link     https://github.com/localgod/Karla Karla
  * @since    2012-04-05
  */
+namespace Karla\Program;
 /**
  * Class for wrapping ImageMagicks convert tool
  *
@@ -46,7 +45,7 @@ class Convert extends ImageMagick
      *            Input file path
      *
      * @return Convert
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function inputfile($filePath)
     {
@@ -72,7 +71,7 @@ class Convert extends ImageMagick
      *            Include the used options as part of the filename
      *
      * @return Convert
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @todo Implement include options to filename
      */
     public function outputfile($filePath, $includeOptions = false)
@@ -104,7 +103,7 @@ class Convert extends ImageMagick
      *            Color
      *
      * @return Convert
-     * @throws BadMethodCallException if background has already been called
+     * @throws \BadMethodCallException if background has already been called
      */
     public function background($color)
     {
@@ -148,8 +147,8 @@ class Convert extends ImageMagick
      *            Original image resolution
      *
      * @return Convert
-     * @throws BadMethodCallException if resample, resize or density has already been called
-     * @throws InvalidArgumentException
+     * @throws \BadMethodCallException if resample, resize or density has already been called
+     * @throws \InvalidArgumentException
      */
     public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "")
     {
@@ -219,10 +218,13 @@ class Convert extends ImageMagick
 
         ! is_array($this->outputOptions) ? $this->outputOptions = array() : null;
         ! is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-        $inOptions = $this->prepareOptions($this->inputOptions) == '' ? '' : $this->prepareOptions($this->inputOptions) . ' ';
-        $outOptions = $this->prepareOptions($this->outputOptions) == '' ? '' : $this->prepareOptions($this->outputOptions) . ' ';
+        $inOptions = $this->prepareOptions($this->inputOptions) == '' ?
+            '' : $this->prepareOptions($this->inputOptions) . ' ';
+        $outOptions = $this->prepareOptions($this->outputOptions) == '' ?
+            '' : $this->prepareOptions($this->outputOptions) . ' ';
 
-        return $this->binPath . $this->bin . ' ' . $inOptions . $this->inputFile . ' ' . $outOptions . $this->outputFile;
+        return $this->binPath . $this->bin . ' ' . $inOptions .
+            $this->inputFile . ' ' . $outOptions . $this->outputFile;
     }
 
     /**
@@ -246,7 +248,7 @@ class Convert extends ImageMagick
      */
     public function execute()
     {
-        if ($this->cache instanceof Cache) {
+        if ($this->cache instanceof \Karla\Cache) {
             ! is_array($this->inputOptions) ? $this->inputOptions = array() : null;
             if ($this->cache->isCached($this->inputFile, $this->inputOptions)) {
                 return $this->cache->getCached($this->inputFile, $this->inputOptions);
@@ -272,8 +274,8 @@ class Convert extends ImageMagick
      *            Image height
      *
      * @return Convert
-     * @throws BadMethodCallException if size has already been called
-     * @throws InvalidArgumentException
+     * @throws \BadMethodCallException if size has already been called
+     * @throws \InvalidArgumentException
      */
     public function size($width = "", $height = "")
     {
@@ -320,8 +322,8 @@ class Convert extends ImageMagick
      * Flatten layers in an image.
      *
      * @return Convert
-     * @throws BadMethodCallException if flatten has already been called
-     * @throws InvalidArgumentException
+     * @throws \BadMethodCallException if flatten has already been called
+     * @throws \InvalidArgumentException
      */
     public function flatten()
     {
@@ -339,8 +341,8 @@ class Convert extends ImageMagick
      * Strip image of any profiles or comments.
      *
      * @return Convert
-     * @throws BadMethodCallException if strip has already been called
-     * @throws InvalidArgumentException
+     * @throws \BadMethodCallException if strip has already been called
+     * @throws \InvalidArgumentException
      */
     public function strip()
     {
@@ -358,7 +360,7 @@ class Convert extends ImageMagick
      * Flip image
      *
      * @return Convert
-     * @throws BadMethodCallException if flip has already been called
+     * @throws \BadMethodCallException if flip has already been called
      */
     public function flip()
     {
@@ -382,7 +384,7 @@ class Convert extends ImageMagick
      *            left over from rotating the image
      *
      * @return Convert
-     * @throws BadMethodCallException if rotate has already been called
+     * @throws \BadMethodCallException if rotate has already been called
      */
     public function rotate($degree, $background = '#ffffff')
     {
@@ -401,7 +403,7 @@ class Convert extends ImageMagick
      * Flop image
      *
      * @return Convert
-     * @throws BadMethodCallException if strip has already been called
+     * @throws \BadMethodCallException if strip has already been called
      */
     public function flop()
     {
@@ -422,8 +424,8 @@ class Convert extends ImageMagick
      *            The output image type
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if type has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if type has already been called
      */
     public function type($type)
     {
@@ -448,7 +450,7 @@ class Convert extends ImageMagick
      *            Path to the profile
      *
      * @return Convert
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function profile($profilePath)
     {
@@ -471,8 +473,8 @@ class Convert extends ImageMagick
      *            Path to the profile
      *
      * @return Convert
-     * @throws BadMethodCallException if changeprofile has already been called
-     * @throws InvalidArgumentException
+     * @throws \BadMethodCallException if changeprofile has already been called
+     * @throws \InvalidArgumentException
      */
     public function changeProfile($profilePathFrom, $profilePathTo)
     {
@@ -501,7 +503,7 @@ class Convert extends ImageMagick
      *            The method to use
      *
      * @return Convert
-     * @throws InvalidArgumentException if the layer method wasn't recognized
+     * @throws \InvalidArgumentException if the layer method wasn't recognized
      */
     public function layers($method)
     {
@@ -528,8 +530,8 @@ class Convert extends ImageMagick
      *            Should we prohipped scaling up? default is true
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if resize has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if resize has already been called
      */
     public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true)
     {
@@ -589,8 +591,8 @@ class Convert extends ImageMagick
      *            Y offset from upper-left corner
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if crop has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if crop has already been called
      */
     public function crop($width, $height, $xOffset = 0, $yOffset = 0)
     {
@@ -646,8 +648,8 @@ class Convert extends ImageMagick
      *            Format to use; default is jpeg
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if quality has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if quality has already been called
      * @throws \RangeException if quality is not a value between 0 - 100
      *
      * @return Convert
@@ -697,8 +699,8 @@ class Convert extends ImageMagick
      *            The colorspace to use
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if colorspace has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if colorspace has already been called
      */
     public function colorspace($colorSpace)
     {
@@ -722,8 +724,8 @@ class Convert extends ImageMagick
      *            The threshold to use
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if sepia has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if sepia has already been called
      */
     public function sepia($threshold = 80)
     {
@@ -747,8 +749,8 @@ class Convert extends ImageMagick
      *            The threshold to use
      *
      * @return Convert
-     * @throws InvalidArgumentException
-     * @throws BadMethodCallException if angle has already been called
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException if angle has already been called
      */
     public function polaroid($angle = 0)
     {
@@ -772,7 +774,7 @@ class Convert extends ImageMagick
      *            The color of the border
      *
      * @return Convert
-     * @throws BadMethodCallException if borderColor has already been called
+     * @throws \BadMethodCallException if borderColor has already been called
      */
     public function borderColor($color = '#DFDFDF')
     {
