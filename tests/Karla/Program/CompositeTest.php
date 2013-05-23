@@ -71,6 +71,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Composite::raw
+     * @covers Karla\Program\ImageMagick::raw
      *
      * @return void
      */

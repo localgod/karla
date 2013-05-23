@@ -23,14 +23,6 @@ namespace Karla;
  */
 class Karla
 {
-
-    /**
-     * Path to Karla root directory
-     *
-     * @var string $path Karla root directory
-     */
-    private static $path;
-
     /**
      * Path to imagemagick binary
      *
@@ -61,32 +53,19 @@ class Karla
      *            Cache controller (optional)
      *
      * @return Karla
+     * @throws \InvalidArgumentException
      */
     public static function getInstance($binPath = '/opt/local/bin/', Cache $cache = null)
     {
         if (! (self::$instance instanceof self)) {
             try {
                 self::$instance = new self($binPath, $cache);
-            } catch (InvalidArgumentException $e) {
-                exit($e->getMessage() . '(' . $binPath . ')');
+            } catch (\InvalidArgumentException $e) {
+                throw new \RuntimeException($e->getMessage() . '(' . $binPath . ')');
             }
         }
 
         return self::$instance;
-    }
-
-    /**
-     * Get the root path to Karla
-     *
-     * @return string
-     */
-    public static function getPath()
-    {
-        if (! self::$path) {
-            self::$path = dirname(__FILE__);
-        }
-
-        return self::$path;
     }
 
     /**
@@ -189,7 +168,7 @@ class Karla
      * @param string $savePath
      *            Image save path
      *
-     * @return string - path to generated image
+     * @return string Path to generated image
      */
     public function createBackgroundImage($width, $height, $color, $savePath = '')
     {

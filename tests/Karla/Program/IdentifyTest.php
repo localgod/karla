@@ -80,6 +80,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @covers Karla\Program\Identify::execute
+     * @covers Karla\MetaData::__construct
+     * @covers Karla\Program\ImageMagick::reset
      *
      * @return void
      */
@@ -91,12 +93,31 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
             ->execute(true, false);
         $this->assertInstanceOf('Karla\Metadata', $result);
     }
+    /**
+     * Test
+     *
+     * @covers Karla\Program\Identify::execute
+     * @covers Karla\MetaData::__construct
+     * @covers Karla\Program\ImageMagick::reset
+     *
+     * @return void
+     */
+    public function executeNoRawVerbose()
+    {
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $result = $karla->identify()
+            ->verbose()
+            ->inputfile('tests/_data/demo.jpg')
+            ->execute(true, false);
+        $this->assertInstanceOf('Karla\Metadata', $result);
+    }
 
     /**
      * Test
      *
      * @test
      * @covers Karla\Program\Identify::execute
+     * @covers Karla\Program\ImageMagick::reset
      *
      * @return void
      */
@@ -114,6 +135,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Identify::execute
+     * @covers Karla\MetaData::__construct
+     * @covers Karla\Program\ImageMagick::reset
      *
      * @return void
      */
@@ -212,7 +235,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function isDirty()
     {
-        $this->assertTrue(! Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertTrue(! Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->isDirty());
     }
 
@@ -263,6 +286,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Identify::raw
+     * @covers Karla\Program\ImageMagick::raw
      *
      * @return void
      */
@@ -296,9 +320,9 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function validProgram()
     {
-        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->validProgram('identify'));
-        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->validProgram('git'));
     }
 }

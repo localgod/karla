@@ -52,6 +52,7 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\MetaData::getResolutionHeight
+     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -68,6 +69,7 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\MetaData::getResolutionHeight
+     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -85,6 +87,7 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\MetaData::getResolutionWidth
+     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -102,6 +105,7 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\MetaData::getResolutionWidth
+     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -109,6 +113,35 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
     {
         $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->inputfile('tests/_data/demo.jpg')
+            ->execute(true, false);
+        $this->assertEquals(null, $this->object->getResolutionWidth());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Karla\MetaData
+     * @return void
+     */
+    public function parseMethods()
+    {
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+            ->inputfile('tests/_data/demo.jpg')
+            ->execute(true, false);
+        $this->assertEquals(null, $this->object->getResolutionWidth());
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Karla\MetaData
+     * @return void
+     */
+    public function parseMethodsVerbose()
+    {
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+            ->inputfile('tests/_data/demo.jpg')->verbose()
             ->execute(true, false);
         $this->assertEquals(null, $this->object->getResolutionWidth());
     }
@@ -410,5 +443,21 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
             ->inputfile('tests/_data/demo.jpg')
             ->execute(true, false);
         $this->assertEquals('b48a66ad34a1942857d8b22325ac9898', $this->object->getHash());
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Karla\MetaData::getHash
+     * @expectedException InvalidArgumentException
+     * @return void
+     */
+    public function getHashWithInvalidAlgorithm()
+    {
+        $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+        ->inputfile('tests/_data/demo.jpg')
+        ->execute(true, false);
+        $this->object->getHash('sha');
     }
 }

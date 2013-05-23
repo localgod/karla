@@ -108,7 +108,6 @@ class MetaData extends \SplFileInfo
     {
         $this->verbose = $verbose;
         if ($this->verbose) {
-            // exit('not here');
             $this->verboseImageinfo = explode("\n", $imageinfo);
             $this->parseFileformat();
             $this->parseGeometry();
@@ -288,8 +287,6 @@ class MetaData extends \SplFileInfo
         preg_match("/^[\s]*[A-Z0-9]+/", $format, $matches);
         if (is_array($matches) && count($matches) == 1) {
             $this->format = strtolower(trim($matches[0]));
-        } else {
-            $this->format = '';
         }
     }
 
@@ -306,8 +303,6 @@ class MetaData extends \SplFileInfo
         preg_match("/^[0-9]*x[0-9]*/", $geometry, $matches);
         if (is_array($matches) && count($matches) == 1) {
             $this->geometry = explode("x", $matches[0]);
-        } else {
-            $this->geometry = '';
         }
     }
 
@@ -322,8 +317,6 @@ class MetaData extends \SplFileInfo
         preg_match("/^[a-zA-Z0-9]*/", $colorspace, $matches);
         if (is_array($matches)) {
             $this->colorspace = strtolower(trim($matches[0]));
-        } else {
-            $this->colorspace = '';
         }
     }
 
@@ -338,8 +331,6 @@ class MetaData extends \SplFileInfo
         preg_match("/^[0-9]*/", $depth, $matches);
         if (is_array($matches)) {
             $this->depth = $matches[0];
-        } else {
-            $this->depth = '';
         }
     }
 
@@ -441,7 +432,7 @@ class MetaData extends \SplFileInfo
      */
     public function getHash($hash = 'md5')
     {
-        if ($hash = 'md5') {
+        if ($hash == 'md5') {
             return md5_file($this->getPathname());
         } else {
             throw new \InvalidArgumentException($hash . ' is not a supported hash algorithm');

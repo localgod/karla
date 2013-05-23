@@ -112,6 +112,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::background
+     * @covers Karla\Program\ImageMagick::isOptionSet
      *
      * @return void
      */
@@ -131,6 +132,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::background
+     * @covers Karla\Program\ImageMagick::isOptionSet
      * @expectedException BadMethodCallException
      *
      * @return void
@@ -863,6 +865,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::layers
+     * @covers Karla\Program\ImageMagick::supportedLayerMethod
      *
      * @return void
      */
@@ -1156,6 +1159,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::colorspace
+     * @covers Karla\Program\ImageMagick::supportedColorSpace
      *
      * @return void
      */
@@ -1212,6 +1216,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::gravity
+     * @covers Karla\Program\ImageMagick::supportedGravity
      *
      * @return void
      */
@@ -1289,6 +1294,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::raw
+     * @covers Karla\Program\ImageMagick::raw
      *
      * @return void
      */
@@ -1433,6 +1439,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers Karla\Program\Convert::type
+     * @covers Karla\Program\ImageMagick::supportedImageTypes
      *
      * @return void
      */
