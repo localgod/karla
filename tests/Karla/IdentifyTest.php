@@ -34,7 +34,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
+        $this->assertEquals($command, 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';identify "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -121,7 +121,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->verbose()->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "tests/_data/demo.jpg"');
+        $this->assertEquals($command, 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';identify -verbose "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -134,7 +134,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
     {
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->verbose()->verbose()->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify -verbose "tests/_data/demo.jpg"');
+        $this->assertEquals($command, 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';identify -verbose "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -148,7 +148,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Identify', $karla->identify()->gravity(''));
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
+        $this->assertEquals($command, 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';identify "tests/_data/demo.jpg"');
     }
     /**
      * Test
@@ -162,7 +162,7 @@ class IdentifyTest extends PHPUnit_Framework_TestCase
         $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
         $command = $karla->identify()->inputfile('tests/_data/demo.jpg')->gravity('center')->gravity('center')
                 ->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:/opt/local/bin/;identify "tests/_data/demo.jpg"');
+        $this->assertEquals($command, 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';identify "tests/_data/demo.jpg"');
     }
 
     /**

@@ -104,7 +104,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->inputfile('tests/_data/demo.jpg')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -123,7 +123,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->background('red')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -background "red" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -background "red" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -162,7 +162,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->borderColor('red')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -201,7 +201,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->borderColor('#666666')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -221,7 +221,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->borderColor('rgb(255,255,255)')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -258,7 +258,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->removeProfile('iptc')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -277,7 +277,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->resample(200, 200, 72, 72)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -296,7 +296,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->resample(200)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -331,7 +331,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->size(200, 200)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -387,7 +387,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->density()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -406,7 +406,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->flatten()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -flatten "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -flatten "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -444,7 +444,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->strip()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -strip "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -strip "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -482,7 +482,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->profile('tests/_data/sRGB_Color_Space_Profile.icm')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -519,7 +519,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -538,7 +538,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->layers('flatten')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -575,7 +575,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->resize(100, 100)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -594,7 +594,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->crop(100, 100)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -613,7 +613,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->quality(80)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -quality 80 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -quality 80 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -705,7 +705,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->colorspace('rgb')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -colorspace rgb "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -colorspace rgb "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -761,7 +761,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->gravity('center')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -868,7 +868,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->flip()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -flip "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -flip "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -906,7 +906,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->rotate(- 45, 'gray')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -rotate "-45"  -background "gray" "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -rotate "-45"  -background "gray" "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -944,7 +944,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->flop()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -flop "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -flop "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -982,7 +982,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->type('Grayscale')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -type Grayscale "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -type Grayscale "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -1038,7 +1038,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->sepia()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert "tests/_data/demo.jpg" -sepia-tone 80% "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -sepia-tone 80% "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -1112,7 +1112,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->polaroid()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:/opt/local/bin/;convert -polaroid 0 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -polaroid 0 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
