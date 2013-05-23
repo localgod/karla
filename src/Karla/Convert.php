@@ -310,6 +310,9 @@ class Convert extends ImageMagick
      */
     public function density($width = 72, $height = 72, $output = true)
     {
+        if ($this->isOptionSet('resample', $this->inputOptions)) {
+            throw new BadMethodCallException('You may not use resample option with density option');
+        }
         return parent::density($width, $height, $output);
     }
 
@@ -478,11 +481,11 @@ class Convert extends ImageMagick
             throw new BadMethodCallException($message);
         }
         if (! file_exists($profilePathFrom)) {
-            $message = 'Could not add input profile as input file (' . $profilePath . ') could not be found.';
+            $message = 'Could not add input profile as input file (' . $profilePathFrom . ') could not be found.';
             throw new InvalidArgumentException($message);
         }
         if (! file_exists($profilePathTo)) {
-            $message = 'Could not add output profile as input file (' . $profilePath . ') could not be found.';
+            $message = 'Could not add output profile as input file (' . $profilePathTo . ') could not be found.';
             throw new InvalidArgumentException($message);
         }
         $this->profile($profilePathFrom);
@@ -532,6 +535,10 @@ class Convert extends ImageMagick
     {
         if ($this->isOptionSet('resize', $this->inputOptions)) {
             throw new BadMethodCallException('resize can only be called once.');
+        }
+
+        if ($this->isOptionSet('resample', $this->inputOptions)) {
+            throw new BadMethodCallException('You may not use resample option with resize option');
         }
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';

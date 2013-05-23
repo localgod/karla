@@ -104,7 +104,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->inputfile('tests/_data/demo.jpg')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -123,7 +123,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->background('red')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -background "red" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background "red" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -162,7 +162,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->borderColor('red')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -201,7 +201,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->borderColor('#666666')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -221,7 +221,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->borderColor('rgb(255,255,255)')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -258,7 +258,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->removeProfile('iptc')
             ->outputfile('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -277,8 +277,154 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->resample(200, 200, 72, 72)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function resampleTwice()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample(200, 200, 72, 72)
+            ->resample(200, 200, 72, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function resampleWithResize()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize(200, 200)
+            ->resample(200, 200, 72, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resize
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function resizeWithResample()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resize(200, 200)
+            ->resample(200, 200, 72, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function resampleWithDensity()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->density()
+            ->resample(200, 200, 72, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resampleWidthNotNumeric()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->resample("christmas", 200, 72, 72)
+        ->outputfile('test-200x200.png')
+        ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resampleHeightNotNumeric()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->resample(200, "christmas", 72, 72)
+        ->outputfile('test-200x200.png')
+        ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resampleOriginalHeightNotNumeric()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->resample(200, 200, 72, "christmas")
+        ->outputfile('test-200x200.png')
+        ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::resample
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function resampleOriginalWidthNotNumeric()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->resample(200, 200, "christmas", 72)
+        ->outputfile('test-200x200.png')
+        ->getCommand();
     }
 
     /**
@@ -296,7 +442,26 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->resample(200)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test
+     *
+     * @covers Convert::resample
+     *
+     * @return void
+     * @todo not working
+     */
+    public function resampleWithOnlyOriginalWidth()
+    {
+        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample(200, 200, 72)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72 -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -331,7 +496,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->size(200, 200)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -347,11 +512,11 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function sizeTwice()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->size(200, 200)
-        ->size(200, 200)
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->size(200, 200)
+            ->size(200, 200)
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -366,10 +531,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function sizeNoArguments()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->size()
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->size()
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -387,8 +552,25 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->density()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
+    }
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::density
+     * @expectedException BadMethodCallException
+     * @return void
+     */
+    public function densityWithResample()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->resample(200)
+            ->density()
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -406,7 +588,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->flatten()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -flatten "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -flatten "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -444,7 +626,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->strip()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -strip "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -strip "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -460,11 +642,11 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function stripTwice()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->strip()
-        ->strip()
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->strip()
+            ->strip()
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -482,7 +664,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->profile('tests/_data/sRGB_Color_Space_Profile.icm')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -519,8 +701,63 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::changeProfile
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function changeProfileTwice()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
+            ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::changeProfile
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function changeProfileInvalidNewProfile()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/RGB_Color_Space_Profile.icm')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test
+     *
+     * @test
+     * @covers Convert::changeProfile
+     * @expectedException InvalidArgumentException
+     *
+     * @return void
+     */
+    public function changeProfileInvalidOldProfile()
+    {
+        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+            ->inputfile('tests/_data/demo.jpg')
+            ->changeProfile('tests/_data/RGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -538,7 +775,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->layers('flatten')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -575,7 +812,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->resize(100, 100)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -594,7 +831,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->crop(100, 100)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -613,7 +850,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->quality(80)
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -quality 80 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -quality 80 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -705,7 +942,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->colorspace('rgb')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -colorspace rgb "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -colorspace rgb "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -761,7 +998,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->gravity('center')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -868,7 +1105,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->flip()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -flip "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -flip "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -884,11 +1121,11 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function flipTwice()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->flip()
-        ->flip()
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->flip()
+            ->flip()
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -906,7 +1143,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->rotate(- 45, 'gray')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -rotate "-45"  -background "gray" "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -rotate "-45"  -background "gray" "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -944,7 +1181,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->flop()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -flop "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -flop "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -982,7 +1219,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->type('Grayscale')
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -type Grayscale "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -type Grayscale "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -998,11 +1235,11 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function typeTwice()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->type('Grayscale')
-        ->type('Grayscale')
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->type('Grayscale')
+            ->type('Grayscale')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -1017,10 +1254,10 @@ class ConvertTest extends PHPUnit_Framework_TestCase
     public function typeUnsupported()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->type('Christmas')
-        ->outputfile('test-200x200.png')
-        ->getCommand();
+            ->inputfile('tests/_data/demo.jpg')
+            ->type('Christmas')
+            ->outputfile('test-200x200.png')
+            ->getCommand();
     }
 
     /**
@@ -1038,7 +1275,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->sepia()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert "tests/_data/demo.jpg" -sepia-tone 80% "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -sepia-tone 80% "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -1112,7 +1349,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
             ->polaroid()
             ->outputfile('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:'.PATH_TO_IMAGEMAGICK.';convert -polaroid 0 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -polaroid 0 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
