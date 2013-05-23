@@ -50,58 +50,58 @@
 </a>
 </g>
 <!-- \\Karla\\Cache\\Cache -->
-<g id="node19" class="node"><title>\\Karla\\Cache\\Cache</title>
+<g id="node20" class="node"><title>\\Karla\\Cache\\Cache</title>
 <ellipse fill="none" stroke="black" cx="258" cy="-75" rx="104.86" ry="19.0919"/>
 <text text-anchor="middle" x="258" y="-71.9" font-family="Times Roman,serif" font-size="14.00" fill="gray">\\Karla\\Cache\\Cache</text>
 </g>
 <!-- \\Karla\\Cache\\File&#45;&gt;\\Karla\\Cache\\Cache -->
-<g id="edge13" class="edge"><title>\\Karla\\Cache\\File&#45;&gt;\\Karla\\Cache\\Cache</title>
+<g id="edge15" class="edge"><title>\\Karla\\Cache\\File&#45;&gt;\\Karla\\Cache\\Cache</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M447.853,-276.151C443.742,-273.642 439.657,-270.895 436,-268 371.442,-216.885 309.359,-141.803 278.406,-102.033"/>
 <polygon fill="none" stroke="black" points="281.165,-99.8799 272.283,-94.1038 275.625,-104.158 281.165,-99.8799"/>
 </g>
-<!-- \\Karla\\Program\\Convert -->
-<g id="node5" class="node"><title>\\Karla\\Program\\Convert</title>
-<a xlink:href="Program.Convert.html" xlink:title="Convert" target="_parent">
-<polygon fill="none" stroke="black" points="507,-499 443,-499 443,-463 507,-463 507,-499"/>
-<text text-anchor="middle" x="475" y="-478.1" font-family="Courier,monospace" font-size="11.00">Convert</text>
+<!-- \\Karla\\Program\\Identify -->
+<g id="node5" class="node"><title>\\Karla\\Program\\Identify</title>
+<a xlink:href="Program.Identify.html" xlink:title="Identify" target="_parent">
+<polygon fill="none" stroke="black" points="510,-499 440,-499 440,-463 510,-463 510,-499"/>
+<text text-anchor="middle" x="475" y="-478.1" font-family="Courier,monospace" font-size="11.00">Identify</text>
 </a>
 </g>
 <!-- \\Karla\\Program\\ImageMagick -->
-<g id="node7" class="node"><title>\\Karla\\Program\\ImageMagick</title>
+<g id="node6" class="node"><title>\\Karla\\Program\\ImageMagick</title>
 <a xlink:href="Program.ImageMagick.html" xlink:title="«abstract»&lt;br/&gt;ImageMagick" target="_parent">
 <polygon fill="none" stroke="black" points="304,-445 212,-445 212,-409 304,-409 304,-445"/>
 <text text-anchor="start" x="224" y="-432.433" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
 <text text-anchor="start" x="220.5" y="-419.233" font-family="Courier,monospace" font-size="11.00">ImageMagick</text>
 </a>
 </g>
-<!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge7" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick</title>
-<path fill="none" stroke="black" d="M442.981,-473.032C409.108,-464.603 355.002,-451.139 314.037,-440.945"/>
-<polygon fill="none" stroke="black" points="314.74,-437.513 304.19,-438.494 313.049,-444.306 314.74,-437.513"/>
-</g>
-<!-- \\Karla\\Program\\Identify -->
-<g id="node6" class="node"><title>\\Karla\\Program\\Identify</title>
-<a xlink:href="Program.Identify.html" xlink:title="Identify" target="_parent">
-<polygon fill="none" stroke="black" points="510,-445 440,-445 440,-409 510,-409 510,-445"/>
-<text text-anchor="middle" x="475" y="-424.1" font-family="Courier,monospace" font-size="11.00">Identify</text>
-</a>
-</g>
 <!-- \\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge9" class="edge"><title>\\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick</title>
-<path fill="none" stroke="black" d="M439.167,-427C405.17,-427 353.557,-427 314.105,-427"/>
-<polygon fill="none" stroke="black" points="314.099,-423.5 304.099,-427 314.099,-430.5 314.099,-423.5"/>
+<g id="edge5" class="edge"><title>\\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<path fill="none" stroke="black" d="M439.167,-472.083C405.098,-463.605 353.338,-450.725 313.854,-440.899"/>
+<polygon fill="none" stroke="black" points="314.648,-437.49 304.099,-438.472 312.958,-444.283 314.648,-437.49"/>
 </g>
 <!-- \\Karla\\Program -->
-<g id="node11" class="node"><title>\\Karla\\Program</title>
+<g id="node9" class="node"><title>\\Karla\\Program</title>
 <a xlink:href="Program.html" xlink:title="Program" target="_parent">
 <polygon fill="none" stroke="black" points="80,-445 16,-445 16,-409 80,-409 80,-445"/>
 <text text-anchor="middle" x="48" y="-424.1" font-family="Courier,monospace" font-size="11.00">Program</text>
 </a>
 </g>
 <!-- \\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program -->
-<g id="edge15" class="edge"><title>\\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program</title>
+<g id="edge13" class="edge"><title>\\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M211.915,-427C175.807,-427 125.956,-427 90.7366,-427"/>
 <polygon fill="none" stroke="black" points="90.3075,-423.5 80.3075,-427 90.3074,-430.5 90.3075,-423.5"/>
+</g>
+<!-- \\Karla\\Program\\Convert -->
+<g id="node7" class="node"><title>\\Karla\\Program\\Convert</title>
+<a xlink:href="Program.Convert.html" xlink:title="Convert" target="_parent">
+<polygon fill="none" stroke="black" points="507,-445 443,-445 443,-409 507,-409 507,-445"/>
+<text text-anchor="middle" x="475" y="-424.1" font-family="Courier,monospace" font-size="11.00">Convert</text>
+</a>
+</g>
+<!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick -->
+<g id="edge7" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<path fill="none" stroke="black" d="M442.981,-427C409.18,-427 355.231,-427 314.297,-427"/>
+<polygon fill="none" stroke="black" points="314.19,-423.5 304.19,-427 314.19,-430.5 314.19,-423.5"/>
 </g>
 <!-- \\Karla\\Program\\Composite -->
 <g id="node8" class="node"><title>\\Karla\\Program\\Composite</title>
@@ -111,40 +111,40 @@
 </a>
 </g>
 <!-- \\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge11" class="edge"><title>\\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<g id="edge9" class="edge"><title>\\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick</title>
 <path fill="none" stroke="black" d="M436.41,-384.907C415.154,-391.268 388.238,-399 364,-405 347.834,-409.002 330.159,-412.869 313.958,-416.215"/>
 <polygon fill="none" stroke="black" points="313.186,-412.801 304.087,-418.228 314.584,-419.66 313.186,-412.801"/>
-</g>
-<!-- \\Karla\\MetaData -->
-<g id="node9" class="node"><title>\\Karla\\MetaData</title>
-<a xlink:href="MetaData.html" xlink:title="MetaData" target="_parent">
-<polygon fill="none" stroke="black" points="510,-254 440,-254 440,-218 510,-218 510,-254"/>
-<text text-anchor="middle" x="475" y="-233.1" font-family="Courier,monospace" font-size="11.00">MetaData</text>
-</a>
-</g>
-<!-- \\SplFileInfo -->
-<g id="node14" class="node"><title>\\SplFileInfo</title>
-<ellipse fill="none" stroke="black" cx="258" cy="-19" rx="58.8978" ry="19.0919"/>
-<text text-anchor="middle" x="258" y="-15.9" font-family="Times Roman,serif" font-size="14.00" fill="gray">\SplFileInfo</text>
-</g>
-<!-- \\Karla\\MetaData&#45;&gt;\\SplFileInfo -->
-<g id="edge5" class="edge"><title>\\Karla\\MetaData&#45;&gt;\\SplFileInfo</title>
-<path fill="none" stroke="black" d="M444.984,-217.848C441.715,-215.133 438.626,-212.171 436,-209 385.741,-148.32 423.987,-98.0839 364,-47 352.932,-37.5748 339.034,-31.2813 324.978,-27.0897"/>
-<polygon fill="none" stroke="black" points="325.819,-23.6917 315.256,-24.511 324.024,-30.4577 325.819,-23.6917"/>
 </g>
 <!-- \\Karla\\Karla -->
 <g id="node10" class="node"><title>\\Karla\\Karla</title>
 <a xlink:href="Karla.html" xlink:title="Karla" target="_parent">
-<polygon fill="none" stroke="black" points="502,-200 448,-200 448,-164 502,-164 502,-200"/>
-<text text-anchor="middle" x="475" y="-179.1" font-family="Courier,monospace" font-size="11.00">Karla</text>
+<polygon fill="none" stroke="black" points="502,-254 448,-254 448,-218 502,-218 502,-254"/>
+<text text-anchor="middle" x="475" y="-233.1" font-family="Courier,monospace" font-size="11.00">Karla</text>
 </a>
 </g>
 <!-- \\Karla\\Cache -->
-<g id="node12" class="node"><title>\\Karla\\Cache</title>
+<g id="node11" class="node"><title>\\Karla\\Cache</title>
 <a xlink:href="Cache.html" xlink:title="Cache" target="_parent">
-<polygon fill="none" stroke="black" points="502,-146 448,-146 448,-110 502,-110 502,-146"/>
-<text text-anchor="middle" x="475" y="-125.1" font-family="Courier,monospace" font-size="11.00">Cache</text>
+<polygon fill="none" stroke="black" points="502,-200 448,-200 448,-164 502,-164 502,-200"/>
+<text text-anchor="middle" x="475" y="-179.1" font-family="Courier,monospace" font-size="11.00">Cache</text>
 </a>
+</g>
+<!-- \\Karla\\MetaData -->
+<g id="node12" class="node"><title>\\Karla\\MetaData</title>
+<a xlink:href="MetaData.html" xlink:title="MetaData" target="_parent">
+<polygon fill="none" stroke="black" points="510,-146 440,-146 440,-110 510,-110 510,-146"/>
+<text text-anchor="middle" x="475" y="-125.1" font-family="Courier,monospace" font-size="11.00">MetaData</text>
+</a>
+</g>
+<!-- \\SplFileInfo -->
+<g id="node17" class="node"><title>\\SplFileInfo</title>
+<ellipse fill="none" stroke="black" cx="258" cy="-19" rx="58.8978" ry="19.0919"/>
+<text text-anchor="middle" x="258" y="-15.9" font-family="Times Roman,serif" font-size="14.00" fill="gray">\SplFileInfo</text>
+</g>
+<!-- \\Karla\\MetaData&#45;&gt;\\SplFileInfo -->
+<g id="edge11" class="edge"><title>\\Karla\\MetaData&#45;&gt;\\SplFileInfo</title>
+<path fill="none" stroke="black" d="M455.207,-109.977C434.076,-91.6364 398.894,-63.6124 364,-47 350.043,-40.3555 334.274,-35.1089 319.247,-31.042"/>
+<polygon fill="none" stroke="black" points="320.063,-27.6378 309.506,-28.5369 318.319,-34.4173 320.063,-27.6378"/>
 </g>
 </g>
 </svg>
