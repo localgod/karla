@@ -29,6 +29,7 @@ before_script:
 - pear list-channels
 - pear list -a
 - export PATH=$PATH:$HOME/.phpenv/bin
+- echo $PATH
 - eval "$(phpenv init -)"
 - phpenv rehash 2>/dev/null
 
