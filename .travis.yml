@@ -27,7 +27,7 @@ before_script:
 #- pear install -f phpunit/phploc
 #- pear install -f phpunit/phpcpd
 #- phpenv rehash
-#- which -a phpunit
+- which -a convert
 
 #after_success: ./tools/build/update-gh-pages.sh
 
@@ -36,7 +36,8 @@ matrix:
   - php: 5.5
 script:
 #- ant travis -Dphpunitpath="/home/travis/.phpenv/shims/"
-- phpunit --configuration tests/phpunit.xml
+- ant travis
+#- phpunit --configuration tests/phpunit.xml
 env:
   global:
   - secure: |-

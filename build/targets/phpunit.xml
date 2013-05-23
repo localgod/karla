@@ -1,5 +1,4 @@
 <project>
-  <property name="phpunitpath" value="" />
   	<target name="phpunit-clean" depends="" description="Remove any previously generated report">
     		<delete dir="${target.dir}/phpunit" />
   	</target>
@@ -9,7 +8,7 @@
    	</target>
 
     <target name="phpunit" depends="phpunit-clean,phpunit-init">
-        <exec executable="${phpunitpath}phpunit">
+        <exec executable="phpunit">
             <arg line="--bootstrap ${test.dir}/bootstrap.php" />
             <arg line="--configuration ${test.dir}/phpunit.xml" />
 
