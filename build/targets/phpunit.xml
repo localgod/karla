@@ -11,6 +11,7 @@
         <exec executable="phpunit">
             <arg line="--bootstrap ${test.dir}/bootstrap.php" />
             <arg line="--configuration ${test.dir}/phpunit.xml" />
+            <arg line="--testdox" />
 
         </exec>
     </target>

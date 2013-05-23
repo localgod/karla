@@ -89,7 +89,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
         $result = $karla->identify()
             ->inputfile('tests/_data/demo.jpg')
             ->execute(true, false);
-        $this->assertInstanceOf('Karla\Program\Metadata', $result);
+        $this->assertInstanceOf('Karla\Metadata', $result);
     }
 
     /**
@@ -123,7 +123,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
         $result = $karla->identify()
             ->inputfile('tests/_data/demo.jpg')
             ->execute(false, false);
-        $this->assertInstanceOf('Karla\Program\Metadata', $result);
+        $this->assertInstanceOf('Karla\Metadata', $result);
     }
 
     /**

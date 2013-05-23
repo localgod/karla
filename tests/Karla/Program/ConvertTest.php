@@ -1623,7 +1623,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function polaroidToBigdAngle()
+    public function polaroidToBigAngle()
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
             ->inputfile('tests/_data/demo.jpg')
