@@ -1,18 +1,31 @@
 <project>
-  	<target name="phpunit-clean" depends="" description="Remove any previously generated report">
-    		<delete dir="${target.dir}/phpunit" />
-  	</target>
+	<!-- Output in testdox format -->
+	<property name="phpunit.testdox" value="false" />
 
-  	<target name="phpunit-init" depends="" description="Create required folders for report">
-    		<mkdir dir="${target.dir}/phpunit" />
-   	</target>
+	<target name="phpunit-clean" depends="" description="Remove any previously generated report">
+		<delete dir="${target.dir}/phpunit" />
+	</target>
 
-    <target name="phpunit" depends="phpunit-clean,phpunit-init">
-        <exec executable="phpunit">
-            <arg line="--bootstrap ${test.dir}/bootstrap.php" />
-            <arg line="--configuration ${test.dir}/phpunit.xml" />
-            <arg line="--testdox" />
+	<target name="phpunit-init" depends="" description="Create required folders for report">
+		<mkdir dir="${target.dir}/phpunit" />
+	</target>
 
-        </exec>
-    </target>
+	<target name="phpunit" depends="phpunit-clean,phpunit-init">
+		<if>
+			<equals arg1="${phpunit.testdox}" arg2="true" />
+			<then>
+				<exec executable="phpunit">
+					<arg line="--bootstrap ${test.dir}/bootstrap.php" />
+					<arg line="--configuration ${test.dir}/phpunit.xml" />
+					<arg line="--testdox" />
+				</exec>
+			</then>
+			<else>
+				<exec executable="phpunit">
+					<arg line="--bootstrap ${test.dir}/bootstrap.php" />
+					<arg line="--configuration ${test.dir}/phpunit.xml" />
+				</exec>
+			</else>
+		</if>
+	</target>
 </project>

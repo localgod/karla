@@ -143,7 +143,7 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
         $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->inputfile('tests/_data/demo.jpg')->verbose()
             ->execute(true, false);
-        $this->assertEquals(null, $this->object->getResolutionWidth());
+        $this->assertEquals(300, $this->object->getResolutionWidth());
     }
 
     /**
