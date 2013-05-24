@@ -50,51 +50,63 @@
 </a>
 </g>
 <!-- \\Karla\\Cache -->
-<g id="node11" class="node"><title>\\Karla\\Cache</title>
+<g id="node10" class="node"><title>\\Karla\\Cache</title>
 <a xlink:href="Cache.html" xlink:title="Cache" target="_parent">
 <polygon fill="none" stroke="black" points="239,-389 185,-389 185,-353 239,-353 239,-389"/>
 <text text-anchor="middle" x="212" y="-368.1" font-family="Courier,monospace" font-size="11.00">Cache</text>
 </a>
 </g>
 <!-- \\Karla\\Cache\\File&#45;&gt;\\Karla\\Cache -->
-<g id="edge13" class="edge"><title>\\Karla\\Cache\\File&#45;&gt;\\Karla\\Cache</title>
+<g id="edge15" class="edge"><title>\\Karla\\Cache\\File&#45;&gt;\\Karla\\Cache</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M355.905,-371C327.222,-371 281.741,-371 249.597,-371"/>
 <polygon fill="none" stroke="black" points="249.251,-367.5 239.251,-371 249.251,-374.5 249.251,-367.5"/>
 </g>
-<!-- \\Karla\\Program\\Composite -->
-<g id="node5" class="node"><title>\\Karla\\Program\\Composite</title>
-<a xlink:href="Program.Composite.html" xlink:title="Composite" target="_parent">
-<polygon fill="none" stroke="black" points="421,-306 345,-306 345,-270 421,-270 421,-306"/>
-<text text-anchor="middle" x="383" y="-285.1" font-family="Courier,monospace" font-size="11.00">Composite</text>
+<!-- \\Karla\\Program\\Convert -->
+<g id="node5" class="node"><title>\\Karla\\Program\\Convert</title>
+<a xlink:href="Program.Convert.html" xlink:title="Convert" target="_parent">
+<polygon fill="none" stroke="black" points="415,-306 351,-306 351,-270 415,-270 415,-306"/>
+<text text-anchor="middle" x="383" y="-285.1" font-family="Courier,monospace" font-size="11.00">Convert</text>
 </a>
 </g>
 <!-- \\Karla\\Program\\ImageMagick -->
-<g id="node8" class="node"><title>\\Karla\\Program\\ImageMagick</title>
+<g id="node6" class="node"><title>\\Karla\\Program\\ImageMagick</title>
 <a xlink:href="Program.ImageMagick.html" xlink:title="«abstract»&lt;br/&gt;ImageMagick" target="_parent">
 <polygon fill="none" stroke="black" points="258,-252 166,-252 166,-216 258,-216 258,-252"/>
 <text text-anchor="start" x="178" y="-239.433" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
 <text text-anchor="start" x="174.5" y="-226.233" font-family="Courier,monospace" font-size="11.00">ImageMagick</text>
 </a>
 </g>
-<!-- \\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge5" class="edge"><title>\\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick</title>
-<path fill="none" stroke="black" d="M344.197,-275.747C321.667,-268.632 292.895,-259.546 267.95,-251.668"/>
-<polygon fill="none" stroke="black" points="268.831,-248.276 258.242,-248.603 266.723,-254.952 268.831,-248.276"/>
+<!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick -->
+<g id="edge5" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<path fill="none" stroke="black" d="M350.836,-277.843C327.572,-270.496 295.535,-260.379 268.098,-251.715"/>
+<polygon fill="none" stroke="black" points="268.812,-248.27 258.222,-248.596 266.704,-254.945 268.812,-248.27"/>
 </g>
-<!-- \\Karla\\Program\\Convert -->
-<g id="node6" class="node"><title>\\Karla\\Program\\Convert</title>
-<a xlink:href="Program.Convert.html" xlink:title="Convert" target="_parent">
-<polygon fill="none" stroke="black" points="415,-252 351,-252 351,-216 415,-216 415,-252"/>
-<text text-anchor="middle" x="383" y="-231.1" font-family="Courier,monospace" font-size="11.00">Convert</text>
+<!-- \\Karla\\Program -->
+<g id="node9" class="node"><title>\\Karla\\Program</title>
+<a xlink:href="Program.html" xlink:title="Program" target="_parent">
+<polygon fill="none" stroke="black" points="80,-252 16,-252 16,-216 80,-216 80,-252"/>
+<text text-anchor="middle" x="48" y="-231.1" font-family="Courier,monospace" font-size="11.00">Program</text>
 </a>
 </g>
-<!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge7" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick</title>
-<path fill="none" stroke="black" d="M350.836,-234C327.674,-234 295.816,-234 268.459,-234"/>
-<polygon fill="none" stroke="black" points="268.222,-230.5 258.222,-234 268.222,-237.5 268.222,-230.5"/>
+<!-- \\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program -->
+<g id="edge13" class="edge"><title>\\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M165.88,-234C142.137,-234 113.394,-234 90.2345,-234"/>
+<polygon fill="none" stroke="black" points="90.0247,-230.5 80.0247,-234 90.0246,-237.5 90.0247,-230.5"/>
+</g>
+<!-- \\Karla\\Program\\Composite -->
+<g id="node7" class="node"><title>\\Karla\\Program\\Composite</title>
+<a xlink:href="Program.Composite.html" xlink:title="Composite" target="_parent">
+<polygon fill="none" stroke="black" points="421,-252 345,-252 345,-216 421,-216 421,-252"/>
+<text text-anchor="middle" x="383" y="-231.1" font-family="Courier,monospace" font-size="11.00">Composite</text>
+</a>
+</g>
+<!-- \\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick -->
+<g id="edge7" class="edge"><title>\\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<path fill="none" stroke="black" d="M344.197,-234C321.766,-234 293.149,-234 268.281,-234"/>
+<polygon fill="none" stroke="black" points="268.242,-230.5 258.242,-234 268.242,-237.5 268.242,-230.5"/>
 </g>
 <!-- \\Karla\\Program\\Identify -->
-<g id="node7" class="node"><title>\\Karla\\Program\\Identify</title>
+<g id="node8" class="node"><title>\\Karla\\Program\\Identify</title>
 <a xlink:href="Program.Identify.html" xlink:title="Identify" target="_parent">
 <polygon fill="none" stroke="black" points="418,-198 348,-198 348,-162 418,-162 418,-198"/>
 <text text-anchor="middle" x="383" y="-177.1" font-family="Courier,monospace" font-size="11.00">Identify</text>
@@ -105,20 +117,8 @@
 <path fill="none" stroke="black" d="M347.153,-191.32C324.227,-198.56 294.012,-208.101 267.966,-216.327"/>
 <polygon fill="none" stroke="black" points="266.694,-213.058 258.212,-219.407 268.801,-219.733 266.694,-213.058"/>
 </g>
-<!-- \\Karla\\Program -->
-<g id="node9" class="node"><title>\\Karla\\Program</title>
-<a xlink:href="Program.html" xlink:title="Program" target="_parent">
-<polygon fill="none" stroke="black" points="80,-252 16,-252 16,-216 80,-216 80,-252"/>
-<text text-anchor="middle" x="48" y="-231.1" font-family="Courier,monospace" font-size="11.00">Program</text>
-</a>
-</g>
-<!-- \\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program -->
-<g id="edge15" class="edge"><title>\\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M165.88,-234C142.137,-234 113.394,-234 90.2345,-234"/>
-<polygon fill="none" stroke="black" points="90.0247,-230.5 80.0247,-234 90.0246,-237.5 90.0247,-230.5"/>
-</g>
 <!-- \\Karla\\Karla -->
-<g id="node10" class="node"><title>\\Karla\\Karla</title>
+<g id="node11" class="node"><title>\\Karla\\Karla</title>
 <a xlink:href="Karla.html" xlink:title="Karla" target="_parent">
 <polygon fill="none" stroke="black" points="410,-144 356,-144 356,-108 410,-108 410,-144"/>
 <text text-anchor="middle" x="383" y="-123.1" font-family="Courier,monospace" font-size="11.00">Karla</text>
