@@ -62,7 +62,6 @@
 <li class="method public "><a href="#method_convert" title="convert :: Start a convert operation"><span class="description">Start a convert operation</span><pre>convert()</pre></a></li>
 <li class="method public "><a href="#method_createBackgroundImage" title="createBackgroundImage :: Create a background image"><span class="description">Create a background image</span><pre>createBackgroundImage()</pre></a></li>
 <li class="method public "><a href="#method_getInstance" title="getInstance :: Get a instance of Karla."><span class="description">Get a instance of Karla.</span><pre>getInstance()</pre></a></li>
-<li class="method public "><a href="#method_getPath" title="getPath :: Get the root path to Karla"><span class="description">Get the root path to Karla</span><pre>getPath()</pre></a></li>
 <li class="method public "><a href="#method_identify" title="identify :: Start a identify operation"><span class="description">Start a identify operation</span><pre>identify()</pre></a></li>
 <li class="method public "><a href="#method_raw" title="raw :: Run a raw ImageMagick command"><span class="description">Run a raw ImageMagick command</span><pre>raw()</pre></a></li>
 </ul>
@@ -79,7 +78,6 @@
 <li class="property private "><a href="#property_binPath" title="$binPath :: Path to imagemagick binary"><span class="description"></span><pre>$binPath</pre></a></li>
 <li class="property private "><a href="#property_cache" title="$cache :: Cache controller"><span class="description"></span><pre>$cache</pre></a></li>
 <li class="property private "><a href="#property_instance" title="$instance :: Instance of a imagmagick object."><span class="description"></span><pre>$instance</pre></a></li>
-<li class="property private "><a href="#property_path" title="$path :: Path to Karla root directory"><span class="description"></span><pre>$path</pre></a></li>
 </ul>
 </li>
 </ul>
@@ -163,7 +161,7 @@
 <code>string</code><p>Image save path</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>- path to generated image</div>
+<code>string</code>Path to generated image</div>
 </div></div>
 </div>
 <a id="method_getInstance"></a><div class="element clickable method public method_getInstance" data-toggle="collapse" data-target=".method_getInstance .collapse">
@@ -181,18 +179,13 @@
 <h4>$cache</h4>
 <code><a href="../classes/Karla.Cache.html">\Karla\Cache</a></code><p>Cache controller (optional)</p>
 </div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
+<td></td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Karla.html">\Karla\Karla</a></code></div>
-</div></div>
-</div>
-<a id="method_getPath"></a><div class="element clickable method public method_getPath" data-toggle="collapse" data-target=".method_getPath .collapse">
-<h2>Get the root path to Karla</h2>
-<pre>getPath() : string</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
 <a id="method_identify"></a><div class="element clickable method public method_identify" data-toggle="collapse" data-target=".method_identify .collapse">
@@ -270,12 +263,6 @@ to ImageMagick like you would have done directly in the consol.</p></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="property_path"> </a><div class="element clickable property private property_path" data-toggle="collapse" data-target=".property_path .collapse">
-<h2></h2>
-<pre>$path : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
 </div>
 </div>
 </div>
@@ -283,7 +270,7 @@ to ImageMagick like you would have done directly in the consol.</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-05-23T19:27:53Z.<br></footer></div>
+            generated on 2013-05-24T18:09:14Z.<br></footer></div>
 </div>
 </body>
 </html>
