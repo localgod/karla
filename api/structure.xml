@@ -594,49 +594,6 @@ return it for futher processing</description>
     </interface>
     <source>eJzdk01v1DAQhu/5FXPgACs2Xgq90AoqVQIWVHXVQu9eZxJbSWxrPMmyQvx37CS79IOP9tj6YuX1vK89T+zj9177TMxmGczgi6RGwrKVFZ7JyqgaNiS9R4LGrEnSNhalutWnFVwhBeMsHOavJ/VEScbK0Ra+sWkMbwfRS1XHPBjDB0l2rB0BwGenpbUY4LJ2PXwgaYuAFo4bp2RTueJEo+zR5kX9bjA2RqENMUsz+7dCbDab3PkouY4U5o4qMZUE0RqeTx95bBHOll+nDFtDGikjxJDKsO7WuXKt2O0rRhC/TxyMVZhMB4tXB/PFm/niMOois7LFEDvEsfZoB3JpGalMehkbHdOUVNrYCti5Jjx1ZCIzewSnsXHMfmRZihgApTGDU43xhpkSWCMh4HcTOMAICgvopwvmhgIoTYOTcxcQQZFsITAlrs9SRfohu+VrYyVZR/DXQ267nee4W/iD+fzGyt5OyB1Z6J0pJk0Ms+/WESKUnVXJByYMAIrn+wO+3O/24ugOlY/Ij4zA6P8ngwr5QRAuHx2E/16DMCG4J4ELbF2P4MjH9x6fxROjQUN750N34S9Ifma/AJt/7PU=</source>
   </file>
-  <file path="Program/Convert/Rotate.php" hash="6a75540a9ddc8b0318faee0fbbf0096c" package="Karla">
-    <class final="false" abstract="false" namespace="Karla\Program\Convert" line="4" package="Karla">
-      <extends/>
-      <name>Rotate</name>
-      <full_name>\Karla\Program\Convert\Rotate</full_name>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Karla\Program\Convert" line="13" package="Karla">
-        <name>performe</name>
-        <full_name>performe</full_name>
-        <docblock line="7">
-          <description>Perform a rotation</description>
-          <long-description></long-description>
-          <tag line="7" name="param" description="" type="\Karla\Program\Convert" variable="$convert">
-            <type by_reference="false">\Karla\Program\Convert</type>
-          </tag>
-          <tag line="7" name="return" description="" type="\Karla\Program\Convert">
-            <type by_reference="false">\Karla\Program\Convert</type>
-          </tag>
-        </docblock>
-        <argument line="13">
-          <name>$convert</name>
-          <default></default>
-          <type>\Karla\Program\Convert</type>
-        </argument>
-        <argument line="13">
-          <name>$degree</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="13">
-          <name>$background</name>
-          <default>'#ffffff'</default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file Program/Convert/Rotate.php</error>
-      <error line="4" code="50000">No DocBlock was found for \Karla\Program\Convert\Rotate</error>
-      <error line="7" code="50015">Argument $degree is missing from the Docblock of performe()</error>
-      <error line="7" code="50015">Argument $background is missing from the Docblock of performe()</error>
-    </parse_markers>
-    <source>eJyFjsEKgkAQhu/7FAMJlgQ+gEVBxy7S2cu4jhbp7jK720V893TVTkX/ZQbm4//mcDJ3IxR2ZA1Kgityi0XOumHsiotWL2KXCSFbtBZu2qEj0QsBY9IkCRMSyIlrzR0g8IQ8tFouK3A2OBZC8bUfIjkvH5rJeVY/8IVKwzS+bB8S7GSVUHslJzuY+SHa/jHuIaqoYaJxKVE+G9ZeVXCEeFOHxLug6WfpmOW1tSALh0EMb438Z8w=</source>
-  </file>
   <file path="Program/Identify.php" hash="7c7db47ed58566235e672f28f610765e" package="Karla">
     <docblock line="2">
       <description>Karla ImageMagick wrapper library</description>
@@ -1532,7 +1489,7 @@ return it for futher processing</description>
     </class>
     <source>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</source>
   </file>
-  <file path="Program/Convert.php" hash="b1ed2d3a78ec3d2c4ec33b8c37fb372a" package="Karla">
+  <file path="Program/Convert.php" hash="3ea8aedeec2bdc2a07c708b39a5c519d" package="Karla">
     <docblock line="2">
       <description>Karla ImageMagick wrapper library</description>
       <long-description>&lt;p&gt;PHP Version 5.3&lt;/p&gt;</long-description>
@@ -1543,813 +1500,816 @@ return it for futher processing</description>
       <tag line="2" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
       <tag line="2" name="since" description="2012-04-05"/>
     </docblock>
-    <class final="false" abstract="false" namespace="Karla\Program" line="25" package="Karla">
+    <class final="false" abstract="false" namespace="Karla\Program" line="24" package="Karla">
       <extends>\Karla\Program\ImageMagick</extends>
       <name>Convert</name>
       <full_name>\Karla\Program\Convert</full_name>
-      <docblock line="16">
+      <docblock line="15">
         <description>Class for wrapping ImageMagicks convert tool</description>
         <long-description></long-description>
-        <tag line="16" name="category" description="Utility"/>
-        <tag line="16" name="package" description="Karla"/>
-        <tag line="16" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
-        <tag line="16" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
-        <tag line="16" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
+        <tag line="15" name="category" description="Utility"/>
+        <tag line="15" name="package" description="Karla"/>
+        <tag line="15" name="author" description="Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;"/>
+        <tag line="15" name="license" description="http://www.opensource.org/licenses/mit-license.php MIT"/>
+        <tag line="15" name="link" description="Karla" link="https://github.com/localgod/Karla"/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="33" namespace="Karla\Program" package="Karla">
+      <property final="false" static="false" visibility="protected" line="32" namespace="Karla\Program" package="Karla">
         <name>$inputFile</name>
         <default></default>
-        <docblock line="28">
+        <docblock line="27">
           <description>Input file</description>
           <long-description></long-description>
-          <tag line="28" name="var" description="" type="string">
+          <tag line="27" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="40" namespace="Karla\Program" package="Karla">
+      <property final="false" static="false" visibility="protected" line="39" namespace="Karla\Program" package="Karla">
         <name>$outputFile</name>
         <default></default>
-        <docblock line="35">
+        <docblock line="34">
           <description>Output file</description>
           <long-description></long-description>
-          <tag line="35" name="var" description="" type="string">
+          <tag line="34" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="51" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="50" package="Karla">
         <name>inputfile</name>
         <full_name>inputfile</full_name>
-        <docblock line="42">
+        <docblock line="41">
           <description>Add input argument</description>
           <long-description></long-description>
-          <tag line="42" name="param" description="Input file path" type="string" variable="$filePath">
+          <tag line="41" name="param" description="Input file path" type="string" variable="$filePath">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="42" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="41" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="42" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="41" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
-        <argument line="51">
+        <argument line="50">
           <name>$filePath</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="78" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="77" package="Karla">
         <name>outputfile</name>
         <full_name>outputfile</full_name>
-        <docblock line="66">
+        <docblock line="65">
           <description>Add output argument</description>
           <long-description></long-description>
-          <tag line="66" name="param" description="Output file path" type="string" variable="$filePath">
+          <tag line="65" name="param" description="Output file path" type="string" variable="$filePath">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="66" name="param" description="Include the used options as part of the filename" type="boolean" variable="$includeOptions">
+          <tag line="65" name="param" description="Include the used options as part of the filename" type="boolean" variable="$includeOptions">
             <type by_reference="false">boolean</type>
           </tag>
-          <tag line="66" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="65" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="66" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="65" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
-          <tag line="66" name="todo" description="Implement include options to filename"/>
+          <tag line="65" name="todo" description="Implement include options to filename"/>
         </docblock>
-        <argument line="78">
+        <argument line="77">
           <name>$filePath</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="78">
+        <argument line="77">
           <name>$includeOptions</name>
           <default>false</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="109" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="108" package="Karla">
         <name>background</name>
         <full_name>background</full_name>
-        <docblock line="100">
+        <docblock line="99">
           <description>Add a background color to a image</description>
           <long-description></long-description>
-          <tag line="100" name="param" description="Color" type="string" variable="$color">
+          <tag line="99" name="param" description="Color" type="string" variable="$color">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="100" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="99" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="100" name="throws" description="if background has already been called" type="\BadMethodCallException">
+          <tag line="99" name="throws" description="if background has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
-        <argument line="109">
+        <argument line="108">
           <name>$color</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="128" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="129" package="Karla">
         <name>removeProfile</name>
         <full_name>removeProfile</full_name>
-        <docblock line="118">
+        <docblock line="119">
           <description>Remove a profile from the image.</description>
           <long-description></long-description>
-          <tag line="118" name="param" description="Profile name" type="string" variable="$profileName">
+          <tag line="119" name="param" description="Profile name" type="string" variable="$profileName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="118" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="119" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="118" name="todo" description="get list of profiles from image (can be done by identify but might be to expensive)"/>
+          <tag line="119" name="todo" description="get list of profiles from image (can be done by identify but might be to expensive)"/>
         </docblock>
-        <argument line="128">
+        <argument line="129">
           <name>$profileName</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="151" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="153" package="Karla">
         <name>resample</name>
         <full_name>resample</full_name>
-        <docblock line="136">
+        <docblock line="137">
           <description>Resample the image to a new resolution</description>
           <long-description></long-description>
-          <tag line="136" name="param" description="New image resolution" type="integer" variable="$newWidth">
+          <tag line="137" name="param" description="New image resolution" type="integer" variable="$newWidth">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="136" name="param" description="New image resolution" type="integer" variable="$newHeight">
+          <tag line="137" name="param" description="New image resolution" type="integer" variable="$newHeight">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="136" name="param" description="Original image resolution" type="integer" variable="$originalWidth">
+          <tag line="137" name="param" description="Original image resolution" type="integer" variable="$originalWidth">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="136" name="param" description="Original image resolution" type="integer" variable="$originalHeight">
+          <tag line="137" name="param" description="Original image resolution" type="integer" variable="$originalHeight">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="136" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="137" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="136" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="137" name="throws" description="if resample, resize or density has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+          <tag line="137" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
-        <argument line="151">
+        <argument line="153">
           <name>$newWidth</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="151">
+        <argument line="153">
           <name>$newHeight</name>
           <default>""</default>
           <type/>
         </argument>
-        <argument line="151">
+        <argument line="153">
           <name>$originalWidth</name>
           <default>""</default>
           <type/>
         </argument>
-        <argument line="151">
+        <argument line="153">
           <name>$originalHeight</name>
           <default>""</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="206" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="210" package="Karla">
         <name>getCommand</name>
         <full_name>getCommand</full_name>
-        <docblock line="200">
+        <docblock line="204">
           <description>Get the command to run</description>
           <long-description></long-description>
-          <tag line="200" name="see" description="\Karla\Program\ImageMagick::getCommand()" refers="\Karla\Program\ImageMagick::getCommand()"/>
-          <tag line="200" name="return" description="" type="string">
+          <tag line="204" name="see" description="\Karla\Program\ImageMagick::getCommand()" refers="\Karla\Program\ImageMagick::getCommand()"/>
+          <tag line="204" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="232" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="236" package="Karla">
         <name>reset</name>
         <full_name>reset</full_name>
-        <docblock line="226">
+        <docblock line="230">
           <description>Reset the command</description>
           <long-description></long-description>
-          <tag line="226" name="see" description="\Karla\Program\ImageMagick::reset()" refers="\Karla\Program\ImageMagick::reset()"/>
-          <tag line="226" name="return" description="" type="void">
+          <tag line="230" name="see" description="\Karla\Program\ImageMagick::reset()" refers="\Karla\Program\ImageMagick::reset()"/>
+          <tag line="230" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="245" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="249" package="Karla">
         <name>execute</name>
         <full_name>execute</full_name>
-        <docblock line="239">
+        <docblock line="243">
           <description>Execute the command</description>
           <long-description></long-description>
-          <tag line="239" name="see" description="\Karla\Program\ImageMagick::execute()" refers="\Karla\Program\ImageMagick::execute()"/>
-          <tag line="239" name="return" description="" type="string">
+          <tag line="243" name="see" description="\Karla\Program\ImageMagick::execute()" refers="\Karla\Program\ImageMagick::execute()"/>
+          <tag line="243" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="275" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="280" package="Karla">
         <name>size</name>
         <full_name>size</full_name>
-        <docblock line="264">
+        <docblock line="268">
           <description>Size the input image</description>
           <long-description></long-description>
-          <tag line="264" name="param" description="Image width" type="integer" variable="$width">
+          <tag line="268" name="param" description="Image width" type="integer" variable="$width">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="264" name="param" description="Image height" type="integer" variable="$height">
+          <tag line="268" name="param" description="Image height" type="integer" variable="$height">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="264" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="268" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="264" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="268" name="throws" description="if size has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+          <tag line="268" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
-        <argument line="275">
+        <argument line="280">
           <name>$width</name>
           <default>""</default>
           <type/>
         </argument>
-        <argument line="275">
+        <argument line="280">
           <name>$height</name>
           <default>""</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="306" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="313" package="Karla">
         <name>density</name>
         <full_name>density</full_name>
-        <docblock line="293">
+        <docblock line="300">
           <description>Set the density of the output image.</description>
           <long-description></long-description>
-          <tag line="293" name="param" description="The width of the image" type="integer" variable="$width">
+          <tag line="300" name="param" description="The width of the image" type="integer" variable="$width">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="293" name="param" description="The height of the image" type="integer" variable="$height">
+          <tag line="300" name="param" description="The height of the image" type="integer" variable="$height">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="293" name="param" description="If output is true density is set for the resulting image&#10;           If output is false density is used for reading the input image" type="boolean" variable="$output">
+          <tag line="300" name="param" description="If output is true density is set for the resulting image&#10;           If output is false density is used for reading the input image" type="boolean" variable="$output">
             <type by_reference="false">boolean</type>
           </tag>
-          <tag line="293" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="300" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
         </docblock>
-        <argument line="306">
+        <argument line="313">
           <name>$width</name>
           <default>72</default>
           <type/>
         </argument>
-        <argument line="306">
+        <argument line="313">
           <name>$height</name>
           <default>72</default>
           <type/>
         </argument>
-        <argument line="306">
+        <argument line="313">
           <name>$output</name>
           <default>true</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="320" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="328" package="Karla">
         <name>flatten</name>
         <full_name>flatten</full_name>
-        <docblock line="314">
+        <docblock line="321">
           <description>Flatten layers in an image.</description>
           <long-description></long-description>
-          <tag line="314" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="321" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="314" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="321" name="throws" description="if flatten has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+          <tag line="321" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="335" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="347" package="Karla">
         <name>strip</name>
         <full_name>strip</full_name>
-        <docblock line="329">
+        <docblock line="340">
           <description>Strip image of any profiles or comments.</description>
           <long-description></long-description>
-          <tag line="329" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="340" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="329" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="340" name="throws" description="if strip has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
+          <tag line="340" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="349" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="365" package="Karla">
         <name>flip</name>
         <full_name>flip</full_name>
-        <docblock line="344">
+        <docblock line="359">
           <description>Flip image</description>
           <long-description></long-description>
-          <tag line="344" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="359" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
+          </tag>
+          <tag line="359" name="throws" description="if flip has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="369" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="389" package="Karla">
         <name>rotate</name>
         <full_name>rotate</full_name>
-        <docblock line="358">
+        <docblock line="377">
           <description>Rotate image</description>
           <long-description></long-description>
-          <tag line="358" name="param" description="Degrees to rotate the image" type="integer" variable="$degree">
+          <tag line="377" name="param" description="Degrees to rotate the image" type="integer" variable="$degree">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="358" name="param" description="The background color to apply to empty triangles in the corners,&#10;           left over from rotating the image" type="integer" variable="$background">
+          <tag line="377" name="param" description="The background color to apply to empty triangles in the corners,&#10;           left over from rotating the image" type="integer" variable="$background">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="358" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="377" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
+          <tag line="377" name="throws" description="if rotate has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
         </docblock>
-        <argument line="369">
+        <argument line="389">
           <name>$degree</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="369">
+        <argument line="389">
           <name>$background</name>
           <default>'#ffffff'</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Karla\Program" line="387" package="Karla">
-        <name>onlyOnce</name>
-        <full_name>onlyOnce</full_name>
-        <docblock line="379">
-          <description>Some methods may only be envoked once per query.</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="408" package="Karla">
+        <name>flop</name>
+        <full_name>flop</full_name>
+        <docblock line="402">
+          <description>Flop image</description>
           <long-description></long-description>
-          <tag line="379" name="param" description="Name of method to check" type="string" variable="$name">
-            <type by_reference="false">string</type>
+          <tag line="402" name="return" description="" type="\Karla\Program\Convert">
+            <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="379" name="param" description="Options to check" type="array" variable="$options">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="379" name="throws" description="if method has already been called" type="\BadMethodCallException">
+          <tag line="402" name="throws" description="if strip has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
-        <argument line="387">
-          <name>$name</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="387">
-          <name>$options</name>
-          <default></default>
-          <type>array</type>
-        </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="400" package="Karla">
-        <name>flop</name>
-        <full_name>flop</full_name>
-        <docblock line="395">
-          <description>Flop image</description>
-          <long-description></long-description>
-          <tag line="395" name="return" description="" type="\Karla\Program\Convert">
-            <type by_reference="false">\Karla\Program\Convert</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="418" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="430" package="Karla">
         <name>type</name>
         <full_name>type</full_name>
-        <docblock line="409">
+        <docblock line="420">
           <description>Set output image type</description>
           <long-description></long-description>
-          <tag line="409" name="param" description="The output image type" type="string" variable="$type">
+          <tag line="420" name="param" description="The output image type" type="string" variable="$type">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="409" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="420" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="409" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="420" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
+          <tag line="420" name="throws" description="if type has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
         </docblock>
-        <argument line="418">
+        <argument line="430">
           <name>$type</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="440" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="455" package="Karla">
         <name>profile</name>
         <full_name>profile</full_name>
-        <docblock line="431">
+        <docblock line="446">
           <description>Add a profile to the image.</description>
           <long-description></long-description>
-          <tag line="431" name="param" description="Path to the profile" type="string" variable="$profilePath">
+          <tag line="446" name="param" description="Path to the profile" type="string" variable="$profilePath">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="431" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="446" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="431" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="446" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
-        <argument line="440">
+        <argument line="455">
           <name>$profilePath</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="464" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="479" package="Karla">
         <name>changeProfile</name>
         <full_name>changeProfile</full_name>
-        <docblock line="452">
+        <docblock line="467">
           <description>Change profile on the image.</description>
           <long-description></long-description>
-          <tag line="452" name="param" description="Path to the profile" type="string" variable="$profilePathFrom">
+          <tag line="467" name="param" description="Path to the profile" type="string" variable="$profilePathFrom">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="452" name="param" description="Path to the profile" type="string" variable="$profilePathTo">
+          <tag line="467" name="param" description="Path to the profile" type="string" variable="$profilePathTo">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="452" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="467" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="452" name="throws" description="if changeprofile has already been called" type="\BadMethodCallException">
+          <tag line="467" name="throws" description="if changeprofile has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
-          <tag line="452" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="467" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
-        <argument line="464">
+        <argument line="479">
           <name>$profilePathFrom</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="464">
+        <argument line="479">
           <name>$profilePathTo</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="494" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="508" package="Karla">
         <name>layers</name>
         <full_name>layers</full_name>
-        <docblock line="485">
+        <docblock line="499">
           <description>Apply a method to layers in images.</description>
           <long-description></long-description>
-          <tag line="485" name="param" description="The method to use" type="string" variable="$method">
+          <tag line="499" name="param" description="The method to use" type="string" variable="$method">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="485" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="499" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="485" name="throws" description="if the layer method wasn't recognized" type="\InvalidArgumentException">
+          <tag line="499" name="throws" description="if the layer method wasn't recognized" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
         </docblock>
-        <argument line="494">
+        <argument line="508">
           <name>$method</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="521" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="536" package="Karla">
         <name>resize</name>
         <full_name>resize</full_name>
-        <docblock line="506">
+        <docblock line="520">
           <description>Resize the input image</description>
           <long-description></long-description>
-          <tag line="506" name="param" description="Image width" type="integer" variable="$width">
+          <tag line="520" name="param" description="Image width" type="integer" variable="$width">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="506" name="param" description="Image height" type="integer" variable="$height">
+          <tag line="520" name="param" description="Image height" type="integer" variable="$height">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="506" name="param" description="Should we maintain aspect ratio? default is true" type="boolean" variable="$maintainAspectRatio">
+          <tag line="520" name="param" description="Should we maintain aspect ratio? default is true" type="boolean" variable="$maintainAspectRatio">
             <type by_reference="false">boolean</type>
           </tag>
-          <tag line="506" name="param" description="Should we prohipped scaling up? default is true" type="boolean" variable="$dontScaleUp">
+          <tag line="520" name="param" description="Should we prohipped scaling up? default is true" type="boolean" variable="$dontScaleUp">
             <type by_reference="false">boolean</type>
           </tag>
-          <tag line="506" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="520" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="506" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="520" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
+          <tag line="520" name="throws" description="if resize has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
         </docblock>
-        <argument line="521">
+        <argument line="536">
           <name>$width</name>
           <default>""</default>
           <type/>
         </argument>
-        <argument line="521">
+        <argument line="536">
           <name>$height</name>
           <default>""</default>
           <type/>
         </argument>
-        <argument line="521">
+        <argument line="536">
           <name>$maintainAspectRatio</name>
           <default>true</default>
           <type/>
         </argument>
-        <argument line="521">
+        <argument line="536">
           <name>$dontScaleUp</name>
           <default>true</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="579" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="597" package="Karla">
         <name>crop</name>
         <full_name>crop</full_name>
-        <docblock line="564">
+        <docblock line="581">
           <description>Resize the input image</description>
           <long-description></long-description>
-          <tag line="564" name="param" description="Image width" type="integer" variable="$width">
+          <tag line="581" name="param" description="Image width" type="integer" variable="$width">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="564" name="param" description="Image height" type="integer" variable="$height">
+          <tag line="581" name="param" description="Image height" type="integer" variable="$height">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="564" name="param" description="X offset from upper-left corner" type="integer" variable="$xOffset">
+          <tag line="581" name="param" description="X offset from upper-left corner" type="integer" variable="$xOffset">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="564" name="param" description="Y offset from upper-left corner" type="integer" variable="$yOffset">
+          <tag line="581" name="param" description="Y offset from upper-left corner" type="integer" variable="$yOffset">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="564" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="581" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="564" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="581" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
+          <tag line="581" name="throws" description="if crop has already been called" type="\BadMethodCallException">
+            <type by_reference="false">\BadMethodCallException</type>
+          </tag>
         </docblock>
-        <argument line="579">
+        <argument line="597">
           <name>$width</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="579">
+        <argument line="597">
           <name>$height</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="579">
+        <argument line="597">
           <name>$xOffset</name>
           <default>0</default>
           <type/>
         </argument>
-        <argument line="579">
+        <argument line="597">
           <name>$yOffset</name>
           <default>0</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="637" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="657" package="Karla">
         <name>quality</name>
         <full_name>quality</full_name>
-        <docblock line="622">
+        <docblock line="642">
           <description>Set the quality of the output image for jpeg an png.</description>
           <long-description></long-description>
-          <tag line="622" name="param" description="A value between 0 - 100" type="integer" variable="$quality">
+          <tag line="642" name="param" description="A value between 0 - 100" type="integer" variable="$quality">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="622" name="param" description="Format to use; default is jpeg" type="string" variable="$format">
+          <tag line="642" name="param" description="Format to use; default is jpeg" type="string" variable="$format">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="622" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="642" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="622" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="642" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
-          <tag line="622" name="throws" description="if quality has already been called" type="\BadMethodCallException">
+          <tag line="642" name="throws" description="if quality has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
-          <tag line="622" name="throws" description="if quality is not a value between 0 - 100" type="\RangeException">
+          <tag line="642" name="throws" description="if quality is not a value between 0 - 100" type="\RangeException">
             <type by_reference="false">\RangeException</type>
           </tag>
-          <tag line="622" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="642" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
         </docblock>
-        <argument line="637">
+        <argument line="657">
           <name>$quality</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="637">
+        <argument line="657">
           <name>$format</name>
           <default>'jpeg'</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="668" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="690" package="Karla">
         <name>gravity</name>
         <full_name>gravity</full_name>
-        <docblock line="658">
+        <docblock line="680">
           <description>Set the gravity</description>
           <long-description>&lt;p&gt;(This method is only redefined to support autocompletion in ide's like Eclipse)&lt;/p&gt;</long-description>
-          <tag line="658" name="param" description="Gravity" type="string" variable="$gravity">
+          <tag line="680" name="param" description="Gravity" type="string" variable="$gravity">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="658" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="680" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
         </docblock>
-        <argument line="668">
+        <argument line="690">
           <name>$gravity</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="683" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="705" package="Karla">
         <name>colorspace</name>
         <full_name>colorspace</full_name>
-        <docblock line="673">
+        <docblock line="695">
           <description>Set the colorspace for the image</description>
           <long-description></long-description>
-          <tag line="673" name="param" description="The colorspace to use" type="string" variable="$colorSpace">
+          <tag line="695" name="param" description="The colorspace to use" type="string" variable="$colorSpace">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="673" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="695" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="673" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="695" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
-          <tag line="673" name="throws" description="if colorspace has already been called" type="\BadMethodCallException">
+          <tag line="695" name="throws" description="if colorspace has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
-        <argument line="683">
+        <argument line="705">
           <name>$colorSpace</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="706" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="730" package="Karla">
         <name>sepia</name>
         <full_name>sepia</full_name>
-        <docblock line="696">
+        <docblock line="720">
           <description>Sepia tone the image</description>
           <long-description></long-description>
-          <tag line="696" name="param" description="The threshold to use" type="string" variable="$threshold">
+          <tag line="720" name="param" description="The threshold to use" type="string" variable="$threshold">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="696" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="720" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="696" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="720" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
-          <tag line="696" name="throws" description="if sepia has already been called" type="\BadMethodCallException">
+          <tag line="720" name="throws" description="if sepia has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
-        <argument line="706">
+        <argument line="730">
           <name>$threshold</name>
           <default>80</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="731" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="755" package="Karla">
         <name>polaroid</name>
         <full_name>polaroid</full_name>
-        <docblock line="721">
+        <docblock line="745">
           <description>Add polaroid effect to the image</description>
           <long-description></long-description>
-          <tag line="721" name="param" description="The threshold to use" type="integer" variable="$angle">
+          <tag line="745" name="param" description="The threshold to use" type="integer" variable="$angle">
             <type by_reference="false">integer</type>
           </tag>
-          <tag line="721" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="745" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="721" name="throws" description="" type="\InvalidArgumentException">
+          <tag line="745" name="throws" description="" type="\InvalidArgumentException">
             <type by_reference="false">\InvalidArgumentException</type>
           </tag>
-          <tag line="721" name="throws" description="if angle has already been called" type="\BadMethodCallException">
+          <tag line="745" name="throws" description="if angle has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
-        <argument line="731">
+        <argument line="755">
           <name>$angle</name>
           <default>0</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="753" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="779" package="Karla">
         <name>borderColor</name>
         <full_name>borderColor</full_name>
-        <docblock line="744">
+        <docblock line="770">
           <description>Set the color of the border if border is set</description>
           <long-description></long-description>
-          <tag line="744" name="param" description="The color of the border" type="string" variable="$color">
+          <tag line="770" name="param" description="The color of the border" type="string" variable="$color">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="744" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="770" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="744" name="throws" description="if borderColor has already been called" type="\BadMethodCallException">
+          <tag line="770" name="throws" description="if borderColor has already been called" type="\BadMethodCallException">
             <type by_reference="false">\BadMethodCallException</type>
           </tag>
         </docblock>
-        <argument line="753">
+        <argument line="779">
           <name>$color</name>
           <default>'#DFDFDF'</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="783" package="Karla">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Karla\Program" line="809" package="Karla">
         <name>raw</name>
         <full_name>raw</full_name>
-        <docblock line="772">
+        <docblock line="798">
           <description>Raw arguments directly to ImageMagick</description>
           <long-description></long-description>
-          <tag line="772" name="param" description="Arguments" type="string" variable="$arguments">
+          <tag line="798" name="param" description="Arguments" type="string" variable="$arguments">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="772" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
+          <tag line="798" name="param" description="Defaults to an input option, use false to use it as an output option" type="boolean" variable="$input">
             <type by_reference="false">boolean</type>
           </tag>
-          <tag line="772" name="return" description="" type="\Karla\Program\Convert">
+          <tag line="798" name="return" description="" type="\Karla\Program\Convert">
             <type by_reference="false">\Karla\Program\Convert</type>
           </tag>
-          <tag line="772" name="see" description="\Karla\Program\ImageMagick::raw()" refers="\Karla\Program\ImageMagick::raw()"/>
+          <tag line="798" name="see" description="\Karla\Program\ImageMagick::raw()" refers="\Karla\Program\ImageMagick::raw()"/>
         </docblock>
-        <argument line="783">
+        <argument line="809">
           <name>$arguments</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="783">
+        <argument line="809">
           <name>$input</name>
           <default>true</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="private" namespace="Karla\Program" line="798" package="Karla">
+      <method final="false" abstract="false" static="true" visibility="private" namespace="Karla\Program" line="824" package="Karla">
         <name>validHexColor</name>
         <full_name>validHexColor</full_name>
-        <docblock line="790">
+        <docblock line="816">
           <description>Check if supplied color is a valid hex color</description>
           <long-description></long-description>
-          <tag line="790" name="param" description="Color to check" type="string" variable="$color">
+          <tag line="816" name="param" description="Color to check" type="string" variable="$color">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="790" name="return" description="" type="boolean">
+          <tag line="816" name="return" description="" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="798">
+        <argument line="824">
           <name>$color</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="private" namespace="Karla\Program" line="813" package="Karla">
+      <method final="false" abstract="false" static="true" visibility="private" namespace="Karla\Program" line="839" package="Karla">
         <name>validColorName</name>
         <full_name>validColorName</full_name>
-        <docblock line="805">
+        <docblock line="831">
           <description>Check if this is a valid color name</description>
           <long-description></long-description>
-          <tag line="805" name="param" description="Color to check" type="string" variable="$color">
+          <tag line="831" name="param" description="Color to check" type="string" variable="$color">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="805" name="return" description="" type="boolean">
+          <tag line="831" name="return" description="" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="813">
+        <argument line="839">
           <name>$color</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="private" namespace="Karla\Program" line="829" package="Karla">
+      <method final="false" abstract="false" static="true" visibility="private" namespace="Karla\Program" line="855" package="Karla">
         <name>validRgbColor</name>
         <full_name>validRgbColor</full_name>
-        <docblock line="821">
+        <docblock line="847">
           <description>Check if this is a valid rgb color definition</description>
           <long-description></long-description>
-          <tag line="821" name="param" description="Color to check" type="string" variable="$color">
+          <tag line="847" name="param" description="Color to check" type="string" variable="$color">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="821" name="return" description="" type="boolean">
+          <tag line="847" name="return" description="" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="829">
+        <argument line="855">
           <name>$color</name>
           <default></default>
           <type/>
@@ -2357,9 +2317,9 @@ return it for futher processing</description>
       </method>
     </class>
     <markers>
-      <todo line="92">implement this feature</todo>
+      <todo line="91">implement this feature</todo>
     </markers>
-    <source>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</source>
+    <source>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</source>
   </file>
   <file path="Program.php" hash="3b9649c59b673f3f857cb9337e7b1457" package="Karla">
     <docblock line="2">
@@ -2883,9 +2843,7 @@ to ImageMagick like you would have done directly in the consol.&lt;/p&gt;</long-
   <package name="Karla" full_name="Karla"/>
   <namespace name="Karla" full_name="Karla">
     <namespace name="Cache" full_name="Karla\Cache"/>
-    <namespace name="Program" full_name="Karla\Program">
-      <namespace name="Convert" full_name="Karla\Program\Convert"/>
-    </namespace>
+    <namespace name="Program" full_name="Karla\Program"/>
   </namespace>
   <marker count="7">todo</marker>
   <marker count="0">fixme</marker>

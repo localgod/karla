@@ -31,7 +31,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">4</span></a></li>
+                <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">7</span>
@@ -96,7 +96,6 @@
                     <ul>
 <li class="method protected inherited"><a href="#method_dirty" title="dirty :: Set the object as beeing dirty"><span class="description">Set the object as beeing dirty</span><pre>dirty()</pre></a></li>
 <li class="method protected inherited"><a href="#method_isOptionSet" title="isOptionSet :: Check if an option is already set"><span class="description">Check if an option is already set</span><pre>isOptionSet()</pre></a></li>
-<li class="method protected "><a href="#method_onlyOnce" title="onlyOnce :: Some methods may only be envoked once per query."><span class="description">Some methods may only be envoked once per query.</span><pre>onlyOnce()</pre></a></li>
 <li class="method protected inherited"><a href="#method_prepareOptions" title="prepareOptions :: Prepare option collection"><span class="description">Prepare option collection</span><pre>prepareOptions()</pre></a></li>
 <li class="method protected inherited"><a href="#method_supportedColorSpace" title="supportedColorSpace :: Check if a colorspace is supported by ImageMagick."><span class="description">Check if a colorspace is supported by ImageMagick.</span><pre>supportedColorSpace()</pre></a></li>
 <li class="method protected inherited"><a href="#method_supportedFormat" title="supportedFormat :: Check if a format is supported by ImageMagick."><span class="description">Check if a format is supported by ImageMagick.</span><pre>supportedFormat()</pre></a></li>
@@ -342,10 +341,16 @@
 <code>integer</code><p>Y offset from upper-left corner</p>
 </div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if crop has already been called</td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -403,10 +408,16 @@
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if flatten has already been called</td>
+</tr>
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -417,6 +428,11 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if flip has already been called</td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -427,6 +443,11 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if strip has already been called</td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -674,10 +695,16 @@
 <h4>$originalHeight</h4>
 <code>integer</code><p>Original image resolution</p></div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if resample, resize or density has already been called</td>
+</tr>
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -716,10 +743,16 @@
 <code>boolean</code><p>Should we prohipped scaling up? default is true</p>
 </div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if resize has already been called</td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -738,6 +771,11 @@
 <h4>$background</h4>
 <code>integer</code><p>The background color to apply to empty triangles in the corners,
            left over from rotating the image</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if rotate has already been called</td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -781,10 +819,16 @@
 <h4>$height</h4>
 <code>integer</code><p>Image height</p></div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if size has already been called</td>
+</tr>
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -796,10 +840,16 @@
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if strip has already been called</td>
+</tr>
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -815,10 +865,16 @@
 <h4>$type</h4>
 <code>string</code><p>The output image type</p></div>
 <h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
 <th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
 <td></td>
-</tr></table>
+</tr>
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td>if type has already been called</td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Karla.Program.Convert.html">\Karla\Program\Convert</a></code></div>
 </div></div>
@@ -874,26 +930,6 @@
 <code>array</code><p>Optionlist to look in</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>boolean</code></div>
-</div></div>
-</div>
-<a id="method_onlyOnce"></a><div class="element clickable method protected method_onlyOnce" data-toggle="collapse" data-target=".method_onlyOnce .collapse">
-<h2>Some methods may only be envoked once per query.</h2>
-<pre>onlyOnce(string $name, array $options) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$name</h4>
-<code>string</code><p>Name of method to check</p></div>
-<div class="subelement argument">
-<h4>$options</h4>
-<code>array</code><p>Options to check</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered"><tr>
-<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
-<td>if method has already been called</td>
-</tr></table>
 </div></div>
 </div>
 <a id="method_prepareOptions"></a><div class="element clickable method protected method_prepareOptions" data-toggle="collapse" data-target=".method_prepareOptions .collapse">
@@ -1288,7 +1324,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-05-24T18:14:11Z.<br></footer></div>
+            generated on 2013-05-24T18:32:31Z.<br></footer></div>
 </div>
 </body>
 </html>
