@@ -155,41 +155,4 @@ class Karla
 
         return new Program\Composite($this->binPath, $bin, $this->cache);
     }
-
-    /**
-     * Create a background image
-     *
-     * @param integer $width
-     *            Background image width
-     * @param integer $height
-     *            Background image height
-     * @param string $color
-     *            Background image color
-     * @param string $savePath
-     *            Image save path
-     *
-     * @return string Path to generated image
-     */
-    public function createBackgroundImage($width, $height, $color, $savePath = '')
-    {
-        if ($savePath == '') {
-            $path = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tempback.png';
-        } else {
-            $pathinfo = pathinfo($savePath);
-            if (! file_exists($pathinfo['dirname'])) {
-                $message = 'The output file path (' . $pathinfo['dirname'] . ') is invalid or could not be located.';
-                throw new \InvalidArgumentException($message);
-            }
-
-            $path = ' "' . $file->getPathname() . '/' . $pathinfo['basename'] . '" ';
-        }
-
-        echo $this->convert()
-            ->size($width, $height)
-            ->background($color)
-            ->outputfile($path)
-            ->execute();
-
-        return $path;
-    }
 }

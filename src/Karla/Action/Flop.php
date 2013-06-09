@@ -9,11 +9,14 @@
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
- * @since    2012-04-05
+ * @since    2013-05-26
  */
-namespace Karla;
+namespace Karla\Action;
+
+use Karla\Query;
+use Karla\Action;
 /**
- * Interface for all classes wrapping ImageMagick tools
+ * Class for handeling flop action
  *
  * @category Utility
  * @package  Karla
@@ -21,20 +24,20 @@ namespace Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/Karla Karla
  */
-interface Program
+class Flop implements Action
 {
-
     /**
-     * Execute the command
+     * (non-PHPdoc)
      *
-     * @return string
+     * @param Query $query
+     *            The query to add the action to
+     * @return Query
+     * @see Action::perform()
      */
-    public function execute();
-
-    /**
-     * Get the command to run
-     *
-     * @return string
-     */
-    public function getCommand();
+    public function perform(Query $query)
+    {
+        $query->notWith('flop', Query::ARGUMENT_TYPE_INPUT);
+        $query->setInputOption(" -flop ");
+        return $query;
+    }
 }

@@ -29,7 +29,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::inputfile
      *
      * @return void
      */
@@ -46,7 +45,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::inputfile
      * @expectedException InvalidArgumentException
      *
      * @return void
@@ -63,7 +61,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::execute
      *
      * @return void
      */
@@ -79,10 +76,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
     /**
      * Test
      *
-     * @covers Karla\Program\Identify::execute
-     * @covers Karla\MetaData::__construct
-     * @covers Karla\Program\ImageMagick::reset
-     *
      * @return void
      */
     public function executeNoRaw()
@@ -95,10 +88,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
     }
     /**
      * Test
-     *
-     * @covers Karla\Program\Identify::execute
-     * @covers Karla\MetaData::__construct
-     * @covers Karla\Program\ImageMagick::reset
      *
      * @return void
      */
@@ -116,8 +105,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::execute
-     * @covers Karla\Program\ImageMagick::reset
      *
      * @return void
      */
@@ -134,9 +121,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::execute
-     * @covers Karla\MetaData::__construct
-     * @covers Karla\Program\ImageMagick::reset
      *
      * @return void
      */
@@ -153,7 +137,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::verbose
      *
      * @return void
      */
@@ -171,7 +154,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::verbose
+     * @expectedException BadMethodCallException
      *
      * @return void
      */
@@ -183,14 +166,12 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
             ->verbose()
             ->verbose()
             ->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';identify -verbose "tests/_data/demo.jpg"');
     }
 
     /**
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::gravity
      *
      * @return void
      */
@@ -210,7 +191,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::gravity
      *
      * @return void
      */
@@ -229,21 +209,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::isDirty
-     *
-     * @return void
-     */
-    public function isDirty()
-    {
-        $this->assertTrue(! Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
-            ->isDirty());
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @covers Karla\Program\Identify::__clone
      * @expectedException BadMethodCallException
      *
      * @return void
@@ -257,7 +222,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::getCommand
      *
      * @return void
      */
@@ -272,7 +236,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::reset
      *
      * @return void
      */
@@ -285,8 +248,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::raw
-     * @covers Karla\Program\ImageMagick::raw
      *
      * @return void
      */
@@ -300,7 +261,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::density
      *
      * @return void
      */
@@ -314,7 +274,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Identify::validProgram
      *
      * @return void
      */

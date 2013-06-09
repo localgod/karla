@@ -12,14 +12,17 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
+
+use Karla\Query;
+
 /**
  * Class for wrapping ImageMagick arguments used by all tools
  *
  * @category Utility
- * @package  Karla
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
- * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @package Karla
+ * @author Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license http://www.opensource.org/licenses/mit-license.php MIT
+ * @link https://github.com/localgod/Karla Karla
  */
 abstract class ImageMagick implements \Karla\Program
 {
@@ -120,7 +123,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @var string
      */
-    protected $binPath;
+    public $binPath;
 
     /**
      * Name of binary
@@ -137,11 +140,11 @@ abstract class ImageMagick implements \Karla\Program
     protected $cache;
 
     /**
-     * Is the object dirty (has any arguments been set)
+     * The current query
      *
-     * @var boolean
+     * @var Query
      */
-    private $dirty;
+    private $query;
 
     /**
      * Contructs a new program
@@ -167,31 +170,29 @@ abstract class ImageMagick implements \Karla\Program
         $this->binPath = $binPath;
         $this->bin = $bin;
         $this->cache = $cache;
-        $this->reset();
+        $this->query = new Query();
+        $this->getQuery()->reset();
     }
 
     /**
-     * Is the object dirty
+     * Get the current query
      *
-     * (has any arguments been set)
-     *
-     * @return boolean
+     * @return Query
      */
-    public function isDirty()
+    public function getQuery()
     {
-        return $this->dirty;
+        return $this->query;
     }
-
     /**
-     * Set the object as beeing dirty
+     * Set the current query
      *
-     * (Arguments has been set)
+     * @param Query $query Query to set
      *
      * @return void
      */
-    protected function dirty()
+    public function setQuery(Query $query)
     {
-        $this->dirty = true;
+        $this->query = $query;
     }
 
     /**
@@ -226,22 +227,10 @@ abstract class ImageMagick implements \Karla\Program
     {
         $result = shell_exec($this->getCommand());
         if ($reset) {
-            $this->reset();
+            $this->getQuery()->reset();
         }
 
         return $result;
-    }
-
-    /**
-     * Reset the command
-     *
-     * @return void
-     */
-    public function reset()
-    {
-        $this->inputOptions = array();
-        $this->outputOptions = array();
-        $this->dirty = false;
     }
 
     /**
@@ -257,9 +246,9 @@ abstract class ImageMagick implements \Karla\Program
     public function raw($arguments, $input = true)
     {
         if ($input) {
-            $this->inputOptions[] = $arguments;
+            $this->getQuery()->setInputOption($arguments);
         } else {
-            $this->outputOptions[] = $arguments;
+            $this->getQuery()->setOutputOption($arguments);
         }
     }
 
@@ -273,15 +262,11 @@ abstract class ImageMagick implements \Karla\Program
      */
     public function gravity($gravity)
     {
-        if ($this->isOptionSet('gravity', $this->inputOptions)) {
-            throw new \BadMethodCallException('Gravity can only be called once.');
-        }
+        $this->getQuery()->notWith('gravity', \Karla\Query::ARGUMENT_TYPE_INPUT);
         if ($this->supportedGravity($gravity)) {
-            $this->inputOptions[] = " -gravity " . $gravity;
-            $this->dirty();
-
-            return $this;
+            $this->getQuery()->setInputOption(" -gravity " . $gravity);
         }
+        return $this;
     }
 
     /**
@@ -301,117 +286,24 @@ abstract class ImageMagick implements \Karla\Program
      */
     public function density($width = 72, $height = 72, $output = true)
     {
-        if ($this->isOptionSet('density', $this->inputOptions)) {
-            $message = "'density()' can only be called once as in input argument.";
-            throw new \BadMethodCallException($message);
-        }
-        if ($this->isOptionSet('density', $this->outputOptions)) {
-            $message = "'density()' can only be called once as in input argument.";
-            throw new \BadMethodCallException($message);
-        }
+        $this->getQuery()->notWith('density', \Karla\Query::ARGUMENT_TYPE_INPUT);
+        $this->getQuery()->notWith('density', \Karla\Query::ARGUMENT_TYPE_OUTPUT);
         if (! is_numeric($width)) {
             $message = 'Width must be numeric values in the density method';
             throw new \InvalidArgumentException($message);
         }
-        if (! is_numeric($width)) {
+        if (! is_numeric($height)) {
             $message = 'Height must be numeric values in the density method';
             throw new \InvalidArgumentException($message);
         }
         if ($output) {
-            $this->outputOptions[] = " -density " . $width . "x" . $height;
+            $this->getQuery()->setOutputOption(" -density " . $width . "x" . $height);
         } else {
-            $this->inputOptions[] = " -density " . $width . "x" . $height;
+            $this->getQuery()->setInputOption(" -density " . $width . "x" . $height);
         }
-        $this->dirty();
+        $this->getQuery()->dirty();
 
         return $this;
-    }
-
-    /**
-     * Prepare option collection
-     *
-     * @param array $options
-     *            Options
-     *
-     * @return string
-     */
-    final protected function prepareOptions(array $options)
-    {
-        $options = implode(' ', $options);
-        if (trim($options) == '') {
-            return '';
-        }
-
-        return trim($options);
-    }
-
-    /**
-     * Check if an option is already set
-     *
-     * @param string $lookop
-     *            Option to look up
-     * @param array $optionList
-     *            Optionlist to look in
-     *
-     * @return boolean
-     */
-    final protected function isOptionSet($lookop, array $optionList)
-    {
-        foreach ($optionList as $option) {
-            if (strstr($option, $lookop)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Check if a colorspace is supported by ImageMagick.
-     *
-     * @param string $colorSpace
-     *            Colorspace to check
-     *
-     * @return boolean
-     */
-    final protected function supportedColorSpace($colorSpace)
-    {
-        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
-            throw new \BadMethodCallException('This method can not be used in this context');
-        }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $colorspaces = shell_exec($this->binPath . $bin . ' -list colorspace');
-        $colorspaces = explode("\n", $colorspaces);
-        for ($i = 0; $i < count($colorspaces); $i ++) {
-            $colorspaces[$i] = trim(strtolower($colorspaces[$i]));
-        }
-
-        return in_array(strtolower(trim($colorSpace)), $colorspaces);
-    }
-
-    /**
-     * Check if a image type is supported by ImageMagick.
-     *
-     * @param string $type
-     *            Type to check
-     *
-     * @return boolean
-     */
-    final protected function supportedImageTypes($type)
-    {
-        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
-            throw new \BadMethodCallException('This method can not be used in this context');
-        }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $types = shell_exec($this->binPath . $bin . ' -list type');
-        $types = explode("\n", $types);
-        for ($i = 0; $i < count($types); $i ++) {
-            $types[$i] = trim(strtolower($types[$i]));
-        }
-
-        return in_array(strtolower(trim($type)), $types);
     }
 
     /**
@@ -428,8 +320,7 @@ abstract class ImageMagick implements \Karla\Program
         if (! ($this instanceof Convert) && ! ($this instanceof Composite)) {
             throw new \BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $gravities = shell_exec($this->binPath . $bin . ' -list gravity');
         $gravities = explode("\n", $gravities);
         for ($i = 0; $i < count($gravities); $i ++) {
@@ -437,31 +328,6 @@ abstract class ImageMagick implements \Karla\Program
         }
 
         return in_array(strtolower(trim($gravity)), $gravities);
-    }
-
-    /**
-     * Check if a method is supported by ImageMagick.
-     *
-     * @param string $method
-     *            Method to check
-     *
-     * @return boolean
-     * @throws \BadMethodCallException if called in a wrong context
-     */
-    final protected function supportedLayerMethod($method)
-    {
-        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
-            throw new \BadMethodCallException('This method can not be used in this context');
-        }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $methods = shell_exec($this->binPath . $bin . ' -list layers');
-        $methods = explode("\n", $methods);
-        for ($i = 0; $i < count($methods); $i ++) {
-            $methods[$i] = trim(strtolower($methods[$i]));
-        }
-
-        return in_array(strtolower(trim($method)), $methods);
     }
 
     /**
@@ -478,8 +344,7 @@ abstract class ImageMagick implements \Karla\Program
         if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $formats = shell_exec($this->binPath . $bin . ' -list format');
         $formats = explode("\n", $formats);
         for ($i = 0; $i < count($formats); $i ++) {

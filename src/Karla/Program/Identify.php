@@ -12,14 +12,15 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
+
 /**
  * Class for wrapping ImageMagicks identify tool
  *
  * @category Utility
- * @package  Karla
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
- * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @package Karla
+ * @author Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license http://www.opensource.org/licenses/mit-license.php MIT
+ * @link https://github.com/localgod/Karla Karla
  */
 class Identify extends ImageMagick
 {
@@ -50,7 +51,7 @@ class Identify extends ImageMagick
         if ($file->isReadable()) {
             $this->inputFile = '"' . $file->getPathname() . '"';
         }
-        $this->dirty();
+        $this->getQuery()->dirty();
 
         return $this;
     }
@@ -71,15 +72,16 @@ class Identify extends ImageMagick
         $result = parent::execute(false);
 
         if (! $raw) {
-            if ($this->isOptionSet('verbose', $this->inputOptions)) {
-                $reset == true ? $this->reset() : null;
+            if ($this->getQuery()->isOptionSet('verbose', $this->getQuery()
+                ->getInputOptions())) {
+                $reset == true ? $this->getQuery()->reset() : null;
                 return new \Karla\MetaData($result, true);
             }
-            $reset == true ? $this->reset() : null;
+            $reset == true ? $this->getQuery()->reset() : null;
             return new \Karla\MetaData($result);
         }
 
-        $reset == true ? $this->reset() : null;
+        $reset == true ? $this->getQuery()->reset() : null;
         return trim($result);
     }
 
@@ -90,10 +92,8 @@ class Identify extends ImageMagick
      */
     public function verbose()
     {
-        if (! $this->isOptionSet('verbose', $this->inputOptions)) {
-            $this->inputOptions[] = "-verbose ";
-        }
-        $this->dirty();
+        $this->getQuery()->notWith('verbose', \Karla\Query::ARGUMENT_TYPE_INPUT);
+        $this->getQuery()->setInputOption("-verbose ");
 
         return $this;
     }
@@ -106,9 +106,10 @@ class Identify extends ImageMagick
      */
     public function getCommand()
     {
-        ! is_array($this->inputOptions) ? $this->inputOptions = array() : null;
-        $options = $this->prepareOptions($this->inputOptions) == '' ?
-            '' : $this->prepareOptions($this->inputOptions) . ' ';
+        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
+        $options = $this->getQuery()->prepareOptions($this->getQuery()
+            ->getInputOptions()) == '' ? '' : $this->getQuery()->prepareOptions($this->getQuery()
+            ->getInputOptions()) . ' ';
 
         return $this->binPath . $this->bin . ' ' . $options . $this->inputFile;
     }

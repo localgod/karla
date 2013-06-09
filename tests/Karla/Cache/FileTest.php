@@ -27,7 +27,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\FileCache::isCached
      * @todo   Implement testIsCached().
      */
     public function isCached()
@@ -39,7 +38,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\FileCache::getCached
      * @todo   Implement testGetCached().
      */
     public function getCached()
@@ -51,7 +49,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\FileCache::setCache
      * @todo   Implement testSetCache().
      */
     public function setCache()
@@ -63,7 +60,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\FileCache::removeOrphans
      * @todo   Implement testRemoveOrphans().
      */
     public function removeOrphans()

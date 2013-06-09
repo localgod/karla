@@ -28,7 +28,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::basefile
      *
      * @return void
      */
@@ -42,7 +41,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::changefile
      *
      * @return void
      */
@@ -56,7 +54,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::outputfile
      *
      * @return void
      */
@@ -70,8 +67,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::raw
-     * @covers Karla\Program\ImageMagick::raw
      *
      * @return void
      */
@@ -85,7 +80,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::gravity
      *
      * @return void
      */
@@ -99,21 +93,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::isDirty
-     *
-     * @return void
-     */
-    public function isDirty()
-    {
-        $this->assertTrue(! Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
-            ->isDirty());
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @covers Karla\Program\Composite::__clone
      * @expectedException BadMethodCallException
      *
      * @return void
@@ -127,7 +106,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::getCommand
      *
      * @return void
      */
@@ -141,7 +119,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::execute
      *
      * @return void
      */
@@ -154,7 +131,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::reset
      *
      * @return void
      */
@@ -167,7 +143,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::density
      *
      * @return void
      */
@@ -181,7 +156,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\Program\Composite::validProgram
      *
      * @return void
      */

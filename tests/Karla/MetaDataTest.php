@@ -26,17 +26,11 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
+     * Meta data obejct
      *
      * @var MetaData
      */
     protected $object;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {}
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -51,8 +45,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getResolutionHeight
-     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -68,8 +60,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getResolutionHeight
-     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -86,8 +76,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getResolutionWidth
-     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -104,8 +92,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getResolutionWidth
-     * @covers Karla\MetaData::getResolution
      *
      * @return void
      */
@@ -121,7 +107,7 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData
+     *
      * @return void
      */
     public function parseMethods()
@@ -131,17 +117,19 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
             ->execute(true, false);
         $this->assertEquals(null, $this->object->getResolutionWidth());
     }
+
     /**
      * Test
      *
      * @test
-     * @covers Karla\MetaData
+     *
      * @return void
      */
     public function parseMethodsVerbose()
     {
         $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
-            ->inputfile('tests/_data/demo.jpg')->verbose()
+            ->inputfile('tests/_data/demo.jpg')
+            ->verbose()
             ->execute(true, false);
         $this->assertEquals(300, $this->object->getResolutionWidth());
     }
@@ -150,7 +138,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getFormat
      *
      * @return void
      */
@@ -167,7 +154,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getFormat
      *
      * @return void
      */
@@ -183,7 +169,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getDepth
      *
      * @return void
      */
@@ -200,7 +185,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getDepth
      *
      * @return void
      */
@@ -216,7 +200,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getColorspace
      *
      * @return void
      */
@@ -233,7 +216,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getColorspace
      *
      * @return void
      */
@@ -249,7 +231,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getGeometry
      *
      * @return void
      */
@@ -267,7 +248,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getGeometry
      *
      * @return void
      */
@@ -284,7 +264,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getHeight
      *
      * @return void
      */
@@ -301,7 +280,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getHeight
      *
      * @return void
      */
@@ -317,7 +295,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getWidth
      *
      * @return void
      */
@@ -334,7 +311,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getWidth
      *
      * @return void
      */
@@ -350,7 +326,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::listRaw
      *
      * @return void
      */
@@ -367,7 +342,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::listRaw
      *
      * @return void
      */
@@ -383,7 +357,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getUnit
      *
      * @return void
      */
@@ -400,7 +373,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getUnit
      *
      * @return void
      */
@@ -416,7 +388,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getHash
      *
      * @return void
      */
@@ -433,7 +404,6 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getHash
      *
      * @return void
      */
@@ -449,15 +419,15 @@ class MetaDataTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @covers Karla\MetaData::getHash
      * @expectedException InvalidArgumentException
+     *
      * @return void
      */
     public function getHashWithInvalidAlgorithm()
     {
         $this->object = Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
-        ->inputfile('tests/_data/demo.jpg')
-        ->execute(true, false);
+            ->inputfile('tests/_data/demo.jpg')
+            ->execute(true, false);
         $this->object->getHash('sha');
     }
 }
