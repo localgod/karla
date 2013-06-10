@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; \Karla\Query
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
+    <script src="../js/template.js" type="text/javascript"></script>
+    <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+
+    <link rel="shortcut icon" href="../img/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> </a>
+            <a class="brand" href="../index.html">Phpdoc for Karla</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                                                </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graph_class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../errors.html"><i class="icon-list-alt"></i>&#160;Errors</a></li>
+                            <li><a href="../markers.html"><i class="icon-list-alt"></i>&#160;Markers</a></li>
+                            <li><a href="../deprecated.html"><i class="icon-list-alt"></i>&#160;Deprecated</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top">
+        <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+    </div>
+</div>
+
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+        
+    <div class="row">
+        <div class="span4">
+            <span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+                <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+            </div>
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">
+                    <i class="icon-custom icon-method"></i> Methods
+                    <ul>
+                                                                                <li class="method public">
+                                <a href="#method_setInputOption" title="setInputOption :: Set input option">
+                                    <span class="description">Set input option</span><pre>setInputOption</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_getInputOptions" title="getInputOptions :: Get input option">
+                                    <span class="description">Get input option</span><pre>getInputOptions</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_setOutputOption" title="setOutputOption :: Set output option">
+                                    <span class="description">Set output option</span><pre>setOutputOption</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_getOutputOptions" title="getOutputOptions :: Get output options">
+                                    <span class="description">Get output options</span><pre>getOutputOptions</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_dirty" title="dirty :: Set the object as beeing dirty">
+                                    <span class="description">Set the object as beeing dirty</span><pre>dirty</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_reset" title="reset :: Reset the command">
+                                    <span class="description">Reset the command</span><pre>reset</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_isOptionSet" title="isOptionSet :: Check if an option is already set">
+                                    <span class="description">Check if an option is already set</span><pre>isOptionSet</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_notWith" title="notWith :: Raise an error if a method is called in a invalid context">
+                                    <span class="description">Raise an error if a method is called in a invalid context</span><pre>notWith</pre>
+                                </a>
+                            </li>
+                                                                                                            <li class="method public">
+                                <a href="#method_prepareOptions" title="prepareOptions :: Prepare option collection">
+                                    <span class="description">Prepare option collection</span><pre>prepareOptions</pre>
+                                </a>
+                            </li>
+                                                                        </ul>
+                </li>
+                <li class="nav-header protected">» Protected
+                    <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+                </li>
+                <li class="nav-header private">» Private
+                    <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+                </li>
+                <li class="nav-header">
+                    <i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+                                                <li class="constant ">
+                            <a href="#constant_ARGUMENT_TYPE_INPUT" title="ARGUMENT_TYPE_INPUT :: This argument is to be considered for the input image">
+                                <span class="description">This argument is to be considered for the input image</span><pre>ARGUMENT_TYPE_INPUT</pre>
+                            </a>
+                        </li>
+                                                <li class="constant ">
+                            <a href="#constant_ARGUMENT_TYPE_OUTPUT" title="ARGUMENT_TYPE_OUTPUT :: This argument is to be considered for the output image">
+                                <span class="description">This argument is to be considered for the output image</span><pre>ARGUMENT_TYPE_OUTPUT</pre>
+                            </a>
+                        </li>
+                                            </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Query</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Class for maintaining query info</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        category
+                                                                            </th>
+                                    <td>Utility</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>Karla</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        author
+                                                                            </th>
+                                    <td>Johannes Skov Frandsen &lt;localgod@heaven.dk&gt;</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        license
+                                                                            </th>
+                                    <td>http://www.opensource.org/licenses/mit-license.php MIT</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        link
+                                                                            </th>
+                                    <td>Karla</td>
+                                </tr>
+                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                            <a id="method_setInputOption"></a>
+                        <div class="element clickable method public method_setInputOption" data-toggle="collapse" data-target=".method_setInputOption .collapse">
+                            <h2>Set input option</h2>
+                            <pre>setInputOption(string $option) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$option</h4>
+                                                <code>string</code><p><p>Option to set</p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getInputOptions"></a>
+                        <div class="element clickable method public method_getInputOptions" data-toggle="collapse" data-target=".method_getInputOptions .collapse">
+                            <h2>Get input option</h2>
+                            <pre>getInputOptions() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setOutputOption"></a>
+                        <div class="element clickable method public method_setOutputOption" data-toggle="collapse" data-target=".method_setOutputOption .collapse">
+                            <h2>Set output option</h2>
+                            <pre>setOutputOption(string $option) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$option</h4>
+                                                <code>string</code><p><p>Option to set</p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getOutputOptions"></a>
+                        <div class="element clickable method public method_getOutputOptions" data-toggle="collapse" data-target=".method_getOutputOptions .collapse">
+                            <h2>Get output options</h2>
+                            <pre>getOutputOptions() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_dirty"></a>
+                        <div class="element clickable method public method_dirty" data-toggle="collapse" data-target=".method_dirty .collapse">
+                            <h2>Set the object as beeing dirty</h2>
+                            <pre>dirty() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>(Arguments has been set)</p>
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_reset"></a>
+                        <div class="element clickable method public method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
+                            <h2>Reset the command</h2>
+                            <pre>reset() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_isOptionSet"></a>
+                        <div class="element clickable method public method_isOptionSet" data-toggle="collapse" data-target=".method_isOptionSet .collapse">
+                            <h2>Check if an option is already set</h2>
+                            <pre>isOptionSet(string $lookop, array $optionList) </pre>
+                            <div class="labels">
+                                                                                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$lookop</h4>
+                                                <code>string</code><p><p>Option to look up</p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$optionList</h4>
+                                                <code>array</code><p><p>Optionlist to look in</p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_notWith"></a>
+                        <div class="element clickable method public method_notWith" data-toggle="collapse" data-target=".method_notWith .collapse">
+                            <h2>Raise an error if a method is called in a invalid context</h2>
+                            <pre>notWith(string $method, integer $argumentType) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                            
+<br />
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p><p>Method to check</p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$argumentType</h4>
+                                                <code>integer</code><p><p>Is it an input or an output argument</p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_prepareOptions"></a>
+                        <div class="element clickable method public method_prepareOptions" data-toggle="collapse" data-target=".method_prepareOptions .collapse">
+                            <h2>Prepare option collection</h2>
+                            <pre>prepareOptions(array $options) </pre>
+                            <div class="labels">
+                                                                                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$options</h4>
+                                                <code>array</code><p><p>Options</p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_ARGUMENT_TYPE_INPUT"> </a>
+                            <div class="element clickable constant  constant_ARGUMENT_TYPE_INPUT" data-toggle="collapse" data-target=".constant_ARGUMENT_TYPE_INPUT .collapse">
+                                <h2>This argument is to be considered for the input image</h2>
+                                <pre>ARGUMENT_TYPE_INPUT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ARGUMENT_TYPE_OUTPUT"> </a>
+                            <div class="element clickable constant  constant_ARGUMENT_TYPE_OUTPUT" data-toggle="collapse" data-target=".constant_ARGUMENT_TYPE_OUTPUT .collapse">
+                                <h2>This argument is to be considered for the output image</h2>
+                                <pre>ARGUMENT_TYPE_OUTPUT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                            <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_dirty"> </a>
+                            <div class="element clickable property private property_dirty" data-toggle="collapse" data-target=".property_dirty .collapse">
+                                <h2>Is the object dirty (has any arguments been set)</h2>
+                                <pre>dirty</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_inputOptions"> </a>
+                            <div class="element clickable property protected property_inputOptions" data-toggle="collapse" data-target=".property_inputOptions .collapse">
+                                <h2>Input option</h2>
+                                <pre>inputOptions</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_outputOptions"> </a>
+                            <div class="element clickable property protected property_outputOptions" data-toggle="collapse" data-target=".property_outputOptions .collapse">
+                                <h2>Output option</h2>
+                                <pre>outputOptions</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Karla\Query"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/Karla.html">Karla</a>
+    </li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Karla.Query.html">Query</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<footer class="span12">
+    Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+    <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+    generated on Mon, 10 Jun 2013 03:49:04 +0000.<br/>
+</footer>
+</body>
+</html>
