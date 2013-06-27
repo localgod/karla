@@ -129,8 +129,6 @@ class Convert extends ImageMagick implements \Karla\Program
     /**
      * Set the gravity
      *
-     * (This method is only redefined to support autocompletion in ide's like Eclipse)
-     *
      * @param string $gravity
      *            Gravity
      *
@@ -138,7 +136,9 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function gravity($gravity)
     {
-        return parent::gravity($gravity);
+        $action = new \Karla\Action\Gravity($this, $gravity);
+        $this->setQuery($action->perform($this->getQuery()));
+        return $this;
     }
 
     /**
@@ -202,8 +202,9 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function density($width = 72, $height = 72, $output = true)
     {
-        $this->getQuery()->notWith('resample', \Karla\Query::ARGUMENT_TYPE_INPUT);
-        return parent::density($width, $height, $output);
+        $action = new \Karla\Action\Density($width, $height, $output);
+        $this->setQuery($action->perform($this->getQuery()));
+        return $this;
     }
 
     /**
@@ -331,21 +332,13 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "")
     {
-        if ($originalWidth != '' && ! is_numeric($originalWidth)) {
-            $message = 'You must supply original width as a integer or as an empty string.
-                    Was (' . $originalWidth . ')';
-            throw new \InvalidArgumentException($message);
-        }
-        if ($originalHeight != '' && ! is_numeric($originalHeight)) {
-            $message = 'You must supply original height as a integer or as an empty string.
-                    Was (' . $originalHeight . ')';
-            throw new \InvalidArgumentException($message);
-        }
         if ($originalWidth != "" && $originalHeight != "") {
-            $this->density($originalWidth, $originalHeight, false);
+            $action = new \Karla\Action\Density($originalWidth, $originalHeight, false);
+            $this->setQuery($action->perform($this->getQuery()));
         }
         if ($originalWidth != "" && $originalHeight == "") {
-            $this->density($originalWidth, $originalWidth, false);
+            $action = new \Karla\Action\Density($originalWidth, $originalWidth, false);
+            $this->setQuery($action->perform($this->getQuery()));
         }
 
         $action = new \Karla\Action\Resample($newWidth, $newHeight);

@@ -71,19 +71,4 @@ class Composite extends ImageMagick
 
         return $this;
     }
-
-    /**
-     * Set the gravity
-     *
-     * (This method is only redefined to support autocompletion in ide's like Eclipse)
-     *
-     * @param string $gravity
-     *            Gravity
-     *
-     * @return Composite
-     */
-    public function gravity($gravity)
-    {
-        return parent::gravity($gravity);
-    }
 }

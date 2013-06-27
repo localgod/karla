@@ -80,19 +80,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     *
-     * @return void
-     */
-    public function gravity()
-    {
-        $this->assertInstanceOf('Karla\Program\Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
-            ->gravity(''));
-    }
-
-    /**
-     * Test
-     *
-     * @test
      * @expectedException BadMethodCallException
      *
      * @return void
@@ -137,19 +124,6 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
     public function reset()
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     *
-     * @return void
-     */
-    public function density()
-    {
-        $this->assertInstanceOf('Karla\Program\Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
-            ->density());
     }
 
     /**

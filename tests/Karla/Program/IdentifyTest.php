@@ -172,43 +172,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     *
-     * @return void
-     */
-    public function gravity()
-    {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertInstanceOf('Karla\Program\Identify', $karla->identify()
-            ->gravity(''));
-        $command = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
-            ->gravity('center')
-            ->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';identify "tests/_data/demo.jpg"');
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     *
-     * @return void
-     */
-    public function gravityTwice()
-    {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $command = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
-            ->gravity('center')
-            ->gravity('center')
-            ->getCommand();
-        $this->assertEquals($command, 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';identify "tests/_data/demo.jpg"');
-    }
-
-    /**
-     * Test
-     *
-     * @test
      * @expectedException BadMethodCallException
      *
      * @return void
@@ -255,19 +218,6 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Karla\Program\Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
             ->raw(''));
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     *
-     * @return void
-     */
-    public function density()
-    {
-        $this->assertInstanceOf('Karla\Program\Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
-            ->density());
     }
 
     /**

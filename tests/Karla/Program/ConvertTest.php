@@ -188,7 +188,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
     {
         Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
             ->inputfile('tests/_data/demo.jpg')
-            ->resample(200)
+            ->resample(200, 200, 72, 72)
             ->density()
             ->outputfile('test-200x200.png')
             ->getCommand();
@@ -309,12 +309,31 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
     public function gravity()
     {
         $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
-            ->gravity('center')
-            ->outputfile('test-200x200.png')
-            ->getCommand();
+        ->inputfile('tests/_data/demo.jpg')
+        ->outputfile('test-200x200.png')
+        ->gravity('center')
+        ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
+    }
+
+
+    /**
+     * Test
+     *
+     * @test
+     * @expectedException BadMethodCallException
+     *
+     * @return void
+     */
+    public function gravityTwice()
+    {
+        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $command = $karla->convert()
+        ->inputfile('tests/_data/demo.jpg')
+        ->gravity('center')
+        ->gravity('center')
+        ->getCommand();
     }
 
     /**

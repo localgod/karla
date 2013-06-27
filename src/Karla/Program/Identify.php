@@ -115,41 +115,6 @@ class Identify extends ImageMagick
     }
 
     /**
-     * Set the gravity
-     *
-     * Gravity has no effect when used in this context
-     *
-     * @param string $gravity
-     *            Gravity
-     *
-     * @return Identify
-     */
-    public function gravity($gravity)
-    {
-        return $this;
-    }
-
-    /**
-     * Set the density of the output image.
-     *
-     * Desity has no effect when used in this context
-     *
-     * @param integer $width
-     *            The width of the image
-     * @param integer $height
-     *            The height of the image
-     * @param boolean $output
-     *            If output is true density is set for the resulting image
-     *            If output is false density is used for reading the input image
-     *
-     * @return Identify
-     */
-    public function density($width = 72, $height = 72, $output = true)
-    {
-        return $this;
-    }
-
-    /**
      * Raw arguments directly to ImageMagick
      *
      * @param string $arguments

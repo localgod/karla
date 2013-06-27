@@ -105,20 +105,6 @@ abstract class ImageMagick implements \Karla\Program
     const IMAGEMAGICK_STREAM = 'stream';
 
     /**
-     * Input option
-     *
-     * @var Array
-     */
-    protected $inputOptions;
-
-    /**
-     * Output option
-     *
-     * @var Array
-     */
-    protected $outputOptions;
-
-    /**
      * Path to binaries
      *
      * @var string
@@ -250,84 +236,6 @@ abstract class ImageMagick implements \Karla\Program
         } else {
             $this->getQuery()->setOutputOption($arguments);
         }
-    }
-
-    /**
-     * Set the gravity
-     *
-     * @param string $gravity
-     *            Gravity
-     *
-     * @return ImageMagick
-     */
-    public function gravity($gravity)
-    {
-        $this->getQuery()->notWith('gravity', \Karla\Query::ARGUMENT_TYPE_INPUT);
-        if ($this->supportedGravity($gravity)) {
-            $this->getQuery()->setInputOption(" -gravity " . $gravity);
-        }
-        return $this;
-    }
-
-    /**
-     * Set the density of the output image.
-     *
-     * @param integer $width
-     *            The width of the image
-     * @param integer $height
-     *            The height of the image
-     * @param boolean $output
-     *            If output is true density is set for the resulting image
-     *            If output is false density is used for reading the input image
-     *
-     * @return Convert
-     * @throws \BadMethodCallException if density has already been called
-     * @throws \InvalidArgumentException
-     */
-    public function density($width = 72, $height = 72, $output = true)
-    {
-        $this->getQuery()->notWith('density', \Karla\Query::ARGUMENT_TYPE_INPUT);
-        $this->getQuery()->notWith('density', \Karla\Query::ARGUMENT_TYPE_OUTPUT);
-        if (! is_numeric($width)) {
-            $message = 'Width must be numeric values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($height)) {
-            $message = 'Height must be numeric values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
-        if ($output) {
-            $this->getQuery()->setOutputOption(" -density " . $width . "x" . $height);
-        } else {
-            $this->getQuery()->setInputOption(" -density " . $width . "x" . $height);
-        }
-        $this->getQuery()->dirty();
-
-        return $this;
-    }
-
-    /**
-     * Check if a gravity is supported by ImageMagick.
-     *
-     * @param string $gravity
-     *            Gravity to check
-     *
-     * @return boolean
-     * @throws \BadMethodCallException if called in a wrong context
-     */
-    final protected function supportedGravity($gravity)
-    {
-        if (! ($this instanceof Convert) && ! ($this instanceof Composite)) {
-            throw new \BadMethodCallException('This method can not be used in this context');
-        }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $gravities = shell_exec($this->binPath . $bin . ' -list gravity');
-        $gravities = explode("\n", $gravities);
-        for ($i = 0; $i < count($gravities); $i ++) {
-            $gravities[$i] = trim(strtolower($gravities[$i]));
-        }
-
-        return in_array(strtolower(trim($gravity)), $gravities);
     }
 
     /**
