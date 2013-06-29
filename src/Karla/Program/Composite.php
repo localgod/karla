@@ -68,7 +68,6 @@ class Composite extends ImageMagick
     public function raw($arguments, $input = true)
     {
         parent::raw($arguments, $input);
-
         return $this;
     }
 }

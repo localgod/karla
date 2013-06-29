@@ -62,11 +62,22 @@ class Density implements Action
      *            If output is false density is used for reading the input image
      *
      * @return void
-     * @throws \BadMethodCallException if density has already been called
      * @throws \InvalidArgumentException
      */
     public function __construct($width, $height, $output)
     {
+        if (! is_numeric($width)) {
+            $message = 'Width must be numeric values in the density method';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($height)) {
+            $message = 'Height must be numeric values in the density method';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_bool($output)) {
+            $message = 'Output must be aboolean values in the density method';
+            throw new \InvalidArgumentException($message);
+        }
         $this->width = $width;
         $this->height = $height;
         $this->output = $output;
@@ -79,19 +90,13 @@ class Density implements Action
      *            The query to add the action to
      * @return Query
      * @see Action::perform()
+     * @throws \BadMethodCallException if density has already been called
      */
     public function perform(Query $query)
     {
         $query->notWith('density', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('density', Query::ARGUMENT_TYPE_OUTPUT);
-        if (! is_numeric($this->width)) {
-            $message = 'Width must be numeric values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->height)) {
-            $message = 'Height must be numeric values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
+
         if ($this->output) {
             $query->setOutputOption(" -density " . $this->width . "x" . $this->height);
         } else {

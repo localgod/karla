@@ -42,9 +42,14 @@ class Sepia implements Action
      *            Threshold
      *
      * @return void
+     * @throws \InvalidArgumentException If The supplied threshold is not between 0 and 100
      */
     public function __construct($threshold)
     {
+        if (! is_integer($threshold) || $threshold > 100 || $threshold < 0) {
+            $message = 'The supplied threshold (' . $threshold . ') must be between 0 and 100';
+            throw new \InvalidArgumentException($message);
+        }
         $this->threshold = $threshold;
     }
 
@@ -59,11 +64,6 @@ class Sepia implements Action
     public function perform(Query $query)
     {
         $query->notWith('sepia-tone', Query::ARGUMENT_TYPE_OUTPUT);
-
-        if (! is_integer($this->threshold) || $this->threshold > 100 || $this->threshold < 0) {
-            $message = 'The supplied threshold (' . $this->threshold . ') must be between 0 - 100';
-            throw new \InvalidArgumentException($message);
-        }
         $query->setOutputOption(" -sepia-tone " . $this->threshold . '% ');
 
         return $query;

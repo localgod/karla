@@ -42,9 +42,14 @@ class Polaroid implements Action
      *            Angle
      *
      * @return void
+     * @throws \InvalidArgumentException If the supplied angle is not an integer between 0 and 360.
      */
     public function __construct($angle)
     {
+        if (! is_numeric($angle) || $angle > 360 || $angle < 0) {
+            $message = 'The supplied angle (' . $angle . ') must be an integer between 0 and 360';
+            throw new \InvalidArgumentException($message);
+        }
         $this->angle = $angle;
     }
 
@@ -59,10 +64,6 @@ class Polaroid implements Action
     public function perform(Query $query)
     {
         $query->notWith('polaroid', Query::ARGUMENT_TYPE_INPUT);
-        if (! is_numeric($this->angle) || $this->angle > 360 || $this->angle < 0) {
-            $message = 'The supplied angle (' . $this->angle . ') must be an integer between 0 - 360';
-            throw new \InvalidArgumentException($message);
-        }
         $query->setInputOption(" -polaroid " . $this->angle . '');
 
         return $query;

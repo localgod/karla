@@ -14,11 +14,10 @@
 namespace Karla\Action;
 
 use Karla\Query;
-use Karla\Support;
 use Karla\Action;
 
 /**
- * Class for handeling strip action
+ * Class for handeling rotate action
  *
  * @category Utility
  * @package Karla
@@ -26,8 +25,33 @@ use Karla\Action;
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  * @link https://github.com/localgod/Karla Karla
  */
-class Strip implements Action
+class Rotate implements Action
 {
+
+    /**
+     * Degrees to rotate the image
+     *
+     * @var integer
+     */
+    private $degree;
+
+    /**
+     * Rotate image
+     *
+     * @param integer $degree
+     *            Degrees to rotate the image
+     *
+     * @return Convert
+     * @throws \InvalidArgumentException if degree is not an integer value
+     */
+    public function __construct($degree)
+    {
+        if (! is_numeric($degree)) {
+            $message = 'degree must be an integer value';
+            throw new \InvalidArgumentException($message);
+        }
+        $this->degree = $degree;
+    }
 
     /**
      * (non-PHPdoc)
@@ -39,8 +63,8 @@ class Strip implements Action
      */
     public function perform(Query $query)
     {
-        $query->notWith('strip', Query::ARGUMENT_TYPE_INPUT);
-        $query->setInputOption(" -strip ");
+        $query->notWith('rotate', Query::ARGUMENT_TYPE_INPUT);
+        $query->setInputOption(' -rotate "' . $this->degree . '"');
         return $query;
     }
 }

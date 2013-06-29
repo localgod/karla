@@ -43,10 +43,15 @@ class Background implements Action
      *            Color
      *
      * @return void
+     * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
     public function __construct($color)
     {
-        $this->color = $color;
+        if (Color::validHexColor($color) || Color::validRgbColor($color) || Color::validColorName($color)) {
+            $this->color = $color;
+        } else {
+            throw new \InvalidArgumentException('The color supplied could not be parsed.');
+        }
     }
 
     /**
@@ -60,14 +65,10 @@ class Background implements Action
     public function perform(Query $query)
     {
         $query->notWith('background', Query::ARGUMENT_TYPE_INPUT);
-        if (Color::validHexColor($this->color) || Color::validRgbColor($this->color) || Color::validColorName($this->color)) {
-            if (Color::validColorName($this->color)) {
-                $query->setInputOption(' -background ' . $this->color);
-            } else {
-                $query->setInputOption(' -background "' . $this->color . '"');
-            }
+        if (Color::validColorName($this->color)) {
+            $query->setInputOption(' -background ' . $this->color);
         } else {
-            throw new \InvalidArgumentException('The color supplied could not be parsed');
+            $query->setInputOption(' -background "' . $this->color . '"');
         }
         return $query;
     }

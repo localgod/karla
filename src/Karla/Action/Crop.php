@@ -64,10 +64,27 @@ class Crop implements Action
      * @param integer $yOffset
      *            Y offset from upper-left corner
      *
-     * @return void
+     * @throws \InvalidArgumentException
      */
     public function __construct($width, $height, $xOffset, $yOffset)
     {
+        if (! is_numeric($width) && $width != '') {
+            $message = 'width must be an integer value or empty.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($height) && $height != '') {
+            $message = 'height must be an integer value or empty.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($xOffset)) {
+            $message = 'xOffset must be an integer value.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($yOffset)) {
+            $message = 'yOffset must be an integer value.';
+            throw new \InvalidArgumentException($message);
+        }
+
         $this->width = $width;
         $this->height = $height;
         $this->xOffset = $xOffset;
@@ -85,23 +102,6 @@ class Crop implements Action
     public function perform(Query $query)
     {
         $query->notWith('crop', Query::ARGUMENT_TYPE_INPUT);
-
-        if (! is_numeric($this->width) && $this->width != '') {
-            $message = 'width must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->height) && $this->height != '') {
-            $message = 'height must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->xOffset)) {
-            $message = 'xOffset must be an integer value.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->yOffset)) {
-            $message = 'yOffset must be an integer value.';
-            throw new \InvalidArgumentException($message);
-        }
 
         $option = " -crop " . $this->width . "x" . $this->height;
 

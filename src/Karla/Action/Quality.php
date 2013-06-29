@@ -52,9 +52,23 @@ class Quality implements Action
      *            Format
      *
      * @return void
+     * @throws \InvalidArgumentException
+     * @throws \RangeException
      */
     public function __construct($quality, $format)
     {
+        if (! preg_match('/^jpeg|jpg|png$/', $format)) {
+            $message = "'quality()' is only supported for the jpeg and png format. Used (" . $format . ")";
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($quality)) {
+            $message = "quality argument must be an integer value. Used (" . $quality . ")";
+            throw new \InvalidArgumentException($message);
+        }
+        if (! ($quality >= 0 && $quality <= 100)) {
+            $message = "quality argument must be between 0 and 100 both inclusive. Used (" . $quality . ")";
+            throw new \RangeException($message);
+        }
         $this->quality = $quality;
         $this->format = $format;
     }
@@ -71,18 +85,6 @@ class Quality implements Action
     {
         $query->notWith('quality', Query::ARGUMENT_TYPE_INPUT);
 
-        if (! preg_match('/^jpeg|jpg|png$/', $this->format)) {
-            $message = "'quality()' is only supported for the jpeg and png format. Used (" . $this->format . ")";
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->quality)) {
-            $message = "quality argument must be an integer value. Used (" . $this->quality . ")";
-            throw new \InvalidArgumentException($message);
-        }
-        if (! ($this->quality >= 0 && $this->quality <= 100)) {
-            $message = "quality argument must be between 0 and 100 both inclusive. Used (" . $this->quality . ")";
-            throw new \RangeException($message);
-        }
         $query->setInputOption(" -quality " . $this->quality);
         return $query;
     }

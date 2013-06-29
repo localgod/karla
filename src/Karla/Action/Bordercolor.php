@@ -43,10 +43,15 @@ class Bordercolor implements Action
      *            Color
      *
      * @return void
+     * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
     public function __construct($color)
     {
-        $this->color = $color;
+        if (Color::validHexColor($color) || Color::validRgbColor($color) || Color::validColorName($color)) {
+            $this->color = $color;
+        } else {
+            throw new \InvalidArgumentException('The color supplied could not be parsed');
+        }
     }
 
     /**
@@ -60,15 +65,10 @@ class Bordercolor implements Action
     public function perform(Query $query)
     {
         $query->notWith('bordercolor', \Karla\Query::ARGUMENT_TYPE_INPUT);
-
-        if (Color::validHexColor($this->color) || Color::validRgbColor($this->color) || Color::validColorName($this->color)) {
-            if (Color::validColorName($this->color)) {
-                $query->setInputOption(' -bordercolor ' . $this->color);
-            } else {
-                $query->setInputOption(' -bordercolor "' . $this->color . '"');
-            }
+        if (Color::validColorName($this->color)) {
+            $query->setInputOption(' -bordercolor ' . $this->color);
         } else {
-            throw new \InvalidArgumentException('The color supplied could not be parsed');
+            $query->setInputOption(' -bordercolor "' . $this->color . '"');
         }
         return $query;
     }

@@ -169,10 +169,12 @@ abstract class ImageMagick implements \Karla\Program
     {
         return $this->query;
     }
+
     /**
      * Set the current query
      *
-     * @param Query $query Query to set
+     * @param Query $query
+     *            Query to set
      *
      * @return void
      */

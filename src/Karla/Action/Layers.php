@@ -37,13 +37,6 @@ class Layers implements Action
     private $method;
 
     /**
-     * The program to use
-     *
-     * @var Program
-     */
-    private $program;
-
-    /**
      * Contruct new action
      *
      * @param Program $program
@@ -52,10 +45,14 @@ class Layers implements Action
      *            Method
      *
      * @return void
+     * @throws \InvalidArgumentException If the supplied method is not supported by imagemagick.
      */
     public function __construct($program, $method)
     {
-        $this->program = $program;
+        if (! Support::layerMethod($program, $method)) {
+            $message = 'The supplied method (' . $method . ') is not supported by imagemagick';
+            throw new \InvalidArgumentException($message);
+        }
         $this->method = $method;
     }
 
@@ -69,10 +66,6 @@ class Layers implements Action
      */
     public function perform(Query $query)
     {
-        if (! Support::layerMethod($this->program, $this->method)) {
-            $message = 'Tried to apply unknown method to layers';
-            throw new \InvalidArgumentException($message);
-        }
         $query->setInputOption(" -layers " . $this->method);
         return $query;
     }

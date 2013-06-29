@@ -50,9 +50,21 @@ class Resample implements Action
      * @param integer $newHeight
      *            New height
      * @return void
+     * @throws \InvalidArgumentException
      */
     public function __construct($newWidth, $newHeight)
     {
+        if (! is_numeric($newWidth)) {
+            $message = 'You must supply new width as a integer.
+                    Was (' . $newWidth . ')';
+            throw new \InvalidArgumentException($message);
+        }
+        if ($newHeight != '' && ! is_numeric($newHeight)) {
+            $message = 'You must supply new height as a integer or as an empty string.
+                    Was (' . $newHeight . ')';
+            throw new \InvalidArgumentException($message);
+        }
+
         $this->newWidth = $newWidth;
         $this->newHeight = $newHeight;
     }
@@ -69,17 +81,6 @@ class Resample implements Action
     {
         $query->notWith('resample', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('resize', Query::ARGUMENT_TYPE_INPUT);
-
-        if (! is_numeric($this->newWidth)) {
-            $message = 'You must supply new width as a integer.
-                    Was (' . $this->newWidth . ')';
-            throw new \InvalidArgumentException($message);
-        }
-        if ($this->newHeight != '' && ! is_numeric($this->newHeight)) {
-            $message = 'You must supply new height as a integer or as an empty string.
-                    Was (' . $this->newHeight . ')';
-            throw new \InvalidArgumentException($message);
-        }
 
         $option = " -resample '";
         if ($this->newWidth != "" && $this->newHeight != "") {

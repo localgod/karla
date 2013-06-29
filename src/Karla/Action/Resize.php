@@ -69,9 +69,35 @@ class Resize implements Action
      *            Should we prohipped scaling up?
      *
      * @return void
+     * @throws \InvalidArgumentException
      */
     public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp)
     {
+        if ($width == "" && $height == "") {
+            $message = 'You must supply height or width or both to resize the image';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($width) && $width != '') {
+            $message = 'width must be an integer value or empty.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($height) && $height != '') {
+            $message = 'height must be an integer value or empty.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_numeric($height) && $height != '') {
+            $message = 'height must be an integer value or empty.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_bool($maintainAspectRatio)) {
+            $message = 'maintainAspectRatio must be an boolean value.';
+            throw new \InvalidArgumentException($message);
+        }
+        if (! is_bool($dontScaleUp)) {
+            $message = 'dontScaleUp must be an boolean value.';
+            throw new \InvalidArgumentException($message);
+        }
+
         $this->width = $width;
         $this->height = $height;
         $this->maintainAspectRatio = $maintainAspectRatio;
@@ -90,19 +116,6 @@ class Resize implements Action
     {
         $query->notWith('resize', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('resample', Query::ARGUMENT_TYPE_INPUT);
-
-        if ($this->width == "" && $this->height == "") {
-            $message = 'You must supply height or width or both to resize the image';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->width) && $this->width != '') {
-            $message = 'width must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($this->height) && $this->height != '') {
-            $message = 'height must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
 
         $option = " -resize ";
 

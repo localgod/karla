@@ -37,13 +37,6 @@ class Type implements Action
     private $type;
 
     /**
-     * The program to use
-     *
-     * @var Program
-     */
-    private $program;
-
-    /**
      * Create a new type action
      *
      * @param Program $program
@@ -52,10 +45,14 @@ class Type implements Action
      *            The type to use
      *
      * @return void
+     * @throws \InvalidArgumentException If the supplied colorspace is not supported by imagemagick
      */
     public function __construct($program, $type)
     {
-        $this->program = $program;
+        if (! Support::imageTypes($program, $type)) {
+            $message = 'The supplied colorspace (' . $type . ') is not supported by imagemagick';
+            throw new \InvalidArgumentException($message);
+        }
         $this->type = $type;
     }
 
@@ -70,10 +67,7 @@ class Type implements Action
     public function perform(Query $query)
     {
         $query->notWith('type', Query::ARGUMENT_TYPE_OUTPUT);
-        if (! Support::imageTypes($this->program, $this->type)) {
-            $message = 'The supplied colorspace (' . $this->type . ') is not supported by imagemagick';
-            throw new \InvalidArgumentException($message);
-        }
+
         $query->setOutputOption(" -type " . $this->type . ' ');
         return $query;
     }

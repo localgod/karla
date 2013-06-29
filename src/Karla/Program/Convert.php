@@ -66,6 +66,37 @@ class Convert extends ImageMagick implements \Karla\Program
     }
 
     /**
+     * Add input argument
+     *
+     * @param string $filePath
+     *            Input file path
+     *
+     * @return Convert
+     * @throws \InvalidArgumentException
+     */
+    public function in($filePath)
+    {
+        return $this->inputFile($filePath);
+    }
+
+    /**
+     * Add output argument
+     *
+     * @param string $filePath
+     *            Output file path
+     * @param boolean $includeOptions
+     *            Include the used options as part of the filename
+     *
+     * @return Convert
+     * @throws \InvalidArgumentException
+     * @todo Implement include options to filename
+     */
+    public function out($filePath, $includeOptions = false)
+    {
+        return $this->outputfile($filePath, $includeOptions);
+    }
+
+    /**
      * Add output argument
      *
      * @param string $filePath
@@ -127,21 +158,6 @@ class Convert extends ImageMagick implements \Karla\Program
     }
 
     /**
-     * Set the gravity
-     *
-     * @param string $gravity
-     *            Gravity
-     *
-     * @return Convert
-     */
-    public function gravity($gravity)
-    {
-        $action = new \Karla\Action\Gravity($this, $gravity);
-        $this->setQuery($action->perform($this->getQuery()));
-        return $this;
-    }
-
-    /**
      * Execute the command
      *
      * @see ImageMagick::execute()
@@ -188,6 +204,21 @@ class Convert extends ImageMagick implements \Karla\Program
     }
 
     /**
+     * Set the gravity
+     *
+     * @param string $gravity
+     *            Gravity
+     *
+     * @return Convert
+     */
+    public function gravity($gravity)
+    {
+        $action = new \Karla\Action\Gravity($this, $gravity);
+        $this->setQuery($action->perform($this->getQuery()));
+        return $this;
+    }
+
+    /**
      * Set the density of the output image.
      *
      * @param integer $width
@@ -214,17 +245,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Path to the profile
      *
      * @return Convert
-     * @throws \InvalidArgumentException
      */
     public function profile($profilePath)
     {
-        if (! file_exists($profilePath)) {
-            $message = 'Could not add profile as input file (' . $profilePath . ') could not be found.';
-            throw new \InvalidArgumentException($message);
-        }
-
-        $this->getQuery()->setOutputOption(' -profile "' . $profilePath . '" ');
-
+        $action = new \Karla\Action\Profile($profilePath);
+        $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
 
@@ -240,7 +265,8 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function removeProfile($profileName)
     {
-        $this->getQuery()->setInputOption(" +profile " . $profileName);
+        $action = new \Karla\Action\Profile('', $profileName);
+        $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
 
@@ -253,26 +279,23 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Path to the profile
      *
      * @return Convert
-     * @throws \BadMethodCallException if changeprofile has already been called
      * @throws \InvalidArgumentException
      */
     public function changeProfile($profilePathFrom, $profilePathTo)
     {
-        if ($this->getQuery()->isOptionSet('profile', $this->getQuery()
-            ->getOutputOptions())) {
-            $message = "'changeProfile()' can only be called once and not at the same time as 'profile()'.";
-            throw new \BadMethodCallException($message);
-        }
-        if (! file_exists($profilePathFrom)) {
-            $message = 'Could not add input profile as input file (' . $profilePathFrom . ') could not be found.';
+        $this->getQuery()->notWith('profile', \Karla\Query::ARGUMENT_TYPE_OUTPUT);
+        try {
+            $this->profile($profilePathFrom);
+        } catch (\InvalidArgumentException $e) {
+            $message = $e->getMessage() . ' for input profile';
             throw new \InvalidArgumentException($message);
         }
-        if (! file_exists($profilePathTo)) {
-            $message = 'Could not add output profile as input file (' . $profilePathTo . ') could not be found.';
+        try {
+            $this->profile($profilePathTo);
+        } catch (\InvalidArgumentException $e) {
+            $message = $e->getMessage() . ' for output profile';
             throw new \InvalidArgumentException($message);
         }
-        $this->profile($profilePathFrom);
-        $this->profile($profilePathTo);
 
         return $this;
     }
@@ -287,14 +310,12 @@ class Convert extends ImageMagick implements \Karla\Program
      *            left over from rotating the image
      *
      * @return Convert
-     * @throws \BadMethodCallException if rotate has already been called
      */
     public function rotate($degree, $background = '#ffffff')
     {
-        $this->getQuery()->notWith('rotate', \Karla\Query::ARGUMENT_TYPE_INPUT);
-        $this->getQuery()->setInputOption(' -rotate "' . $degree . '"');
+        $action = new \Karla\Action\Rotate($degree, $background);
+        $this->setQuery($action->perform($this->getQuery()));
         $this->background($background);
-
         return $this;
     }
 
@@ -305,7 +326,6 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Color
      *
      * @return Convert
-     * @throws \BadMethodCallException if background has already been called
      */
     public function background($color)
     {
@@ -327,18 +347,14 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Original image resolution
      *
      * @return Convert
-     * @throws \BadMethodCallException if resample, resize or density has already been called
-     * @throws \InvalidArgumentException
      */
     public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "")
     {
         if ($originalWidth != "" && $originalHeight != "") {
-            $action = new \Karla\Action\Density($originalWidth, $originalHeight, false);
-            $this->setQuery($action->perform($this->getQuery()));
+            $this->density($originalWidth, $originalHeight, false);
         }
         if ($originalWidth != "" && $originalHeight == "") {
-            $action = new \Karla\Action\Density($originalWidth, $originalWidth, false);
-            $this->setQuery($action->perform($this->getQuery()));
+            $this->density($originalWidth, $originalWidth, false);
         }
 
         $action = new \Karla\Action\Resample($newWidth, $newHeight);
@@ -355,8 +371,6 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Image height
      *
      * @return Convert
-     * @throws \BadMethodCallException if size has already been called
-     * @throws \InvalidArgumentException
      */
     public function size($width = "", $height = "")
     {
@@ -369,8 +383,6 @@ class Convert extends ImageMagick implements \Karla\Program
      * Flatten layers in an image.
      *
      * @return Convert
-     * @throws \BadMethodCallException if flatten has already been called
-     * @throws \InvalidArgumentException
      */
     public function flatten()
     {
@@ -383,14 +395,11 @@ class Convert extends ImageMagick implements \Karla\Program
      * Strip image of any profiles or comments.
      *
      * @return Convert
-     * @throws \BadMethodCallException if strip has already been called
-     * @throws \InvalidArgumentException
      */
     public function strip()
     {
         $action = new \Karla\Action\Strip();
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -398,13 +407,11 @@ class Convert extends ImageMagick implements \Karla\Program
      * Flip image
      *
      * @return Convert
-     * @throws \BadMethodCallException if flip has already been called
      */
     public function flip()
     {
         $action = new \Karla\Action\Flip();
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -412,13 +419,11 @@ class Convert extends ImageMagick implements \Karla\Program
      * Flop image
      *
      * @return Convert
-     * @throws \BadMethodCallException if strip has already been called
      */
     public function flop()
     {
         $action = new \Karla\Action\Flop();
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -429,14 +434,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            The output image type
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if type has already been called
      */
     public function type($type)
     {
         $type = new \Karla\Action\Type($this, $type);
         $this->setQuery($type->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -447,13 +449,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            The method to use
      *
      * @return Convert
-     * @throws \InvalidArgumentException if the layer method wasn't recognized
      */
     public function layers($method)
     {
         $action = new \Karla\Action\Layers($this, $method);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -470,14 +470,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Should we prohipped scaling up? default is true
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if resize has already been called
      */
     public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true)
     {
         $action = new \Karla\Action\Resize($width, $height, $maintainAspectRatio, $dontScaleUp);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -494,14 +491,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Y offset from upper-left corner
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if crop has already been called
      */
     public function crop($width, $height, $xOffset = 0, $yOffset = 0)
     {
         $action = new \Karla\Action\Crop($width, $height, $xOffset, $yOffset);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -514,17 +508,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Format to use; default is jpeg
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if quality has already been called
-     * @throws \RangeException if quality is not a value between 0 - 100
-     *
-     * @return Convert
      */
     public function quality($quality, $format = 'jpeg')
     {
         $action = new \Karla\Action\Quality($quality, $format);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -535,14 +523,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            The colorspace to use
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if colorspace has already been called
      */
     public function colorspace($colorSpace)
     {
         $action = new \Karla\Action\Colorspace($this, $colorSpace);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -553,14 +538,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            The threshold to use
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if sepia has already been called
      */
     public function sepia($threshold = 80)
     {
         $action = new \Karla\Action\Sepia($threshold);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -571,14 +553,11 @@ class Convert extends ImageMagick implements \Karla\Program
      *            The threshold to use
      *
      * @return Convert
-     * @throws \InvalidArgumentException
-     * @throws \BadMethodCallException if angle has already been called
      */
     public function polaroid($angle = 0)
     {
         $action = new \Karla\Action\Polaroid($angle);
         $this->setQuery($action->perform($this->getQuery()));
-
         return $this;
     }
 
@@ -589,7 +568,6 @@ class Convert extends ImageMagick implements \Karla\Program
      *            The color of the border
      *
      * @return Convert
-     * @throws \BadMethodCallException if borderColor has already been called
      */
     public function bordercolor($color = '#DFDFDF')
     {

@@ -51,9 +51,14 @@ class Size implements Action
      *            New height
      *
      * @return void
+     * @throws \InvalidArgumentException
      */
     public function __construct($width, $height)
     {
+        if ($width == "" && $height == "") {
+            $message = 'You must supply height or width or both to size the image';
+            throw new \InvalidArgumentException($message);
+        }
         $this->width = $width;
         $this->height = $height;
     }
@@ -68,12 +73,7 @@ class Size implements Action
      */
     public function perform(Query $query)
     {
-        $query->notWith('size', \Karla\Query::ARGUMENT_TYPE_INPUT);
-
-        if ($this->width == "" && $this->height == "") {
-            $message = 'You must supply height or width or both to size the image';
-            throw new \InvalidArgumentException($message);
-        }
+        $query->notWith('size', Query::ARGUMENT_TYPE_INPUT);
 
         $query->setInputOption(" -size " . $this->width . "x" . $this->height . " ");
 

@@ -37,23 +37,20 @@ class Gravity implements Action
     private $gravity;
 
     /**
-     * The program to use
-     *
-     * @var Program
-     */
-    private $program;
-
-    /**
      * Set the gravity
      *
      * @param string $gravity
      *            Gravity
      *
      * @return void
+     * @throws \InvalidArgumentException If the supplied gravity is not supported by imagemagick.
      */
     public function __construct($program, $gravity)
     {
-        $this->program = $program;
+        if (! Support::gravity($program, $gravity)) {
+            $message = 'The supplied gravity (' . $gravity . ') is not supported by imagemagick';
+            throw new \InvalidArgumentException($message);
+        }
         $this->gravity = $gravity;
     }
 
@@ -68,9 +65,7 @@ class Gravity implements Action
     public function perform(Query $query)
     {
         $query->notWith('gravity', Query::ARGUMENT_TYPE_INPUT);
-        if (Support::gravity($this->program, $this->gravity)) {
-            $query->setInputOption(" -gravity " . $this->gravity);
-        }
+        $query->setInputOption(" -gravity " . $this->gravity);
         return $query;
     }
 }

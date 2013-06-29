@@ -37,13 +37,6 @@ class Colorspace implements Action
     private $colorspace;
 
     /**
-     * The program to use
-     *
-     * @var Program
-     */
-    private $program;
-
-    /**
      * Construct a new size action
      *
      * @param Program $program
@@ -52,10 +45,14 @@ class Colorspace implements Action
      *            Colorspace
      *
      * @return void
+     * @throws \InvalidArgumentException If he supplied colorspace is not supported by imagemagick.
      */
     public function __construct($program, $colorspace)
     {
-        $this->program = $program;
+        if (! Support::colorSpace($program, $colorspace)) {
+            $message = 'The supplied colorspace (' . $colorspace . ') is not supported by imagemagick';
+            throw new \InvalidArgumentException($message);
+        }
         $this->colorspace = $colorspace;
     }
 
@@ -70,11 +67,6 @@ class Colorspace implements Action
     public function perform(Query $query)
     {
         $query->notWith('colorspace', Query::ARGUMENT_TYPE_OUTPUT);
-
-        if (! Support::colorSpace($this->program, $this->colorspace)) {
-            $message = 'The supplied colorspace (' . $this->colorspace . ') is not supported by imagemagick';
-            throw new \InvalidArgumentException($message);
-        }
         $query->setOutputOption(" -colorspace " . $this->colorspace . ' ');
 
         return $query;
