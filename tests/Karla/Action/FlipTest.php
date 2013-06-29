@@ -34,10 +34,10 @@ class FlipTest extends \PHPUnit_Framework_TestCase
      */
     public function flip()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->flip()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -flip "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -53,11 +53,11 @@ class FlipTest extends \PHPUnit_Framework_TestCase
      */
     public function flipTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->flip()
             ->flip()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 }

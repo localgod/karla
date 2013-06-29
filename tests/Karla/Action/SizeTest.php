@@ -34,10 +34,10 @@ class SizeTest extends \PHPUnit_Framework_TestCase
      */
     public function size()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->size(200, 200)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -size 200x200 "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -53,11 +53,11 @@ class SizeTest extends \PHPUnit_Framework_TestCase
      */
     public function sizeTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->size(200, 200)
             ->size(200, 200)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -71,10 +71,10 @@ class SizeTest extends \PHPUnit_Framework_TestCase
      */
     public function sizeNoArguments()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->size()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 }

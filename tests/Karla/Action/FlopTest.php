@@ -34,10 +34,10 @@ class FlopTest extends \PHPUnit_Framework_TestCase
      */
     public function flop()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->flop()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -flop "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -53,11 +53,11 @@ class FlopTest extends \PHPUnit_Framework_TestCase
      */
     public function flopTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->flop()
             ->flop()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 }

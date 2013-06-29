@@ -34,10 +34,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resample()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, 200, 72, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72  -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -53,11 +53,11 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, 200, 72, 72)
             ->resample(200, 200, 72, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -71,11 +71,11 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleWithResize()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resize(200, 200)
             ->resample(200, 200, 72, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -90,11 +90,11 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleWithDensity()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->density()
             ->resample(200, 200, 72, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -108,10 +108,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleWidthNotNumeric()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample("christmas", 200, 72, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -125,10 +125,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleHeightNotNumeric()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, "christmas", 72, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -142,10 +142,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleOriginalHeightNotNumeric()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, 200, 72, "christmas")
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -159,10 +159,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleOriginalWidthNotNumeric()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, 200, "christmas", 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -175,10 +175,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleWithOnlyWidth()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -192,10 +192,10 @@ class ResampleTest extends \PHPUnit_Framework_TestCase
      */
     public function resampleWithOnlyOriginalWidth()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, 200, 72)
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72 -resample \'200x200\' "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);

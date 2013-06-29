@@ -41,7 +41,7 @@ class Identify extends ImageMagick
      * @return Identify
      * @throws \InvalidArgumentException
      */
-    public function inputfile($filePath)
+    public function in($filePath)
     {
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';

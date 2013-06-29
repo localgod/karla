@@ -34,10 +34,10 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
      */
     public function background()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->background('red')
-            ->outputfile('test-1920x1200.png')
+            ->out('test-1920x1200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background red "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
@@ -53,11 +53,11 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
      */
     public function backgroundTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->background('red')
             ->background('blue')
-            ->outputfile('test-1920x1200.png')
+            ->out('test-1920x1200.png')
             ->getCommand();
     }
 
@@ -71,10 +71,10 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
      */
     public function backgroundWithInvalidColor()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->background('christmas')
-            ->outputfile('test-1920x1200.png')
+            ->out('test-1920x1200.png')
             ->getCommand();
     }
 
@@ -87,10 +87,10 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
      */
     public function backgroundWithHexColor()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->background('#666666')
-            ->outputfile('test-1920x1200.png')
+            ->out('test-1920x1200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);

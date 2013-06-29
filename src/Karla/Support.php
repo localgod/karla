@@ -129,4 +129,35 @@ class Support
 
         return in_array(strtolower(trim($method)), $methods);
     }
+
+    /**
+     * Check if a format is supported by ImageMagick.
+     *
+     * @param Program $program
+     *            Program to check
+     * @param string $format
+     *            Format to check
+     *
+     * @return boolean
+     * @throws \BadMethodCallException if called in a wrong context
+     */
+    public static function supportedFormat($program, $format)
+    {
+        if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
+            throw new \BadMethodCallException('This method can not be used in this context');
+        }
+        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $formats = shell_exec($program->binPath . $bin . ' -list format');
+        $formats = explode("\n", $formats);
+        for ($i = 0; $i < count($formats); $i ++) {
+            preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);
+            if (isset($matches[0])) {
+                if (! strpos($matches[0], 'Format')) {
+                    $formats[$i] = strtolower(trim($matches[0]));
+                }
+            }
+        }
+
+        return in_array(strtolower(trim($format)), $formats);
+    }
 }

@@ -34,7 +34,7 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      */
     public function getInstanceWithInvalidPath()
     {
-        $karla = Karla::getInstance('/going/nowhere/');
+        Karla::perform('/going/nowhere/');
     }
 
     /**
@@ -44,10 +44,9 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function getInstance()
+    public function perform()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertInstanceOf('Karla\Karla', $karla);
+        $this->assertInstanceOf('Karla\Karla', Karla::perform(PATH_TO_IMAGEMAGICK));
     }
 
     /**
@@ -59,8 +58,7 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      */
     public function privateMethods()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $this->assertInstanceOf('Karla\Karla', $karla);
+        $this->assertInstanceOf('Karla\Karla', Karla::perform(PATH_TO_IMAGEMAGICK));
     }
 
     /**
@@ -72,7 +70,7 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      */
     public function raw()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
         $this->assertTrue(preg_match('/Version\:\sImageMagick/', $karla->raw('identify', '--version')) == 1);
     }
 
@@ -85,7 +83,7 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      */
     public function convert()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Karla\Program\Convert', $karla->convert());
     }
 
@@ -98,7 +96,7 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      */
     public function identify()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Karla\Program\Identify', $karla->identify());
     }
 
@@ -111,7 +109,7 @@ class KarlaTest extends \PHPUnit_Framework_TestCase
      */
     public function composite()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Karla\Program\Composite', $karla->composite());
     }
 }

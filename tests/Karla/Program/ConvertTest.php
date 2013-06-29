@@ -35,8 +35,8 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function invalidInputfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo2.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo2.jpg')
             ->getCommand();
     }
 
@@ -50,8 +50,8 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function inputfileWithoutOutputfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->getCommand();
     }
 
@@ -65,8 +65,8 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function outputfileWithoutInputfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->outputfile('test-1920x1200.png')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->out('test-1920x1200.png')
             ->getCommand();
     }
 
@@ -80,8 +80,8 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function invalidOutputfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->outputfile('/nowhere/test-1920x1200.png')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->out('/nowhere/test-1920x1200.png')
             ->getCommand();
     }
 
@@ -94,9 +94,9 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function inputfileAndOutputfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
-            ->outputfile('test-1920x1200.png')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
+            ->out('test-1920x1200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
@@ -111,10 +111,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function removeProfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->removeProfile('iptc')
-            ->outputfile('test-1920x1200.png')
+            ->out('test-1920x1200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
@@ -129,10 +129,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function density()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->density()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -148,10 +148,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function densityWithInvalidWidth()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->density('chrismas')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -167,10 +167,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function densityWithInvalidHeight()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->density(72, 'chrismas')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -186,11 +186,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function densityWithResample()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->resample(200, 200, 72, 72)
             ->density()
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -203,10 +203,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function profile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->profile('tests/_data/sRGB_Color_Space_Profile.icm')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -222,10 +222,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function profileWithInvalidPath()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->profile('tests/_data/RGB_Color_Space_Profile.icm')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -238,10 +238,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function changeProfile()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -profile "tests/_data/sRGB_Color_Space_Profile.icm"   -profile "tests/_data/sRGB_Color_Space_Profile.icm" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -257,11 +257,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function changeProfileTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
             ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -275,10 +275,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function changeProfileInvalidNewProfile()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->changeProfile('tests/_data/sRGB_Color_Space_Profile.icm', 'tests/_data/RGB_Color_Space_Profile.icm')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -292,10 +292,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function changeProfileInvalidOldProfile()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->changeProfile('tests/_data/RGB_Color_Space_Profile.icm', 'tests/_data/sRGB_Color_Space_Profile.icm')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 
@@ -308,15 +308,14 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function gravity()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->outputfile('test-200x200.png')
-        ->gravity('center')
-        ->getCommand();
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
+            ->out('test-200x200.png')
+            ->gravity('center')
+            ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -gravity center "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
-
 
     /**
      * Test
@@ -328,12 +327,12 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function gravityTwice()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
+        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
         $command = $karla->convert()
-        ->inputfile('tests/_data/demo.jpg')
-        ->gravity('center')
-        ->gravity('center')
-        ->getCommand();
+            ->in('tests/_data/demo.jpg')
+            ->gravity('center')
+            ->gravity('center')
+            ->getCommand();
     }
 
     /**
@@ -346,7 +345,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function __clone()
     {
-        $object = clone Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert();
+        $object = clone Karla::perform(PATH_TO_IMAGEMAGICK)->convert();
     }
 
     /**
@@ -358,9 +357,9 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function getCommand()
     {
-        $command = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
-            ->outputfile('test-1920x1200.png')
+        $command = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
+            ->out('test-1920x1200.png')
             ->getCommand();
         $this->assertNotNull($command);
     }
@@ -386,7 +385,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function raw()
     {
-        $this->assertInstanceOf('Karla\Program\Convert', Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        $this->assertInstanceOf('Karla\Program\Convert', Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->raw(''));
     }
 
@@ -399,9 +398,9 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function validProgram()
     {
-        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        $this->assertTrue(Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->validProgram('convert'));
-        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
+        $this->assertFalse(Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->validProgram('git'));
     }
 
@@ -414,10 +413,10 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function rotate()
     {
-        $actual = Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->rotate(- 45, 'gray')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -rotate "-45"  -background gray "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
@@ -433,11 +432,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      */
     public function rotateTwice()
     {
-        Karla::getInstance(PATH_TO_IMAGEMAGICK)->convert()
-            ->inputfile('tests/_data/demo.jpg')
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in('tests/_data/demo.jpg')
             ->rotate(- 45, 'gray')
             ->rotate(- 45, 'gray')
-            ->outputfile('test-200x200.png')
+            ->out('test-200x200.png')
             ->getCommand();
     }
 }

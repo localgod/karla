@@ -13,8 +13,6 @@
  */
 namespace Karla\Program;
 
-use Karla\Color;
-
 /**
  * Class for wrapping ImageMagicks convert tool
  *
@@ -50,7 +48,7 @@ class Convert extends ImageMagick implements \Karla\Program
      * @return Convert
      * @throws \InvalidArgumentException
      */
-    public function inputfile($filePath)
+    public function in($filePath)
     {
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
@@ -66,20 +64,6 @@ class Convert extends ImageMagick implements \Karla\Program
     }
 
     /**
-     * Add input argument
-     *
-     * @param string $filePath
-     *            Input file path
-     *
-     * @return Convert
-     * @throws \InvalidArgumentException
-     */
-    public function in($filePath)
-    {
-        return $this->inputFile($filePath);
-    }
-
-    /**
      * Add output argument
      *
      * @param string $filePath
@@ -92,23 +76,6 @@ class Convert extends ImageMagick implements \Karla\Program
      * @todo Implement include options to filename
      */
     public function out($filePath, $includeOptions = false)
-    {
-        return $this->outputfile($filePath, $includeOptions);
-    }
-
-    /**
-     * Add output argument
-     *
-     * @param string $filePath
-     *            Output file path
-     * @param boolean $includeOptions
-     *            Include the used options as part of the filename
-     *
-     * @return Convert
-     * @throws \InvalidArgumentException
-     * @todo Implement include options to filename
-     */
-    public function outputfile($filePath, $includeOptions = false)
     {
         $pathinfo = pathinfo($filePath);
         if (! file_exists($pathinfo['dirname'])) {
@@ -437,8 +404,8 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function type($type)
     {
-        $type = new \Karla\Action\Type($this, $type);
-        $this->setQuery($type->perform($this->getQuery()));
+        $action = new \Karla\Action\Type($this, $type);
+        $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
 

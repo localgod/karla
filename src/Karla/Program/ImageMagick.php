@@ -241,35 +241,6 @@ abstract class ImageMagick implements \Karla\Program
     }
 
     /**
-     * Check if a format is supported by ImageMagick.
-     *
-     * @param string $format
-     *            Format to check
-     *
-     * @return boolean
-     * @throws \BadMethodCallException if called in a wrong context
-     */
-    final protected function supportedFormat($format)
-    {
-        if (! ($this instanceof Convert) && ! ($this instanceof Identify)) {
-            throw new \BadMethodCallException('This method can not be used in this context');
-        }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
-        $formats = shell_exec($this->binPath . $bin . ' -list format');
-        $formats = explode("\n", $formats);
-        for ($i = 0; $i < count($formats); $i ++) {
-            preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);
-            if (isset($matches[0])) {
-                if (! strpos($matches[0], 'Format')) {
-                    $formats[$i] = strtolower(trim($matches[0]));
-                }
-            }
-        }
-
-        return in_array(strtolower(trim($format)), $formats);
-    }
-
-    /**
      * Check if the input is a valid ImageMagick program
      *
      * @param string $program

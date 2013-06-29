@@ -33,7 +33,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function basefile()
     {
-        $this->assertInstanceOf('Karla\Program\Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertInstanceOf('Karla\Program\Composite', Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->basefile());
     }
 
@@ -46,7 +46,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function changefile()
     {
-        $this->assertInstanceOf('Karla\Program\Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertInstanceOf('Karla\Program\Composite', Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->changefile());
     }
 
@@ -59,7 +59,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function outputfile()
     {
-        $this->assertInstanceOf('Karla\Program\Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertInstanceOf('Karla\Program\Composite', Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->outputfile());
     }
 
@@ -72,7 +72,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function raw()
     {
-        $this->assertInstanceOf('Karla\Program\Composite', Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertInstanceOf('Karla\Program\Composite', Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->raw(''));
     }
 
@@ -86,7 +86,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function __clone()
     {
-        $object = clone Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite();
+        $object = clone Karla::perform(PATH_TO_IMAGEMAGICK)->composite();
     }
 
     /**
@@ -98,7 +98,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function getCommand()
     {
-        $this->assertNotNull(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertNotNull(Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->getCommand());
     }
 
@@ -135,9 +135,9 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
      */
     public function validProgram()
     {
-        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertTrue(Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->validProgram('composite'));
-        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->composite()
+        $this->assertFalse(Karla::perform(PATH_TO_IMAGEMAGICK)->composite()
             ->validProgram('git'));
     }
 }

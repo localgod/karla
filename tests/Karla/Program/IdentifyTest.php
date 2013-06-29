@@ -32,11 +32,10 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function inputfile()
+    public function in()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $command = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $command = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';identify "tests/_data/demo.jpg"');
     }
@@ -51,9 +50,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function invalidInputfile()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $command = $karla->identify()
-            ->inputfile('tests/_data/demo2.jpg')
+        $command = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo2.jpg')
             ->getCommand();
     }
 
@@ -66,9 +64,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function execute()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $result = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->execute();
         $this->assertTrue(preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
     }
@@ -80,12 +77,12 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function executeNoRaw()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $result = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->execute(true, false);
         $this->assertInstanceOf('Karla\Metadata', $result);
     }
+
     /**
      * Test
      *
@@ -93,10 +90,9 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function executeNoRawVerbose()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $result = $karla->identify()
+        $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->verbose()
-            ->inputfile('tests/_data/demo.jpg')
+            ->in('tests/_data/demo.jpg')
             ->execute(true, false);
         $this->assertInstanceOf('Karla\Metadata', $result);
     }
@@ -110,9 +106,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function executeNoReset()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $result = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->execute(false);
         $this->assertTrue(preg_match('/tests\/_data\/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
     }
@@ -126,9 +121,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function executeNoResetNoRaw()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $result = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->execute(false, false);
         $this->assertInstanceOf('Karla\Metadata', $result);
     }
@@ -142,9 +136,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function verbose()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $command = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $command = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->verbose()
             ->getCommand();
         $this->assertEquals($command, 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';identify -verbose "tests/_data/demo.jpg"');
@@ -160,9 +153,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function verboseTwice()
     {
-        $karla = Karla::getInstance(PATH_TO_IMAGEMAGICK);
-        $command = $karla->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $command = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->verbose()
             ->verbose()
             ->getCommand();
@@ -178,7 +170,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function __clone()
     {
-        $object = clone Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify();
+        $object = clone Karla::perform(PATH_TO_IMAGEMAGICK)->identify();
     }
 
     /**
@@ -190,8 +182,8 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function getCommand()
     {
-        $this->assertNotNull(Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
-            ->inputfile('tests/_data/demo.jpg')
+        $this->assertNotNull(Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
+            ->in('tests/_data/demo.jpg')
             ->getCommand());
     }
 
@@ -216,7 +208,7 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function raw()
     {
-        $this->assertInstanceOf('Karla\Program\Identify', Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+        $this->assertInstanceOf('Karla\Program\Identify', Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->raw(''));
     }
 
@@ -229,9 +221,9 @@ class IdentifyTest extends \PHPUnit_Framework_TestCase
      */
     public function validProgram()
     {
-        $this->assertTrue(Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+        $this->assertTrue(Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->validProgram('identify'));
-        $this->assertFalse(Karla::getInstance(PATH_TO_IMAGEMAGICK)->identify()
+        $this->assertFalse(Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->validProgram('git'));
     }
 }

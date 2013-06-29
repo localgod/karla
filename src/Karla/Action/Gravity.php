@@ -37,8 +37,10 @@ class Gravity implements Action
     private $gravity;
 
     /**
-     * Set the gravity
+     * Construct a new gravity action
      *
+     * @param Program $program
+     *            The program to use
      * @param string $gravity
      *            Gravity
      *

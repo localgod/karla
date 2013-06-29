@@ -55,7 +55,7 @@ class Karla
      * @return Karla
      * @throws \InvalidArgumentException
      */
-    public static function getInstance($binPath = '/opt/local/bin/', Cache $cache = null)
+    public static function perform($binPath = '/opt/local/bin/', Cache $cache = null)
     {
         if (! (self::$instance instanceof self)) {
             try {
