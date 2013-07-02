@@ -37,7 +37,7 @@ class FeatureContext extends BehatContext
      */
     public function iCanAccessKarla()
     {
-        Karla::perform()->identify();
+        Karla::perform(PATH_TO_IMAGEMAGICK)->identify();
     }
 
     /**
