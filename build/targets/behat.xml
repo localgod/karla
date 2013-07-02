@@ -1,6 +1,6 @@
 <project>
 	<!-- Should we fail the build if copy past violations are detected? -->
-	<property name="behat.failonerror" value="true" />
+	<property name="behat.failonerror" value="false" />
 
 	<!-- ================================= target: behat-clean ================================== -->
 	<target name="behat-clean" depends="" description="Remove any previously generated report">
