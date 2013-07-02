@@ -36,7 +36,8 @@ before_script:
 #  allow_failures:
 #  - php: 5.5
 script:
-- ant travis -Dphpunit.testdox=true
+- bin/behat -c tests/behat.yml
+#- ant travis -Dphpunit.testdox=true
 env:
   global:
   - secure: |-
