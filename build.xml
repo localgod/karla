@@ -11,9 +11,10 @@
 	<import file="${targets.dir}/phpunit.xml" />
 	<import file="${targets.dir}/phpdoc.xml" />
 	<import file="${targets.dir}/tabtospace.xml" />
+	<import file="${targets.dir}/behat.xml" />
 
 	<target name="all" depends="tabtospace,phpcb,phpdcd,phpdoc" />
-	<target name="travis" depends="phplint, phpunit, phpdoc" />
+	<target name="travis" depends="phplint, phpunit, phpdoc, behat" />
 	<target name="help">
 		<echo>
 List of targets:
@@ -29,6 +30,7 @@ List of targets:
     phpmd
     phpunit
     tabtospace
+	behat
   Combos:
     all
     travis

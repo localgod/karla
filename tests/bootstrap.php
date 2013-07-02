@@ -17,14 +17,4 @@ if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
 } else {
     define('PATH_TO_IMAGEMAGICK', '/opt/local/bin/');
 }
-
-spl_autoload_register(
-function ($name)
-{
-    if ('Karla\\' == substr($name, 0, 6)) {
-        $path = __DIR__ . '/../src' . DIRECTORY_SEPARATOR
-        . str_replace('\\', DIRECTORY_SEPARATOR, $name)
-        . '.php';
-        require_once $path;
-    }
-});
+require_once 'vendor/autoload.php';

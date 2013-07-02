@@ -1,0 +1,8 @@
+default:
+    paths:
+        features: features
+        bootstrap: features/bootstrap
+    formatter:
+        name:                   html
+        parameters:
+            output_path:          target/behat/report.html

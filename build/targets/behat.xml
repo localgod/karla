@@ -1,0 +1,23 @@
+<project>
+	<!-- Should we fail the build if copy past violations are detected? -->
+	<property name="behat.failonerror" value="true" />
+
+	<!-- ================================= target: behat-clean ================================== -->
+	<target name="behat-clean" depends="" description="Remove any previously generated report">
+		<delete dir="${target.dir}/behat" />
+	</target>
+
+	<!-- ================================= target: behat-init ================================== -->
+	<target name="behat-init" depends="" description="Create required folders for report">
+		<mkdir dir="${target.dir}/behat" />
+	</target>
+
+	<!-- ================================= target: behat ================================ -->
+	<target name="behat" depends="behat-clean, behat-init" description="Behat Behavior Driven Development">
+		<echo>${basedir}/bin/behat</echo>
+
+		<exec dir="${basedir}" executable="./bin/behat" failonerror="${behat.failonerror}">
+			<arg line="-c tests/behat.yml" />
+		</exec>
+	</target>
+</project>

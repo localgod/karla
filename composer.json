@@ -16,6 +16,9 @@
 	"license" : [
 		"MIT"
 	],
+	"require-dev" : {
+		"behat/behat" : "~2.4"
+	},
 	"autoload" : {
 		"psr-0" : {
 			"Karla" : "src/"
@@ -25,5 +28,9 @@
 		"source" : "https://github.com/localgod/Karla",
 		"issues" : "https://github.com/localgod/Karla/issues",
 		"wiki" : "https://github.com/localgod/Karla/wiki"
+	},
+	"config" : {
+		"bin-dir" : "bin/",
+		"vendor-dir" : "vendor/"
 	}
 }

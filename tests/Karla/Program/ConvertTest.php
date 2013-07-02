@@ -1,6 +1,4 @@
 <?php
-use Karla\Karla;
-
 /**
  * Convert Test file
  *
@@ -13,6 +11,7 @@ use Karla\Karla;
  * @link https://github.com/localgod/Karla Karla
  * @since 2012-04-05
  */
+use Karla\Karla;
 /**
  * Convert Test class
  *
