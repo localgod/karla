@@ -5,27 +5,27 @@ php:
 - 5.4
 - 5.5
 before_script:
-- sudo apt-get install -qq expect graphviz libmagickwand-dev
-- expect tools/build/tools.expect
-- pear channel-discover pear.phpunit.de
-- pear channel-discover pear.pdepend.org
-- pear channel-discover pear.phpmd.org
+#- sudo apt-get install -qq expect graphviz libmagickwand-dev
+#- expect tools/build/tools.expect
+#- pear channel-discover pear.phpunit.de
+#- pear channel-discover pear.pdepend.org
+#- pear channel-discover pear.phpmd.org
 - pear channel-discover pear.phpdoc.org
-- pear channel-discover pear.phpqatools.org
-- pear install -f phpunit/PHPUnit
-- pear install -f phpunit/DbUnit
-- pear install -f phpunit/FinderFacade
-- pear install -f phpunit/PHPUnit_Selenium
-- pear install -f phpunit/PHPUnit_Story
-- pear install -f phpunit/PHP_Invoker
+#- pear channel-discover pear.phpqatools.org
+#- pear install -f phpunit/PHPUnit
+#- pear install -f phpunit/DbUnit
+#- pear install -f phpunit/FinderFacade
+#- pear install -f phpunit/PHPUnit_Selenium
+#- pear install -f phpunit/PHPUnit_Story
+#- pear install -f phpunit/PHP_Invoker
 - pear install -f phpdoc/phpDocumentor-alpha
-- pear install -f --alldeps pear/PHP_CodeSniffer
-- pear install -f phpqatools/PHP_CodeBrowser
-- pear install -f pdepend/PHP_Depend
-- pear install -f phpmd/PHP_PMD
-- pear install -f phpunit/phpdcd
-- pear install -f phpunit/phploc
-- pear install -f phpunit/phpcpd
+#- pear install -f --alldeps pear/PHP_CodeSniffer
+#- pear install -f phpqatools/PHP_CodeBrowser
+#- pear install -f pdepend/PHP_Depend
+#- pear install -f phpmd/PHP_PMD
+#- pear install -f phpunit/phpdcd
+#- pear install -f phpunit/phploc
+#- pear install -f phpunit/phpcpd
 - phpenv rehash
 - composer self-update
 - composer install
