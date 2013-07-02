@@ -5,8 +5,8 @@ php:
 - 5.4
 - 5.5
 before_script:
-#- sudo apt-get install -qq expect graphviz libmagickwand-dev
-#- expect tools/build/tools.expect
+- sudo apt-get install -qq expect graphviz libmagickwand-dev
+- expect tools/build/tools.expect
 #- pear channel-discover pear.phpunit.de
 #- pear channel-discover pear.pdepend.org
 #- pear channel-discover pear.phpmd.org
