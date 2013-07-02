@@ -3,6 +3,6 @@ default:
         features: features
         bootstrap: features/bootstrap
     formatter:
-        name:                   html
+        name:                   pretty,html
         parameters:
-            output_path:          target/behat/report.html
+            output_path:        null,target/behat/report.html
