@@ -25,13 +25,13 @@
 		<if>
 			<equals arg1="${phpcpd.exclude}" arg2="" />
 			<then>
-				<exec executable="phpcpd" failonerror="${phpcpd.failonerror}">
+				<exec dir="${basedir}" executable="${bin.dir}/phpcpd" failonerror="${phpcpd.failonerror}">
 					<arg line="--log-pmd ${target.dir}/phpcpd/pmd-cpd.xml" />
 					<arg line="${phpcpd.include}" />
 				</exec>
 			</then>
 			<else>
-				<exec executable="phpcpd" failonerror="${phpcpd.failonerror}">
+				<exec dir="${basedir}" executable="${bin.dir}/phpcpd" failonerror="${phpcpd.failonerror}">
 					<arg line="--log-pmd ${target.dir}/phpcpd/pmd-cpd.xml" />
 					<arg line="--exclude ${phpcpd.exclude}" />
 					<arg line="${phpcpd.include}" />

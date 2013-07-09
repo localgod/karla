@@ -1,5 +1,4 @@
-Karla
-=====
+# Karla
 
 Copyright (c) 2012, Johannes Frandsen
 All rights reserved.

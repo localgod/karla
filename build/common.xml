@@ -2,6 +2,7 @@
 <project name="Common">
 
 	<!-- Project structure -->
+	<property name="bin.dir" location="${basedir}/bin" />
 	<property name="test.dir" location="${basedir}/tests" />
 	<property name="resource.dir" location="${basedir}/tools/build" />
 	<property name="targets.dir" location="${basedir}/build/targets" />
@@ -16,7 +17,7 @@
 	
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
-			<pathelement location="${basedir}/tools/build/ant-contrib-1.0b3.jar" />
+			<pathelement location="${basedir}/build/tools/ant-contrib-1.0b3.jar" />
 		</classpath>
 	</taskdef>
 

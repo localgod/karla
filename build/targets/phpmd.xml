@@ -23,25 +23,25 @@
 		<if>
 			<equals arg1="${phpmd.exclude}" arg2="" />
 			<then>
-				<exec executable="phpmd" dir="${basedir}">
+				<exec dir="${basedir}" executable="${bin.dir}/phpmd" failonerror="${phpmd.failonerror}">
 					<arg line="${phpmd.include} html ${phpmd.rules}" />
 					<arg line="--reportfile ${target.dir}/phpmd/pmd.html" />
 					<arg line="--suffixes php" />
 				</exec>
-				<exec executable="phpmd" dir="${basedir}">
+				<exec dir="${basedir}" executable="${bin.dir}/phpmd" failonerror="${phpmd.failonerror}">
 					<arg line="${phpmd.include} xml ${phpmd.rules}" />
 					<arg line="--reportfile ${target.dir}/phpmd/pmd.xml" />
 					<arg line="--suffixes php" />
 				</exec>
 			</then>
 			<else>
-				<exec executable="phpmd" dir="${basedir}">
+				<exec dir="${basedir}" executable="${bin.dir}/phpmd" failonerror="${phpmd.failonerror}">
 					<arg line="${phpmd.include} html ${phpmd.rules}" />
 					<arg line="--reportfile ${target.dir}/phpmd/pmd.html" />
 					<arg line="--suffixes php" />
 					<arg line="--exclude ${phpmd.exclude}" />
 				</exec>
-				<exec executable="phpmd" dir="${basedir}">
+				<exec dir="${basedir}" executable="${bin.dir}/phpmd" failonerror="${phpmd.failonerror}">
 					<arg line="${phpmd.include} xml ${phpmd.rules}" />
 					<arg line="--reportfile ${target.dir}/phpmd/pmd.xml" />
 					<arg line="--suffixes php" />

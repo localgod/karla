@@ -1,6 +1,8 @@
 <project>
 	<!-- Output in testdox format -->
 	<property name="phpunit.testdox" value="false" />
+	<!-- Should we fail the build if phpunit fails? -->
+	<property name="phpunit.failonerror" value="true" />
 
 	<target name="phpunit-clean" depends="" description="Remove any previously generated report">
 		<delete dir="${target.dir}/phpunit" />
@@ -14,14 +16,14 @@
 		<if>
 			<equals arg1="${phpunit.testdox}" arg2="true" />
 			<then>
-				<exec executable="phpunit">
+				<exec dir="${basedir}" executable="${bin.dir}/phpunit" failonerror="${phpunit.failonerror}">
 					<arg line="--bootstrap ${test.dir}/bootstrap.php" />
 					<arg line="--configuration ${test.dir}/phpunit.xml" />
 					<arg line="--testdox" />
 				</exec>
 			</then>
 			<else>
-				<exec executable="phpunit">
+				<exec dir="${basedir}" executable="${bin.dir}/phpunit" failonerror="${phpunit.failonerror}">
 					<arg line="--bootstrap ${test.dir}/bootstrap.php" />
 					<arg line="--configuration ${test.dir}/phpunit.xml" />
 				</exec>

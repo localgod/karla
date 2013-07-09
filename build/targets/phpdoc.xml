@@ -7,6 +7,8 @@
 	<property name="phpdoc.exclude" value="" />
 	<!-- Default package name -->
 	<property name="phpdoc.defaultpackagename" value="Karla" />
+	<!-- Should we fail the build if phpdoc fails? -->
+	<property name="phpdoc.failonerror" value="false" />
 
 
 	<target name="phpdoc-clean" depends=""
@@ -26,7 +28,7 @@
 				<if>
 					<equals arg1="${phpdoc.include.file}" arg2="" />
 					<then>
-						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
@@ -35,7 +37,7 @@
 						</exec>
 					</then>
 					<else>
-						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
@@ -50,7 +52,7 @@
 				<if>
 					<equals arg1="${phpdoc.include.file}" arg2="" />
 					<then>
-						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
@@ -60,7 +62,7 @@
 						</exec>
 					</then>
 					<else>
-						<exec dir="${basedir}" executable="phpdoc" failonerror="true">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />

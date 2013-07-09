@@ -14,8 +14,8 @@
 
 	<!-- ================================= target: behat ================================ -->
 	<target name="behat" depends="behat-clean, behat-init" description="Behat Behavior Driven Development">
-		<exec dir="${basedir}" executable="php" failonerror="${behat.failonerror}">
-			<arg line="./bin/behat -c tests/behat.yml" />
+		<exec dir="${basedir}" executable="${bin.dir}/behat" failonerror="${behat.failonerror}">
+			<arg line="-c tests/behat.yml" />
 		</exec>
 	</target>
 </project>

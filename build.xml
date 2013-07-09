@@ -14,7 +14,7 @@
 	<import file="${targets.dir}/behat.xml" />
 
 	<target name="all" depends="tabtospace,phpcb,phpdcd,phpdoc" />
-	<target name="travis" depends="behat" />
+	<target name="travis" depends="tabtospace, phplint, phpunit, behat, phpcpd, phpmd, pdepend, phpdoc" />
 	<target name="help">
 		<echo>
 List of targets:
