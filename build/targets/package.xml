@@ -1,0 +1,35 @@
+<project>
+	<!-- Should we fail the build if copy past violations are detected? -->
+	<property name="package.failonerror" value="false" />
+	<property name="package.version" value="master" />
+
+	<!-- ================================= target: behat-clean ================================== -->
+	<target name="package-clean" depends=""
+		description="Remove any previously generated package">
+		<delete dir="${target.dir}/package" />
+	</target>
+
+	<!-- ================================= target: behat-init ================================== -->
+	<target name="package-init" depends=""
+		description="Create required folders for package">
+		<mkdir dir="${target.dir}/package" />
+	</target>
+
+	<!-- ================================= target: behat ================================ -->
+	<target name="package" depends="package-clean, package-init"
+		description="Package for download">
+		<copy todir="${target.dir}/package/Api">
+			<fileset dir="${target.dir}/phpdoc" />
+		</copy>
+		<copy todir="${target.dir}/package">
+			<fileset dir="${basedir}/src" />
+		</copy>
+		<tar destfile="${target.dir}/package/Karla-${package.version}.tar"
+			basedir="${target.dir}/package" />
+		<gzip destfile="${target.dir}/package/Karla-${package.version}.tar.gz"
+			src="${target.dir}/package/Karla-${package.version}.tar" />
+		<zip destfile="${target.dir}/package/Karla-${package.version}.zip"
+			basedir="${target.dir}/package" />
+
+	</target>
+</project>

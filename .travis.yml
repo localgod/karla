@@ -6,7 +6,7 @@ php:
 - 5.5
 before_script:
 - sudo apt-get install -qq expect graphviz libmagickwand-dev
-- expect tools/build/tools.expect
+- expect build/tools/tools.expect
 - phpenv rehash
 - composer self-update
 - composer install
@@ -15,7 +15,7 @@ matrix:
   allow_failures:
   - php: 5.5
 script:
-- ant travis -Dphpunit.testdox=true
+- ant travis -Dphpunit.testdox=true -Dpackage.version=$TRAVIS_BUILD_NUMBER
 
 after_success: ./build/tools/update-gh-pages.sh
 
@@ -25,3 +25,6 @@ env:
       mXV3RbUlgDSt6tRvOhkbERypbTF29ceqDWtwNmw/gXvqcteH4HqOKJZoUcqO
       keS1zZ2PrnG0OD2/9Fy6GGoQ9Y2gS9bIsdD2RJJLjg6ueG6jc4nIU2jywlNC
       ZprS+6Z91rtQ/peF4wvOgAxliGvzlgc8am4MGPu1oPU0LQ9WN+w=
+
+      
+      

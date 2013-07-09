@@ -12,9 +12,10 @@
 	<import file="${targets.dir}/phpdoc.xml" />
 	<import file="${targets.dir}/tabtospace.xml" />
 	<import file="${targets.dir}/behat.xml" />
+	<import file="${targets.dir}/package.xml" />
 
 	<target name="all" depends="tabtospace,phpcb,phpdcd,phpdoc" />
-	<target name="travis" depends="tabtospace, phplint, phpunit, behat, phpcpd, phpmd, pdepend, phpdoc" />
+	<target name="travis" depends="tabtospace, phplint, phpunit, behat, phpcpd, phpmd, pdepend, package" />
 	<target name="help">
 		<echo>
 List of targets:
