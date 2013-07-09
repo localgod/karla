@@ -2,7 +2,7 @@
 	<!-- Output in testdox format -->
 	<property name="phpunit.testdox" value="false" />
 	<!-- Should we fail the build if phpunit fails? -->
-	<property name="phpunit.failonerror" value="true" />
+	<property name="phpunit.failonerror" value="false" />
 
 	<target name="phpunit-clean" depends="" description="Remove any previously generated report">
 		<delete dir="${target.dir}/phpunit" />

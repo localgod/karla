@@ -15,7 +15,7 @@
 	<import file="${targets.dir}/package.xml" />
 
 	<target name="all" depends="tabtospace,phpcb,phpdcd,phpdoc" />
-	<target name="travis" depends="tabtospace, phplint, phpunit, behat, phpcpd, phpmd, pdepend, package" />
+	<target name="travis" depends="phpunit, package" />
 	<target name="help">
 		<echo>
 List of targets:
