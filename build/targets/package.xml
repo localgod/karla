@@ -15,24 +15,15 @@
 
 	<!-- ================================= target: behat ================================ -->
 	<target name="package" depends="package-clean, package-init" description="Package for download">
+		<echoproperties />
 		<copy todir="${target.dir}/package/Api">
 			<fileset dir="${target.dir}/phpdoc" />
 		</copy>
 		<copy todir="${target.dir}/package">
 			<fileset dir="${basedir}/src" />
 		</copy>
-		<if>
-			<equals arg1="${env.TRAVIS_BUILD_NUMBER}" arg2="" />
-			<then>
-				<tar destfile="${target.dir}/package/Karla-${package.version}.tar" basedir="${target.dir}/package" />
-				<gzip destfile="${target.dir}/package/Karla-${package.version}.tar.gz" src="${target.dir}/package/Karla-${package.version}.tar" />
-				<zip destfile="${target.dir}/package/Karla-${package.version}.zip" basedir="${target.dir}/package" />
-			</then>
-			<else>
-				<tar destfile="${target.dir}/package/Karla-build-${env.TRAVIS_BUILD_NUMBER}.tar" basedir="${target.dir}/package" />
-				<gzip destfile="${target.dir}/package/Karlabuild-${env.TRAVIS_BUILD_NUMBER}.tar.gz" src="${target.dir}/package/Karla-build-${env.TRAVIS_BUILD_NUMBER}.tar" />
-				<zip destfile="${target.dir}/package/Karla-build-${env.TRAVIS_BUILD_NUMBER}.zip" basedir="${target.dir}/package" />
-			</else>
-		</if>
+		<tar destfile="${target.dir}/package/Karla-${package.version}.tar" basedir="${target.dir}/package" />
+		<gzip destfile="${target.dir}/package/Karla-${package.version}.tar.gz" src="${target.dir}/package/Karla-${package.version}.tar" />
+		<zip destfile="${target.dir}/package/Karla-${package.version}.zip" basedir="${target.dir}/package" />
 	</target>
 </project>
