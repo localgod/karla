@@ -1,6 +1,7 @@
 <project>
-	<!-- Should we fail the build if copy past violations are detected? -->
+	<!-- Should we fail the build if packaging fails? -->
 	<property name="package.failonerror" value="false" />
+	<!-- Version of the package -->
 	<property name="package.version" value="master" />
 
 	<!-- ================================= target: behat-clean ================================== -->
@@ -15,15 +16,14 @@
 
 	<!-- ================================= target: behat ================================ -->
 	<target name="package" depends="package-clean, package-init" description="Package for download">
-		<echoproperties />
 		<copy todir="${target.dir}/package/Api">
 			<fileset dir="${target.dir}/phpdoc" />
 		</copy>
 		<copy todir="${target.dir}/package">
 			<fileset dir="${basedir}/src" />
 		</copy>
-		<tar destfile="${target.dir}/package/Karla-${package.version}.tar" basedir="${target.dir}/package" />
-		<gzip destfile="${target.dir}/package/Karla-${package.version}.tar.gz" src="${target.dir}/package/Karla-${package.version}.tar" />
-		<zip destfile="${target.dir}/package/Karla-${package.version}.zip" basedir="${target.dir}/package" />
+		<tar destfile="${target.dir}/package/Karla-build.${package.version}.tar" basedir="${target.dir}/package" />
+		<gzip destfile="${target.dir}/package/Karla-build.${package.version}.tar.gz" src="${target.dir}/package/Karla-build.${package.version}.tar" />
+		<zip destfile="${target.dir}/package/Karla-build.${package.version}.zip" basedir="${target.dir}/package" />
 	</target>
 </project>
