@@ -36,7 +36,7 @@ class Polaroid implements Action
     private $angle;
 
     /**
-     * Construct a new size action
+     * Construct a new polaroid action
      *
      * @param integer $angle
      *            Angle
