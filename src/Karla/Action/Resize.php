@@ -28,6 +28,9 @@ use Karla\Action;
 class Resize implements Action
 {
 
+	const ASPECT_FILL = 'aspect_fill';
+	const ASPECT_FIT = 'aspect_fit';
+
     /**
      * Width of new image
      *
@@ -56,6 +59,8 @@ class Resize implements Action
      */
     private $dontScaleUp;
 
+	private $aspect = self::ASPECT_FIT;
+
     /**
      * Construct a new size action
      *
@@ -71,7 +76,7 @@ class Resize implements Action
      * @return void
      * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp)
+    public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect = self::ASPECT_FIT)
     {
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
@@ -98,10 +103,16 @@ class Resize implements Action
             throw new \InvalidArgumentException($message);
         }
 
+		if(!in_array($aspect,array(self::ASPECT_FIT, self::ASPECT_FILL))) {
+            $message = sprintf('aspect must be "%s" or "%s".', self::ASPECT_FIT, self::ASPECT_FILL);
+            throw new \InvalidArgumentException($message);
+		}
+
         $this->width = $width;
         $this->height = $height;
         $this->maintainAspectRatio = $maintainAspectRatio;
         $this->dontScaleUp = $dontScaleUp;
+		$this->aspect = $aspect;
     }
 
     /**
@@ -120,20 +131,25 @@ class Resize implements Action
         $option = " -resize ";
 
         if ($this->width != '') {
-            $option = $option . $this->width;
+            $option .= $this->width;
         }
 
         if ($this->height != '') {
-            $option = $option . "x" . $this->height;
+            $option .= "x" . $this->height;
+        }
+
+        if ($this->aspect == self::ASPECT_FILL) {
+            $option .= "^";
+        }
+
+        if ($this->dontScaleUp) {
+            $option .= "\>";
         }
 
         if (! $this->maintainAspectRatio) {
-            $option = $option . "!";
+            $option .= "!";
         }
-        if ($this->dontScaleUp) {
-            $option = $option . "\>";
-        }
-        $option = $option . " ";
+        $option .= " ";
         $query->setInputOption($option);
 
         return $query;
