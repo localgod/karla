@@ -28,7 +28,7 @@
 				<if>
 					<equals arg1="${phpdoc.include.file}" arg2="" />
 					<then>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
@@ -37,7 +37,7 @@
 						</exec>
 					</then>
 					<else>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
@@ -52,7 +52,7 @@
 				<if>
 					<equals arg1="${phpdoc.include.file}" arg2="" />
 					<then>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
@@ -62,7 +62,7 @@
 						</exec>
 					</then>
 					<else>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc.php" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />

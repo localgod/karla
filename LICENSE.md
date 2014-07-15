@@ -1,6 +1,6 @@
 # Karla
 
-Copyright (c) 2012, Johannes Frandsen
+Copyright (c) 2012, Johannes Skov Frandsen
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
