@@ -2,24 +2,22 @@
 /**
  * Convert Test file
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/karla Karla
- * @since 2012-04-05
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
+ * @since    2012-04-05
  */
 use Karla\Karla;
 /**
  * Convert Test class
  *
  * @category Test
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/karla Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
  */
 class ConvertTest extends \PHPUnit_Framework_TestCase
 {
@@ -115,7 +113,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
             ->removeProfile('iptc')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert +profile iptc "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" +profile iptc "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 

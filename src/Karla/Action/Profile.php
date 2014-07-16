@@ -34,11 +34,18 @@ class Profile implements Action
     private $profilePath;
 
     /**
-     * Profile path
+     * Profile name
      *
      * @var string
      */
     private $profileName;
+    
+    /**
+     * Remove profile
+     *
+     * @var boolean
+     */
+    private $remove;
 
     /**
      * Construct a new profile action
@@ -46,13 +53,15 @@ class Profile implements Action
      * @param string $profilePath
      *            Profile path
      * @param string $profileName
-     *            Profile path
+     *            Profile name
+     * @param boolean $remove
+     *            Should the profile be removed? (default is false)
      *
      * @return void
      * @throws \LogicException profilePath or profileName must be set, but not both.
      * @throws \InvalidArgumentException If profile input file (' . $profilePath . ') could not be found.
      */
-    public function __construct($profilePath = "", $profileName = "")
+    public function __construct($profilePath = "", $profileName = "", $remove = false)
     {
         if (($profilePath == '' && $profileName == '') || ($profilePath != '' && $profileName != '')) {
             $message = 'profilePath or profileName must be set, but not both.';
@@ -62,8 +71,10 @@ class Profile implements Action
             $message = 'Profile input file (' . $profilePath . ') could not be found';
             throw new \InvalidArgumentException($message);
         }
+
         $this->profilePath = $profilePath;
         $this->profileName = $profileName;
+        $this->remove = $remove;
     }
 
     /**
@@ -77,9 +88,9 @@ class Profile implements Action
     public function perform(Query $query)
     {
         if ($this->profilePath != '') {
-            $query->setOutputOption(' -profile "' . $this->profilePath . '" ');
+            $query->setOutputOption(' '. ($this->remove ? '+' : '-') .'profile "' . $this->profilePath . '" ');
         } else {
-            $query->setInputOption(" +profile " . $this->profileName);
+            $query->setOutputOption(' '. ($this->remove ? '+' : '-') .'profile ' . $this->profileName);
         }
 
         return $query;

@@ -2,7 +2,7 @@
 use Karla\Karla;
 
 /**
- * Layers Test file
+ * Gravity Test file
  *
  * PHP Version 5.3<
  *
@@ -10,36 +10,18 @@ use Karla\Karla;
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
- * @since    2012-04-05
+ * @since    2014-07-15
  */
 /**
- * Layers Test class
+ * Gravity Test class
  *
  * @category Test
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class LayersTest extends \PHPUnit_Framework_TestCase
+class GravityTest extends \PHPUnit_Framework_TestCase
 {
-
-    /**
-     * Test
-     *
-     * @test
-     *
-     * @return void
-     */
-    public function layers()
-    {
-        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
-            ->layers('flatten')
-            ->out('test-200x200.png')
-            ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -layers flatten "tests/_data/demo.jpg" "./test-200x200.png"';
-        $this->assertEquals($expected, $actual);
-    }
 
     /**
      * Test
@@ -49,12 +31,14 @@ class LayersTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function layersWithIvalidMethod()
+    public function gravity()
     {
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in('tests/_data/demo.jpg')
-            ->layers('christmas')
-            ->out('test-200x200.png')
+            ->gravity('Nowhere')
+            ->out('test-1920x1200.png')
             ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-1920x1200.png"';
+        $this->assertEquals($expected, $actual);
     }
 }

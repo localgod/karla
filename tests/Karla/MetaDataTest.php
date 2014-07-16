@@ -4,23 +4,21 @@ use Karla\Karla;
 /**
  * MetaData Test file
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/karla Karla
- * @since 2013-05-11
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
+ * @since    2013-05-11
  */
 /**
  * MetaData Test class
  *
  * @category Test
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/karla Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
  */
 class MetaDataTest extends \PHPUnit_Framework_TestCase
 {

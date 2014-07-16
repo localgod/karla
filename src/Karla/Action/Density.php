@@ -73,7 +73,7 @@ class Density implements Action
             throw new \InvalidArgumentException($message);
         }
         if (! is_bool($output)) {
-            $message = 'Output must be aboolean values in the density method';
+            $message = 'Output must be a boolean values in the density method';
             throw new \InvalidArgumentException($message);
         }
         $this->width = $width;

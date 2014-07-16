@@ -2,7 +2,7 @@
 /**
  * Karla Imagemagick wrapper library test bootstrap file
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
  * @package  Karla

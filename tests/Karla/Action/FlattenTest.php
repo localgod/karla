@@ -2,25 +2,23 @@
 use Karla\Karla;
 
 /**
- * Convert Test file
+ * Flatten Test file
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/karla Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
  * @since 2012-04-05
  */
 /**
  * Flatten Test class
  *
  * @category Test
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/karla Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
  */
 class FlattenTest extends \PHPUnit_Framework_TestCase
 {

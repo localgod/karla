@@ -201,13 +201,15 @@ class Convert extends ImageMagick implements \Karla\Program
      * Add a profile to the image.
      *
      * @param string $profilePath
-     *            Path to the profile
+     *            Profile path
+     * @param string $profileName
+     *            Profile name
      *
      * @return Convert
      */
-    public function profile($profilePath)
+    public function profile($profilePath = "", $profileName = "")
     {
-        $action = new \Karla\Action\Profile($profilePath);
+        $action = new \Karla\Action\Profile($profilePath, $profileName);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -224,7 +226,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function removeProfile($profileName)
     {
-        $action = new \Karla\Action\Profile('', $profileName);
+        $action = new \Karla\Action\Profile('', $profileName, true);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
