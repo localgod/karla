@@ -72,3 +72,4 @@ class Type implements Action
         return $query;
     }
 }
+

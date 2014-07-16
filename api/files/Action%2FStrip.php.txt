@@ -44,3 +44,4 @@ class Strip implements Action
         return $query;
     }
 }
+

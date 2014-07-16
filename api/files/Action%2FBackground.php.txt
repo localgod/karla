@@ -73,3 +73,4 @@ class Background implements Action
         return $query;
     }
 }
+

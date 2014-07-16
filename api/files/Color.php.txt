@@ -74,3 +74,4 @@ class Color
         return preg_match('/^' . $expr . '$/x', $color);
     }
 }
+

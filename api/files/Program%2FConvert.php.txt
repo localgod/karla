@@ -114,14 +114,11 @@ class Convert extends ImageMagick implements \Karla\Program
 
         ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption(array()) : null;
         ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOptions(array()) : null;
-        $inOptions = $this->getQuery()->prepareOptions($this->getQuery()
-            ->getInputOptions()) == '' ? '' : $this->getQuery()->prepareOptions($this->getQuery()
-            ->getInputOptions()) . ' ';
-        $outOptions = $this->getQuery()->prepareOptions($this->getQuery()
-            ->getOutputOptions()) == '' ? '' : $this->getQuery()->prepareOptions($this->getQuery()
-            ->getOutputOptions()) . ' ';
+        $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
+        $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
 
-        return $this->binPath . $this->bin . ' ' . $inOptions . $this->inputFile . ' ' . $outOptions . $this->outputFile;
+        return $this->binPath . $this->bin . ' ' . ($inOptions == '' ? '' : $inOptions . ' ') .
+               $this->inputFile . ' ' . ($outOptions == '' ? '' : $outOptions . ' ') . $this->outputFile;
     }
 
     /**
@@ -134,13 +131,10 @@ class Convert extends ImageMagick implements \Karla\Program
     {
         if ($this->cache instanceof \Karla\Cache) {
             ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
-            if ($this->cache->isCached($this->inputFile, $this->getQuery()
-                ->getInputOptions())) {
-                return $this->cache->getCached($this->inputFile, $this->getQuery()
-                    ->getInputOptions());
+            if ($this->cache->isCached($this->inputFile, $this->getQuery()->getInputOptions())) {
+                return $this->cache->getCached($this->inputFile, $this->getQuery()->getInputOptions());
             } else {
-                $this->outputFile = $this->cache->setCache($this->inputFile, $this->getQuery()
-                    ->getInputOptions());
+                $this->outputFile = $this->cache->setCache($this->inputFile, $this->getQuery()->getInputOptions());
             }
         } else {
             $temp = $this->outputFile;

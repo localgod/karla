@@ -12,6 +12,7 @@
  * @since    2013-05-26
  */
 namespace Karla\Action;
+
 use Karla\Action;
 use Karla\Query;
 
@@ -42,3 +43,4 @@ class Flatten implements Action
         return $query;
     }
 }
+

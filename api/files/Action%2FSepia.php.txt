@@ -69,3 +69,4 @@ class Sepia implements Action
         return $query;
     }
 }
+

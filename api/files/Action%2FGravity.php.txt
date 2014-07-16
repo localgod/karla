@@ -71,3 +71,4 @@ class Gravity implements Action
         return $query;
     }
 }
+

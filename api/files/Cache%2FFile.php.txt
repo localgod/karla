@@ -12,6 +12,7 @@
  * @since    2012-04-05
  */
 namespace Karla\Cache;
+
 /**
  * Class for file caching
  *

@@ -161,3 +161,4 @@ class Support
         return in_array(strtolower(trim($format)), $formats);
     }
 }
+

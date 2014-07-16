@@ -72,8 +72,7 @@ class Identify extends ImageMagick
         $result = parent::execute(false);
 
         if (! $raw) {
-            if ($this->getQuery()->isOptionSet('verbose', $this->getQuery()
-                ->getInputOptions())) {
+            if ($this->getQuery()->isOptionSet('verbose', $this->getQuery()->getInputOptions())) {
                 $reset == true ? $this->getQuery()->reset() : null;
                 return new \Karla\MetaData($result, true);
             }
@@ -107,11 +106,9 @@ class Identify extends ImageMagick
     public function getCommand()
     {
         ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
-        $options = $this->getQuery()->prepareOptions($this->getQuery()
-            ->getInputOptions()) == '' ? '' : $this->getQuery()->prepareOptions($this->getQuery()
-            ->getInputOptions()) . ' ';
+        $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
 
-        return $this->binPath . $this->bin . ' ' . $options . $this->inputFile;
+        return $this->binPath . $this->bin . ' ' . ($options == '' ? '' : $options . ' ') . $this->inputFile;
     }
 
     /**

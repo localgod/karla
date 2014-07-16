@@ -89,3 +89,4 @@ class Quality implements Action
         return $query;
     }
 }
+

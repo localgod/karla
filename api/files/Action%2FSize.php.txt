@@ -80,3 +80,4 @@ class Size implements Action
         return $query;
     }
 }
+
