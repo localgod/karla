@@ -8,7 +8,7 @@
  * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
 spl_autoload_register(function ($name)
@@ -26,7 +26,7 @@ spl_autoload_register(function ($name)
  * @package Karla
  * @author Johannes Skov Frandsen <localgod@heaven.dk>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/Karla Karla
+ * @link https://github.com/localgod/karla Karla
  */
 class Demo
 {

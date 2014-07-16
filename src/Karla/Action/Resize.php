@@ -2,28 +2,27 @@
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
- * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
 namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
+use \InvalidArgumentException;
 
 /**
  * Class for handeling resize action
  *
  * @category Utility
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/Karla Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
  */
 class Resize implements Action
 {
@@ -75,27 +74,23 @@ class Resize implements Action
     {
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         if (! is_numeric($width) && $width != '') {
             $message = 'width must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         if (! is_numeric($height) && $height != '') {
             $message = 'height must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($height) && $height != '') {
-            $message = 'height must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         if (! is_bool($maintainAspectRatio)) {
             $message = 'maintainAspectRatio must be an boolean value.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         if (! is_bool($dontScaleUp)) {
             $message = 'dontScaleUp must be an boolean value.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
 
         $this->width = $width;

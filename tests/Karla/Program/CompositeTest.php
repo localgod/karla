@@ -9,7 +9,7 @@ use Karla\Karla;
  * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-14
  */
 /**
@@ -19,7 +19,7 @@ use Karla\Karla;
  * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  */
 class CompositeTest extends \PHPUnit_Framework_TestCase
 {

@@ -2,13 +2,12 @@
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
- * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
 namespace Karla\Program;
@@ -19,10 +18,9 @@ use Karla\Query;
  * Class for wrapping ImageMagick arguments used by all tools
  *
  * @category Utility
- * @package Karla
- * @author Johannes Skov Frandsen <localgod@heaven.dk>
- * @license http://www.opensource.org/licenses/mit-license.php MIT
- * @link https://github.com/localgod/Karla Karla
+ * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT
+ * @link     https://github.com/localgod/karla Karla
  */
 abstract class ImageMagick implements \Karla\Program
 {

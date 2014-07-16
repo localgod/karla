@@ -9,7 +9,7 @@
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
 
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  * @since    2010-06-05
  */
 if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
