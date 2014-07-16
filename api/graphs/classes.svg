@@ -70,7 +70,7 @@
 <text text-anchor="middle" x="403" y="-1643.1" font-family="Times Roman,serif" font-size="11.00">File</text>
 </g>
 <!-- \\Karla\\Cache -->
-<g id="node36" class="node"><title>\\Karla\\Cache</title>
+<g id="node37" class="node"><title>\\Karla\\Cache</title>
 <polygon fill="none" stroke="black" points="252,-1664 198,-1664 198,-1628 252,-1628 252,-1664"/>
 <text text-anchor="middle" x="225" y="-1643.1" font-family="Times Roman,serif" font-size="11.00">Cache</text>
 </g>
@@ -79,38 +79,38 @@
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.966,-1646C345.646,-1646 296.279,-1646 262.302,-1646"/>
 <polygon fill="none" stroke="black" points="262.289,-1642.5 252.289,-1646 262.289,-1649.5 262.289,-1642.5"/>
 </g>
-<!-- \\Karla\\Action\\Layers -->
-<g id="node6" class="node"><title>\\Karla\\Action\\Layers</title>
+<!-- \\Karla\\Action\\Resize -->
+<g id="node6" class="node"><title>\\Karla\\Action\\Resize</title>
 <polygon fill="none" stroke="black" points="430,-1582 376,-1582 376,-1546 430,-1546 430,-1582"/>
-<text text-anchor="middle" x="403" y="-1561.1" font-family="Times Roman,serif" font-size="11.00">Layers</text>
+<text text-anchor="middle" x="403" y="-1561.1" font-family="Times Roman,serif" font-size="11.00">Resize</text>
 </g>
 <!-- \\Karla\\Action -->
-<g id="node37" class="node"><title>\\Karla\\Action</title>
+<g id="node36" class="node"><title>\\Karla\\Action</title>
 <polygon fill="none" stroke="black" points="252,-1069 198,-1069 198,-1033 252,-1033 252,-1069"/>
 <text text-anchor="middle" x="225" y="-1048.1" font-family="Times Roman,serif" font-size="11.00">Action</text>
 </g>
-<!-- \\Karla\\Action\\Layers&#45;&gt;\\Karla\\Action -->
-<g id="edge9" class="edge"><title>\\Karla\\Action\\Layers&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Resize&#45;&gt;\\Karla\\Action -->
+<g id="edge9" class="edge"><title>\\Karla\\Action\\Resize&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.977,-1554.02C367.894,-1549.86 359.681,-1544.27 354,-1537 296.286,-1463.14 244.625,-1171.21 229.474,-1079.04"/>
 <polygon fill="none" stroke="black" points="232.91,-1078.36 227.848,-1069.06 226.001,-1079.49 232.91,-1078.36"/>
 </g>
-<!-- \\Karla\\Action\\Strip -->
-<g id="node7" class="node"><title>\\Karla\\Action\\Strip</title>
+<!-- \\Karla\\Action\\Sepia -->
+<g id="node7" class="node"><title>\\Karla\\Action\\Sepia</title>
 <polygon fill="none" stroke="black" points="430,-1528 376,-1528 376,-1492 430,-1492 430,-1528"/>
-<text text-anchor="middle" x="403" y="-1507.1" font-family="Times Roman,serif" font-size="11.00">Strip</text>
+<text text-anchor="middle" x="403" y="-1507.1" font-family="Times Roman,serif" font-size="11.00">Sepia</text>
 </g>
-<!-- \\Karla\\Action\\Strip&#45;&gt;\\Karla\\Action -->
-<g id="edge11" class="edge"><title>\\Karla\\Action\\Strip&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Sepia&#45;&gt;\\Karla\\Action -->
+<g id="edge11" class="edge"><title>\\Karla\\Action\\Sepia&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.854,-1499.79C367.861,-1495.64 359.732,-1490.11 354,-1483 252.606,-1357.27 230.856,-1153.55 226.233,-1079.26"/>
 <polygon fill="none" stroke="black" points="229.727,-1079.05 225.668,-1069.26 222.738,-1079.44 229.727,-1079.05"/>
 </g>
-<!-- \\Karla\\Action\\Resize -->
-<g id="node8" class="node"><title>\\Karla\\Action\\Resize</title>
+<!-- \\Karla\\Action\\Crop -->
+<g id="node8" class="node"><title>\\Karla\\Action\\Crop</title>
 <polygon fill="none" stroke="black" points="430,-1474 376,-1474 376,-1438 430,-1438 430,-1474"/>
-<text text-anchor="middle" x="403" y="-1453.1" font-family="Times Roman,serif" font-size="11.00">Resize</text>
+<text text-anchor="middle" x="403" y="-1453.1" font-family="Times Roman,serif" font-size="11.00">Crop</text>
 </g>
-<!-- \\Karla\\Action\\Resize&#45;&gt;\\Karla\\Action -->
-<g id="edge13" class="edge"><title>\\Karla\\Action\\Resize&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Crop&#45;&gt;\\Karla\\Action -->
+<g id="edge13" class="edge"><title>\\Karla\\Action\\Crop&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.763,-1445.52C367.86,-1441.38 359.806,-1435.92 354,-1429 263.658,-1321.31 235.504,-1147.15 227.698,-1079.32"/>
 <polygon fill="none" stroke="black" points="231.137,-1078.57 226.576,-1069 224.178,-1079.32 231.137,-1078.57"/>
 </g>
@@ -124,236 +124,226 @@
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M374.441,-1390.52C367.041,-1386.48 359.591,-1381.34 354,-1375 274.449,-1284.85 240.693,-1139.61 229.552,-1078.99"/>
 <polygon fill="none" stroke="black" points="232.976,-1078.25 227.785,-1069.01 226.083,-1079.47 232.976,-1078.25"/>
 </g>
-<!-- \\Karla\\Action\\Flatten -->
-<g id="node10" class="node"><title>\\Karla\\Action\\Flatten</title>
-<polygon fill="none" stroke="black" points="430,-1366 376,-1366 376,-1330 430,-1330 430,-1366"/>
-<text text-anchor="middle" x="403" y="-1345.1" font-family="Times Roman,serif" font-size="11.00">Flatten</text>
+<!-- \\Karla\\Action\\Polaroid -->
+<g id="node10" class="node"><title>\\Karla\\Action\\Polaroid</title>
+<polygon fill="none" stroke="black" points="432,-1366 374,-1366 374,-1330 432,-1330 432,-1366"/>
+<text text-anchor="middle" x="403" y="-1345.1" font-family="Times Roman,serif" font-size="11.00">Polaroid</text>
 </g>
-<!-- \\Karla\\Action\\Flatten&#45;&gt;\\Karla\\Action -->
-<g id="edge17" class="edge"><title>\\Karla\\Action\\Flatten&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.478,-1336.68C367.837,-1332.58 360,-1327.36 354,-1321 285.307,-1248.21 246.947,-1132.06 232.168,-1079.04"/>
+<!-- \\Karla\\Action\\Polaroid&#45;&gt;\\Karla\\Action -->
+<g id="edge17" class="edge"><title>\\Karla\\Action\\Polaroid&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M373.438,-1335.56C366.458,-1331.64 359.466,-1326.79 354,-1321 285.307,-1248.21 246.947,-1132.06 232.168,-1079.04"/>
 <polygon fill="none" stroke="black" points="235.524,-1078.04 229.525,-1069.31 228.769,-1079.88 235.524,-1078.04"/>
 </g>
-<!-- \\Karla\\Action\\Size -->
-<g id="node11" class="node"><title>\\Karla\\Action\\Size</title>
+<!-- \\Karla\\Action\\Profile -->
+<g id="node11" class="node"><title>\\Karla\\Action\\Profile</title>
 <polygon fill="none" stroke="black" points="430,-1312 376,-1312 376,-1276 430,-1276 430,-1312"/>
-<text text-anchor="middle" x="403" y="-1291.1" font-family="Times Roman,serif" font-size="11.00">Size</text>
+<text text-anchor="middle" x="403" y="-1291.1" font-family="Times Roman,serif" font-size="11.00">Profile</text>
 </g>
-<!-- \\Karla\\Action\\Size&#45;&gt;\\Karla\\Action -->
-<g id="edge19" class="edge"><title>\\Karla\\Action\\Size&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Profile&#45;&gt;\\Karla\\Action -->
+<g id="edge19" class="edge"><title>\\Karla\\Action\\Profile&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.842,-1282.33C368.211,-1278.21 360.288,-1273.07 354,-1267 295.729,-1210.72 254.181,-1122.61 235.71,-1078.33"/>
 <polygon fill="none" stroke="black" points="238.946,-1077 231.918,-1069.07 232.468,-1079.65 238.946,-1077"/>
 </g>
-<!-- \\Karla\\Action\\Bordercolor -->
-<g id="node12" class="node"><title>\\Karla\\Action\\Bordercolor</title>
-<polygon fill="none" stroke="black" points="443,-1258 363,-1258 363,-1222 443,-1222 443,-1258"/>
-<text text-anchor="middle" x="403" y="-1237.1" font-family="Times Roman,serif" font-size="11.00">Bordercolor</text>
+<!-- \\Karla\\Action\\Type -->
+<g id="node12" class="node"><title>\\Karla\\Action\\Type</title>
+<polygon fill="none" stroke="black" points="430,-1258 376,-1258 376,-1222 430,-1222 430,-1258"/>
+<text text-anchor="middle" x="403" y="-1237.1" font-family="Times Roman,serif" font-size="11.00">Type</text>
 </g>
-<!-- \\Karla\\Action\\Bordercolor&#45;&gt;\\Karla\\Action -->
-<g id="edge21" class="edge"><title>\\Karla\\Action\\Bordercolor&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M366.342,-1221.93C362.008,-1219.19 357.786,-1216.19 354,-1213 306.205,-1172.66 263.8,-1112.34 241.529,-1077.82"/>
+<!-- \\Karla\\Action\\Type&#45;&gt;\\Karla\\Action -->
+<g id="edge21" class="edge"><title>\\Karla\\Action\\Type&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.829,-1227.5C368.363,-1223.43 360.532,-1218.51 354,-1213 306.205,-1172.66 263.8,-1112.34 241.529,-1077.82"/>
 <polygon fill="none" stroke="black" points="244.375,-1075.78 236.052,-1069.22 238.47,-1079.54 244.375,-1075.78"/>
 </g>
-<!-- \\Karla\\Action\\Flip -->
-<g id="node13" class="node"><title>\\Karla\\Action\\Flip</title>
+<!-- \\Karla\\Action\\Flatten -->
+<g id="node13" class="node"><title>\\Karla\\Action\\Flatten</title>
 <polygon fill="none" stroke="black" points="430,-1204 376,-1204 376,-1168 430,-1168 430,-1204"/>
-<text text-anchor="middle" x="403" y="-1183.1" font-family="Times Roman,serif" font-size="11.00">Flip</text>
+<text text-anchor="middle" x="403" y="-1183.1" font-family="Times Roman,serif" font-size="11.00">Flatten</text>
 </g>
-<!-- \\Karla\\Action\\Flip&#45;&gt;\\Karla\\Action -->
-<g id="edge23" class="edge"><title>\\Karla\\Action\\Flip&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.993,-1172.34C368.684,-1168.31 360.893,-1163.72 354,-1159 316.594,-1133.39 277.129,-1099.14 251.851,-1076.13"/>
+<!-- \\Karla\\Action\\Flatten&#45;&gt;\\Karla\\Action -->
+<g id="edge23" class="edge"><title>\\Karla\\Action\\Flatten&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.482,-1172.05C368.322,-1168.1 360.732,-1163.61 354,-1159 316.594,-1133.39 277.129,-1099.14 251.851,-1076.13"/>
 <polygon fill="none" stroke="black" points="253.899,-1073.26 244.162,-1069.09 249.169,-1078.42 253.899,-1073.26"/>
 </g>
-<!-- \\Karla\\Action\\Polaroid -->
-<g id="node14" class="node"><title>\\Karla\\Action\\Polaroid</title>
-<polygon fill="none" stroke="black" points="432,-1150 374,-1150 374,-1114 432,-1114 432,-1150"/>
-<text text-anchor="middle" x="403" y="-1129.1" font-family="Times Roman,serif" font-size="11.00">Polaroid</text>
+<!-- \\Karla\\Action\\Colorspace -->
+<g id="node14" class="node"><title>\\Karla\\Action\\Colorspace</title>
+<polygon fill="none" stroke="black" points="441,-1150 365,-1150 365,-1114 441,-1114 441,-1150"/>
+<text text-anchor="middle" x="403" y="-1129.1" font-family="Times Roman,serif" font-size="11.00">Colorspace</text>
 </g>
-<!-- \\Karla\\Action\\Polaroid&#45;&gt;\\Karla\\Action -->
-<g id="edge25" class="edge"><title>\\Karla\\Action\\Polaroid&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M373.207,-1118.44C342.49,-1104.46 294.554,-1082.65 261.562,-1067.64"/>
-<polygon fill="none" stroke="black" points="262.811,-1064.36 252.259,-1063.4 259.911,-1070.73 262.811,-1064.36"/>
+<!-- \\Karla\\Action\\Colorspace&#45;&gt;\\Karla\\Action -->
+<g id="edge25" class="edge"><title>\\Karla\\Action\\Colorspace&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M364.377,-1114.42C333.838,-1100.53 291.499,-1081.26 261.519,-1067.62"/>
+<polygon fill="none" stroke="black" points="262.802,-1064.36 252.251,-1063.4 259.903,-1070.73 262.802,-1064.36"/>
 </g>
-<!-- \\Karla\\Action\\Crop -->
-<g id="node15" class="node"><title>\\Karla\\Action\\Crop</title>
-<polygon fill="none" stroke="black" points="430,-1096 376,-1096 376,-1060 430,-1060 430,-1096"/>
-<text text-anchor="middle" x="403" y="-1075.1" font-family="Times Roman,serif" font-size="11.00">Crop</text>
+<!-- \\Karla\\Action\\Bordercolor -->
+<g id="node15" class="node"><title>\\Karla\\Action\\Bordercolor</title>
+<polygon fill="none" stroke="black" points="443,-1096 363,-1096 363,-1060 443,-1060 443,-1096"/>
+<text text-anchor="middle" x="403" y="-1075.1" font-family="Times Roman,serif" font-size="11.00">Bordercolor</text>
 </g>
-<!-- \\Karla\\Action\\Crop&#45;&gt;\\Karla\\Action -->
-<g id="edge27" class="edge"><title>\\Karla\\Action\\Crop&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.966,-1073.9C345.646,-1069.3 296.279,-1061.81 262.302,-1056.66"/>
-<polygon fill="none" stroke="black" points="262.701,-1053.18 252.289,-1055.14 261.651,-1060.1 262.701,-1053.18"/>
+<!-- \\Karla\\Action\\Bordercolor&#45;&gt;\\Karla\\Action -->
+<g id="edge27" class="edge"><title>\\Karla\\Action\\Bordercolor&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M362.609,-1071.87C332.554,-1067.31 291.829,-1061.14 262.491,-1056.69"/>
+<polygon fill="none" stroke="black" points="262.651,-1053.17 252.239,-1055.13 261.601,-1060.09 262.651,-1053.17"/>
 </g>
-<!-- \\Karla\\Action\\Flop -->
-<g id="node16" class="node"><title>\\Karla\\Action\\Flop</title>
+<!-- \\Karla\\Action\\Quality -->
+<g id="node16" class="node"><title>\\Karla\\Action\\Quality</title>
 <polygon fill="none" stroke="black" points="430,-1042 376,-1042 376,-1006 430,-1006 430,-1042"/>
-<text text-anchor="middle" x="403" y="-1021.1" font-family="Times Roman,serif" font-size="11.00">Flop</text>
+<text text-anchor="middle" x="403" y="-1021.1" font-family="Times Roman,serif" font-size="11.00">Quality</text>
 </g>
-<!-- \\Karla\\Action\\Flop&#45;&gt;\\Karla\\Action -->
-<g id="edge29" class="edge"><title>\\Karla\\Action\\Flop&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Quality&#45;&gt;\\Karla\\Action -->
+<g id="edge29" class="edge"><title>\\Karla\\Action\\Quality&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.966,-1028.1C345.646,-1032.7 296.279,-1040.19 262.302,-1045.34"/>
 <polygon fill="none" stroke="black" points="261.651,-1041.9 252.289,-1046.86 262.701,-1048.82 261.651,-1041.9"/>
 </g>
-<!-- \\Karla\\Action\\Rotate -->
-<g id="node17" class="node"><title>\\Karla\\Action\\Rotate</title>
+<!-- \\Karla\\Action\\Flop -->
+<g id="node17" class="node"><title>\\Karla\\Action\\Flop</title>
 <polygon fill="none" stroke="black" points="430,-988 376,-988 376,-952 430,-952 430,-988"/>
-<text text-anchor="middle" x="403" y="-967.1" font-family="Times Roman,serif" font-size="11.00">Rotate</text>
+<text text-anchor="middle" x="403" y="-967.1" font-family="Times Roman,serif" font-size="11.00">Flop</text>
 </g>
-<!-- \\Karla\\Action\\Rotate&#45;&gt;\\Karla\\Action -->
-<g id="edge31" class="edge"><title>\\Karla\\Action\\Rotate&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Flop&#45;&gt;\\Karla\\Action -->
+<g id="edge31" class="edge"><title>\\Karla\\Action\\Flop&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.966,-982.302C345.385,-996.218 295.427,-1018.95 261.426,-1034.42"/>
 <polygon fill="none" stroke="black" points="259.941,-1031.25 252.289,-1038.58 262.84,-1037.63 259.941,-1031.25"/>
 </g>
-<!-- \\Karla\\Action\\Gravity -->
-<g id="node18" class="node"><title>\\Karla\\Action\\Gravity</title>
-<polygon fill="none" stroke="black" points="431,-934 375,-934 375,-898 431,-898 431,-934"/>
-<text text-anchor="middle" x="403" y="-913.1" font-family="Times Roman,serif" font-size="11.00">Gravity</text>
+<!-- \\Karla\\Action\\Background -->
+<g id="node18" class="node"><title>\\Karla\\Action\\Background</title>
+<polygon fill="none" stroke="black" points="443,-934 363,-934 363,-898 443,-898 443,-934"/>
+<text text-anchor="middle" x="403" y="-913.1" font-family="Times Roman,serif" font-size="11.00">Background</text>
 </g>
-<!-- \\Karla\\Action\\Gravity&#45;&gt;\\Karla\\Action -->
-<g id="edge33" class="edge"><title>\\Karla\\Action\\Gravity&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M374.97,-930.228C367.961,-934.114 360.572,-938.501 354,-943 316.594,-968.609 277.129,-1002.86 251.851,-1025.87"/>
+<!-- \\Karla\\Action\\Background&#45;&gt;\\Karla\\Action -->
+<g id="edge33" class="edge"><title>\\Karla\\Action\\Background&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M368.226,-934.063C363.358,-936.907 358.488,-939.927 354,-943 316.594,-968.609 277.129,-1002.86 251.851,-1025.87"/>
 <polygon fill="none" stroke="black" points="249.169,-1023.58 244.162,-1032.91 253.899,-1028.74 249.169,-1023.58"/>
 </g>
-<!-- \\Karla\\Action\\Resample -->
-<g id="node19" class="node"><title>\\Karla\\Action\\Resample</title>
-<polygon fill="none" stroke="black" points="438,-880 368,-880 368,-844 438,-844 438,-880"/>
-<text text-anchor="middle" x="403" y="-859.1" font-family="Times Roman,serif" font-size="11.00">Resample</text>
+<!-- \\Karla\\Action\\Flip -->
+<g id="node19" class="node"><title>\\Karla\\Action\\Flip</title>
+<polygon fill="none" stroke="black" points="430,-880 376,-880 376,-844 430,-844 430,-880"/>
+<text text-anchor="middle" x="403" y="-859.1" font-family="Times Roman,serif" font-size="11.00">Flip</text>
 </g>
-<!-- \\Karla\\Action\\Resample&#45;&gt;\\Karla\\Action -->
-<g id="edge35" class="edge"><title>\\Karla\\Action\\Resample&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M367.876,-879.107C363.007,-882.11 358.231,-885.429 354,-889 306.205,-929.337 263.8,-989.656 241.529,-1024.18"/>
+<!-- \\Karla\\Action\\Flip&#45;&gt;\\Karla\\Action -->
+<g id="edge35" class="edge"><title>\\Karla\\Action\\Flip&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.829,-874.5C368.363,-878.574 360.532,-883.487 354,-889 306.205,-929.337 263.8,-989.656 241.529,-1024.18"/>
 <polygon fill="none" stroke="black" points="238.47,-1022.46 236.052,-1032.78 244.375,-1026.22 238.47,-1022.46"/>
 </g>
-<!-- \\Karla\\Action\\Profile -->
-<g id="node20" class="node"><title>\\Karla\\Action\\Profile</title>
+<!-- \\Karla\\Action\\Layers -->
+<g id="node20" class="node"><title>\\Karla\\Action\\Layers</title>
 <polygon fill="none" stroke="black" points="430,-826 376,-826 376,-790 430,-790 430,-826"/>
-<text text-anchor="middle" x="403" y="-805.1" font-family="Times Roman,serif" font-size="11.00">Profile</text>
+<text text-anchor="middle" x="403" y="-805.1" font-family="Times Roman,serif" font-size="11.00">Layers</text>
 </g>
-<!-- \\Karla\\Action\\Profile&#45;&gt;\\Karla\\Action -->
-<g id="edge37" class="edge"><title>\\Karla\\Action\\Profile&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Layers&#45;&gt;\\Karla\\Action -->
+<g id="edge37" class="edge"><title>\\Karla\\Action\\Layers&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.842,-819.675C368.211,-823.787 360.288,-828.927 354,-835 295.729,-891.28 254.181,-979.389 235.71,-1023.67"/>
 <polygon fill="none" stroke="black" points="232.468,-1022.35 231.918,-1032.93 238.946,-1025 232.468,-1022.35"/>
 </g>
-<!-- \\Karla\\Action\\Quality -->
-<g id="node21" class="node"><title>\\Karla\\Action\\Quality</title>
+<!-- \\Karla\\Action\\Strip -->
+<g id="node21" class="node"><title>\\Karla\\Action\\Strip</title>
 <polygon fill="none" stroke="black" points="430,-772 376,-772 376,-736 430,-736 430,-772"/>
-<text text-anchor="middle" x="403" y="-751.1" font-family="Times Roman,serif" font-size="11.00">Quality</text>
+<text text-anchor="middle" x="403" y="-751.1" font-family="Times Roman,serif" font-size="11.00">Strip</text>
 </g>
-<!-- \\Karla\\Action\\Quality&#45;&gt;\\Karla\\Action -->
-<g id="edge39" class="edge"><title>\\Karla\\Action\\Quality&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Strip&#45;&gt;\\Karla\\Action -->
+<g id="edge39" class="edge"><title>\\Karla\\Action\\Strip&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.988,-765.044C368.186,-769.186 360.133,-774.501 354,-781 285.307,-853.791 246.947,-969.937 232.168,-1022.96"/>
 <polygon fill="none" stroke="black" points="228.769,-1022.12 229.525,-1032.69 235.524,-1023.96 228.769,-1022.12"/>
 </g>
-<!-- \\Karla\\Action\\Type -->
-<g id="node22" class="node"><title>\\Karla\\Action\\Type</title>
-<polygon fill="none" stroke="black" points="430,-718 376,-718 376,-682 430,-682 430,-718"/>
-<text text-anchor="middle" x="403" y="-697.1" font-family="Times Roman,serif" font-size="11.00">Type</text>
+<!-- \\Karla\\Action\\Resample -->
+<g id="node22" class="node"><title>\\Karla\\Action\\Resample</title>
+<polygon fill="none" stroke="black" points="438,-718 368,-718 368,-682 438,-682 438,-718"/>
+<text text-anchor="middle" x="403" y="-697.1" font-family="Times Roman,serif" font-size="11.00">Resample</text>
 </g>
-<!-- \\Karla\\Action\\Type&#45;&gt;\\Karla\\Action -->
-<g id="edge41" class="edge"><title>\\Karla\\Action\\Type&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.971,-710.662C368.078,-714.812 359.977,-720.227 354,-727 274.449,-817.146 240.693,-962.391 229.552,-1023.01"/>
+<!-- \\Karla\\Action\\Resample&#45;&gt;\\Karla\\Action -->
+<g id="edge41" class="edge"><title>\\Karla\\Action\\Resample&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M367.844,-715.399C362.754,-718.699 357.92,-722.558 354,-727 274.449,-817.146 240.693,-962.391 229.552,-1023.01"/>
 <polygon fill="none" stroke="black" points="226.083,-1022.53 227.785,-1032.99 232.976,-1023.75 226.083,-1022.53"/>
 </g>
-<!-- \\Karla\\Action\\Sepia -->
-<g id="node23" class="node"><title>\\Karla\\Action\\Sepia</title>
+<!-- \\Karla\\Action\\Size -->
+<g id="node23" class="node"><title>\\Karla\\Action\\Size</title>
 <polygon fill="none" stroke="black" points="430,-664 376,-664 376,-628 430,-628 430,-664"/>
-<text text-anchor="middle" x="403" y="-643.1" font-family="Times Roman,serif" font-size="11.00">Sepia</text>
+<text text-anchor="middle" x="403" y="-643.1" font-family="Times Roman,serif" font-size="11.00">Size</text>
 </g>
-<!-- \\Karla\\Action\\Sepia&#45;&gt;\\Karla\\Action -->
-<g id="edge43" class="edge"><title>\\Karla\\Action\\Sepia&#45;&gt;\\Karla\\Action</title>
+<!-- \\Karla\\Action\\Size&#45;&gt;\\Karla\\Action -->
+<g id="edge43" class="edge"><title>\\Karla\\Action\\Size&#45;&gt;\\Karla\\Action</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.763,-656.482C367.86,-660.624 359.806,-666.08 354,-673 263.658,-780.689 235.504,-954.849 227.698,-1022.68"/>
 <polygon fill="none" stroke="black" points="224.178,-1022.68 226.576,-1033 231.137,-1023.43 224.178,-1022.68"/>
 </g>
-<!-- \\Karla\\Action\\Colorspace -->
-<g id="node24" class="node"><title>\\Karla\\Action\\Colorspace</title>
-<polygon fill="none" stroke="black" points="441,-610 365,-610 365,-574 441,-574 441,-610"/>
-<text text-anchor="middle" x="403" y="-589.1" font-family="Times Roman,serif" font-size="11.00">Colorspace</text>
+<!-- \\Karla\\Action\\Gravity -->
+<g id="node24" class="node"><title>\\Karla\\Action\\Gravity</title>
+<polygon fill="none" stroke="black" points="431,-610 375,-610 375,-574 431,-574 431,-610"/>
+<text text-anchor="middle" x="403" y="-589.1" font-family="Times Roman,serif" font-size="11.00">Gravity</text>
 </g>
-<!-- \\Karla\\Action\\Colorspace&#45;&gt;\\Karla\\Action -->
-<g id="edge45" class="edge"><title>\\Karla\\Action\\Colorspace&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M364.318,-609.321C360.479,-612.154 356.927,-615.371 354,-619 252.606,-744.725 230.856,-948.451 226.233,-1022.74"/>
+<!-- \\Karla\\Action\\Gravity&#45;&gt;\\Karla\\Action -->
+<g id="edge45" class="edge"><title>\\Karla\\Action\\Gravity&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M374.833,-602.752C367.173,-606.838 359.488,-612.195 354,-619 252.606,-744.725 230.856,-948.451 226.233,-1022.74"/>
 <polygon fill="none" stroke="black" points="222.738,-1022.56 225.668,-1032.74 229.727,-1022.95 222.738,-1022.56"/>
 </g>
-<!-- \\Karla\\Action\\Background -->
-<g id="node25" class="node"><title>\\Karla\\Action\\Background</title>
-<polygon fill="none" stroke="black" points="443,-556 363,-556 363,-520 443,-520 443,-556"/>
-<text text-anchor="middle" x="403" y="-535.1" font-family="Times Roman,serif" font-size="11.00">Background</text>
+<!-- \\Karla\\Action\\Rotate -->
+<g id="node25" class="node"><title>\\Karla\\Action\\Rotate</title>
+<polygon fill="none" stroke="black" points="430,-556 376,-556 376,-520 430,-520 430,-556"/>
+<text text-anchor="middle" x="403" y="-535.1" font-family="Times Roman,serif" font-size="11.00">Rotate</text>
 </g>
-<!-- \\Karla\\Action\\Background&#45;&gt;\\Karla\\Action -->
-<g id="edge47" class="edge"><title>\\Karla\\Action\\Background&#45;&gt;\\Karla\\Action</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M362.79,-556.32C359.518,-558.899 356.512,-561.786 354,-565 296.286,-638.858 244.625,-930.792 229.474,-1022.96"/>
+<!-- \\Karla\\Action\\Rotate&#45;&gt;\\Karla\\Action -->
+<g id="edge47" class="edge"><title>\\Karla\\Action\\Rotate&#45;&gt;\\Karla\\Action</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M375.977,-547.978C367.894,-552.137 359.681,-557.729 354,-565 296.286,-638.858 244.625,-930.792 229.474,-1022.96"/>
 <polygon fill="none" stroke="black" points="226.001,-1022.51 227.848,-1032.94 232.91,-1023.64 226.001,-1022.51"/>
 </g>
+<!-- \\Karla\\Program\\Identify -->
+<g id="node27" class="node"><title>\\Karla\\Program\\Identify</title>
+<polygon fill="none" stroke="black" points="431,-420 375,-420 375,-384 431,-384 431,-420"/>
+<text text-anchor="middle" x="403" y="-399.1" font-family="Times Roman,serif" font-size="11.00">Identify</text>
+</g>
 <!-- \\Karla\\Program\\ImageMagick -->
-<g id="node27" class="node"><title>\\Karla\\Program\\ImageMagick</title>
+<g id="node30" class="node"><title>\\Karla\\Program\\ImageMagick</title>
 <polygon fill="none" stroke="black" points="269,-424 181,-424 181,-388 269,-388 269,-424"/>
 <text text-anchor="start" x="195" y="-411.433" font-family="Times Roman,serif" font-size="11.00">«abstract»</text>
 <text text-anchor="start" x="189" y="-398.233" font-family="Times Roman,serif" font-size="11.00">ImageMagick</text>
+</g>
+<!-- \\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick -->
+<g id="edge51" class="edge"><title>\\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<path fill="none" stroke="black" d="M374.795,-402.634C349.43,-403.204 311.445,-404.057 280.074,-404.762"/>
+<polygon fill="none" stroke="black" points="279.635,-401.271 269.716,-404.995 279.792,-408.27 279.635,-401.271"/>
+</g>
+<!-- \\Karla\\Program\\Convert -->
+<g id="node28" class="node"><title>\\Karla\\Program\\Convert</title>
+<polygon fill="none" stroke="black" points="432,-474 374,-474 374,-438 432,-438 432,-474"/>
+<text text-anchor="middle" x="403" y="-453.1" font-family="Times Roman,serif" font-size="11.00">Convert</text>
+</g>
+<!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick -->
+<g id="edge53" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<path fill="none" stroke="black" d="M373.207,-447.631C347.666,-440.457 310.219,-429.938 279.357,-421.269"/>
+<polygon fill="none" stroke="black" points="280.166,-417.861 269.592,-418.526 278.273,-424.6 280.166,-417.861"/>
 </g>
 <!-- \\Karla\\Program -->
 <g id="node38" class="node"><title>\\Karla\\Program</title>
 <polygon fill="none" stroke="black" points="88,-446 24,-446 24,-410 88,-410 88,-446"/>
 <text text-anchor="middle" x="56" y="-425.1" font-family="Times Roman,serif" font-size="11.00">Program</text>
 </g>
-<!-- \\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program -->
-<g id="edge51" class="edge"><title>\\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M180.155,-411.838C154.828,-415.135 123.354,-419.232 98.4337,-422.476"/>
-<polygon fill="none" stroke="black" points="97.6561,-419.048 88.1916,-423.809 98.5598,-425.989 97.6561,-419.048"/>
-</g>
-<!-- \\Karla\\Program\\Identify -->
-<g id="node28" class="node"><title>\\Karla\\Program\\Identify</title>
-<polygon fill="none" stroke="black" points="431,-420 375,-420 375,-384 431,-384 431,-420"/>
-<text text-anchor="middle" x="403" y="-399.1" font-family="Times Roman,serif" font-size="11.00">Identify</text>
-</g>
-<!-- \\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge53" class="edge"><title>\\Karla\\Program\\Identify&#45;&gt;\\Karla\\Program\\ImageMagick</title>
-<path fill="none" stroke="black" d="M374.795,-402.634C349.43,-403.204 311.445,-404.057 280.074,-404.762"/>
-<polygon fill="none" stroke="black" points="279.635,-401.271 269.716,-404.995 279.792,-408.27 279.635,-401.271"/>
-</g>
-<!-- \\Karla\\Program\\Convert -->
-<g id="node29" class="node"><title>\\Karla\\Program\\Convert</title>
-<polygon fill="none" stroke="black" points="432,-474 374,-474 374,-438 432,-438 432,-474"/>
-<text text-anchor="middle" x="403" y="-453.1" font-family="Times Roman,serif" font-size="11.00">Convert</text>
-</g>
-<!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge55" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program\\ImageMagick</title>
-<path fill="none" stroke="black" d="M373.207,-447.631C347.666,-440.457 310.219,-429.938 279.357,-421.269"/>
-<polygon fill="none" stroke="black" points="280.166,-417.861 269.592,-418.526 278.273,-424.6 280.166,-417.861"/>
-</g>
 <!-- \\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program -->
-<g id="edge57" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program</title>
+<g id="edge55" class="edge"><title>\\Karla\\Program\\Convert&#45;&gt;\\Karla\\Program</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M373.415,-453.613C311.837,-448.644 169.71,-437.175 98.4087,-431.422"/>
 <polygon fill="none" stroke="black" points="98.2576,-427.899 88.0084,-430.583 97.6945,-434.876 98.2576,-427.899"/>
 </g>
 <!-- \\Karla\\Program\\Composite -->
-<g id="node30" class="node"><title>\\Karla\\Program\\Composite</title>
+<g id="node29" class="node"><title>\\Karla\\Program\\Composite</title>
 <polygon fill="none" stroke="black" points="440,-366 366,-366 366,-330 440,-330 440,-366"/>
 <text text-anchor="middle" x="403" y="-345.1" font-family="Times Roman,serif" font-size="11.00">Composite</text>
 </g>
 <!-- \\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick -->
-<g id="edge59" class="edge"><title>\\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick</title>
+<g id="edge57" class="edge"><title>\\Karla\\Program\\Composite&#45;&gt;\\Karla\\Program\\ImageMagick</title>
 <path fill="none" stroke="black" d="M365.251,-360.3C340.238,-368.451 307.032,-379.27 279.21,-388.336"/>
 <polygon fill="none" stroke="black" points="278.039,-385.036 269.615,-391.462 280.208,-391.692 278.039,-385.036"/>
+</g>
+<!-- \\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program -->
+<g id="edge59" class="edge"><title>\\Karla\\Program\\ImageMagick&#45;&gt;\\Karla\\Program</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M180.155,-411.838C154.828,-415.135 123.354,-419.232 98.4337,-422.476"/>
+<polygon fill="none" stroke="black" points="97.6561,-419.048 88.1916,-423.809 98.5598,-425.989 97.6561,-419.048"/>
 </g>
 <!-- \\Karla\\Color -->
 <g id="node31" class="node"><title>\\Karla\\Color</title>
 <polygon fill="none" stroke="black" points="430,-312 376,-312 376,-276 430,-276 430,-312"/>
 <text text-anchor="middle" x="403" y="-291.1" font-family="Times Roman,serif" font-size="11.00">Color</text>
 </g>
-<!-- \\Karla\\Query -->
-<g id="node32" class="node"><title>\\Karla\\Query</title>
-<polygon fill="none" stroke="black" points="430,-258 376,-258 376,-222 430,-222 430,-258"/>
-<text text-anchor="middle" x="403" y="-237.1" font-family="Times Roman,serif" font-size="11.00">Query</text>
-</g>
-<!-- \\Karla\\Karla -->
-<g id="node33" class="node"><title>\\Karla\\Karla</title>
-<polygon fill="none" stroke="black" points="430,-204 376,-204 376,-168 430,-168 430,-204"/>
-<text text-anchor="middle" x="403" y="-183.1" font-family="Times Roman,serif" font-size="11.00">Karla</text>
-</g>
 <!-- \\Karla\\MetaData -->
-<g id="node34" class="node"><title>\\Karla\\MetaData</title>
-<polygon fill="none" stroke="black" points="438,-150 368,-150 368,-114 438,-114 438,-150"/>
-<text text-anchor="middle" x="403" y="-129.1" font-family="Times Roman,serif" font-size="11.00">MetaData</text>
+<g id="node32" class="node"><title>\\Karla\\MetaData</title>
+<polygon fill="none" stroke="black" points="438,-258 368,-258 368,-222 438,-222 438,-258"/>
+<text text-anchor="middle" x="403" y="-237.1" font-family="Times Roman,serif" font-size="11.00">MetaData</text>
 </g>
 <!-- \\SplFileInfo -->
 <g id="node61" class="node"><title>\\SplFileInfo</title>
@@ -362,8 +352,18 @@
 </g>
 <!-- \\Karla\\MetaData&#45;&gt;\\SplFileInfo -->
 <g id="edge49" class="edge"><title>\\Karla\\MetaData&#45;&gt;\\SplFileInfo</title>
-<path fill="none" stroke="black" d="M369.296,-113.95C364.129,-111.033 358.89,-107.988 354,-105 320.243,-84.3738 282.893,-58.8759 257.108,-40.8299"/>
-<polygon fill="none" stroke="black" points="259.023,-37.898 248.829,-35.0134 254.999,-43.6258 259.023,-37.898"/>
+<path fill="none" stroke="black" d="M367.33,-223.063C362.592,-220.054 357.998,-216.688 354,-213 299.719,-162.937 257.442,-85.5564 237.52,-44.9623"/>
+<polygon fill="none" stroke="black" points="240.664,-43.4251 233.164,-35.9415 234.36,-46.4686 240.664,-43.4251"/>
+</g>
+<!-- \\Karla\\Karla -->
+<g id="node33" class="node"><title>\\Karla\\Karla</title>
+<polygon fill="none" stroke="black" points="430,-204 376,-204 376,-168 430,-168 430,-204"/>
+<text text-anchor="middle" x="403" y="-183.1" font-family="Times Roman,serif" font-size="11.00">Karla</text>
+</g>
+<!-- \\Karla\\Query -->
+<g id="node34" class="node"><title>\\Karla\\Query</title>
+<polygon fill="none" stroke="black" points="430,-150 376,-150 376,-114 430,-114 430,-150"/>
+<text text-anchor="middle" x="403" y="-129.1" font-family="Times Roman,serif" font-size="11.00">Query</text>
 </g>
 <!-- \\Karla\\Support -->
 <g id="node35" class="node"><title>\\Karla\\Support</title>
