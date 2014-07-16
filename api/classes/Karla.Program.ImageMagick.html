@@ -3,1084 +3,887 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>Phpdoc for Karla</title>
+    <title>    Phpdoc for Karla &raquo; \Karla\Program\ImageMagick
+</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">Phpdoc for Karla</a>
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Phpdoc for Karla</a>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/Karla.html">\Karla</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">33</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">7</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-60165884"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-60165884" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1928970624"></a>
-                                <a href="../namespaces/Karla.html" style="margin-left: 30px; padding-left: 0">Karla</a>
-            </div>
-            <div id="namespace-1928970624" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1553015160"></a>
-                                <a href="../namespaces/Karla.Action.html" style="margin-left: 30px; padding-left: 0">Action</a>
-            </div>
-            <div id="namespace-1553015160" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/Karla.Action.Background.html">Background</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Bordercolor.html">Bordercolor</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Colorspace.html">Colorspace</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Crop.html">Crop</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Density.html">Density</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Flatten.html">Flatten</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Flip.html">Flip</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Flop.html">Flop</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Gravity.html">Gravity</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Layers.html">Layers</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Polaroid.html">Polaroid</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Profile.html">Profile</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Quality.html">Quality</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Resample.html">Resample</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Resize.html">Resize</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Rotate.html">Rotate</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Sepia.html">Sepia</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Size.html">Size</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Strip.html">Strip</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Action.Type.html">Type</a></li>
-                                            </ul>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Karla.html">Karla</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1207984591"></a>
-                                <a href="../namespaces/Karla.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
-            </div>
-            <div id="namespace-1207984591" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/Karla.Cache.File.html">File</a></li>
-                                            </ul>
-                </div>
-            </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
         </div>
     </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-268897537"></a>
-                                <a href="../namespaces/Karla.Program.html" style="margin-left: 30px; padding-left: 0">Program</a>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
             </div>
-            <div id="namespace-268897537" class="accordion-body collapse ">
-                <div class="accordion-inner">
+        </noscript>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/Karla.Program.Composite.html">Composite</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Program.Convert.html">Convert</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Program.Identify.html">Identify</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Program.ImageMagick.html">ImageMagick</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
     </div>
 
-                    
-                    <ul>
-                                                    <li class="interface"><a href="../classes/Karla.Action.html">Action</a></li>
-                                                    <li class="interface"><a href="../classes/Karla.Cache.html">Cache</a></li>
-                                                    <li class="interface"><a href="../classes/Karla.Program.html">Program</a></li>
-                                                                                                    <li class="class"><a href="../classes/Karla.Color.html">Color</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Karla.html">Karla</a></li>
-                                                    <li class="class"><a href="../classes/Karla.MetaData.html">MetaData</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Query.html">Query</a></li>
-                                                    <li class="class"><a href="../classes/Karla.Support.html">Support</a></li>
-                                            </ul>
-                </div>
-            </div>
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___clone" title="__clone :: It should not be possible to clon the ImageMagick object.">
+            <span class="description">It should not be possible to clon the ImageMagick object.</span><pre>__clone</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method___construct" title="__construct :: Contructs a new program">
+            <span class="description">Contructs a new program</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_execute" title="execute :: Execute the command">
+            <span class="description">Execute the command</span><pre>execute</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCommand" title="getCommand :: Get the command to run">
+            <span class="description">Get the command to run</span><pre>getCommand</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getQuery" title="getQuery :: Get the current query">
+            <span class="description">Get the current query</span><pre>getQuery</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_raw" title="raw :: Raw arguments directly to ImageMagick">
+            <span class="description">Raw arguments directly to ImageMagick</span><pre>raw</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setQuery" title="setQuery :: Set the current query">
+            <span class="description">Set the current query</span><pre>setQuery</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_validProgram" title="validProgram :: Check if the input is a valid ImageMagick program">
+            <span class="description">Check if the input is a valid ImageMagick program</span><pre>validProgram</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_ANIMATE" title="IMAGEMAGICK_ANIMATE :: ImageMagick tool animate">
+                        <span class="description">ImageMagick tool animate</span><pre>IMAGEMAGICK_ANIMATE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_COMPARE" title="IMAGEMAGICK_COMPARE :: ImageMagick tool compare">
+                        <span class="description">ImageMagick tool compare</span><pre>IMAGEMAGICK_COMPARE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_COMPOSITE" title="IMAGEMAGICK_COMPOSITE :: ImageMagick tool composite">
+                        <span class="description">ImageMagick tool composite</span><pre>IMAGEMAGICK_COMPOSITE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_CONJURE" title="IMAGEMAGICK_CONJURE :: ImageMagick tool">
+                        <span class="description">ImageMagick tool</span><pre>IMAGEMAGICK_CONJURE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_CONVERT" title="IMAGEMAGICK_CONVERT :: ImageMagick tool conjure">
+                        <span class="description">ImageMagick tool conjure</span><pre>IMAGEMAGICK_CONVERT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_DISPLAY" title="IMAGEMAGICK_DISPLAY :: ImageMagick tool display">
+                        <span class="description">ImageMagick tool display</span><pre>IMAGEMAGICK_DISPLAY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_IDENTIFY" title="IMAGEMAGICK_IDENTIFY :: ImageMagick tool identify">
+                        <span class="description">ImageMagick tool identify</span><pre>IMAGEMAGICK_IDENTIFY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_IMPORT" title="IMAGEMAGICK_IMPORT :: ImageMagick tool import">
+                        <span class="description">ImageMagick tool import</span><pre>IMAGEMAGICK_IMPORT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_MOGRIFY" title="IMAGEMAGICK_MOGRIFY :: ImageMagick tool mogrify">
+                        <span class="description">ImageMagick tool mogrify</span><pre>IMAGEMAGICK_MOGRIFY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_MONTAGE" title="IMAGEMAGICK_MONTAGE :: ImageMagick tool montage">
+                        <span class="description">ImageMagick tool montage</span><pre>IMAGEMAGICK_MONTAGE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_IMAGEMAGICK_STREAM" title="IMAGEMAGICK_STREAM :: ImageMagick tool stream">
+                        <span class="description">ImageMagick tool stream</span><pre>IMAGEMAGICK_STREAM</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
         </div>
-    </div>
 
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/Karla.Program.html">\Karla\Program</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-
-                    <h1><small>\Karla\Program</small>ImageMagick</h1>
-                    <p><em>Class for wrapping ImageMagick arguments used by all tools</em></p>
-                    
-                    
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method_getQuery" class="">getQuery()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method_setQuery" class="">setQuery()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method___clone" class="">__clone()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method_getCommand" class="">getCommand()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method_execute" class="">execute()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method_raw" class="">raw()</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#method_validProgram" class="">validProgram()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#property_binPath" class="">$binPath</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_ANIMATE" class="">IMAGEMAGICK_ANIMATE</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_COMPARE" class="">IMAGEMAGICK_COMPARE</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_COMPOSITE" class="">IMAGEMAGICK_COMPOSITE</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_CONJURE" class="">IMAGEMAGICK_CONJURE</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_CONVERT" class="">IMAGEMAGICK_CONVERT</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_DISPLAY" class="">IMAGEMAGICK_DISPLAY</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_IDENTIFY" class="">IMAGEMAGICK_IDENTIFY</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_IMPORT" class="">IMAGEMAGICK_IMPORT</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_MOGRIFY" class="">IMAGEMAGICK_MOGRIFY</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_MONTAGE" class="">IMAGEMAGICK_MONTAGE</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#constant_IMAGEMAGICK_STREAM" class="">IMAGEMAGICK_STREAM</a><br />
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#property_bin" class="">$bin</a><br />
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#property_cache" class="">$cache</a><br />
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/Karla.Program.ImageMagick.html#property_query" class="">$query</a><br />
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                            <span class="label label-info">abstract</span>
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/Program.ImageMagick.html"><div class="path-wrapper">Program/ImageMagick.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">Karla</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\Karla\Program\ImageMagick</div>
-                            </dd>
-
-                                                                            <dt>Implements</dt>
-                                                        <dd><a href="../classes/Karla.Program.html"><div class="namespace-wrapper">\Karla\Program</div></a></dd>
+        <div class="span8">
+            <div class="element class">
+                <h1>ImageMagick</h1>
+                <small style="display: block; text-align: right">
+                                                                Implements <a href="../classes/Karla.Program.html">\Karla\Program</a>
+                                    </small>
+                <p class="short_description">Class for wrapping ImageMagick arguments used by all tools</p>
+                <div class="details">
+                    <div class="long_description">
                         
-                        
-                        
-                                                                            <dt>See also</dt>
-                                                                                    <dd><a href="https://github.com/localgod/Karla"><div class="namespace-wrapper">Karla</div></a></dd>
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        category
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Utility</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        author
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Johannes Skov Frandsen <a href="mailto:localgod@heaven.dk">localgod@heaven.dk</a></p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        license
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p><a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a> MIT</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        link
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Karla</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Karla</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                                                                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___clone"></a>
+                        <div class="element clickable method public  method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+                            <h2>It should not be possible to clon the ImageMagick object.</h2>
+                            <pre>__clone() : void</pre>
+                            <div class="labels">
+                                                                                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
                                                     
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr>
-                            <th>
-                                category
-                            </th>
-                            <td>
-                                                                    <p>Utility</p>
-                                                            </td>
-                        </tr>
-                                            <tr>
-                            <th>
-                                author
-                            </th>
-                            <td>
-                                                                    <p>Johannes Skov Frandsen <a href="mailto:localgod@heaven.dk">localgod@heaven.dk</a></p>
-                                                            </td>
-                        </tr>
-                                            <tr>
-                            <th>
-                                license
-                            </th>
-                            <td>
-                                                                    <p><a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a> MIT</p>
-                                                            </td>
-                        </tr>
-                                        </table>
-                </aside>
-            </div>
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
 
-                                    <a id="constants" name="constants"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Constants</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_ANIMATE" name="constant_IMAGEMAGICK_ANIMATE" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_ANIMATE" class="constant">
-                <h3 class="">IMAGEMAGICK_ANIMATE</h3>
-                <pre class="signature">IMAGEMAGICK_ANIMATE</pre>
-                <p><em>ImageMagick tool animate</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_COMPARE" name="constant_IMAGEMAGICK_COMPARE" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_COMPARE" class="constant">
-                <h3 class="">IMAGEMAGICK_COMPARE</h3>
-                <pre class="signature">IMAGEMAGICK_COMPARE</pre>
-                <p><em>ImageMagick tool compare</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_COMPOSITE" name="constant_IMAGEMAGICK_COMPOSITE" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_COMPOSITE" class="constant">
-                <h3 class="">IMAGEMAGICK_COMPOSITE</h3>
-                <pre class="signature">IMAGEMAGICK_COMPOSITE</pre>
-                <p><em>ImageMagick tool composite</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_CONJURE" name="constant_IMAGEMAGICK_CONJURE" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_CONJURE" class="constant">
-                <h3 class="">IMAGEMAGICK_CONJURE</h3>
-                <pre class="signature">IMAGEMAGICK_CONJURE</pre>
-                <p><em>ImageMagick tool</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_CONVERT" name="constant_IMAGEMAGICK_CONVERT" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_CONVERT" class="constant">
-                <h3 class="">IMAGEMAGICK_CONVERT</h3>
-                <pre class="signature">IMAGEMAGICK_CONVERT</pre>
-                <p><em>ImageMagick tool conjure</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_DISPLAY" name="constant_IMAGEMAGICK_DISPLAY" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_DISPLAY" class="constant">
-                <h3 class="">IMAGEMAGICK_DISPLAY</h3>
-                <pre class="signature">IMAGEMAGICK_DISPLAY</pre>
-                <p><em>ImageMagick tool display</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_IDENTIFY" name="constant_IMAGEMAGICK_IDENTIFY" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_IDENTIFY" class="constant">
-                <h3 class="">IMAGEMAGICK_IDENTIFY</h3>
-                <pre class="signature">IMAGEMAGICK_IDENTIFY</pre>
-                <p><em>ImageMagick tool identify</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_IMPORT" name="constant_IMAGEMAGICK_IMPORT" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_IMPORT" class="constant">
-                <h3 class="">IMAGEMAGICK_IMPORT</h3>
-                <pre class="signature">IMAGEMAGICK_IMPORT</pre>
-                <p><em>ImageMagick tool import</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_MOGRIFY" name="constant_IMAGEMAGICK_MOGRIFY" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_MOGRIFY" class="constant">
-                <h3 class="">IMAGEMAGICK_MOGRIFY</h3>
-                <pre class="signature">IMAGEMAGICK_MOGRIFY</pre>
-                <p><em>ImageMagick tool mogrify</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_MONTAGE" name="constant_IMAGEMAGICK_MONTAGE" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_MONTAGE" class="constant">
-                <h3 class="">IMAGEMAGICK_MONTAGE</h3>
-                <pre class="signature">IMAGEMAGICK_MONTAGE</pre>
-                <p><em>ImageMagick tool montage</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_IMAGEMAGICK_STREAM" name="constant_IMAGEMAGICK_STREAM" class="anchor"></a>
-            <article id="constant_IMAGEMAGICK_STREAM" class="constant">
-                <h3 class="">IMAGEMAGICK_STREAM</h3>
-                <pre class="signature">IMAGEMAGICK_STREAM</pre>
-                <p><em>ImageMagick tool stream</em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                            
-                                    <a id="properties" name="properties"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Properties</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_binPath" name="property_binPath" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$binPath</h3>
-                <pre class="signature">$binPath : string</pre>
-                <p><em>Path to binaries</em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_bin" name="property_bin" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$bin</h3>
-                <pre class="signature">$bin : string</pre>
-                <p><em>Name of binary</em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_cache" name="property_cache" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$cache</h3>
-                <pre class="signature">$cache : \Karla\Program\Cache</pre>
-                <p><em>Cache controller</em></p>
-                
-
-                                <h4>Type</h4>
-                \Karla\Program\Cache
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_query" name="property_query" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$query</h3>
-                <pre class="signature">$query : \Karla\Query</pre>
-                <p><em>The current query</em></p>
-                
-
-                                <h4>Type</h4>
-                <a href="../classes/Karla.Query.html">\Karla\Query</a>
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                            
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$binPath</span>, string  <span class="argument">$bin</span>, \Karla\Cache|null  <span class="argument">$cache = null</span>) : void</pre>
-                <p><em>Contructs a new program</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$binPath </td>
-                                <td><p>Path to binaries</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$bin </td>
-                                <td><p>Binary</p></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../classes/Karla.Cache.html">\Karla\Cache</a>|null</td>
-                                <td>$cache </td>
-                                <td><p>Cache controller (default null = no cache)</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd></dd>
-                                                                    </dl>
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                    <span class="label label-info">final</span>
-                                    <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getQuery" name="method_getQuery" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getQuery()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getQuery() : \Karla\Query</pre>
-                <p><em>Get the current query</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    <a href="../classes/Karla.Query.html">\Karla\Query</a>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setQuery" name="method_setQuery" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setQuery()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setQuery(\Karla\Query  <span class="argument">$query</span>) : void</pre>
-                <p><em>Set the current query</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td><a href="../classes/Karla.Query.html">\Karla\Query</a></td>
-                                <td>$query </td>
-                                <td><p>Query to set</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___clone" name="method___clone" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__clone()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__clone() : void</pre>
-                <p><em>It should not be possible to clon the ImageMagick object.</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                    <span class="label label-info">final</span>
-                                    <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getCommand" name="method_getCommand" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getCommand()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getCommand() : string</pre>
-                <p><em>Get the command to run</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_execute" name="method_execute" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">execute()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">execute(boolean  <span class="argument">$reset = true</span>) : string</pre>
-                <p><em>Execute the command</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>boolean</td>
-                                <td>$reset </td>
-                                <td><p>Reset the query</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_raw" name="method_raw" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">raw()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">raw(string  <span class="argument">$arguments</span>, boolean  <span class="argument">$input = true</span>) : void</pre>
-                <p><em>Raw arguments directly to ImageMagick</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$arguments </td>
-                                <td><p>Arguments</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>boolean</td>
-                                <td>$input </td>
-                                <td><p>Defaults to an input option, use false to use it as an output option</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_validProgram" name="method_validProgram" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">validProgram()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">validProgram(string  <span class="argument">$program</span>) : boolean</pre>
-                <p><em>Check if the input is a valid ImageMagick program</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$program </td>
-                                <td><p>Program name</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                    <span class="label label-info">final</span>
-                                    <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
+                                    
                                                                     </div>
-    </section>
+                            </div>
+                        </div>
+                                            <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Contructs a new program</h2>
+                            <pre>__construct(string $binPath, string $bin, \Karla\Cache|null $cache = null) : void</pre>
+                            <div class="labels">
+                                                                                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
 
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">ImageMagick.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/Program/ImageMagick.php.txt" class="language-php line-numbers"></pre>
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$binPath</h4>
+                                                <code>string</code><p><p>Path to binaries</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$bin</h4>
+                                                <code>string</code><p><p>Binary</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$cache</h4>
+                                                <code><a href="../classes/Karla.Cache.html">\Karla\Cache</a>|null</code><p><p>Cache controller (default null = no cache)</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_execute"></a>
+                        <div class="element clickable method public  method_execute" data-toggle="collapse" data-target=".method_execute .collapse">
+                            <h2>Execute the command</h2>
+                            <pre>execute(boolean $reset = true) : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$reset</h4>
+                                                <code>boolean</code><p><p>Reset the query</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCommand"></a>
+                        <div class="element clickable method public  method_getCommand" data-toggle="collapse" data-target=".method_getCommand .collapse">
+                            <h2>Get the command to run</h2>
+                            <pre>getCommand() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getQuery"></a>
+                        <div class="element clickable method public  method_getQuery" data-toggle="collapse" data-target=".method_getQuery .collapse">
+                            <h2>Get the current query</h2>
+                            <pre>getQuery() : \Karla\Query</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Karla.Query.html">\Karla\Query</a></code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_raw"></a>
+                        <div class="element clickable method public  method_raw" data-toggle="collapse" data-target=".method_raw .collapse">
+                            <h2>Raw arguments directly to ImageMagick</h2>
+                            <pre>raw(string $arguments, boolean $input = true) : void</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$arguments</h4>
+                                                <code>string</code><p><p>Arguments</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$input</h4>
+                                                <code>boolean</code><p><p>Defaults to an input option, use false to use it as an output option</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setQuery"></a>
+                        <div class="element clickable method public  method_setQuery" data-toggle="collapse" data-target=".method_setQuery .collapse">
+                            <h2>Set the current query</h2>
+                            <pre>setQuery(\Karla\Query $query) : void</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$query</h4>
+                                                <code><a href="../classes/Karla.Query.html">\Karla\Query</a></code><p><p>Query to set</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_validProgram"></a>
+                        <div class="element clickable method public  method_validProgram" data-toggle="collapse" data-target=".method_validProgram .collapse">
+                            <h2>Check if the input is a valid ImageMagick program</h2>
+                            <pre>validProgram(string $program) : boolean</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$program</h4>
+                                                <code>string</code><p><p>Program name</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_IMAGEMAGICK_ANIMATE"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_ANIMATE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_ANIMATE .collapse">
+                                <h2>ImageMagick tool animate</h2>
+                                <pre>IMAGEMAGICK_ANIMATE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_COMPARE"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_COMPARE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_COMPARE .collapse">
+                                <h2>ImageMagick tool compare</h2>
+                                <pre>IMAGEMAGICK_COMPARE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_COMPOSITE"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_COMPOSITE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_COMPOSITE .collapse">
+                                <h2>ImageMagick tool composite</h2>
+                                <pre>IMAGEMAGICK_COMPOSITE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_CONJURE"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_CONJURE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_CONJURE .collapse">
+                                <h2>ImageMagick tool</h2>
+                                <pre>IMAGEMAGICK_CONJURE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_CONVERT"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_CONVERT" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_CONVERT .collapse">
+                                <h2>ImageMagick tool conjure</h2>
+                                <pre>IMAGEMAGICK_CONVERT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_DISPLAY"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_DISPLAY" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_DISPLAY .collapse">
+                                <h2>ImageMagick tool display</h2>
+                                <pre>IMAGEMAGICK_DISPLAY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_IDENTIFY"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_IDENTIFY" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_IDENTIFY .collapse">
+                                <h2>ImageMagick tool identify</h2>
+                                <pre>IMAGEMAGICK_IDENTIFY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_IMPORT"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_IMPORT" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_IMPORT .collapse">
+                                <h2>ImageMagick tool import</h2>
+                                <pre>IMAGEMAGICK_IMPORT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_MOGRIFY"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_MOGRIFY" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_MOGRIFY .collapse">
+                                <h2>ImageMagick tool mogrify</h2>
+                                <pre>IMAGEMAGICK_MOGRIFY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_MONTAGE"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_MONTAGE" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_MONTAGE .collapse">
+                                <h2>ImageMagick tool montage</h2>
+                                <pre>IMAGEMAGICK_MONTAGE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_IMAGEMAGICK_STREAM"> </a>
+                            <div class="element clickable constant  constant_IMAGEMAGICK_STREAM" data-toggle="collapse" data-target=".constant_IMAGEMAGICK_STREAM .collapse">
+                                <h2>ImageMagick tool stream</h2>
+                                <pre>IMAGEMAGICK_STREAM</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_binPath"> </a>
+                            <div class="element clickable property  public property_binPath" data-toggle="collapse" data-target=".property_binPath .collapse">
+                                <h2>Path to binaries</h2>
+                                <pre>binPath : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_bin"> </a>
+                            <div class="element clickable property  protected property_bin" data-toggle="collapse" data-target=".property_bin .collapse">
+                                <h2>Name of binary</h2>
+                                <pre>bin : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_cache"> </a>
+                            <div class="element clickable property  protected property_cache" data-toggle="collapse" data-target=".property_cache .collapse">
+                                <h2>Cache controller</h2>
+                                <pre>cache : \Karla\Program\Cache</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\Karla\Program\Cache</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_query"> </a>
+                            <div class="element clickable property  private property_query" data-toggle="collapse" data-target=".property_query .collapse">
+                                <h2>The current query</h2>
+                                <pre>query : \Karla\Query</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Karla.Query.html">\Karla\Query</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Karla\Program\ImageMagick"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Karla.Program.html">Program</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Karla.Program.ImageMagick.html">ImageMagick</a></li>
+            </ul>
         </div>
     </div>
 
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/Karla.html">\Karla</a></li>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on July 16th, 2014 at 16:04.
-                </section>
-            </section>
-        </section>
-    </footer>
-</div>
+    </div>
 
-</body>
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Wed, 16 Jul 2014 19:01:26 +0000.<br/>
+    </footer>
+    </body>
 </html>
