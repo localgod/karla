@@ -12,6 +12,7 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
+
 /**
  * Class for wrapping ImageMagicks composite tool
  *

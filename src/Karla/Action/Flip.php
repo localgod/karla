@@ -15,6 +15,7 @@ namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
+
 /**
  * Class for handeling flip action
  *

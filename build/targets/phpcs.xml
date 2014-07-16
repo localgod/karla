@@ -4,7 +4,7 @@
 	<!-- Comma separated list of files to exclude -->
 	<property name="phpcs.exclude" value="" />
 	<!-- Coding standard to use -->
-	<property name="phpcs.standard" value="${basedir}/build/rules/codingstandard/PSR" />
+	<property name="phpcs.standard" value="PSR2" />
 	<!-- Report schema to use -->
 	<property name="phpcs.report" value="${basedir}/build/rules/checkstylereport/" />
 	<!-- Should we fail the build if coding standart violations are detected? -->

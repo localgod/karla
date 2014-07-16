@@ -12,6 +12,7 @@
  * @since    2010-06-05
  */
 namespace Karla;
+
 /**
  * Karla core class
  *

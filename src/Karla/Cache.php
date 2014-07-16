@@ -12,6 +12,7 @@
  * @since    2012-04-05
  */
 namespace Karla;
+
 /**
  * Interface for Karla caching tools
  *

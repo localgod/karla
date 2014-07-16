@@ -12,6 +12,7 @@
  * @since    2012-04-05
  */
 namespace Karla;
+
 /**
  * Class for wrapping image metadata
  *
@@ -401,6 +402,8 @@ class MetaData extends \SplFileInfo
             case 'Undefined':
                 $this->isPpc = false;
                 $this->isPpi = true;
+                break;
+                
             default:
                 $this->isPpc = false;
                 $this->isPpi = true;

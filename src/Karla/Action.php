@@ -12,7 +12,9 @@
  * @since    2013-05-26
  */
 namespace Karla;
+
 use Karla\Query;
+
 /**
  * Interface for actions
  *
