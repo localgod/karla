@@ -7,6 +7,8 @@
 	<property name="phpdoc.exclude" value="" />
 	<!-- Default package name -->
 	<property name="phpdoc.defaultpackagename" value="Karla" />
+	<!-- Template name -->
+	<property name="phpdoc.template" value="responsive-twig" />
 	<!-- Should we fail the build if phpdoc fails? -->
 	<property name="phpdoc.failonerror" value="false" />
 
@@ -31,6 +33,7 @@
 						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
+							<arg line="--template=${phpdoc.template}" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--target ${target.dir}/phpdoc" />
@@ -40,6 +43,7 @@
 						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
+							<arg line="--template=${phpdoc.template}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--target ${target.dir}/phpdoc" />
@@ -55,6 +59,7 @@
 						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
+							<arg line="--template=${phpdoc.template}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--target ${target.dir}/phpdoc" />
@@ -65,6 +70,7 @@
 						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
+							<arg line="--template=${phpdoc.template}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--target ${target.dir}/phpdoc" />

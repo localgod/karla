@@ -15,14 +15,14 @@ Karla is a ImageMagick wrapper written in php with support for method chaining.
 Karla is developed on OSX/Linux but Windows support is build in and **should** work. 
 Windows support is **not** tested during automated build.
 
-## Testing
+### Testing
 
 Karla is tested with version 5.3, 5.4 and 5.5 of php. 
 
-## Coding Standard
+### Coding Standard
 
 Karla is [PSR-2] (https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) compliant. 
 
-## Documentation
+### Documentation
 
-You can read more about Karla [here] (http://localgod.github.com/Karla/) where you can also see the latest API documentation and code coverage report.
+You can read more about Karla [here] (http://localgod.github.com/karla/) where you can also see the latest API documentation and code coverage report.
