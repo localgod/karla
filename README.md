@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/localgod/Karla.png?branch=master)](http://travis-ci.org/localgod/Karla)
+[![Build Status](https://secure.travis-ci.org/localgod/karla.png?branch=master)](http://travis-ci.org/localgod/karla)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/localgod/Karla/badges/quality-score.png?s=5f6a3660329986ab8232c8010278f6545a028f4a)](https://scrutinizer-ci.com/g/localgod/Karla/)
 # Karla
 
