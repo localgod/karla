@@ -14,7 +14,7 @@ To test Karla you need to get the relevant tools.
 
 Karla uses [Ant](http://ant.apache.org/) as build script so first step is to install Ant.
 
-Next you need some php specific tools. The esiest way to get these is with [composer](https://getcomposer.org/)
+Next you need some php specific tools. The easiest way to get these is with [composer](https://getcomposer.org/)
 
 Once installed run composer from the root of your karla checkout:
 ```
