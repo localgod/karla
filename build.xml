@@ -20,21 +20,21 @@
 		<echo>
 List of targets:
   Individual:
-    pdepend
-    phpcb
-    phpcpd
-    phpcs
-    phpdcd
-    phpdoc
-    phplint
-    phploc
-    phpmd
-    phpunit
-    tabtospace
-	behat
+    pdepend     Generates software Metrics for PHP 
+    phpcb       Generates a browsable PHP code where sections with violations are highlighted.
+    phpcpd      Copy/Paste Detector
+    phpcs       Detects violations of a defined set of coding standards
+    phpdcd      Dead Code Detector for PHP code.
+    phpdoc      phpDocumentor generates documentation from your source code.
+    phplint     Check that you code actually compiles
+    phploc      A tool for quickly measuring the size of a project
+    phpmd       PHP Mess Detector
+    phpunit     Unittesting for php
+    tabtospace  Converts tabs to space in all project files
+	behat       A php framework for testing your business expectations.
   Combos:
-    all
-    travis
+    all         Runs all targets
+    travis      Runs relevant targets on the travis build server
     </echo>
 	</target>
 </project>
