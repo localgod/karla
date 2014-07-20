@@ -29,7 +29,7 @@ ant behat
 ant phpunit
 ```
 
-Once not test fails, you can check code coverage here: ./target/phpunit/coverage/index.html 
+Once no test fails, you can check code coverage here: ./target/phpunit/coverage/index.html 
 
 ## Coding Standard
 
