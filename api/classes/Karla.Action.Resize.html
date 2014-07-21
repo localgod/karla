@@ -144,6 +144,16 @@
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
             <ul>
+                                <li class="constant ">
+                    <a href="#constant_ASPECT_FILL" title="ASPECT_FILL :: ">
+                        <span class="description"></span><pre>ASPECT_FILL</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ASPECT_FIT" title="ASPECT_FIT :: ">
+                        <span class="description"></span><pre>ASPECT_FIT</pre>
+                    </a>
+                </li>
                             </ul>
         </li>
     </ul>
@@ -214,7 +224,7 @@
                                                                 <a id="method___construct"></a>
                         <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
                             <h2>Construct a new size action</h2>
-                            <pre>__construct(integer $width, integer $height, boolean $maintainAspectRatio, boolean $dontScaleUp) : void</pre>
+                            <pre>__construct(integer $width, integer $height, boolean $maintainAspectRatio, boolean $dontScaleUp,  $aspect = self::ASPECT_FIT) : void</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
                             <div class="row collapse">
@@ -249,6 +259,10 @@
                                                                                     <div class="subelement argument">
                                                 <h4>$dontScaleUp</h4>
                                                 <code>boolean</code><p><p>Should we prohipped scaling up?</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$aspect</h4>
+                                                <code></code><p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -289,7 +303,50 @@
                             </div>
                         </div>
                     
-                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_ASPECT_FILL"> </a>
+                            <div class="element clickable constant  constant_ASPECT_FILL" data-toggle="collapse" data-target=".constant_ASPECT_FILL .collapse">
+                                <h2>ASPECT_FILL</h2>
+                                <pre>ASPECT_FILL</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ASPECT_FIT"> </a>
+                            <div class="element clickable constant  constant_ASPECT_FIT" data-toggle="collapse" data-target=".constant_ASPECT_FIT .collapse">
+                                <h2>ASPECT_FIT</h2>
+                                <pre>ASPECT_FIT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
                                                                 <h3><i class="icon-custom icon-property"></i> Properties</h3>
                                                     <a id="property_width"> </a>
                             <div class="element clickable property  private property_width" data-toggle="collapse" data-target=".property_width .collapse">
@@ -395,6 +452,31 @@
                                                                             </div>
                                 </div>
                             </div>
+                                                    <a id="property_aspect"> </a>
+                            <div class="element clickable property  private property_aspect" data-toggle="collapse" data-target=".property_aspect .collapse">
+                                <h2>aspect</h2>
+                                <pre>aspect : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
                                                             </div>
             </div>
             <a id="\Karla\Action\Resize"></a>
@@ -415,7 +497,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Sun, 20 Jul 2014 07:44:11 +0000.<br/>
+            generated on Mon, 21 Jul 2014 19:12:25 +0000.<br/>
     </footer>
     </body>
 </html>
