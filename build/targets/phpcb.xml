@@ -28,7 +28,7 @@
 		<if>
 			<equals arg1="${phpcb.exclude}" arg2="" />
 			<then>
-				<exec executable="phpcb" dir="${basedir}/src">
+				<exec executable="${bin.dir}/phpcb" dir="${basedir}/src">
 					<arg
 						line="
 			--source ${phpcb.include}
@@ -38,7 +38,7 @@
 				</exec>
 			</then>
 			<else>
-				<exec executable="phpcb" dir="${basedir}/edu">
+				<exec executable="${bin.dir}/phpcb" dir="${basedir}/src">
 					<arg
 						line="
 			--source ${phpcb.include}

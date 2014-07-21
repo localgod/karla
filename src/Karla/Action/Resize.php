@@ -27,8 +27,19 @@ use \InvalidArgumentException;
 class Resize implements Action
 {
 
-	const ASPECT_FILL = 'aspect_fill';
-	const ASPECT_FIT = 'aspect_fit';
+    /**
+     * Preserve aspect ratio
+     *
+     * @var string
+     */
+    const ASPECT_FILL = 'aspect_fill';
+    
+    /**
+     * Ignored aspect ratio
+     *
+     * @var string
+     */
+    const ASPECT_FIT = 'aspect_fit';
 
     /**
      * Width of new image
@@ -58,7 +69,11 @@ class Resize implements Action
      */
     private $dontScaleUp;
 
-	private $aspect = self::ASPECT_FIT;
+    /**
+     * Default we ignored aspect ratio
+     * @var string
+     */
+    private $aspect = self::ASPECT_FIT;
 
     /**
      * Construct a new size action
@@ -98,16 +113,16 @@ class Resize implements Action
             throw new InvalidArgumentException($message);
         }
 
-		if(!in_array($aspect,array(self::ASPECT_FIT, self::ASPECT_FILL))) {
+        if (!in_array($aspect, array(self::ASPECT_FIT, self::ASPECT_FILL))) {
             $message = sprintf('aspect must be "%s" or "%s".', self::ASPECT_FIT, self::ASPECT_FILL);
             throw new \InvalidArgumentException($message);
-		}
+        }
 
         $this->width = $width;
         $this->height = $height;
         $this->maintainAspectRatio = $maintainAspectRatio;
         $this->dontScaleUp = $dontScaleUp;
-		$this->aspect = $aspect;
+        $this->aspect = $aspect;
     }
 
     /**

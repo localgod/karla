@@ -11,6 +11,7 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
+
 use Karla\Action\Resize;
 
 /**
