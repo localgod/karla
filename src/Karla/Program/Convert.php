@@ -11,6 +11,7 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
+use Karla\Action\Resize;
 
 /**
  * Class for wrapping ImageMagicks convert tool
@@ -432,9 +433,9 @@ class Convert extends ImageMagick implements \Karla\Program
      *
      * @return Convert
      */
-    public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true)
+    public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true, $aspect = Resize::ASPECT_FIT)
     {
-        $action = new \Karla\Action\Resize($width, $height, $maintainAspectRatio, $dontScaleUp);
+        $action = new \Karla\Action\Resize($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }

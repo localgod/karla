@@ -143,7 +143,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
             ->resize(200, 200, false)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 200x200!\> "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 200x200\>! "tests/_data/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 }
