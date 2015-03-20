@@ -5,6 +5,7 @@ php:
 - 5.4
 - 5.5
 before_script:
+- sudo apt-get update
 - sudo apt-get install -qq expect graphviz libmagickwand-dev
 - expect build/tools/tools.expect
 - phpenv rehash
