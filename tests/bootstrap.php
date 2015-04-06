@@ -4,7 +4,6 @@
  *
  * PHP Version 5.3<
  *
- * @category Utility
  * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT

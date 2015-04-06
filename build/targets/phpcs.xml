@@ -2,7 +2,7 @@
 	<!-- Space separated list of folders to include -->
 	<property name="phpcs.include" value="${basedir}/src" />
 	<!-- Comma separated list of files to exclude -->
-	<property name="phpcs.exclude" value="" />
+	<property name="phpcs.exclude" value="web" />
 	<!-- Coding standard to use -->
 	<property name="phpcs.standard" value="PSR2" />
 	<!-- Report schema to use -->

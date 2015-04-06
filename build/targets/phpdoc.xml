@@ -6,12 +6,9 @@
 	<!-- Comma separated list of files to exclude -->
 	<property name="phpdoc.exclude" value="" />
 	<!-- Default package name -->
-	<property name="phpdoc.defaultpackagename" value="Karla" />
-	<!-- Template name -->
-	<property name="phpdoc.template" value="responsive-twig" />
+	<property name="phpdoc.defaultpackagename" value="${ant.project.name}" />
 	<!-- Should we fail the build if phpdoc fails? -->
 	<property name="phpdoc.failonerror" value="false" />
-
 
 	<target name="phpdoc-clean" depends=""
 		description="Remove any previously generated report">
@@ -30,20 +27,18 @@
 				<if>
 					<equals arg1="${phpdoc.include.file}" arg2="" />
 					<then>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${phpdoc.executable}" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
-							<arg line="--template=${phpdoc.template}" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--target ${target.dir}/phpdoc" />
 						</exec>
 					</then>
 					<else>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${phpdoc.executable}" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
-							<arg line="--template=${phpdoc.template}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--target ${target.dir}/phpdoc" />
@@ -56,10 +51,9 @@
 				<if>
 					<equals arg1="${phpdoc.include.file}" arg2="" />
 					<then>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${phpdoc.executable}" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
-							<arg line="--template=${phpdoc.template}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--target ${target.dir}/phpdoc" />
@@ -67,10 +61,9 @@
 						</exec>
 					</then>
 					<else>
-						<exec dir="${basedir}" executable="${bin.dir}/phpdoc" failonerror="${phpdoc.failonerror}">
+						<exec dir="${basedir}" executable="${phpdoc.executable}" failonerror="${phpdoc.failonerror}">
 							<arg line="--directory ${phpdoc.include.dir}" />
 							<arg line="--sourcecode" />
-							<arg line="--template=${phpdoc.template}" />
 							<arg line="--title 'Phpdoc for ${phpdoc.defaultpackagename}'" />
 							<arg line="--defaultpackagename ${phpdoc.defaultpackagename}" />
 							<arg line="--target ${target.dir}/phpdoc" />

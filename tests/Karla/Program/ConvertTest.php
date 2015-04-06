@@ -4,7 +4,6 @@
  *
  * PHP Version 5.3<
  *
- * @category Utility
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
@@ -14,14 +13,24 @@ use Karla\Karla;
 /**
  * Convert Test class
  *
- * @category Test
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
 class ConvertTest extends \PHPUnit_Framework_TestCase
 {
-
+	/**
+	 * Sets up the fixture, for example, opens a network connection.
+	 * This method is called before a test is executed.
+	 *
+	 * @return void
+	 */
+	protected function setUp()
+	{
+		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
+			$this->markTestSkipped('The imagemagick executables are not available.');
+		}
+	}
     /**
      * Test
      *

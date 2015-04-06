@@ -16,14 +16,14 @@
 		<if>
 			<equals arg1="${phpunit.testdox}" arg2="true" />
 			<then>
-				<exec dir="${basedir}" executable="${bin.dir}/phpunit" failonerror="${phpunit.failonerror}">
+				<exec dir="${basedir}" executable="${phpunit.executable}" failonerror="${phpunit.failonerror}">
 					<arg line="--bootstrap ${test.dir}/bootstrap.php" />
 					<arg line="--configuration ${test.dir}/phpunit.xml" />
 					<arg line="--testdox" />
 				</exec>
 			</then>
 			<else>
-				<exec dir="${basedir}" executable="${bin.dir}/phpunit" failonerror="${phpunit.failonerror}">
+				<exec dir="${basedir}" executable="${phpunit.executable}" failonerror="${phpunit.failonerror}">
 					<arg line="--bootstrap ${test.dir}/bootstrap.php" />
 					<arg line="--configuration ${test.dir}/phpunit.xml" />
 				</exec>

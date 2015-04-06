@@ -12,18 +12,17 @@
 	"keywords" : [
 		"Imagemagick"
 	],
-	"homepage" : "http://localgod.github.io/Karla/",
+	"homepage" : "http://localgod.github.io/karla/",
 	"license" : "MIT",
+	"require" : {
+		"php" : ">=5.3.3"
+	},
 	"require-dev" : {
 		"ext-xsl" : "*",
-		"sebastian/phpcpd" : "2.0.1",
-		"phpunit/phpunit" : "4.1.3",
-		"behat/behat" : "2.5.3",
-		"phpdocumentor/phpdocumentor" : "2.6.1",
+		"phpunit/phpunit" : "4.6.1",
+		"behat/behat" : "2.5.4",
+		"phpdocumentor/phpdocumentor" : "2.8.2",
 		"squizlabs/php_codesniffer" : "2.0.0a2",
-		"phpmd/phpmd" : "2.0.0",
-		"pdepend/pdepend" : "2.0.0",
-		"phploc/phploc" : "2.0.6",
 		"mayflower/php-codebrowser" : "1.1.1",
 		"sebastian/phpdcd" : "1.0.2"
 	},
@@ -34,9 +33,9 @@
 	},
 	"minimum-stability" : "dev",
 	"support" : {
-		"source" : "https://github.com/localgod/Karla",
-		"issues" : "https://github.com/localgod/Karla/issues",
-		"wiki" : "https://github.com/localgod/Karla/wiki"
+		"source" : "https://github.com/localgod/karla",
+		"issues" : "https://github.com/localgod/karla/issues",
+		"wiki" : "https://github.com/localgod/karla/wiki"
 	},
 	"config" : {
 		"bin-dir" : "bin/",

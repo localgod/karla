@@ -2,7 +2,6 @@
 	<!-- Should we fail the build if packaging fails? -->
 	<property name="package.failonerror" value="false" />
 	<!-- Version of the package -->
-	<property name="package.version" value="master" />
 
 	<!-- ================================= target: behat-clean ================================== -->
 	<target name="package-clean" depends="" description="Remove any previously generated package">
@@ -22,8 +21,8 @@
 		<copy todir="${target.dir}/package">
 			<fileset dir="${basedir}/src" />
 		</copy>
-		<tar destfile="${target.dir}/package/Karla-build.${package.version}.tar" basedir="${target.dir}/package" />
-		<gzip destfile="${target.dir}/package/Karla-build.${package.version}.tar.gz" src="${target.dir}/package/Karla-build.${package.version}.tar" />
-		<zip destfile="${target.dir}/package/Karla-build.${package.version}.zip" basedir="${target.dir}/package" />
+		<tar destfile="${target.dir}/package/${ant.project.name}-build.${package.version}.tar" basedir="${target.dir}/package" />
+		<gzip destfile="${target.dir}/package/${ant.project.name}-build.${package.version}.tar.gz" src="${target.dir}/package/${ant.project.name}-build.${package.version}.tar" />
+		<zip destfile="${target.dir}/package/${ant.project.name}-build.${package.version}.zip" basedir="${target.dir}/package" />
 	</target>
 </project>

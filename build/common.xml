@@ -6,6 +6,15 @@
 	<property name="test.dir" location="${basedir}/tests" />
 	<property name="resource.dir" location="${basedir}/tools/build" />
 	<property name="targets.dir" location="${basedir}/build/targets" />
+	<property name="tools.dir" location="${basedir}/build/tools" />
+	
+	<!-- executables -->
+	<property name="phpunit.executable" value="${bin.dir}/phpunit" />
+	<property name="phpdepend.executable" value="${tools.dir}/pdepend.phar" />
+	<property name="phpcpd.executable" value="${tools.dir}/phpcpd.phar" />
+	<property name="phploc.executable" value="${tools.dir}/phploc.phar" />
+	<property name="phpmd.executable" value="${tools.dir}/phpmd.phar" />
+	<property name="phpdoc.executable" value="${bin.dir}/phpdoc" />
 
 	<!-- Paths -->
 	<path id="ant.lib.path">
