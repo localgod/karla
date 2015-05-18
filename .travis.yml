@@ -4,6 +4,7 @@ php:
 - 5.3
 - 5.4
 - 5.5
+- 5.6
 before_script:
 - sudo apt-get update > /dev/null
 - sudo apt-get install -qq expect graphviz libmagickwand-dev
@@ -15,7 +16,7 @@ before_script:
 
 matrix:
   allow_failures:
-  - php: 5.5
+  - php: 5.6
 script:
 - ant travis -Dphpunit.testdox=true -Dpackage.version=$TRAVIS_BUILD_NUMBER
 
@@ -27,6 +28,3 @@ env:
       mXV3RbUlgDSt6tRvOhkbERypbTF29ceqDWtwNmw/gXvqcteH4HqOKJZoUcqO
       keS1zZ2PrnG0OD2/9Fy6GGoQ9Y2gS9bIsdD2RJJLjg6ueG6jc4nIU2jywlNC
       ZprS+6Z91rtQ/peF4wvOgAxliGvzlgc8am4MGPu1oPU0LQ9WN+w=
-
-      
-      

@@ -1,4 +1,8 @@
-<project default="help">
+<project name="Karla" default="help">
+	<property name="package.version.major" value="1" />
+	<property name="package.version.minor" value="0" />
+	<property name="package.version.patch" value="0" />
+	
 	<import file="${basedir}/build/common.xml" />
 	<import file="${targets.dir}/pdepend.xml" />
 	<import file="${targets.dir}/phpcb.xml" />

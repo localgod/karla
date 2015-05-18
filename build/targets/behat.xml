@@ -14,7 +14,7 @@
 
 	<!-- ================================= target: behat ================================ -->
 	<target name="behat" depends="behat-clean, behat-init" description="Behat Behavior Driven Development">
-		<exec dir="${basedir}" executable="${bin.dir}/behat" failonerror="${behat.failonerror}">
+		<exec dir="${basedir}" executable="${behat.executable}" failonerror="${behat.failonerror}">
 			<arg line="-c tests/behat.yml" />
 		</exec>
 	</target>

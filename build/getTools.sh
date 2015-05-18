@@ -14,9 +14,33 @@ fi
 wget -nc -O ./tools/phpcpd.phar --no-check-certificate https://phar.phpunit.de/phpcpd.phar
 chmod 755 ./tools/phpcpd.phar
 
+#Behat gherkin parser #not used as the current version do not work
+wget -nc -O ./tools/behat.phar --no-check-certificate https://github.com/downloads/Behat/Behat/behat.phar
+chmod 755 ./tools/behat.phar
+
+#php dead code detection
+wget -nc -O ./tools/phpdcd.phar --no-check-certificate https://phar.phpunit.de/phpdcd.phar
+chmod 755 ./tools/phpdcd.phar
+
+#php checkstyle
+wget -nc -O ./tools/phpcs.phar --no-check-certificate https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+chmod 755 ./tools/phpcs.phar
+
+#php code browser
+wget -nc -O ./tools/phpcb.phar --no-check-certificate https://github.com/mayflower/PHP_CodeBrowser/releases/download/1.1.1/phpcb-1.1.1.phar
+chmod 755 ./tools/phpcb.phar
+
+#phpDocumentor
+wget -nc -O ./tools/phpDocumentor.phar http://www.phpdoc.org/phpDocumentor.phar
+chmod 755 ./tools/phpcpd.phar
+
+#phpunit
+wget -nc -O ./tools/phpunit.phar --no-check-certificate https://phar.phpunit.de/phpunit.phar
+chmod 755 ./tools/phpunit.phar
+
 #php lines of code
-wget -nc -O ./tools/phploc.phar --no-check-certificate wget https://phar.phpunit.de/phploc.phar
-chmod 755 ./tools/phploc.phar
+wget -nc -O ./tools/phploc.phar --no-check-certificate https://phar.phpunit.de/phploc.phar
+chmod 755 ./tools/phpDocumentor.phar
 
 #php mess detection
 wget -nc -O ./tools/phpmd.phar http://static.phpmd.org/php/1.5.0/phpmd.phar
