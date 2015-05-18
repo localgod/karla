@@ -11,8 +11,31 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
-
+use \InvalidArgumentException;
+use \RuntimeException;
 use Karla\Action\Resize;
+use Karla\Action\Gravity;
+use Karla\Action\Density;
+use Karla\Action\Profile;
+use Karla\Action\Rotate;
+use Karla\Action\Background;
+use Karla\Action\Resample;
+use Karla\Action\Size;
+use Karla\Action\Flatten;
+use Karla\Action\Strip;
+use Karla\Action\Flip;
+use Karla\Action\Flop;
+use Karla\Action\Type;
+use Karla\Action\Layers;
+use Karla\Action\Crop;
+use Karla\Action\Quality;
+use Karla\Action\Colorspace;
+use Karla\Action\Sepia;
+use Karla\Action\Polaroid;
+use Karla\Action\Bordercolor;
+use Karla\Program;
+use Karla\Cache;
+use Karla\Query;
 
 /**
  * Class for wrapping ImageMagicks convert tool
@@ -22,7 +45,7 @@ use Karla\Action\Resize;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class Convert extends ImageMagick implements \Karla\Program
+class Convert extends ImageMagick implements Program
 {
 
     /**
@@ -52,7 +75,7 @@ class Convert extends ImageMagick implements \Karla\Program
     {
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
 
         if (is_writeable($filePath)) {
@@ -80,11 +103,11 @@ class Convert extends ImageMagick implements \Karla\Program
         $pathinfo = pathinfo($filePath);
         if (! file_exists($pathinfo['dirname'])) {
             $message = 'The output file path (' . $pathinfo['dirname'] . ') is invalid or could not be located.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         if (! is_writeable($pathinfo['dirname'])) {
             $message = 'The output file path (' . $pathinfo['dirname'] . ') is not writable.';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         if (! $includeOptions) {
             $this->outputFile = '"' . $pathinfo['dirname'] . '/' . $pathinfo['basename'] . '"';
@@ -106,10 +129,10 @@ class Convert extends ImageMagick implements \Karla\Program
     public function getCommand()
     {
         if ($this->outputFile == '') {
-            throw new \RuntimeException('Can not perform convert without an output file');
+            throw new RuntimeException('Can not perform convert without an output file');
         }
         if ($this->inputFile == '') {
-            throw new \RuntimeException('Can not perform convert without an input file');
+            throw new RuntimeException('Can not perform convert without an input file');
         }
 
         ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption(array()) : null;
@@ -129,7 +152,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function execute()
     {
-        if ($this->cache instanceof \Karla\Cache) {
+        if ($this->cache instanceof Cache) {
             ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
             if ($this->cache->isCached($this->inputFile, $this->getQuery()->getInputOptions())) {
                 return $this->cache->getCached($this->inputFile, $this->getQuery()->getInputOptions());
@@ -174,7 +197,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function gravity($gravity)
     {
-        $action = new \Karla\Action\Gravity($this, $gravity);
+        $action = new Gravity($this, $gravity);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -194,7 +217,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function density($width = 72, $height = 72, $output = true)
     {
-        $action = new \Karla\Action\Density($width, $height, $output);
+        $action = new Density($width, $height, $output);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -211,7 +234,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function profile($profilePath = "", $profileName = "")
     {
-        $action = new \Karla\Action\Profile($profilePath, $profileName);
+        $action = new Profile($profilePath, $profileName);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -228,7 +251,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function removeProfile($profileName)
     {
-        $action = new \Karla\Action\Profile('', $profileName, true);
+        $action = new Profile('', $profileName, true);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -246,18 +269,18 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function changeProfile($profilePathFrom, $profilePathTo)
     {
-        $this->getQuery()->notWith('profile', \Karla\Query::ARGUMENT_TYPE_OUTPUT);
+        $this->getQuery()->notWith('profile', Query::ARGUMENT_TYPE_OUTPUT);
         try {
             $this->profile($profilePathFrom);
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $message = $e->getMessage() . ' for input profile';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
         try {
             $this->profile($profilePathTo);
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $message = $e->getMessage() . ' for output profile';
-            throw new \InvalidArgumentException($message);
+            throw new InvalidArgumentException($message);
         }
 
         return $this;
@@ -276,7 +299,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function rotate($degree, $background = '#ffffff')
     {
-        $action = new \Karla\Action\Rotate($degree, $background);
+        $action = new Rotate($degree, $background);
         $this->setQuery($action->perform($this->getQuery()));
         $this->background($background);
         return $this;
@@ -292,7 +315,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function background($color)
     {
-        $action = new \Karla\Action\Background($color);
+        $action = new Background($color);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -320,7 +343,7 @@ class Convert extends ImageMagick implements \Karla\Program
             $this->density($originalWidth, $originalWidth, false);
         }
 
-        $action = new \Karla\Action\Resample($newWidth, $newHeight);
+        $action = new Resample($newWidth, $newHeight);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -337,7 +360,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function size($width = "", $height = "")
     {
-        $action = new \Karla\Action\Size($width, $height);
+        $action = new Size($width, $height);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -349,7 +372,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function flatten()
     {
-        $action = new \Karla\Action\Flatten();
+        $action = new Flatten();
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -361,7 +384,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function strip()
     {
-        $action = new \Karla\Action\Strip();
+        $action = new Strip();
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -373,7 +396,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function flip()
     {
-        $action = new \Karla\Action\Flip();
+        $action = new Flip();
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -385,7 +408,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function flop()
     {
-        $action = new \Karla\Action\Flop();
+        $action = new Flop();
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -400,7 +423,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function type($type)
     {
-        $action = new \Karla\Action\Type($this, $type);
+        $action = new Type($this, $type);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -415,7 +438,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function layers($method)
     {
-        $action = new \Karla\Action\Layers($this, $method);
+        $action = new Layers($this, $method);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -431,12 +454,14 @@ class Convert extends ImageMagick implements \Karla\Program
      *            Should we maintain aspect ratio? default is true
      * @param boolean $dontScaleUp
      *            Should we prohipped scaling up? default is true
+     * @param string $aspect
+     *            How should we handle aspect ratio?
      *
      * @return Convert
      */
     public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true, $aspect = Resize::ASPECT_FIT)
     {
-        $action = new \Karla\Action\Resize($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect);
+        $action = new Resize($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -457,7 +482,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function crop($width, $height, $xOffset = 0, $yOffset = 0)
     {
-        $action = new \Karla\Action\Crop($width, $height, $xOffset, $yOffset);
+        $action = new Crop($width, $height, $xOffset, $yOffset);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -474,7 +499,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function quality($quality, $format = 'jpeg')
     {
-        $action = new \Karla\Action\Quality($quality, $format);
+        $action = new Quality($quality, $format);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -489,7 +514,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function colorspace($colorSpace)
     {
-        $action = new \Karla\Action\Colorspace($this, $colorSpace);
+        $action = new Colorspace($this, $colorSpace);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -504,7 +529,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function sepia($threshold = 80)
     {
-        $action = new \Karla\Action\Sepia($threshold);
+        $action = new Sepia($threshold);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -519,7 +544,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function polaroid($angle = 0)
     {
-        $action = new \Karla\Action\Polaroid($angle);
+        $action = new Polaroid($angle);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }
@@ -534,7 +559,7 @@ class Convert extends ImageMagick implements \Karla\Program
      */
     public function bordercolor($color = '#DFDFDF')
     {
-        $action = new \Karla\Action\Bordercolor($color);
+        $action = new Bordercolor($color);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
     }

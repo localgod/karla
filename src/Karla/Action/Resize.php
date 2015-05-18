@@ -86,6 +86,8 @@ class Resize implements Action
      *            Should we maintain aspect ratio?
      * @param boolean $dontScaleUp
      *            Should we prohipped scaling up?
+     * @param string $aspect
+     *            How should we handle aspect ratio?
      *
      * @return void
      * @throws \InvalidArgumentException
