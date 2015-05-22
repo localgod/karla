@@ -119,7 +119,7 @@ class Karla
     /**
      * Start a convert operation
      *
-     * @return Convert
+     * @return Program\Convert
      */
     public function convert()
     {
@@ -132,7 +132,7 @@ class Karla
     /**
      * Start a identify operation
      *
-     * @return Identify
+     * @return Program\Identify
      */
     public function identify()
     {
@@ -145,7 +145,7 @@ class Karla
     /**
      * Start a composite operation
      *
-     * @return Composite
+     * @return Program\Composite
      */
     public function composite()
     {
