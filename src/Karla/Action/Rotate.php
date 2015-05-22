@@ -39,7 +39,7 @@ class Rotate implements Action
      * @param integer $degree
      *            Degrees to rotate the image
      *
-     * @return Convert
+     * @return \Karla\Program\Convert
      * @throws \InvalidArgumentException if degree is not an integer value
      */
     public function __construct($degree)
