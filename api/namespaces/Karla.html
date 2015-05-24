@@ -3,461 +3,340 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>     &raquo; \Karla
-</title>
+    <title>Karla</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-            <!--[if lt IE 9]>
-        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-        <![endif]-->
-        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
-        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
-        <script src="../js/bootstrap.js" type="text/javascript"></script>
-        <script src="../js/template.js" type="text/javascript"></script>
-        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
     
-            <link rel="shortcut icon" href="../img/favicon.ico"/>
-        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
-    </head>
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
 <body>
 
-        <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> </a>
-                <a class="brand" href="../index.html">Phpdoc for Karla</a>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Karla</a>
 
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class="dropdown">
-                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                API Documentation <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                                                    <li><a>Namespaces</a></li>
-                                                                        <li><a href="../namespaces/Karla.html">Karla</a></li>
-                                                                                                                                </ul>
-                        </li>
-                        <li class="dropdown" id="charts-menu">
-                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                Charts <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="../graph_class.html">
-                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown" id="reports-menu">
-                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                Reports <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="../errors.html">
-                                        <i class="icon-list-alt"></i>&#160;Errors
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../markers.html">
-                                        <i class="icon-list-alt"></i>&#160;Markers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../deprecated.html">
-                                        <i class="icon-list-alt"></i>&#160;Deprecated
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Karla.html">\Karla</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">7</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1682671200"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1682671200" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1321918263"></a>
+                                <a href="../namespaces/Karla.html" style="margin-left: 30px; padding-left: 0">Karla</a>
+            </div>
+            <div id="namespace-1321918263" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1535218557"></a>
+                                <a href="../namespaces/Karla.Action.html" style="margin-left: 30px; padding-left: 0">Action</a>
+            </div>
+            <div id="namespace-1535218557" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Karla.Action.Background.html">Background</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Bordercolor.html">Bordercolor</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Colorspace.html">Colorspace</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Crop.html">Crop</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Density.html">Density</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Flatten.html">Flatten</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Flip.html">Flip</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Flop.html">Flop</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Gravity.html">Gravity</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Layers.html">Layers</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Polaroid.html">Polaroid</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Profile.html">Profile</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Quality.html">Quality</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Resample.html">Resample</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Resize.html">Resize</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Rotate.html">Rotate</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Sepia.html">Sepia</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Size.html">Size</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Strip.html">Strip</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Type.html">Type</a></li>
+                                            </ul>
                 </div>
             </div>
         </div>
-        <div class="go_to_top">
-            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
-        </div>
     </div>
-    
-    <div id="___" class="container">
-        <noscript>
-            <div class="alert alert-warning">
-                Javascript is disabled; several features are only available if Javascript is enabled.
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-137996088"></a>
+                                <a href="../namespaces/Karla.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
             </div>
-        </noscript>
+            <div id="namespace-137996088" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-        
-            
-    <div class="row">
-
-        <div class="span4">
-            <div class="btn-group view pull-right" data-toggle="buttons-radio">
-                <button class="btn details" title="Show descriptions and method names">
-                    <i class="icon-list"></i></button><button class="btn simple" title="Show only method names">
-                    <i class="icon-align-justify"></i>
-                </button>
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Karla.Cache.File.html">File</a></li>
+                                            </ul>
+                </div>
             </div>
-            <ul class="side-nav nav nav-list">
-                <li class="nav-header">
-                    <i class="icon-map-marker"></i> Namespaces
-                </li>
-                <a href="../namespaces/Karla.html" title="Karla">
-                    <i class="icon-th"></i> Karla
-                </a>
-                <ul class="nav nav-list nav-namespaces">
-                        
-        <li>
-        <a href="../namespaces/Karla.Action.html" title="Action">
-            <i class="icon-th"></i> Action
-        </a>
-        <ul class="nav nav-list nav-namespaces">
-                
-    
-        </ul>
-    </li>
-        <li>
-        <a href="../namespaces/Karla.Cache.html" title="Cache">
-            <i class="icon-th"></i> Cache
-        </a>
-        <ul class="nav nav-list nav-namespaces">
-                
-    
-        </ul>
-    </li>
-        <li>
-        <a href="../namespaces/Karla.Program.html" title="Program">
-            <i class="icon-th"></i> Program
-        </a>
-        <ul class="nav nav-list nav-namespaces">
-                
-    
-        </ul>
-    </li>
-    
-                </ul>
-            </ul>
-        </div>
-
-        <div class="span8 namespace-contents">
-                
-    
-        <ul class="breadcrumb">
-            <li><a href="../index.html"><i class="icon-th"></i></a></li>
-                
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.html">Karla</a>
-    </li>
-
-        </ul>
-
-        
-        
-                    <div class="namespace-indent">
-                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
-                
-                                        <div id="interface_Action" class="element ajax clickable interface" data-toggle="collapse" data-target="#interface_Action .collapse">
-        <h1>Action<a href="../classes/Karla.Action.html">¶</a></h1>
-        <p class="short_description">Interface for actions</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.html" class="more">« More »</a>    </div>
-
-                                        <div id="interface_Cache" class="element ajax clickable interface" data-toggle="collapse" data-target="#interface_Cache .collapse">
-        <h1>Cache<a href="../classes/Karla.Cache.html">¶</a></h1>
-        <p class="short_description">Interface for Karla caching tools</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Cache.html" class="more">« More »</a>    </div>
-
-                                        <div id="interface_Program" class="element ajax clickable interface" data-toggle="collapse" data-target="#interface_Program .collapse">
-        <h1>Program<a href="../classes/Karla.Program.html">¶</a></h1>
-        <p class="short_description">Interface for all classes wrapping ImageMagick tools</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Program.html" class="more">« More »</a>    </div>
-
-                
-                                        <div id="class_Color" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Color .collapse">
-        <h1>Color<a href="../classes/Karla.Color.html">¶</a></h1>
-        <p class="short_description">Helper class for color operations</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Color.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Karla" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Karla .collapse">
-        <h1>Karla<a href="../classes/Karla.Karla.html">¶</a></h1>
-        <p class="short_description">Karla core class</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Karla.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_MetaData" class="element ajax clickable class" data-toggle="collapse" data-target="#class_MetaData .collapse">
-        <h1>MetaData<a href="../classes/Karla.MetaData.html">¶</a></h1>
-        <p class="short_description">Class for wrapping image metadata</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.MetaData.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Query" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Query .collapse">
-        <h1>Query<a href="../classes/Karla.Query.html">¶</a></h1>
-        <p class="short_description">Class for maintaining query info</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Query.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Support" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Support .collapse">
-        <h1>Support<a href="../classes/Karla.Support.html">¶</a></h1>
-        <p class="short_description">Class for quering for supported features</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Support.html" class="more">« More »</a>    </div>
-
-                            </div>
-            
-                
-    
-        <ul class="breadcrumb">
-            <li><a href="../index.html"><i class="icon-th"></i></a></li>
-                
-                
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.html">Karla</a>
-    </li>
-
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.Action.html">Action</a>
-    </li>
-
-        </ul>
-
-        
-        
-                    <div class="namespace-indent">
-                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
-                
-                
-                                        <div id="class_Background" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Background .collapse">
-        <h1>Background<a href="../classes/Karla.Action.Background.html">¶</a></h1>
-        <p class="short_description">Class for handeling background action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Background.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Bordercolor" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Bordercolor .collapse">
-        <h1>Bordercolor<a href="../classes/Karla.Action.Bordercolor.html">¶</a></h1>
-        <p class="short_description">Class for handeling bordercolor action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Bordercolor.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Colorspace" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Colorspace .collapse">
-        <h1>Colorspace<a href="../classes/Karla.Action.Colorspace.html">¶</a></h1>
-        <p class="short_description">Class for handeling colorspace action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Colorspace.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Crop" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Crop .collapse">
-        <h1>Crop<a href="../classes/Karla.Action.Crop.html">¶</a></h1>
-        <p class="short_description">Class for handeling crop action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Crop.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Density" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Density .collapse">
-        <h1>Density<a href="../classes/Karla.Action.Density.html">¶</a></h1>
-        <p class="short_description">Class for handeling density action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Density.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Flatten" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Flatten .collapse">
-        <h1>Flatten<a href="../classes/Karla.Action.Flatten.html">¶</a></h1>
-        <p class="short_description">Class for handeling flatten action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Flatten.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Flip" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Flip .collapse">
-        <h1>Flip<a href="../classes/Karla.Action.Flip.html">¶</a></h1>
-        <p class="short_description">Class for handeling flip action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Flip.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Flop" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Flop .collapse">
-        <h1>Flop<a href="../classes/Karla.Action.Flop.html">¶</a></h1>
-        <p class="short_description">Class for handeling flop action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Flop.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Gravity" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Gravity .collapse">
-        <h1>Gravity<a href="../classes/Karla.Action.Gravity.html">¶</a></h1>
-        <p class="short_description">Class for handeling gravity action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Gravity.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Layers" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Layers .collapse">
-        <h1>Layers<a href="../classes/Karla.Action.Layers.html">¶</a></h1>
-        <p class="short_description">Class for handeling layers action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Layers.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Polaroid" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Polaroid .collapse">
-        <h1>Polaroid<a href="../classes/Karla.Action.Polaroid.html">¶</a></h1>
-        <p class="short_description">Class for handeling polaroid action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Polaroid.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Profile" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Profile .collapse">
-        <h1>Profile<a href="../classes/Karla.Action.Profile.html">¶</a></h1>
-        <p class="short_description">Class for handeling profile action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Profile.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Quality" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Quality .collapse">
-        <h1>Quality<a href="../classes/Karla.Action.Quality.html">¶</a></h1>
-        <p class="short_description">Class for handeling quality action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Quality.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Resample" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Resample .collapse">
-        <h1>Resample<a href="../classes/Karla.Action.Resample.html">¶</a></h1>
-        <p class="short_description">Class for handeling resample action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Resample.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Resize" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Resize .collapse">
-        <h1>Resize<a href="../classes/Karla.Action.Resize.html">¶</a></h1>
-        <p class="short_description">Class for handeling resize action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Resize.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Rotate" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Rotate .collapse">
-        <h1>Rotate<a href="../classes/Karla.Action.Rotate.html">¶</a></h1>
-        <p class="short_description">Class for handeling rotate action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Rotate.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Sepia" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Sepia .collapse">
-        <h1>Sepia<a href="../classes/Karla.Action.Sepia.html">¶</a></h1>
-        <p class="short_description">Class for handeling sepia action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Sepia.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Size" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Size .collapse">
-        <h1>Size<a href="../classes/Karla.Action.Size.html">¶</a></h1>
-        <p class="short_description">Class for handeling size action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Size.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Strip" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Strip .collapse">
-        <h1>Strip<a href="../classes/Karla.Action.Strip.html">¶</a></h1>
-        <p class="short_description">Class for handeling strip action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Strip.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Type" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Type .collapse">
-        <h1>Type<a href="../classes/Karla.Action.Type.html">¶</a></h1>
-        <p class="short_description">Class for handeling type action</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Action.Type.html" class="more">« More »</a>    </div>
-
-                            </div>
-            
-    
-                
-    
-        <ul class="breadcrumb">
-            <li><a href="../index.html"><i class="icon-th"></i></a></li>
-                
-                
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.html">Karla</a>
-    </li>
-
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.Program.html">Program</a>
-    </li>
-
-        </ul>
-
-        
-        
-                    <div class="namespace-indent">
-                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
-                
-                
-                                        <div id="class_Composite" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Composite .collapse">
-        <h1>Composite<a href="../classes/Karla.Program.Composite.html">¶</a></h1>
-        <p class="short_description">Class for wrapping ImageMagicks composite tool</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Program.Composite.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Convert" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Convert .collapse">
-        <h1>Convert<a href="../classes/Karla.Program.Convert.html">¶</a></h1>
-        <p class="short_description">Class for wrapping ImageMagicks convert tool</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Program.Convert.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_Identify" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Identify .collapse">
-        <h1>Identify<a href="../classes/Karla.Program.Identify.html">¶</a></h1>
-        <p class="short_description">Class for wrapping ImageMagicks identify tool</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Program.Identify.html" class="more">« More »</a>    </div>
-
-                                        <div id="class_ImageMagick" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ImageMagick .collapse">
-        <h1>ImageMagick<a href="../classes/Karla.Program.ImageMagick.html">¶</a></h1>
-        <p class="short_description">Class for wrapping ImageMagick arguments used by all tools</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Program.ImageMagick.html" class="more">« More »</a>    </div>
-
-                            </div>
-            
-    
-                
-    
-        <ul class="breadcrumb">
-            <li><a href="../index.html"><i class="icon-th"></i></a></li>
-                
-                
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.html">Karla</a>
-    </li>
-
-    
-    <li>
-        <span class="divider">\</span><a href="../namespaces/Karla.Cache.html">Cache</a>
-    </li>
-
-        </ul>
-
-        
-        
-                    <div class="namespace-indent">
-                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
-                
-                
-                                        <div id="class_File" class="element ajax clickable class" data-toggle="collapse" data-target="#class_File .collapse">
-        <h1>File<a href="../classes/Karla.Cache.File.html">¶</a></h1>
-        <p class="short_description">Class for file caching</p>
-        <div class="details collapse"></div>
-        <a href="../classes/Karla.Cache.File.html" class="more">« More »</a>    </div>
-
-                            </div>
-            
-    
-    
         </div>
     </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1545455055"></a>
+                                <a href="../namespaces/Karla.Program.html" style="margin-left: 30px; padding-left: 0">Program</a>
+            </div>
+            <div id="namespace-1545455055" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Karla.Program.Composite.html">Composite</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Program.Convert.html">Convert</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Program.Identify.html">Identify</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Program.ImageMagick.html">ImageMagick</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
-        <footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
-            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Mon, 21 Jul 2014 19:49:37 +0000.<br/>
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Karla.Action.html">Action</a></li>
+                                                    <li class="interface"><a href="../classes/Karla.Cache.html">Cache</a></li>
+                                                    <li class="interface"><a href="../classes/Karla.Program.html">Program</a></li>
+                                                                                                    <li class="class"><a href="../classes/Karla.Color.html">Color</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Karla.html">Karla</a></li>
+                                                    <li class="class"><a href="../classes/Karla.MetaData.html">MetaData</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Query.html">Query</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Support.html">Support</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content namespace">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a>
+                                            </nav>
+                    <h1><small>\</small>Karla</h1>
+
+                                        <h2>Namespaces</h2>
+                    <table class="table table-hover">
+                                                    <tr>
+                                <td><a href="../namespaces/Karla.Action.html">Action</a></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../namespaces/Karla.Cache.html">Cache</a></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../namespaces/Karla.Program.html">Program</a></td>
+                            </tr>
+                                            </table>
+                    
+                    
+                                        <h2>Interfaces</h2>
+                    <table class="table table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Karla.Action.html">Action</a></td>
+                                <td><em>Interface for actions</em></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Karla.Cache.html">Cache</a></td>
+                                <td><em>Interface for Karla caching tools</em></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Karla.Program.html">Program</a></td>
+                                <td><em>Interface for all classes wrapping ImageMagick tools</em></td>
+                            </tr>
+                                            </table>
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/Karla.Color.html">Color</a></td>
+                            <td><em>Helper class for color operations</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Karla.Karla.html">Karla</a></td>
+                            <td><em>Karla core class</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Karla.MetaData.html">MetaData</a></td>
+                            <td><em>Class for wrapping image metadata</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Karla.Query.html">Query</a></td>
+                            <td><em>Class for maintaining query info</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Karla.Support.html">Support</a></td>
+                            <td><em>Class for quering for supported features</em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                        <dt>Namespace hierarchy</dt>
+                        <dd class="hierarchy">
+                                                                                                                                                                                                                                                                
+                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
+                                                                                        <div class="namespace-wrapper">\Karla</div>
+                        </dd>
+                    </dl>
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Karla.html">\Karla</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 24th, 2015 at 04:13.
+                </section>
+            </section>
+        </section>
     </footer>
-    </body>
+</div>
+
+</body>
 </html>

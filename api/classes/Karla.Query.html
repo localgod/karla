@@ -3,650 +3,879 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>    Phpdoc for Karla &raquo; \Karla\Query
-</title>
+    <title>Karla</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-            <!--[if lt IE 9]>
-        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-        <![endif]-->
-        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
-        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
-        <script src="../js/bootstrap.js" type="text/javascript"></script>
-        <script src="../js/template.js" type="text/javascript"></script>
-        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
-    
-            <link rel="shortcut icon" href="../img/favicon.ico"/>
-        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
-    </head>
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
 <body>
 
-        <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> </a>
-                <a class="brand" href="../index.html">Phpdoc for Karla</a>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Karla</a>
 
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class="dropdown">
-                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                API Documentation <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                                                    <li><a>Namespaces</a></li>
-                                                                        <li><a href="../namespaces/Karla.html">Karla</a></li>
-                                                                                                                                </ul>
-                        </li>
-                        <li class="dropdown" id="charts-menu">
-                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                Charts <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="../graph_class.html">
-                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown" id="reports-menu">
-                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                Reports <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="../errors.html">
-                                        <i class="icon-list-alt"></i>&#160;Errors
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../markers.html">
-                                        <i class="icon-list-alt"></i>&#160;Markers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../deprecated.html">
-                                        <i class="icon-list-alt"></i>&#160;Deprecated
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Karla.html">\Karla</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">7</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1346208311"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1346208311" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-966599611"></a>
+                                <a href="../namespaces/Karla.html" style="margin-left: 30px; padding-left: 0">Karla</a>
+            </div>
+            <div id="namespace-966599611" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-686161531"></a>
+                                <a href="../namespaces/Karla.Action.html" style="margin-left: 30px; padding-left: 0">Action</a>
+            </div>
+            <div id="namespace-686161531" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Karla.Action.Background.html">Background</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Bordercolor.html">Bordercolor</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Colorspace.html">Colorspace</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Crop.html">Crop</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Density.html">Density</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Flatten.html">Flatten</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Flip.html">Flip</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Flop.html">Flop</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Gravity.html">Gravity</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Layers.html">Layers</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Polaroid.html">Polaroid</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Profile.html">Profile</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Quality.html">Quality</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Resample.html">Resample</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Resize.html">Resize</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Rotate.html">Rotate</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Sepia.html">Sepia</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Size.html">Size</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Strip.html">Strip</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Action.Type.html">Type</a></li>
+                                            </ul>
                 </div>
             </div>
         </div>
-        <div class="go_to_top">
-            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
-        </div>
     </div>
-    
-    <div id="___" class="container">
-        <noscript>
-            <div class="alert alert-warning">
-                Javascript is disabled; several features are only available if Javascript is enabled.
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-164892814"></a>
+                                <a href="../namespaces/Karla.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
             </div>
-        </noscript>
+            <div id="namespace-164892814" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-        
-            <style>
-        .deprecated h2 {
-            text-decoration: line-through;
-        }
-    </style>
-    <div class="row">
-        <div class="span4">
-                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
-        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
-        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-    </div>
-    <div class="btn-group visibility" data-toggle="buttons-checkbox">
-        <button class="btn public active" title="Show public elements">Public</button>
-        <button class="btn protected" title="Show protected elements">Protected</button>
-        <button class="btn private" title="Show private elements">Private</button>
-        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Karla.Cache.File.html">File</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
-        <ul class="side-nav nav nav-list">
-        <li class="nav-header">
-            <i class="icon-custom icon-method"></i> Methods
-            <ul>
-                                                                                                    <li class="method public">
-        <a href="#method_dirty" title="dirty :: Set the object as beeing dirty">
-            <span class="description">Set the object as beeing dirty</span><pre>dirty</pre>
-        </a>
-    </li>
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1981467757"></a>
+                                <a href="../namespaces/Karla.Program.html" style="margin-left: 30px; padding-left: 0">Program</a>
+            </div>
+            <div id="namespace-1981467757" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-                                                                                                        <li class="method public">
-        <a href="#method_getInputOptions" title="getInputOptions :: Get input option">
-            <span class="description">Get input option</span><pre>getInputOptions</pre>
-        </a>
-    </li>
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Karla.Program.Composite.html">Composite</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Program.Convert.html">Convert</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Program.Identify.html">Identify</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Program.ImageMagick.html">ImageMagick</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                                                                                        <li class="method public">
-        <a href="#method_getOutputOptions" title="getOutputOptions :: Get output options">
-            <span class="description">Get output options</span><pre>getOutputOptions</pre>
-        </a>
-    </li>
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Karla.Action.html">Action</a></li>
+                                                    <li class="interface"><a href="../classes/Karla.Cache.html">Cache</a></li>
+                                                    <li class="interface"><a href="../classes/Karla.Program.html">Program</a></li>
+                                                                                                    <li class="class"><a href="../classes/Karla.Color.html">Color</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Karla.html">Karla</a></li>
+                                                    <li class="class"><a href="../classes/Karla.MetaData.html">MetaData</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Query.html">Query</a></li>
+                                                    <li class="class"><a href="../classes/Karla.Support.html">Support</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                                                                                        <li class="method public">
-        <a href="#method_isOptionSet" title="isOptionSet :: Check if an option is already set">
-            <span class="description">Check if an option is already set</span><pre>isOptionSet</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_notWith" title="notWith :: Raise an error if a method is called in a invalid context">
-            <span class="description">Raise an error if a method is called in a invalid context</span><pre>notWith</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_prepareOptions" title="prepareOptions :: Prepare option collection">
-            <span class="description">Prepare option collection</span><pre>prepareOptions</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_reset" title="reset :: Reset the command">
-            <span class="description">Reset the command</span><pre>reset</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_setInputOption" title="setInputOption :: Set input option">
-            <span class="description">Set input option</span><pre>setInputOption</pre>
-        </a>
-    </li>
-
-                                                                                                        <li class="method public">
-        <a href="#method_setOutputOption" title="setOutputOption :: Set output option">
-            <span class="description">Set output option</span><pre>setOutputOption</pre>
-        </a>
-    </li>
-
-                                                </ul>
-        </li>
-        <li class="nav-header protected">» Protected
-            <ul>
-                                                                                                                                                                                                                                                                                                                                                                                </ul>
-        </li>
-        <li class="nav-header private">» Private
-            <ul>
-                                                                                                                                                                                                                                                                                                                                                                                </ul>
-        </li>
-        <li class="nav-header">
-            <i class="icon-custom icon-constant"></i> Constants
-            <ul>
-                                <li class="constant ">
-                    <a href="#constant_ARGUMENT_TYPE_INPUT" title="ARGUMENT_TYPE_INPUT :: This argument is to be considered for the input image">
-                        <span class="description">This argument is to be considered for the input image</span><pre>ARGUMENT_TYPE_INPUT</pre>
-                    </a>
-                </li>
-                                <li class="constant ">
-                    <a href="#constant_ARGUMENT_TYPE_OUTPUT" title="ARGUMENT_TYPE_OUTPUT :: This argument is to be considered for the output image">
-                        <span class="description">This argument is to be considered for the output image</span><pre>ARGUMENT_TYPE_OUTPUT</pre>
-                    </a>
-                </li>
-                            </ul>
-        </li>
-    </ul>
-
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
         </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Karla.html">\Karla</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-        <div class="span8">
-            <div class="element class">
-                <h1>Query</h1>
-                <small style="display: block; text-align: right">
-                                                        </small>
-                <p class="short_description">Class for maintaining query info</p>
-                <div class="details">
-                    <div class="long_description">
+                    <h1><small>\Karla</small>Query</h1>
+                    <p><em>Class for maintaining query info</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Karla.Query.html#method_setInputOption" class="">setInputOption()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_getInputOptions" class="">getInputOptions()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_setOutputOption" class="">setOutputOption()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_getOutputOptions" class="">getOutputOptions()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_dirty" class="">dirty()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_reset" class="">reset()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_isOptionSet" class="">isOptionSet()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_notWith" class="">notWith()</a><br />
+                                                                    <a href="../classes/Karla.Query.html#method_prepareOptions" class="">prepareOptions()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Karla.Query.html#constant_ARGUMENT_TYPE_INPUT" class="">ARGUMENT_TYPE_INPUT</a><br />
+                                                                    <a href="../classes/Karla.Query.html#constant_ARGUMENT_TYPE_OUTPUT" class="">ARGUMENT_TYPE_OUTPUT</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Karla.Query.html#property_inputOptions" class="">$inputOptions</a><br />
+                                                                    <a href="../classes/Karla.Query.html#property_outputOptions" class="">$outputOptions</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Karla.Query.html#property_dirty" class="">$dirty</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Query.html"><div class="path-wrapper">Query.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Karla\Query</div>
+                            </dd>
+
                         
-                    </div>
-                    <table class="table table-bordered">
-                                                                                    <tr>
-                                    <th>
-                                        category
-                                                                            </th>
-                                    <td>
-                                                                                    
-                                                                                <p>Utility</p>
-                                    </td>
-                                </tr>
-                                                                                                                <tr>
-                                    <th>
-                                        author
-                                                                            </th>
-                                    <td>
-                                                                                    
-                                                                                <p>Johannes Skov Frandsen <a href="mailto:localgod@heaven.dk">localgod@heaven.dk</a></p>
-                                    </td>
-                                </tr>
-                                                                                                                <tr>
-                                    <th>
-                                        license
-                                                                            </th>
-                                    <td>
-                                                                                    
-                                                                                <p><a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a> MIT</p>
-                                    </td>
-                                </tr>
-                                                                                                                <tr>
-                                    <th>
-                                        link
-                                                                            </th>
-                                    <td>
-                                                                                    
-                                                                                <p>Karla</p>
-                                    </td>
-                                </tr>
-                                                                                                                <tr>
-                                    <th>
-                                        package
-                                                                            </th>
-                                    <td>
-                                                                                    
-                                                                                <p>Karla</p>
-                                    </td>
-                                </tr>
-                                                                                                                                                                                </table>
-
-                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
-                                                                <a id="method_dirty"></a>
-                        <div class="element clickable method public  method_dirty" data-toggle="collapse" data-target=".method_dirty .collapse">
-                            <h2>Set the object as beeing dirty</h2>
-                            <pre>dirty() : void</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"><p>(Arguments has been set)</p></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
+                        
+                        
+                                                                            <dt>See also</dt>
+                                                                                    <dd><a href="https://github.com/localgod/karla"><div class="namespace-wrapper">Karla</div></a></dd>
                                                     
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                    
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_getInputOptions"></a>
-                        <div class="element clickable method public  method_getInputOptions" data-toggle="collapse" data-target=".method_getInputOptions .collapse">
-                            <h2>Get input option</h2>
-                            <pre>getInputOptions() : array</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                    
-                                                                            <h3>Response</h3>
-                                        <code>array</code><p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_getOutputOptions"></a>
-                        <div class="element clickable method public  method_getOutputOptions" data-toggle="collapse" data-target=".method_getOutputOptions .collapse">
-                            <h2>Get output options</h2>
-                            <pre>getOutputOptions() : \Karla\array:</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                    
-                                                                            <h3>Response</h3>
-                                        <code>\Karla\array:</code><p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_isOptionSet"></a>
-                        <div class="element clickable method public  method_isOptionSet" data-toggle="collapse" data-target=".method_isOptionSet .collapse">
-                            <h2>Check if an option is already set</h2>
-                            <pre>isOptionSet(string $lookop, array $optionList) : boolean</pre>
-                            <div class="labels">
-                                                                                                <span class="label">final</span>                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$lookop</h4>
-                                                <code>string</code><p><p>Option to look up</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$optionList</h4>
-                                                <code>array</code><p><p>Optionlist to look in</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>boolean</code><p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_notWith"></a>
-                        <div class="element clickable method public  method_notWith" data-toggle="collapse" data-target=".method_notWith .collapse">
-                            <h2>Raise an error if a method is called in a invalid context</h2>
-                            <pre>notWith(string $method, integer $argumentType) </pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    throws
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$method</h4>
-                                                <code>string</code><p><p>Method to check</p></p>
-                                            </div>
-                                                                                    <div class="subelement argument">
-                                                <h4>$argumentType</h4>
-                                                <code>integer</code><p><p>Is it an input or an output argument</p></p>
-                                            </div>
-                                                                            
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_prepareOptions"></a>
-                        <div class="element clickable method public  method_prepareOptions" data-toggle="collapse" data-target=".method_prepareOptions .collapse">
-                            <h2>Prepare option collection</h2>
-                            <pre>prepareOptions(array $options) : string</pre>
-                            <div class="labels">
-                                                                                                <span class="label">final</span>                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$options</h4>
-                                                <code>array</code><p><p>Options</p></p>
-                                            </div>
-                                                                            
-                                                                            <h3>Response</h3>
-                                        <code>string</code><p></p>
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_reset"></a>
-                        <div class="element clickable method public  method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
-                            <h2>Reset the command</h2>
-                            <pre>reset() : void</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
-                                                                            </table>
-
-                                    
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_setInputOption"></a>
-                        <div class="element clickable method public  method_setInputOption" data-toggle="collapse" data-target=".method_setInputOption .collapse">
-                            <h2>Set input option</h2>
-                            <pre>setInputOption(string $option) : void</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$option</h4>
-                                                <code>string</code><p><p>Option to set</p></p>
-                                            </div>
-                                                                            
-                                                                    </div>
-                            </div>
-                        </div>
-                                            <a id="method_setOutputOption"></a>
-                        <div class="element clickable method public  method_setOutputOption" data-toggle="collapse" data-target=".method_setOutputOption .collapse">
-                            <h2>Set output option</h2>
-                            <pre>setOutputOption(string $option) : void</pre>
-                            <div class="labels">
-                                                                                                                                                                                            </div>
-                            <div class="row collapse">
-                                <div class="detail-description">
-                                    <div class="long_description"></div>
-
-                                    <table class="table">
-                                                                            </table>
-
-                                                                            <h3>Arguments</h3>
-                                                                                    <div class="subelement argument">
-                                                <h4>$option</h4>
-                                                <code>string</code><p><p>Option to set</p></p>
-                                            </div>
-                                                                            
-                                                                    </div>
-                            </div>
-                        </div>
-                    
-                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
-                                                    <a id="constant_ARGUMENT_TYPE_INPUT"> </a>
-                            <div class="element clickable constant  constant_ARGUMENT_TYPE_INPUT" data-toggle="collapse" data-target=".constant_ARGUMENT_TYPE_INPUT .collapse">
-                                <h2>This argument is to be considered for the input image</h2>
-                                <pre>ARGUMENT_TYPE_INPUT</pre>
-                                <div class="labels">
-                                                                    </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-                                    </div>
-                                </div>
-                            </div>
-                                                    <a id="constant_ARGUMENT_TYPE_OUTPUT"> </a>
-                            <div class="element clickable constant  constant_ARGUMENT_TYPE_OUTPUT" data-toggle="collapse" data-target=".constant_ARGUMENT_TYPE_OUTPUT .collapse">
-                                <h2>This argument is to be considered for the output image</h2>
-                                <pre>ARGUMENT_TYPE_OUTPUT</pre>
-                                <div class="labels">
-                                                                    </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-                                    </div>
-                                </div>
-                            </div>
-                                            
-                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
-                                                    <a id="property_dirty"> </a>
-                            <div class="element clickable property  private property_dirty" data-toggle="collapse" data-target=".property_dirty .collapse">
-                                <h2>Is the object dirty (has any arguments been set)</h2>
-                                <pre>dirty : boolean</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>boolean</code>
-                                                                            </div>
-                                </div>
-                            </div>
-                                                    <a id="property_inputOptions"> </a>
-                            <div class="element clickable property  protected property_inputOptions" data-toggle="collapse" data-target=".property_inputOptions .collapse">
-                                <h2>Input option</h2>
-                                <pre>inputOptions : Array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>Array</code>
-                                                                            </div>
-                                </div>
-                            </div>
-                                                    <a id="property_outputOptions"> </a>
-                            <div class="element clickable property  protected property_outputOptions" data-toggle="collapse" data-target=".property_outputOptions .collapse">
-                                <h2>Output option</h2>
-                                <pre>outputOptions : Array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>Array</code>
-                                                                            </div>
-                                </div>
-                            </div>
-                                                            </div>
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                category
+                            </th>
+                            <td>
+                                                                    <p>Utility</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Johannes Skov Frandsen <a href="mailto:localgod@heaven.dk">localgod@heaven.dk</a></p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p><a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a> MIT</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
             </div>
-            <a id="\Karla\Query"></a>
-            <ul class="breadcrumb">
-                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
-                    
-    
-    <li><span class="divider">\</span><a href="../namespaces/Karla.html">Karla</a></li>
 
-                <li class="active"><span class="divider">\</span><a href="../classes/Karla.Query.html">Query</a></li>
-            </ul>
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ARGUMENT_TYPE_INPUT" name="constant_ARGUMENT_TYPE_INPUT" class="anchor"></a>
+            <article id="constant_ARGUMENT_TYPE_INPUT" class="constant">
+                <h3 class="">ARGUMENT_TYPE_INPUT</h3>
+                <pre class="signature">ARGUMENT_TYPE_INPUT</pre>
+                <p><em>This argument is to be considered for the input image</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ARGUMENT_TYPE_OUTPUT" name="constant_ARGUMENT_TYPE_OUTPUT" class="anchor"></a>
+            <article id="constant_ARGUMENT_TYPE_OUTPUT" class="constant">
+                <h3 class="">ARGUMENT_TYPE_OUTPUT</h3>
+                <pre class="signature">ARGUMENT_TYPE_OUTPUT</pre>
+                <p><em>This argument is to be considered for the output image</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_inputOptions" name="property_inputOptions" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$inputOptions</h3>
+                <pre class="signature">$inputOptions : Array</pre>
+                <p><em>Input option</em></p>
+                
+
+                                <h4>Type</h4>
+                Array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_outputOptions" name="property_outputOptions" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$outputOptions</h3>
+                <pre class="signature">$outputOptions : Array</pre>
+                <p><em>Output option</em></p>
+                
+
+                                <h4>Type</h4>
+                Array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dirty" name="property_dirty" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$dirty</h3>
+                <pre class="signature">$dirty : boolean</pre>
+                <p><em>Is the object dirty (has any arguments been set)</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setInputOption" name="method_setInputOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setInputOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setInputOption(string  <span class="argument">$option</span>) : void</pre>
+                <p><em>Set input option</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$option </td>
+                                <td><p>Option to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInputOptions" name="method_getInputOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInputOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInputOptions() : array</pre>
+                <p><em>Get input option</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setOutputOption" name="method_setOutputOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setOutputOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setOutputOption(string  <span class="argument">$option</span>) : void</pre>
+                <p><em>Set output option</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$option </td>
+                                <td><p>Option to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getOutputOptions" name="method_getOutputOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getOutputOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getOutputOptions() : \Karla\array:</pre>
+                <p><em>Get output options</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Karla\array:
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dirty" name="method_dirty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dirty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">dirty() : void</pre>
+                <p><em>Set the object as beeing dirty</em></p>
+                <p>(Arguments has been set)</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_reset" name="method_reset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">reset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">reset() : void</pre>
+                <p><em>Reset the command</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isOptionSet" name="method_isOptionSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isOptionSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isOptionSet(string  <span class="argument">$lookop</span>, array  <span class="argument">$optionList</span>) : boolean</pre>
+                <p><em>Check if an option is already set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lookop </td>
+                                <td><p>Option to look up</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$optionList </td>
+                                <td><p>Optionlist to look in</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_notWith" name="method_notWith" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">notWith()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">notWith(string  <span class="argument">$method</span>, integer  <span class="argument">$argumentType</span>) </pre>
+                <p><em>Raise an error if a method is called in a invalid context</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$method </td>
+                                <td><p>Method to check</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$argumentType </td>
+                                <td><p>Is it an input or an output argument</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prepareOptions" name="method_prepareOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prepareOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prepareOptions(array  <span class="argument">$options</span>) : string</pre>
+                <p><em>Prepare option collection</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>Options</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                    <span class="label label-info">final</span>
+                                    <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Query.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Query.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
-    </div>
-
-        <footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
-            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Mon, 21 Jul 2014 19:49:39 +0000.<br/>
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Karla.html">\Karla</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 24th, 2015 at 04:13.
+                </section>
+            </section>
+        </section>
     </footer>
-    </body>
+</div>
+
+</body>
 </html>

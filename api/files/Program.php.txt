@@ -2,13 +2,12 @@
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3
+ * PHP Version 5.3<
  *
  * @category Utility
- * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
 namespace Karla;
@@ -17,10 +16,9 @@ namespace Karla;
  * Interface for all classes wrapping ImageMagick tools
  *
  * @category Utility
- * @package  Karla
  * @author   Johannes Skov Frandsen <localgod@heaven.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
- * @link     https://github.com/localgod/Karla Karla
+ * @link     https://github.com/localgod/karla Karla
  */
 interface Program
 {
