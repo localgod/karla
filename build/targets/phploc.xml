@@ -34,21 +34,5 @@
 				</exec>
 			</else>
 		</if>
-		<if>
-			<equals arg1="${phploc.exclude}" arg2="" />
-			<then>
-				<exec executable="${phploc.executable}">
-					<arg line="--log-csv ${target.dir}/phploc/phploc.csv" />
-					<arg line="${phploc.include}" />
-				</exec>
-			</then>
-			<else>
-				<exec executable="${phploc.executable}">
-					<arg line="--log-csv ${target.dir}/phploc/phploc.csv" />
-					<arg line="--exclude ${phploc.exclude}" />
-					<arg line="${phploc.include}" />
-				</exec>
-			</else>
-		</if>
 	</target>
 </project>

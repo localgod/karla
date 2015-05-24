@@ -2,7 +2,7 @@
 	<property name="package.version.major" value="1" />
 	<property name="package.version.minor" value="0" />
 	<property name="package.version.patch" value="0" />
-	
+
 	<import file="${basedir}/build/common.xml" />
 	<import file="${targets.dir}/pdepend.xml" />
 	<import file="${targets.dir}/phpcb.xml" />
@@ -19,7 +19,7 @@
 	<import file="${targets.dir}/package.xml" />
 
 	<target name="all" depends="tabtospace,phpcb,phpdcd,phpdoc" />
-	<target name="travis" depends="phpunit, behat, phpcs" />
+	<target name="travis" depends="phplint, phpcs, phpunit, behat, phpdoc" />
 	<target name="help">
 		<echo>
 List of targets:
@@ -39,6 +39,6 @@ List of targets:
   Combos:
     all         Runs all targets
     travis      Runs relevant targets on the travis build server
-    </echo>
+        </echo>
 	</target>
 </project>

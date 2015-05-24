@@ -6,6 +6,10 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 #Go to the correct path
 cd $DIR
 
+#composer dependency management
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar ../
+
 if [ ! -f ./tools ]; then
 mkdir ./tools
 fi
@@ -32,7 +36,7 @@ chmod 755 ./tools/phpcb.phar
 
 #phpDocumentor
 wget -nc -O ./tools/phpDocumentor.phar http://www.phpdoc.org/phpDocumentor.phar
-chmod 755 ./tools/phpcpd.phar
+chmod 755 ./tools/phpDocumentor.phar
 
 #phpunit
 wget -nc -O ./tools/phpunit.phar --no-check-certificate https://phar.phpunit.de/phpunit.phar
@@ -40,7 +44,7 @@ chmod 755 ./tools/phpunit.phar
 
 #php lines of code
 wget -nc -O ./tools/phploc.phar --no-check-certificate https://phar.phpunit.de/phploc.phar
-chmod 755 ./tools/phpDocumentor.phar
+chmod 755 ./tools/phploc.phar
 
 #php mess detection
 wget -nc -O ./tools/phpmd.phar http://static.phpmd.org/php/1.5.0/phpmd.phar
@@ -56,10 +60,6 @@ wget -nc -O ./tools/ant-contrib-1.0b3-bin.zip http://sourceforge.net/projects/an
 unzip -p ./tools/ant-contrib-1.0b3-bin.zip ant-contrib/ant-contrib-1.0b3.jar > ./tools/ant-contrib-1.0b3.jar
 rm -rf ./tools/ant-contrib-1.0b3-bin.zip
 fi
-
-#composer dependency management
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar ../
 
 #back to where we started the script
 cd $CWD
