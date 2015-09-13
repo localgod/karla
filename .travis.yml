@@ -1,13 +1,16 @@
 ---
 language: php
+
 os:
 - linux
 - osx
+
 php:
 - 5.3
 - 5.4
 - 5.5
 - 5.6
+
 before_script:
 - sudo apt-get update > /dev/null
 - sudo apt-get install -qq unzip expect graphviz libmagickwand-dev
@@ -22,11 +25,16 @@ matrix:
   - php: 5.6
   - os: osx
   
+before_install:
+- pip install --user codecov
+
 script:
 - ant travis -Dphpunit.testdox=true -Dpackage.version.patch=$TRAVIS_BUILD_NUMBER
 
-after_success: ./build/tools/update-gh-pages.sh
-
+after_success: 
+- ./build/tools/update-gh-pages.sh
+- codecov
+  
 env:
   global:
   - secure: |-
