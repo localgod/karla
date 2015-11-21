@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class PolaroidTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test
@@ -42,11 +50,11 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
     public function polaroid()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->polaroid()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -polaroid 0 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -polaroid 0 "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -61,7 +69,7 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
     public function polaroidTwice()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->polaroid()
             ->polaroid()
             ->out('test-200x200.png')
@@ -79,7 +87,7 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
     public function polaroidInvalidAngle()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->polaroid('four')
             ->out('test-200x200.png')
             ->getCommand();
@@ -96,7 +104,7 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
     public function polaroidToBigAngle()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->polaroid(400)
             ->out('test-200x200.png')
             ->getCommand();

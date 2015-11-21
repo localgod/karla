@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class BackgroundTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
 
     /**
@@ -43,11 +51,11 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
     public function background()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->background('red')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background red "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background red "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -62,7 +70,7 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
     public function backgroundTwice()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->background('red')
             ->background('blue')
             ->out('test-1920x1200.png')
@@ -80,7 +88,7 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
     public function backgroundWithInvalidColor()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->background('christmas')
             ->out('test-1920x1200.png')
             ->getCommand();
@@ -96,11 +104,11 @@ class BackgroundTest extends \PHPUnit_Framework_TestCase
     public function backgroundWithHexColor()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->background('#666666')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -background "#666666" "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 }

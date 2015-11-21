@@ -19,6 +19,13 @@ use Karla\Karla;
  */
 class CompositeTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     * 
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -30,6 +37,7 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test

@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class BordercolorTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class BordercolorTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test
@@ -43,11 +51,11 @@ class BordercolorTest extends \PHPUnit_Framework_TestCase
     {
         // You will not be able to see the border in the resulting image, as this test has no border argument.
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->bordercolor('red')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor red "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor red "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -62,7 +70,7 @@ class BordercolorTest extends \PHPUnit_Framework_TestCase
     public function bordercolorTwice()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->bordercolor('red')
             ->bordercolor('red')
             ->out('test-1920x1200.png')
@@ -80,11 +88,11 @@ class BordercolorTest extends \PHPUnit_Framework_TestCase
     {
         // You will not be able to see the border in the resulting image, as this test has no border argument.
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->bordercolor('#666666')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor "#666666" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor "#666666" "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -99,11 +107,11 @@ class BordercolorTest extends \PHPUnit_Framework_TestCase
     {
         // You will not be able to see the border in the resulting image, as this test has no border argument.
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->bordercolor('rgb(255,255,255)')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor "rgb(255,255,255)" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -bordercolor "rgb(255,255,255)" "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -118,7 +126,7 @@ class BordercolorTest extends \PHPUnit_Framework_TestCase
     public function bordercolorWithInvalidColor()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->bordercolor('grenish')
             ->out('test-1920x1200.png')
             ->getCommand();

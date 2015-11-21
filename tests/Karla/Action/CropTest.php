@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class CropTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test
@@ -42,11 +50,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function crop()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+0+0 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+0+0 +repage "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -60,11 +68,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropWidthOffset()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100, 10, 10)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+10+10 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100+10+10 +repage "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -78,11 +86,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropWidthNegativeOffset()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100, - 10, - 10)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100-10-10 +repage "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -crop 100x100-10-10 +repage "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -97,7 +105,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropTwice()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100)
             ->crop(100, 100)
             ->out('test-200x200.png')
@@ -115,7 +123,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropWithInvalidWidth()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop('chrismas', 100)
             ->out('test-200x200.png')
             ->getCommand();
@@ -132,7 +140,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropWithInvalidHeight()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 'chrismas')
             ->out('test-200x200.png')
             ->getCommand();
@@ -149,7 +157,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropWithInvalidXOffset()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100, 'chrismas')
             ->out('test-200x200.png')
             ->getCommand();
@@ -166,7 +174,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
     public function cropWithInvalidYOffset()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100, 0, 'chrismas')
             ->out('test-200x200.png')
             ->getCommand();

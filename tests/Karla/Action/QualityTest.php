@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class QualityTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class QualityTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test
@@ -42,11 +50,11 @@ class QualityTest extends \PHPUnit_Framework_TestCase
     public function quality()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->quality(80)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -quality 80 "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -quality 80 "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -61,7 +69,7 @@ class QualityTest extends \PHPUnit_Framework_TestCase
     public function qualityTwice()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->quality(80)
             ->quality(80)
             ->out('test-200x200.png')
@@ -79,7 +87,7 @@ class QualityTest extends \PHPUnit_Framework_TestCase
     public function qualityUnSupportedFormat()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->quality(80, 'pdf')
             ->out('test-200x200.png')
             ->getCommand();
@@ -96,7 +104,7 @@ class QualityTest extends \PHPUnit_Framework_TestCase
     public function qualityNotANumber()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->quality('pdf')
             ->out('test-200x200.png')
             ->getCommand();
@@ -113,7 +121,7 @@ class QualityTest extends \PHPUnit_Framework_TestCase
     public function qualityNotAValidQuality()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->quality(102)
             ->out('test-200x200.png')
             ->getCommand();

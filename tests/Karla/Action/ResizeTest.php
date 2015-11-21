@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class ResizeTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test
@@ -42,11 +50,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resize()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resize(100, 100)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 100x100\> "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 100x100\> "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -61,7 +69,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resizeWithResample()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resample(200, 200, 72, 72)
             ->resize(200, 200)
             ->out('test-200x200.png')
@@ -79,7 +87,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resizeTwice()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resize(200, 200)
             ->resize(200, 200)
             ->out('test-200x200.png')
@@ -97,7 +105,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resizeWithNoArguments()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resize()
             ->out('test-200x200.png')
             ->getCommand();
@@ -114,7 +122,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resizeWithNonNumericWidth()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resize('christmas')
             ->out('test-200x200.png')
             ->getCommand();
@@ -131,7 +139,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resizeWithNonNumericHeight()
     {
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resize(200, 'christmas')
             ->out('test-200x200.png')
             ->getCommand();
@@ -148,11 +156,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
     public function resizeWithoutMaintainingAspectRatio()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->resize(200, 200, false)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 200x200\>! "tests/_data/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resize 200x200\>! "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 }

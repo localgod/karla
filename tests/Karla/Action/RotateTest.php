@@ -20,6 +20,13 @@ use Karla\Karla;
  */
 class RotateTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Path to test files
+     *
+     * @var string
+     */
+    private $testDataPath;
+    
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
@@ -31,6 +38,7 @@ class RotateTest extends \PHPUnit_Framework_TestCase
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
+		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
     /**
      * Test
@@ -42,11 +50,11 @@ class RotateTest extends \PHPUnit_Framework_TestCase
     public function rotate()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in('tests/_data/demo.jpg')
+            ->in($this->testDataPath.'/demo.jpg')
             ->rotate(45)
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -rotate "45"  -background "#ffffff" "tests/_data/demo.jpg" "./test-1920x1200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -rotate "45"  -background "#ffffff" "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
     
@@ -61,7 +69,7 @@ class RotateTest extends \PHPUnit_Framework_TestCase
     public function rotateWithInvalidDegreeArgument()
     {
     	Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-    	->in('tests/_data/demo.jpg')
+    	->in($this->testDataPath.'/demo.jpg')
     	->rotate('two')
     	->out('test-200x200.png')
     	->getCommand();
