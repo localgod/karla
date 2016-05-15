@@ -28,7 +28,7 @@ interface Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return void
@@ -40,7 +40,7 @@ interface Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return string
@@ -52,7 +52,7 @@ interface Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return void
@@ -64,7 +64,7 @@ interface Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return void

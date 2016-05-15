@@ -19,7 +19,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     /**
      * Output from Imagemagick
      * 
-     * @var Karla\Metadata
+     * @var Karla\Metadata|string
      */
     private $output;
 

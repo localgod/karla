@@ -48,7 +48,7 @@ class Karla
      *
      * @param string $binPath
      *            Path to imagemagic binaries (optional)
-     * @param Cache $cache
+     * @param Cache|null $cache
      *            Cache controller (optional)
      *
      * @return Karla

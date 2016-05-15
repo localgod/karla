@@ -91,7 +91,7 @@ class File implements \Karla\Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return void
@@ -106,7 +106,7 @@ class File implements \Karla\Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return string
@@ -121,7 +121,7 @@ class File implements \Karla\Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return void
@@ -136,7 +136,7 @@ class File implements \Karla\Cache
      *
      * @param string $filename
      *            Path to file
-     * @param string $options
+     * @param string[] $options
      *            Options
      *
      * @return void
@@ -150,13 +150,16 @@ class File implements \Karla\Cache
      * Create a string representation of the options used
      *
      * Include in a the output filename which can be handy for caching.
+     * 
+     * @param string[] $inputOptions
+     *               Input options
      *
      * @return string
      */
-    protected function options2String()
+    protected function options2String($inputOptions)
     {
         $output = array();
-        foreach ($this->inputOptions as $option) {
+        foreach ($inputOptions as $option) {
             if (strstr($option, 'resize')) {
                 $option = str_replace('\>', '', $option);
                 $option = str_replace('\<', '', $option);
