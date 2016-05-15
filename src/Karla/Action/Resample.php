@@ -47,7 +47,7 @@ class Resample implements Action
      *            New width
      * @param integer $newHeight
      *            New height
-     * @return void
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct($newWidth, $newHeight)
@@ -63,8 +63,8 @@ class Resample implements Action
             throw new \InvalidArgumentException($message);
         }
 
-        $this->newWidth = $newWidth;
-        $this->newHeight = $newHeight;
+        $this->newWidth = (int) $newWidth;
+        $this->newHeight = (int) $newHeight;
     }
 
     /**

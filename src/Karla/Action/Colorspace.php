@@ -30,19 +30,18 @@ class Colorspace implements Action
     /**
      * Colorspace
      *
-     * @var integer
+     * @var string
      */
     private $colorspace;
 
     /**
      * Construct a new size action
      *
-     * @param Program $program
+     * @param \Karla\Program $program
      *            The program to use
-     * @param integer $colorspace
+     * @param string $colorspace
      *            Colorspace
      *
-     * @return void
      * @throws \InvalidArgumentException If he supplied colorspace is not supported by imagemagick.
      */
     public function __construct($program, $colorspace)

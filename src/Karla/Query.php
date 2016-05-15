@@ -68,14 +68,16 @@ class Query
      */
     public function setInputOption($option)
     {
-        $this->inputOptions[] = $option;
-        $this->dirty();
+        if ($option != "") {
+            $this->inputOptions[] = $option;
+            $this->dirty();
+        }
     }
 
     /**
      * Get input option
      *
-     * @return array
+     * @return string[]
      */
     public function getInputOptions()
     {
@@ -92,14 +94,16 @@ class Query
      */
     public function setOutputOption($option)
     {
-        $this->outputOptions[] = $option;
-        $this->dirty();
+        if ($option != "") {
+            $this->outputOptions[] = $option;
+            $this->dirty();
+        }
     }
 
     /**
      * Get output options
      *
-     * @return array:
+     * @return string[]
      */
     public function getOutputOptions()
     {
@@ -161,19 +165,16 @@ class Query
      */
     public function notWith($method, $argumentType)
     {
-        switch ($argumentType) {
-            case self::ARGUMENT_TYPE_INPUT:
-                if ($this->isOptionSet($method, $this->inputOptions)) {
-                    $message = "'" . $method . "()' can only be called once as in input argument..";
-                    throw new \BadMethodCallException($message);
-                }
-                break;
-            case self::ARGUMENT_TYPE_OUTPUT:
-                if ($this->isOptionSet($method, $this->outputOptions)) {
-                    $message = "'" . $method . "()' can only be called once as in output argument..";
-                    throw new \BadMethodCallException($message);
-                }
-                break;
+        if ($argumentType == Query::ARGUMENT_TYPE_INPUT) {
+            if ($this->isOptionSet($method, $this->inputOptions)) {
+                $message = "'" . $method . "()' can only be called once as in input argument..";
+                throw new \BadMethodCallException($message);
+            }
+        } elseif ($argumentType == Query::ARGUMENT_TYPE_OUTPUT) {
+            if ($this->isOptionSet($method, $this->outputOptions)) {
+                $message = "'" . $method . "()' can only be called once as in output argument..";
+                throw new \BadMethodCallException($message);
+            }
         }
     }
 

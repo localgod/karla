@@ -39,7 +39,6 @@ class Polaroid implements Action
      * @param integer $angle
      *            Angle
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied angle is not an integer between 0 and 360.
      */
     public function __construct($angle)
@@ -48,7 +47,7 @@ class Polaroid implements Action
             $message = 'The supplied angle (' . $angle . ') must be an integer between 0 and 360';
             throw new \InvalidArgumentException($message);
         }
-        $this->angle = $angle;
+        $this->angle = (int) $angle;
     }
 
     /**

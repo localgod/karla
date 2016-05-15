@@ -44,24 +44,6 @@ class File implements \Karla\Cache
     }
 
     /**
-     * Create a path based on the option array
-     *
-     * @param array $options
-     *            List of options
-     *
-     * @return string the created path
-     * @throws \InvalidArgumentException
-     */
-    private function options2Path(array $options)
-    {
-        if (! is_array($options)) {
-            throw new \InvalidArgumentException("options argument must be an array");
-        }
-
-        return "";
-    }
-
-    /**
      * Set the cache directory
      *
      * @param string $dirName
@@ -87,76 +69,17 @@ class File implements \Karla\Cache
     }
 
     /**
-     * Check if there exists a cached version of the file
-     *
-     * @param string $filename
-     *            Path to file
-     * @param string $options
-     *            Options
-     *
-     * @return void
-     */
-    public function isCached($filename, $options)
-    {
-        return file_exists($filename, $options);
-    }
-
-    /**
-     * Get cached version of the file
-     *
-     * @param string $filename
-     *            Path to file
-     * @param string $options
-     *            Options
-     *
-     * @return string
-     */
-    public function getCached($filename, $options)
-    {
-        // TODO implement
-    }
-
-    /**
-     * Set cached version of the file
-     *
-     * @param string $filename
-     *            Path to file
-     * @param string $options
-     *            Options
-     *
-     * @return void
-     */
-    public function setCache($filename, $options)
-    {
-        // TODO implement
-    }
-
-    /**
-     * Set cached version of the file
-     *
-     * @param string $filename
-     *            Path to file
-     * @param string $options
-     *            Options
-     *
-     * @return void
-     */
-    public function removeOrphans($filename, $options)
-    {
-        // TODO implement
-    }
-
-    /**
      * Create a string representation of the options used
      *
-     * Include in a the output filename which can be handy for caching.
+     * @param string[] $options
+     *            Options
      *
      * @return string
      */
-    protected function options2String()
+    private function options2string($options)
     {
         $output = array();
-        foreach ($this->inputOptions as $option) {
+        foreach ($options as $option) {
             if (strstr($option, 'resize')) {
                 $option = str_replace('\>', '', $option);
                 $option = str_replace('\<', '', $option);
@@ -169,7 +92,81 @@ class File implements \Karla\Cache
             $option = str_replace('-', '', $option);
             $output[] = $option;
         }
+        return implode('&', $output);
+    }
 
-        return '#' . implode('#', $output);
+    /**
+     * Generate cache name
+     *
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
+     *            Path to file
+     * @param string[] $options
+     *            Options
+     *
+     * @return boolean
+     */
+    private function cacheName($inputFile, $outputFile, $options)
+    {
+        $inputFile = str_replace('"', '', $inputFile);
+        $outputFile = str_replace('"', '', $outputFile);
+        $ext = pathinfo(basename($outputFile), PATHINFO_EXTENSION);
+        $filename = $inputFile . $this->options2string($options);
+        return $this->cacheDir . '/' . md5($filename) . '.' . $ext;
+    }
+
+    /**
+     * Check if there exists a cached version of the file
+     *
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
+     *            Path to file
+     * @param string[] $options
+     *            Options
+     *
+     * @return boolean
+     */
+    public function isCached($inputFile, $outputFile, $options)
+    {
+        $filename = $this->cacheName($inputFile, $outputFile, $options);
+        return file_exists($filename);
+    }
+
+    /**
+     * Get cached version of the file
+     *
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
+     *            Path to file
+     * @param string[] $options
+     *            Options
+     *
+     * @return string
+     */
+    public function getCached($inputFile, $outputFile, $options)
+    {
+        return $this->cacheName($inputFile, $outputFile, $options);
+    }
+
+    /**
+     * Set cached version of the file
+     *
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
+     *            Path to file
+     * @param string[] $options
+     *            Options
+     *
+     * @return void
+     */
+    public function setCache($inputFile, $outputFile, $options)
+    {
+        $filename = $this->cacheName($inputFile, $outputFile, $options);
+        file_put_contents($filename, file_get_contents(str_replace('"', '', $outputFile)));
+        shell_exec('chmod 666 ' . $filename);
     }
 }

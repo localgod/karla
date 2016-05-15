@@ -11,6 +11,7 @@
  * @since    2012-04-05
  */
 namespace Karla\Program;
+
 use \InvalidArgumentException;
 use \RuntimeException;
 use Karla\Action\Resize;
@@ -135,8 +136,8 @@ class Convert extends ImageMagick implements Program
             throw new RuntimeException('Can not perform convert without an input file');
         }
 
-        ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption(array()) : null;
-        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOptions(array()) : null;
+        ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption("") : null;
+        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
         $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
 
@@ -153,18 +154,25 @@ class Convert extends ImageMagick implements Program
     public function execute()
     {
         if ($this->cache instanceof Cache) {
-            ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
-            if ($this->cache->isCached($this->inputFile, $this->getQuery()->getInputOptions())) {
-                return $this->cache->getCached($this->inputFile, $this->getQuery()->getInputOptions());
-            } else {
-                $this->outputFile = $this->cache->setCache($this->inputFile, $this->getQuery()->getInputOptions());
+            ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
+            if (! $this->cache->isCached($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions())) {
+                parent::execute(false);
+                $this->cache->setCache($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions());
+                $temp = str_replace('"', '', $this->outputFile);
+                shell_exec('rm ' . $temp);
+                $out = $this->cache->getCached(
+                    $this->inputFile,
+                    $this->outputFile,
+                    $this->getQuery()->getInputOptions()
+                );
+                $this->getQuery()->reset();
+                return $out;
             }
+            return $this->cache->getCached($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions());
         } else {
-            $temp = $this->outputFile;
+            $temp = str_replace('"', '', $this->outputFile);
             parent::execute();
-            // For some reason php's chmod can't see the file
             shell_exec('chmod 666 ' . $temp);
-
             return $this->outputFile;
         }
     }
@@ -247,7 +255,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      *
-     * @todo get list of profiles from image (can be done by identify but might be to expensive)
+     * @todo get list of profiles from image (can be done by identify but might be too expensive)
      */
     public function removeProfile($profileName)
     {
@@ -299,7 +307,7 @@ class Convert extends ImageMagick implements Program
      */
     public function rotate($degree, $background = '#ffffff')
     {
-        $action = new Rotate($degree, $background);
+        $action = new Rotate($degree);
         $this->setQuery($action->perform($this->getQuery()));
         $this->background($background);
         return $this;

@@ -30,7 +30,7 @@ class Background implements Action
     /**
      * Color
      *
-     * @var string
+     * @var integer
      */
     private $color;
 
@@ -40,7 +40,6 @@ class Background implements Action
      * @param integer $color
      *            Color
      *
-     * @return void
      * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
     public function __construct($color)

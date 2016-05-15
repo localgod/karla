@@ -48,7 +48,6 @@ class Size implements Action
      * @param integer $height
      *            New height
      *
-     * @return void
      * @throws \InvalidArgumentException
      */
     public function __construct($width, $height)
@@ -57,8 +56,8 @@ class Size implements Action
             $message = 'You must supply height or width or both to size the image';
             throw new \InvalidArgumentException($message);
         }
-        $this->width = $width;
-        $this->height = $height;
+        $this->width = (int) $width;
+        $this->height = (int) $height;
     }
 
     /**

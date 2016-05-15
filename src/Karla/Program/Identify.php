@@ -63,7 +63,7 @@ class Identify extends ImageMagick
      *            Get the raw output
      *
      * @see Imagemagick#execute()
-     * @return string MetaData
+     * @return string|\Karla\MetaData
      */
     public function execute($reset = true, $raw = true)
     {
@@ -71,14 +71,14 @@ class Identify extends ImageMagick
 
         if (! $raw) {
             if ($this->getQuery()->isOptionSet('verbose', $this->getQuery()->getInputOptions())) {
-                $reset == true ? $this->getQuery()->reset() : null;
+                $reset ? $this->getQuery()->reset() : null;
                 return new \Karla\MetaData($result, true);
             }
-            $reset == true ? $this->getQuery()->reset() : null;
+            $reset ? $this->getQuery()->reset() : null;
             return new \Karla\MetaData($result);
         }
 
-        $reset == true ? $this->getQuery()->reset() : null;
+        $reset ? $this->getQuery()->reset() : null;
         return trim($result);
     }
 
@@ -103,7 +103,7 @@ class Identify extends ImageMagick
      */
     public function getCommand()
     {
-        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
+        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
 
         return $this->binPath . $this->bin . ' ' . ($options == '' ? '' : $options . ' ') . $this->inputFile;

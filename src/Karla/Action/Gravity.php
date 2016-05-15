@@ -15,6 +15,7 @@ namespace Karla\Action;
 use Karla\Query;
 use Karla\Action;
 use Karla\Support;
+use Karla\Karla;
 
 /**
  * Class for handeling gravity action
@@ -30,19 +31,18 @@ class Gravity implements Action
     /**
      * The gravity of the image
      *
-     * @var boolean
+     * @var string
      */
     private $gravity;
 
     /**
      * Construct a new gravity action
      *
-     * @param Program $program
+     * @param \Karla\Program $program
      *            The program to use
      * @param string $gravity
      *            Gravity
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied gravity is not supported by imagemagick.
      */
     public function __construct($program, $gravity)

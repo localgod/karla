@@ -39,7 +39,6 @@ class Rotate implements Action
      * @param integer $degree
      *            Degrees to rotate the image
      *
-     * @return void
      * @throws \InvalidArgumentException if degree is not an integer value
      */
     public function __construct($degree)
@@ -48,7 +47,7 @@ class Rotate implements Action
             $message = 'degree must be an integer value';
             throw new \InvalidArgumentException($message);
         }
-        $this->degree = $degree;
+        $this->degree = (int) $degree;
     }
 
     /**

@@ -37,12 +37,11 @@ class Layers implements Action
     /**
      * Contruct new action
      *
-     * @param Program $program
+     * @param \Karla\Program $program
      *            The program to use
      * @param string $method
      *            Method
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied method is not supported by imagemagick.
      */
     public function __construct($program, $method)

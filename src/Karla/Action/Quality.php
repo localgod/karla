@@ -14,7 +14,6 @@ namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
-use Karla\Support;
 
 /**
  * Class for handeling quality action
@@ -49,7 +48,6 @@ class Quality implements Action
      * @param string $format
      *            Format
      *
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \RangeException
      */
@@ -67,7 +65,7 @@ class Quality implements Action
             $message = "quality argument must be between 0 and 100 both inclusive. Used (" . $quality . ")";
             throw new \RangeException($message);
         }
-        $this->quality = $quality;
+        $this->quality = (int) $quality;
         $this->format = $format;
     }
 
