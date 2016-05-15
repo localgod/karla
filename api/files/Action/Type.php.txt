@@ -42,7 +42,6 @@ class Type implements Action
      * @param string $type
      *            The type to use
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied colorspace is not supported by imagemagick
      */
     public function __construct($program, $type)

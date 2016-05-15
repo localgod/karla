@@ -89,7 +89,6 @@ class Resize implements Action
      * @param string $aspect
      *            How should we handle aspect ratio?
      *
-     * @return void
      * @throws \InvalidArgumentException
      */
     public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect = self::ASPECT_FIT)

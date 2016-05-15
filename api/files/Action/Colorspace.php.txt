@@ -42,7 +42,6 @@ class Colorspace implements Action
      * @param integer $colorspace
      *            Colorspace
      *
-     * @return void
      * @throws \InvalidArgumentException If he supplied colorspace is not supported by imagemagick.
      */
     public function __construct($program, $colorspace)

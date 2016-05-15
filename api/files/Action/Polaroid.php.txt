@@ -39,7 +39,6 @@ class Polaroid implements Action
      * @param integer $angle
      *            Angle
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied angle is not an integer between 0 and 360.
      */
     public function __construct($angle)

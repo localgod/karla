@@ -57,7 +57,6 @@ class Profile implements Action
      * @param boolean $remove
      *            Should the profile be removed? (default is false)
      *
-     * @return void
      * @throws \LogicException profilePath or profileName must be set, but not both.
      * @throws \InvalidArgumentException If profile input file (' . $profilePath . ') could not be found.
      */

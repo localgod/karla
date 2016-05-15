@@ -148,11 +148,10 @@ class Support
         $formats = shell_exec($program->binPath . $bin . ' -list format');
         $formats = explode("\n", $formats);
         for ($i = 0; $i < count($formats); $i ++) {
+            $matches = [];
             preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);
-            if (isset($matches[0])) {
-                if (! strpos($matches[0], 'Format')) {
-                    $formats[$i] = strtolower(trim($matches[0]));
-                }
+            if (isset($matches[0]) && ! strpos($matches[0], 'Format')) {
+                $formats[$i] = strtolower(trim($matches[0]));
             }
         }
 

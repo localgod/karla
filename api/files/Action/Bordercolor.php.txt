@@ -39,8 +39,7 @@ class Bordercolor implements Action
      *
      * @param integer $color
      *            Color
-     *
-     * @return void
+     *            
      * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
     public function __construct($color)
