@@ -42,7 +42,6 @@ class Layers implements Action
      * @param string $method
      *            Method
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied method is not supported by imagemagick.
      */
     public function __construct($program, $method)

@@ -48,7 +48,6 @@ class Size implements Action
      * @param integer $height
      *            New height
      *
-     * @return void
      * @throws \InvalidArgumentException
      */
     public function __construct($width, $height)

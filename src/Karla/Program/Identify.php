@@ -71,14 +71,14 @@ class Identify extends ImageMagick
 
         if (! $raw) {
             if ($this->getQuery()->isOptionSet('verbose', $this->getQuery()->getInputOptions())) {
-                $reset == true ? $this->getQuery()->reset() : null;
+                $reset ? $this->getQuery()->reset() : null;
                 return new \Karla\MetaData($result, true);
             }
-            $reset == true ? $this->getQuery()->reset() : null;
+            $reset ? $this->getQuery()->reset() : null;
             return new \Karla\MetaData($result);
         }
 
-        $reset == true ? $this->getQuery()->reset() : null;
+        $reset ? $this->getQuery()->reset() : null;
         return trim($result);
     }
 

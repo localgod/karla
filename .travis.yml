@@ -23,7 +23,7 @@ before_script:
 
 matrix:
   allow_failures:
-  - php: 7.0
+  - php: 5.3
   - os: osx
   
 before_install:

@@ -161,19 +161,16 @@ class Query
      */
     public function notWith($method, $argumentType)
     {
-        switch ($argumentType) {
-            case self::ARGUMENT_TYPE_INPUT:
-                if ($this->isOptionSet($method, $this->inputOptions)) {
-                    $message = "'" . $method . "()' can only be called once as in input argument..";
-                    throw new \BadMethodCallException($message);
-                }
-                break;
-            case self::ARGUMENT_TYPE_OUTPUT:
-                if ($this->isOptionSet($method, $this->outputOptions)) {
-                    $message = "'" . $method . "()' can only be called once as in output argument..";
-                    throw new \BadMethodCallException($message);
-                }
-                break;
+        if ($argumentType == Query::ARGUMENT_TYPE_INPUT) {
+            if ($this->isOptionSet($method, $this->inputOptions)) {
+                $message = "'" . $method . "()' can only be called once as in input argument..";
+                throw new \BadMethodCallException($message);
+            } 
+        } else if ($argumentType == Query::ARGUMENT_TYPE_OUTPUT) {
+            if ($this->isOptionSet($method, $this->outputOptions)) {
+                $message = "'" . $method . "()' can only be called once as in output argument..";
+                throw new \BadMethodCallException($message);
+            }
         }
     }
 

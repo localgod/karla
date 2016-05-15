@@ -14,7 +14,6 @@ namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
-use Karla\Color;
 
 /**
  * Class for handeling density action
@@ -59,7 +58,6 @@ class Density implements Action
      *            If output is true density is set for the resulting image
      *            If output is false density is used for reading the input image
      *
-     * @return void
      * @throws \InvalidArgumentException
      */
     public function __construct($width, $height, $output)

@@ -18,10 +18,6 @@ fi
 wget -nc -O ./tools/phpcpd.phar --no-check-certificate https://phar.phpunit.de/phpcpd.phar
 chmod 755 ./tools/phpcpd.phar
 
-#Behat gherkin parser #not used as the current version do not work
-wget -nc -O ./tools/behat.phar --no-check-certificate https://github.com/downloads/Behat/Behat/behat.phar
-chmod 755 ./tools/behat.phar
-
 #php dead code detection
 wget -nc -O ./tools/phpdcd.phar --no-check-certificate https://phar.phpunit.de/phpdcd.phar
 chmod 755 ./tools/phpdcd.phar

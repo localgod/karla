@@ -42,7 +42,6 @@ class Gravity implements Action
      * @param string $gravity
      *            Gravity
      *
-     * @return void
      * @throws \InvalidArgumentException If the supplied gravity is not supported by imagemagick.
      */
     public function __construct($program, $gravity)

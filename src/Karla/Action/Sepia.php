@@ -39,7 +39,6 @@ class Sepia implements Action
      * @param integer $threshold
      *            Threshold
      *
-     * @return void
      * @throws \InvalidArgumentException If The supplied threshold is not between 0 and 100
      */
     public function __construct($threshold)

@@ -14,7 +14,6 @@ namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
-use Karla\Support;
 
 /**
  * Class for handeling quality action
@@ -49,7 +48,6 @@ class Quality implements Action
      * @param string $format
      *            Format
      *
-     * @return void
      * @throws \InvalidArgumentException
      * @throws \RangeException
      */

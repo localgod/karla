@@ -1,8 +1,0 @@
-default:
-    paths:
-        features: features
-        bootstrap: features/bootstrap
-    formatter:
-        name:                   pretty,html
-        parameters:
-            output_path:        null,target/behat/report.html

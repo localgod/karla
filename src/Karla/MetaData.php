@@ -283,8 +283,9 @@ class MetaData extends \SplFileInfo
     private function parseFileformat()
     {
         $format = $this->verbose ? $this->parseVerbose('Format') : $this->parse('Format');
+        $matches = [];
         preg_match("/^[\s]*[A-Z0-9]+/", $format, $matches);
-        if (is_array($matches) && count($matches) == 1) {
+        if (count($matches) == 1) {
             $this->format = strtolower(trim($matches[0]));
         }
     }
@@ -299,8 +300,9 @@ class MetaData extends \SplFileInfo
     private function parseGeometry()
     {
         $geometry = $this->verbose ? $this->parseVerbose('Geometry') : $this->parse('Geometry');
+        $matches = [];
         preg_match("/^[0-9]*x[0-9]*/", $geometry, $matches);
-        if (is_array($matches) && count($matches) == 1) {
+        if (count($matches) == 1) {
             $this->geometry = explode("x", $matches[0]);
         }
     }
@@ -313,10 +315,9 @@ class MetaData extends \SplFileInfo
     private function parseColorspace()
     {
         $colorspace = $this->verbose ? $this->parseVerbose('Colorspace') : $this->parse('Colorspace');
+        $matches = [];
         preg_match("/^[a-zA-Z0-9]*/", $colorspace, $matches);
-        if (is_array($matches)) {
-            $this->colorspace = strtolower(trim($matches[0]));
-        }
+        $this->colorspace = strtolower(trim($matches[0]));
     }
 
     /**
@@ -327,10 +328,9 @@ class MetaData extends \SplFileInfo
     private function parseDepth()
     {
         $depth = $this->verbose ? $this->parseVerbose('Depth') : $this->parse('Depth');
+        $matches = [];
         preg_match("/^[0-9]*/", $depth, $matches);
-        if (is_array($matches)) {
-            $this->depth = $matches[0];
-        }
+        $this->depth = $matches[0];
     }
 
     /**
