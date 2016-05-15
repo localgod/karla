@@ -136,8 +136,8 @@ class Convert extends ImageMagick implements Program
             throw new RuntimeException('Can not perform convert without an input file');
         }
 
-        ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption(array()) : null;
-        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
+        ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption("") : null;
+        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
         $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
 
@@ -154,7 +154,7 @@ class Convert extends ImageMagick implements Program
     public function execute()
     {
         if ($this->cache instanceof Cache) {
-            ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
+            ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
             if ($this->cache->isCached($this->inputFile, $this->getQuery()->getInputOptions())) {
                 return $this->cache->getCached($this->inputFile, $this->getQuery()->getInputOptions());
             } else {
@@ -300,7 +300,7 @@ class Convert extends ImageMagick implements Program
      */
     public function rotate($degree, $background = '#ffffff')
     {
-        $action = new Rotate($degree, $background);
+        $action = new Rotate($degree);
         $this->setQuery($action->perform($this->getQuery()));
         $this->background($background);
         return $this;

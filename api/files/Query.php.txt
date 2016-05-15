@@ -68,8 +68,10 @@ class Query
      */
     public function setInputOption($option)
     {
-        $this->inputOptions[] = $option;
-        $this->dirty();
+        if ($option != "") {
+            $this->inputOptions[] = $option;
+            $this->dirty();            
+        }
     }
 
     /**
@@ -92,8 +94,10 @@ class Query
      */
     public function setOutputOption($option)
     {
-        $this->outputOptions[] = $option;
-        $this->dirty();
+        if ($option != "") {
+            $this->outputOptions[] = $option;
+            $this->dirty();
+        }
     }
 
     /**
