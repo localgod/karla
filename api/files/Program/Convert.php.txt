@@ -137,7 +137,7 @@ class Convert extends ImageMagick implements Program
         }
 
         ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption(array()) : null;
-        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOptions(array()) : null;
+        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption(array()) : null;
         $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
         $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
 

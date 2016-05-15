@@ -251,12 +251,16 @@ class MetaData extends \SplFileInfo
         $output = array();
         $output[] = "<ul>";
         $list = $this->verbose ? $this->verboseImageinfo : $this->imageinfo;
-        foreach ($list as $key => $line) {
-            if ($this->verbose) {
-                $output[] = "<li>" . $line . "</li>";
-            } else {
-                $output[] = "<li>" . $key . ' : ' . $line . "</li>";
+        if (is_array($list)) {
+            foreach ($list as $key => $line) {
+                if ($this->verbose) {
+                    $output[] = "<li>" . $line . "</li>";
+                } else {
+                    $output[] = "<li>" . $key . ' : ' . $line . "</li>";
+                }
             }
+        } else {
+            $output[] = "<li>" . $this->imageinfo . "</li>";
         }
         $output[] = "<ul>";
 
