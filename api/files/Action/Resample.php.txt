@@ -63,8 +63,8 @@ class Resample implements Action
             throw new \InvalidArgumentException($message);
         }
 
-        $this->newWidth = $newWidth;
-        $this->newHeight = $newHeight;
+        $this->newWidth = (int) $newWidth;
+        $this->newHeight = (int) $newHeight;
     }
 
     /**

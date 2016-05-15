@@ -30,7 +30,7 @@ class Background implements Action
     /**
      * Color
      *
-     * @var string
+     * @var integer
      */
     private $color;
 

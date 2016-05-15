@@ -56,8 +56,8 @@ class Size implements Action
             $message = 'You must supply height or width or both to size the image';
             throw new \InvalidArgumentException($message);
         }
-        $this->width = $width;
-        $this->height = $height;
+        $this->width = (int) $width;
+        $this->height = (int) $height;
     }
 
     /**

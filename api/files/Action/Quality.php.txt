@@ -65,7 +65,7 @@ class Quality implements Action
             $message = "quality argument must be between 0 and 100 both inclusive. Used (" . $quality . ")";
             throw new \RangeException($message);
         }
-        $this->quality = $quality;
+        $this->quality = (int) $quality;
         $this->format = $format;
     }
 

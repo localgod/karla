@@ -91,7 +91,7 @@ class Resize implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect = self::ASPECT_FIT)
+    public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect = Resize::ASPECT_FIT)
     {
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
@@ -114,13 +114,13 @@ class Resize implements Action
             throw new InvalidArgumentException($message);
         }
 
-        if (!in_array($aspect, array(self::ASPECT_FIT, self::ASPECT_FILL))) {
-            $message = sprintf('aspect must be "%s" or "%s".', self::ASPECT_FIT, self::ASPECT_FILL);
+        if (!in_array($aspect, array(Resize::ASPECT_FIT, Resize::ASPECT_FILL))) {
+            $message = sprintf('aspect must be "%s" or "%s".', Resize::ASPECT_FIT, Resize::ASPECT_FILL);
             throw new \InvalidArgumentException($message);
         }
 
-        $this->width = $width;
-        $this->height = $height;
+        $this->width = (int) $width;
+        $this->height = (int) $height;
         $this->maintainAspectRatio = $maintainAspectRatio;
         $this->dontScaleUp = $dontScaleUp;
         $this->aspect = $aspect;
@@ -149,7 +149,7 @@ class Resize implements Action
             $option .= "x" . $this->height;
         }
 
-        if ($this->aspect == self::ASPECT_FILL) {
+        if ($this->aspect == Resize::ASPECT_FILL) {
             $option .= "^";
         }
 
