@@ -47,7 +47,7 @@ class Resample implements Action
      *            New width
      * @param integer $newHeight
      *            New height
-     *            
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct($newWidth, $newHeight)

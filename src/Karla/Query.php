@@ -70,7 +70,7 @@ class Query
     {
         if ($option != "") {
             $this->inputOptions[] = $option;
-            $this->dirty();            
+            $this->dirty();
         }
     }
 
@@ -169,8 +169,8 @@ class Query
             if ($this->isOptionSet($method, $this->inputOptions)) {
                 $message = "'" . $method . "()' can only be called once as in input argument..";
                 throw new \BadMethodCallException($message);
-            } 
-        } else if ($argumentType == Query::ARGUMENT_TYPE_OUTPUT) {
+            }
+        } elseif ($argumentType == Query::ARGUMENT_TYPE_OUTPUT) {
             if ($this->isOptionSet($method, $this->outputOptions)) {
                 $message = "'" . $method . "()' can only be called once as in output argument..";
                 throw new \BadMethodCallException($message);

@@ -2,7 +2,6 @@
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Karla\Karla;
-use Karla\MetaData;
 
 if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
     define('PATH_TO_IMAGEMAGICK', '/usr/bin/');
@@ -19,7 +18,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     /**
      * Output from Imagemagick
      * 
-     * @var Metadata|string
+     * @var \Karla\MetaData|string
      */
     private $output;
 

@@ -37,7 +37,7 @@ class Layers implements Action
     /**
      * Contruct new action
      *
-     * @param Karla\Program $program
+     * @param \Karla\Program $program
      *            The program to use
      * @param string $method
      *            Method
