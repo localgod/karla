@@ -37,7 +37,7 @@ class Colorspace implements Action
     /**
      * Construct a new size action
      *
-     * @param Karla\Program $program
+     * @param \Karla\Program $program
      *            The program to use
      * @param string $colorspace
      *            Colorspace

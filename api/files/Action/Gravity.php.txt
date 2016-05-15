@@ -38,7 +38,7 @@ class Gravity implements Action
     /**
      * Construct a new gravity action
      *
-     * @param Karla\Program $program
+     * @param \Karla\Program $program
      *            The program to use
      * @param string $gravity
      *            Gravity
