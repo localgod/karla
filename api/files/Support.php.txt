@@ -41,9 +41,10 @@ class Support
     public static function gravity($program, $gravity)
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Composite)) {
-            throw new \BadMethodCallException('This method can not be used in this context. (' . get_class($program) . ')');
+            $message = 'This method can not be used in this context. (' . get_class($program) . ')';
+            throw new \BadMethodCallException($message);
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = ImageMagick::IMAGEMAGICK_CONVERT . (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? '.exe' : '');
         $gravities = shell_exec($program->binPath . $bin . ' -list gravity');
         $gravities = explode("\n", $gravities);
         $count = count($gravities);
@@ -67,9 +68,10 @@ class Support
     public static function imageTypes($program, $type)
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
-            throw new \BadMethodCallException('This method can not be used in this context. (' . get_class($program) . ')');
+            $message = 'This method can not be used in this context. (' . get_class($program) . ')';
+            throw new \BadMethodCallException($message);
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = ImageMagick::IMAGEMAGICK_CONVERT . (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? '.exe' : '');
         $types = shell_exec($program->binPath . $bin . ' -list type');
         $types = explode("\n", $types);
         $count = count($types);
@@ -93,9 +95,10 @@ class Support
     public static function colorSpace($program, $colorSpace)
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
-            throw new \BadMethodCallException('This method can not be used in this context. (' . get_class($program) . ')');
+            $message = 'This method can not be used in this context. (' . get_class($program) . ')';
+            throw new \BadMethodCallException($message);
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = ImageMagick::IMAGEMAGICK_CONVERT . (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? '.exe' : '');
         $colorspaces = shell_exec($program->binPath . $bin . ' -list colorspace');
         $colorspaces = explode("\n", $colorspaces);
         $count = count($colorspaces);
@@ -122,7 +125,7 @@ class Support
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = ImageMagick::IMAGEMAGICK_CONVERT . (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? '.exe' : '');
         $methods = shell_exec($program->binPath . $bin . ' -list layers');
         $methods = explode("\n", $methods);
         $count = count($methods);
@@ -149,7 +152,7 @@ class Support
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');
         }
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = ImageMagick::IMAGEMAGICK_CONVERT . (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? '.exe' : '');
         $formats = shell_exec($program->binPath . $bin . ' -list format');
         $formats = explode("\n", $formats);
         $count = count($formats);

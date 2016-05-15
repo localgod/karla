@@ -119,7 +119,7 @@
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">7</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">4</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-714084309"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1155319147"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-714084309" class="accordion-body collapse in">
+            <div id="namespace-1155319147" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-251965110"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1339422079"></a>
                                 <a href="../namespaces/Karla.html" style="margin-left: 30px; padding-left: 0">Karla</a>
             </div>
-            <div id="namespace-251965110" class="accordion-body collapse ">
+            <div id="namespace-1339422079" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-820304743"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-644378247"></a>
                                 <a href="../namespaces/Karla.Action.html" style="margin-left: 30px; padding-left: 0">Action</a>
             </div>
-            <div id="namespace-820304743" class="accordion-body collapse ">
+            <div id="namespace-644378247" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -199,10 +199,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1001544322"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1041099792"></a>
                                 <a href="../namespaces/Karla.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
             </div>
-            <div id="namespace-1001544322" class="accordion-body collapse ">
+            <div id="namespace-1041099792" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -217,10 +217,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1679586418"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1243357549"></a>
                                 <a href="../namespaces/Karla.Program.html" style="margin-left: 30px; padding-left: 0">Program</a>
             </div>
-            <div id="namespace-1679586418" class="accordion-body collapse ">
+            <div id="namespace-1243357549" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -289,7 +289,6 @@
                                                                     <a href="../classes/Karla.Cache.html#method_isCached">isCached()</a><br />
                                                                     <a href="../classes/Karla.Cache.html#method_getCached">getCached()</a><br />
                                                                     <a href="../classes/Karla.Cache.html#method_setCache">setCache()</a><br />
-                                                                    <a href="../classes/Karla.Cache.html#method_removeOrphans">removeOrphans()</a><br />
                                                             </section>
                             <section class="span6">
                                                                     <em>No constants found</em>
@@ -363,7 +362,7 @@
             <article class="method">
                 <h3 class="public ">isCached()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">isCached(string  <span class="argument">$filename</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px;">isCached(string  <span class="argument">$inputFile</span>, string  <span class="argument">$outputFile</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : boolean</pre>
                 <p><em>Check if there exists a cached version of the file</em></p>
                 
 
@@ -371,7 +370,12 @@
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$filename </td>
+                                <td>$inputFile </td>
+                                <td><p>Path to file</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$outputFile </td>
                                 <td><p>Path to file</p></td>
                             </tr>
                                                     <tr>
@@ -382,7 +386,9 @@
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -402,7 +408,7 @@
             <article class="method">
                 <h3 class="public ">getCached()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getCached(string  <span class="argument">$filename</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">getCached(string  <span class="argument">$inputFile</span>, string  <span class="argument">$outputFile</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : string</pre>
                 <p><em>Get cached version of the file</em></p>
                 
 
@@ -410,7 +416,12 @@
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$filename </td>
+                                <td>$inputFile </td>
+                                <td><p>Path to file</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$outputFile </td>
                                 <td><p>Path to file</p></td>
                             </tr>
                                                     <tr>
@@ -443,7 +454,7 @@
             <article class="method">
                 <h3 class="public ">setCache()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setCache(string  <span class="argument">$filename</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px;">setCache(string  <span class="argument">$inputFile</span>, string  <span class="argument">$outputFile</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : void</pre>
                 <p><em>Set cached version of the file</em></p>
                 
 
@@ -451,46 +462,12 @@
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$filename </td>
+                                <td>$inputFile </td>
                                 <td><p>Path to file</p></td>
                             </tr>
                                                     <tr>
-                                <td>array&lt;mixed,string&gt;</td>
-                                <td>$options </td>
-                                <td><p>Options</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_removeOrphans" name="method_removeOrphans" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">removeOrphans()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">removeOrphans(string  <span class="argument">$filename</span>, array&lt;mixed,string&gt;  <span class="argument">$options</span>) : void</pre>
-                <p><em>Remove orphants cached version of the file</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
                                 <td>string</td>
-                                <td>$filename </td>
+                                <td>$outputFile </td>
                                 <td><p>Path to file</p></td>
                             </tr>
                                                     <tr>
@@ -565,7 +542,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on May 15th, 2016 at 12:40.
+                    on May 15th, 2016 at 19:15.
                 </section>
             </section>
         </section>

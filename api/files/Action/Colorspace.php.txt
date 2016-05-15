@@ -30,7 +30,7 @@ class Colorspace implements Action
     /**
      * Colorspace
      *
-     * @var integer
+     * @var string
      */
     private $colorspace;
 

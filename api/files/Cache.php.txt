@@ -26,49 +26,43 @@ interface Cache
     /**
      * Check if there exists a cached version of the file
      *
-     * @param string $filename
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
      *            Path to file
      * @param string[] $options
      *            Options
      *
-     * @return void
+     * @return boolean
      */
-    public function isCached($filename, $options);
+    public function isCached($inputFile, $outputFile, $options);
 
     /**
      * Get cached version of the file
      *
-     * @param string $filename
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
      *            Path to file
      * @param string[] $options
      *            Options
      *
      * @return string
      */
-    public function getCached($filename, $options);
+    public function getCached($inputFile, $outputFile, $options);
 
     /**
      * Set cached version of the file
      *
-     * @param string $filename
+     * @param string $inputFile
+     *            Path to file
+     * @param string $outputFile
      *            Path to file
      * @param string[] $options
      *            Options
      *
      * @return void
      */
-    public function setCache($filename, $options);
-
-    /**
-     * Remove orphants cached version of the file
-     *
-     * @param string $filename
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return void
-     */
-    public function removeOrphans($filename, $options);
+    public function setCache($inputFile, $outputFile, $options);
 }
 
