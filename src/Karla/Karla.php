@@ -75,7 +75,6 @@ class Karla
      * @param Cache $cache
      *            Cache controller
      *
-     * @return void
      * @throws \InvalidArgumentException if path for imagemagick is invalid
      */
     private function __construct($binPath, $cache)

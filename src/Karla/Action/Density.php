@@ -76,7 +76,7 @@ class Density implements Action
         }
         $this->width = (int) $width;
         $this->height = (int) $height;
-        $this->output = (int) $output;
+        $this->output = $output;
     }
 
     /**

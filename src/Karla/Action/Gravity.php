@@ -30,7 +30,7 @@ class Gravity implements Action
     /**
      * The gravity of the image
      *
-     * @var boolean
+     * @var string
      */
     private $gravity;
 
