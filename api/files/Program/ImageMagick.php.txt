@@ -13,6 +13,7 @@
 namespace Karla\Program;
 
 use Karla\Query;
+use Karla\Cache;
 
 /**
  * Class for wrapping ImageMagick arguments used by all tools
@@ -140,7 +141,6 @@ abstract class ImageMagick implements \Karla\Program
      * @param \Karla\Cache|null $cache
      *            Cache controller (default null = no cache)
      *
-     * @return void
      * @throws \InvalidArgumentException
      */
     final public function __construct($binPath, $bin, $cache = null)

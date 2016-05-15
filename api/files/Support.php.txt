@@ -15,6 +15,7 @@ namespace Karla;
 use Karla\Program\Identify;
 use Karla\Program\Convert;
 use Karla\Program\ImageMagick;
+use Karla\Program\Composite;
 
 /**
  * Class for quering for supported features

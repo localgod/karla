@@ -75,7 +75,7 @@ class Query
     /**
      * Get input option
      *
-     * @return array
+     * @return string[]
      */
     public function getInputOptions()
     {
@@ -99,7 +99,7 @@ class Query
     /**
      * Get output options
      *
-     * @return array:
+     * @return string[]
      */
     public function getOutputOptions()
     {

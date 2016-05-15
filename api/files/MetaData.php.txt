@@ -26,7 +26,7 @@ class MetaData extends \SplFileInfo
     /**
      * Raw image info
      *
-     * @var string
+     * @var string[]
      */
     private $verboseImageinfo;
 
@@ -100,8 +100,6 @@ class MetaData extends \SplFileInfo
      *            Image info as string
      * @param boolean $verbose
      *            Should input be parsed as verbose
-     *
-     * @return void
      */
     public function __construct($imageinfo, $verbose = false)
     {
@@ -330,7 +328,7 @@ class MetaData extends \SplFileInfo
         $depth = $this->verbose ? $this->parseVerbose('Depth') : $this->parse('Depth');
         $matches = [];
         preg_match("/^[0-9]*/", $depth, $matches);
-        $this->depth = $matches[0];
+        $this->depth = (int) $matches[0];
     }
 
     /**
