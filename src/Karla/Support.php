@@ -46,7 +46,8 @@ class Support
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $gravities = shell_exec($program->binPath . $bin . ' -list gravity');
         $gravities = explode("\n", $gravities);
-        for ($i = 0; $i < count($gravities); $i ++) {
+        $count = count($gravities);
+        for ($i = 0; $i < $count; $i ++) {
             $gravities[$i] = trim(strtolower($gravities[$i]));
         }
 
@@ -71,7 +72,8 @@ class Support
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $types = shell_exec($program->binPath . $bin . ' -list type');
         $types = explode("\n", $types);
-        for ($i = 0; $i < count($types); $i ++) {
+        $count = count($types);
+        for ($i = 0; $i < $count; $i ++) {
             $types[$i] = trim(strtolower($types[$i]));
         }
 
@@ -96,7 +98,8 @@ class Support
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $colorspaces = shell_exec($program->binPath . $bin . ' -list colorspace');
         $colorspaces = explode("\n", $colorspaces);
-        for ($i = 0; $i < count($colorspaces); $i ++) {
+        $count = count($colorspaces);
+        for ($i = 0; $i < $count; $i ++) {
             $colorspaces[$i] = trim(strtolower($colorspaces[$i]));
         }
 
@@ -122,7 +125,8 @@ class Support
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $methods = shell_exec($program->binPath . $bin . ' -list layers');
         $methods = explode("\n", $methods);
-        for ($i = 0; $i < count($methods); $i ++) {
+        $count = count($methods);
+        for ($i = 0; $i < $count; $i ++) {
             $methods[$i] = trim(strtolower($methods[$i]));
         }
 
@@ -148,7 +152,8 @@ class Support
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : ImageMagick::IMAGEMAGICK_CONVERT;
         $formats = shell_exec($program->binPath . $bin . ' -list format');
         $formats = explode("\n", $formats);
-        for ($i = 0; $i < count($formats); $i ++) {
+        $count = count($formats);
+        for ($i = 0; $i < $count; $i ++) {
             $matches = [];
             preg_match("/^[\s]*[A-Z0-9]+/", $formats[$i], $matches);
             if (isset($matches[0]) && ! strpos($matches[0], 'Format')) {

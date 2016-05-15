@@ -37,9 +37,9 @@ class Colorspace implements Action
     /**
      * Construct a new size action
      *
-     * @param Program $program
+     * @param Karla\Program $program
      *            The program to use
-     * @param integer $colorspace
+     * @param string $colorspace
      *            Colorspace
      *
      * @throws \InvalidArgumentException If he supplied colorspace is not supported by imagemagick.

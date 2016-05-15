@@ -52,7 +52,7 @@ class File implements \Karla\Cache
      * @return string the created path
      * @throws \InvalidArgumentException
      */
-    private function options2Path(array $options)
+    private function options2path(array $options)
     {
         if (! is_array($options)) {
             throw new \InvalidArgumentException("options argument must be an array");
@@ -98,6 +98,8 @@ class File implements \Karla\Cache
      */
     public function isCached($filename, $options)
     {
+        $this->options2string($options);
+        $this->options2path($options);
         return file_exists($filename, $options);
     }
 
@@ -113,6 +115,8 @@ class File implements \Karla\Cache
      */
     public function getCached($filename, $options)
     {
+        $this->options2string($options);
+        $this->options2path($options);
         // TODO implement
     }
 
@@ -128,6 +132,8 @@ class File implements \Karla\Cache
      */
     public function setCache($filename, $options)
     {
+        $this->options2string($options);
+        $this->options2path($options);
         // TODO implement
     }
 
@@ -143,6 +149,8 @@ class File implements \Karla\Cache
      */
     public function removeOrphans($filename, $options)
     {
+        $this->options2string($options);
+        $this->options2path($options);
         // TODO implement
     }
 
@@ -151,15 +159,15 @@ class File implements \Karla\Cache
      *
      * Include in a the output filename which can be handy for caching.
      * 
-     * @param string[] $inputOptions
-     *               Input options
+     * @param string[] $options
+     *               Options
      *
      * @return string
      */
-    protected function options2String($inputOptions)
+    protected function options2string($options)
     {
         $output = array();
-        foreach ($inputOptions as $option) {
+        foreach ($options as $option) {
             if (strstr($option, 'resize')) {
                 $option = str_replace('\>', '', $option);
                 $option = str_replace('\<', '', $option);

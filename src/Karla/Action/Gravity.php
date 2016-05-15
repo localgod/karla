@@ -15,6 +15,7 @@ namespace Karla\Action;
 use Karla\Query;
 use Karla\Action;
 use Karla\Support;
+use Karla\Karla;
 
 /**
  * Class for handeling gravity action
@@ -37,7 +38,7 @@ class Gravity implements Action
     /**
      * Construct a new gravity action
      *
-     * @param Program $program
+     * @param Karla\Program $program
      *            The program to use
      * @param string $gravity
      *            Gravity
