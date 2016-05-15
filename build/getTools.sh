@@ -47,7 +47,7 @@ wget -nc -O ./tools/phploc.phar --no-check-certificate https://phar.phpunit.de/p
 chmod 755 ./tools/phploc.phar
 
 #php mess detection
-wget -nc -O ./tools/phpmd.phar http://static.phpmd.org/php/1.5.0/phpmd.phar
+wget -nc -O ./tools/phpmd.phar http://static.phpmd.org/php/latest/phpmd.phar
 chmod 755 ./tools/phpmd.phar
 
 #php dependency detection

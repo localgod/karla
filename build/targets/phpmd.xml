@@ -4,7 +4,7 @@
 	<!-- Comma separated list of files to exclude -->
 	<property name="phpmd.exclude" value="" />
 	<!-- Path to rules file -->
-	<property name="phpmd.rules" value="${basedir}/build/rules/pmd.xml" />
+	<property name="phpmd.rules" value="${basedir}/pmd.xml" />
 	<!-- Should we fail the build if pmd violations are detected? -->
 	<property name="phpmd.failonerror" value="false" />
 	

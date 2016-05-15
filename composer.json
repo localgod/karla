@@ -18,7 +18,6 @@
 		"php" : ">=5.3.3"
 	},
 	"require-dev" : {
-		"ext-xsl" : "*",
 		"behat/behat" : "2.5.4"
 	},
 	"autoload" : {
