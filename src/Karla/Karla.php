@@ -56,15 +56,15 @@ class Karla
      */
     public static function perform($binPath = '/opt/local/bin/', Cache $cache = null)
     {
-        if (! (self::$instance instanceof self)) {
+        if (! (Karla::$instance instanceof Karla)) {
             try {
-                self::$instance = new self($binPath, $cache);
+                Karla::$instance = new Karla($binPath, $cache);
             } catch (\InvalidArgumentException $e) {
                 throw new \RuntimeException($e->getMessage() . '(' . $binPath . ')');
             }
         }
 
-        return self::$instance;
+        return Karla::$instance;
     }
 
     /**

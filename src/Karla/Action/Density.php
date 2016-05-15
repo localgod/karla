@@ -74,9 +74,9 @@ class Density implements Action
             $message = 'Output must be a boolean values in the density method';
             throw new \InvalidArgumentException($message);
         }
-        $this->width = $width;
-        $this->height = $height;
-        $this->output = $output;
+        $this->width = (int) $width;
+        $this->height = (int) $height;
+        $this->output = (int) $output;
     }
 
     /**

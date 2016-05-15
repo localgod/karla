@@ -47,7 +47,7 @@ class Sepia implements Action
             $message = 'The supplied threshold (' . $threshold . ') must be between 0 and 100';
             throw new \InvalidArgumentException($message);
         }
-        $this->threshold = $threshold;
+        $this->threshold = (int) $threshold;
     }
 
     /**

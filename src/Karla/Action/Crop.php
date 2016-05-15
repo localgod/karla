@@ -83,10 +83,10 @@ class Crop implements Action
             throw new \InvalidArgumentException($message);
         }
 
-        $this->width = $width;
-        $this->height = $height;
-        $this->xOffset = $xOffset;
-        $this->yOffset = $yOffset;
+        $this->width = (int) $width;
+        $this->height = (int) $height;
+        $this->xOffset = (int) $xOffset;
+        $this->yOffset = (int) $yOffset;
     }
 
     /**

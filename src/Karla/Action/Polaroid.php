@@ -47,7 +47,7 @@ class Polaroid implements Action
             $message = 'The supplied angle (' . $angle . ') must be an integer between 0 and 360';
             throw new \InvalidArgumentException($message);
         }
-        $this->angle = $angle;
+        $this->angle = (int) $angle;
     }
 
     /**

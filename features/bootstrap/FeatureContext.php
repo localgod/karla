@@ -3,10 +3,10 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Karla\Karla;
 
-if ("" == shell_exec ( "which convert | grep '/opt/local/bin/'" )) {
-    define ( 'PATH_TO_IMAGEMAGICK', '/usr/bin/' );
+if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
+    define('PATH_TO_IMAGEMAGICK', '/usr/bin/');
 } else {
-    define ( 'PATH_TO_IMAGEMAGICK', '/opt/local/bin/' );
+    define('PATH_TO_IMAGEMAGICK', '/opt/local/bin/');
 }
 
 /**
@@ -14,6 +14,13 @@ if ("" == shell_exec ( "which convert | grep '/opt/local/bin/'" )) {
  */
 class FeatureContext implements Context, SnippetAcceptingContext
 {
+
+    /**
+     * Output from Imagemagick
+     * 
+     * @var string
+     */
+    private $output;
 
     /**
      * Initializes context.
@@ -24,7 +31,6 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {}
-
 
     /**
      * @Given /^I can access Karla$/

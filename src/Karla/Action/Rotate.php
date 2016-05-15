@@ -47,7 +47,7 @@ class Rotate implements Action
             $message = 'degree must be an integer value';
             throw new \InvalidArgumentException($message);
         }
-        $this->degree = $degree;
+        $this->degree = (int) $degree;
     }
 
     /**

@@ -30,7 +30,7 @@ class Bordercolor implements Action
     /**
      * Color
      *
-     * @var string
+     * @var integer
      */
     private $color;
 
