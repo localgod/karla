@@ -248,7 +248,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      *
-     * @todo get list of profiles from image (can be done by identify but might be to expensive)
+     * @todo get list of profiles from image (can be done by identify but might be too expensive)
      */
     public function removeProfile($profileName)
     {

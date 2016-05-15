@@ -63,7 +63,7 @@ class Identify extends ImageMagick
      *            Get the raw output
      *
      * @see Imagemagick#execute()
-     * @return string MetaData
+     * @return string|\Karla\MetaData
      */
     public function execute($reset = true, $raw = true)
     {

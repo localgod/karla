@@ -37,7 +37,7 @@ class Type implements Action
     /**
      * Create a new type action
      *
-     * @param Karla\Program $program
+     * @param \Karla\Program $program
      *            The program to use
      * @param string $type
      *            The type to use
