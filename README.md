@@ -6,6 +6,7 @@
 ![Version Eye](http://php-eye.com/badge/visualphpunit/visualphpunit/tested.svg)
 [![codecov](https://codecov.io/gh/localgod/karla/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/localgod/karla?branch=master)
 [![PHPPackages Rank](http://phppackages.org/p/localgod/karla/badge/rank.svg)](http://phppackages.org/p/localgod/karla)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Flocalgod%2Fkarla.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Flocalgod%2Fkarla?ref=badge_shield)
 # Karla
 
 Karla is a ImageMagick wrapper written in php with support for method chaining. 
@@ -24,3 +25,7 @@ Windows support is **not** tested during automated build.
 ### Documentation
 
 You can see examples and read about Karla [here] (http://localgod.github.com/karla/). 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Flocalgod%2Fkarla.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Flocalgod%2Fkarla?ref=badge_large)
