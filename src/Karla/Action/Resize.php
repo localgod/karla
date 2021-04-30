@@ -1,26 +1,28 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
  * PHP Version 5.3<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
 namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Class for handeling resize action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -32,14 +34,14 @@ class Resize implements Action
      *
      * @var string
      */
-    const ASPECT_FILL = 'aspect_fill';
-    
+    public const ASPECT_FILL = 'aspect_fill';
+
     /**
      * Ignored aspect ratio
      *
      * @var string
      */
-    const ASPECT_FIT = 'aspect_fit';
+    public const ASPECT_FIT = 'aspect_fit';
 
     /**
      * Width of new image

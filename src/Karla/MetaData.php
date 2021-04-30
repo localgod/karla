@@ -1,22 +1,24 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
  * PHP Version 5.3<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
 namespace Karla;
 
 /**
  * Class for wrapping image metadata
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -403,7 +405,7 @@ class MetaData extends \SplFileInfo
                 $this->isPpc = false;
                 $this->isPpi = true;
                 break;
-                
+
             default:
                 $this->isPpc = false;
                 $this->isPpi = true;

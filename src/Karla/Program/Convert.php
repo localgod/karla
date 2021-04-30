@@ -1,19 +1,21 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
  * PHP Version 5.3<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
 namespace Karla\Program;
 
-use \InvalidArgumentException;
-use \RuntimeException;
+use InvalidArgumentException;
+use RuntimeException;
 use Karla\Action\Resize;
 use Karla\Action\Gravity;
 use Karla\Action\Density;
@@ -42,7 +44,7 @@ use Karla\Query;
  * Class for wrapping ImageMagicks convert tool
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -467,8 +469,13 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true, $aspect = Resize::ASPECT_FIT)
-    {
+    public function resize(
+        $width = "",
+        $height = "",
+        $maintainAspectRatio = true,
+        $dontScaleUp = true,
+        $aspect = Resize::ASPECT_FIT
+    ) {
         $action = new Resize($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;

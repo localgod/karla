@@ -10,5 +10,5 @@
 	<arg name="report" value="full" />
 	<arg value="sp" />
 
-	<rule ref="PSR2" />
+	<rule ref="PSR12" />
 </ruleset>

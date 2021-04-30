@@ -23,6 +23,15 @@ ARG make_version=4.3-r0
 ARG jq_version=1.6-r1
 ARG git_version=2.30.2-r0
 ARG imagemagick_version=7.0.10.57-r0
+ARG composer_version=2.0.13-r0
+ARG php8_phar_version=8.0.2-r0
+ARG php8_iconv_version=8.0.2-r0
+ARG php8_openssl_version=8.0.2-r0
+ARG php8_curl_version=8.0.2-r0
+arg php8_mbstring_version=8.0.2-r0
+ARG php8_tokenizer_version=8.0.2-r0
+arg php8_xmlwriter_version=8.0.2-r0
+ARG php8_simplexml_version=8.0.2-r0
 
 RUN apk --update --no-cache add \
     bash=${bash_version} \
@@ -30,4 +39,13 @@ RUN apk --update --no-cache add \
     jq=${jq_version} \
     git=${git_version} \
     imagemagick=${imagemagick_version} \
-    make=${make_version} && ln -s /usr/bin/php8 /usr/bin/php
+    composer=${composer_version} \
+    php8-phar=${php8_phar_version} \
+    php8-iconv=${php8_iconv_version} \
+    php8-openssl=${php8_openssl_version} \
+    php8-curl=${php8_curl_version} \
+    php8-mbstring=${php8_mbstring_version} \
+    php8-tokenizer=${php8_tokenizer_version} \
+    php8-xmlwriter=${php8_xmlwriter_version} \
+    php8-simplexml=${php8_simplexml_version} \
+    make=${make_version} && ln -s -f /usr/bin/php8 /usr/bin/php

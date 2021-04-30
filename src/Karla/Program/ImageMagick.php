@@ -1,15 +1,17 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
  * PHP Version 5.3<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
 namespace Karla\Program;
 
 use Karla\Query;
@@ -19,7 +21,7 @@ use Karla\Cache;
  * Class for wrapping ImageMagick arguments used by all tools
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -31,77 +33,77 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @var string
      */
-    const IMAGEMAGICK_ANIMATE = 'animate';
+    public const IMAGEMAGICK_ANIMATE = 'animate';
 
     /**
      * ImageMagick tool compare
      *
      * @var string
      */
-    const IMAGEMAGICK_COMPARE = 'compare';
+    public const IMAGEMAGICK_COMPARE = 'compare';
 
     /**
      * ImageMagick tool composite
      *
      * @var string
      */
-    const IMAGEMAGICK_COMPOSITE = 'composite';
+    public const IMAGEMAGICK_COMPOSITE = 'composite';
 
     /**
      * ImageMagick tool
      *
      * @var string
      */
-    const IMAGEMAGICK_CONJURE = 'conjure';
+    public const IMAGEMAGICK_CONJURE = 'conjure';
 
     /**
      * ImageMagick tool conjure
      *
      * @var string
      */
-    const IMAGEMAGICK_CONVERT = 'convert';
+    public const IMAGEMAGICK_CONVERT = 'convert';
 
     /**
      * ImageMagick tool display
      *
      * @var string
      */
-    const IMAGEMAGICK_DISPLAY = 'display';
+    public const IMAGEMAGICK_DISPLAY = 'display';
 
     /**
      * ImageMagick tool identify
      *
      * @var string
      */
-    const IMAGEMAGICK_IDENTIFY = 'identify';
+    public const IMAGEMAGICK_IDENTIFY = 'identify';
 
     /**
      * ImageMagick tool import
      *
      * @var string
      */
-    const IMAGEMAGICK_IMPORT = 'import';
+    public const IMAGEMAGICK_IMPORT = 'import';
 
     /**
      * ImageMagick tool mogrify
      *
      * @var string
      */
-    const IMAGEMAGICK_MOGRIFY = 'mogrify';
+    public const IMAGEMAGICK_MOGRIFY = 'mogrify';
 
     /**
      * ImageMagick tool montage
      *
      * @var string
      */
-    const IMAGEMAGICK_MONTAGE = 'montage';
+    public const IMAGEMAGICK_MONTAGE = 'montage';
 
     /**
      * ImageMagick tool stream
      *
      * @var string
      */
-    const IMAGEMAGICK_STREAM = 'stream';
+    public const IMAGEMAGICK_STREAM = 'stream';
 
     /**
      * Path to binaries
