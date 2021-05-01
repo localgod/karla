@@ -12,9 +12,7 @@ Karla itself dos not depend on any third party libraries but its test suite dos.
 
 To test Karla you need to get the relevant tools. 
 
-Karla uses [Ant](http://ant.apache.org/) as build script so first step is to install Ant.
-
-Next you need some php specific tools. The easiest way to get these is with [composer](https://getcomposer.org/)
+You need some php specific tools. The easiest way to get these is with [composer](https://getcomposer.org/)
 
 Once installed run composer from the root of your karla checkout:
 ```
@@ -25,28 +23,21 @@ This will, amoung some other tools, install [phpunit](http://phpunit.de/) and [b
 
 You can now, via Ant, run the tests:
 ```
-ant behat
-ant phpunit
+./bin/behat
+./bin/phpunit --configuration ./tests/phpunit.xml
 ```
 
 Once no test fails, you can check code coverage here: ./target/phpunit/coverage/index.html 
 
 ## Coding Standard
 
-Karla is [PSR-2] (https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) compliant. 
+Karla is [PSR-12] (https://www.php-fig.org/psr/psr-12/) compliant. 
 
 Via Ant, you can check if the code you plan to push is compliant:
 ```
-ant phpcs
+./bin/phpcs
 ``` 
 
 This generates a report you can view in your browser: ./target/phpcs/checkstyle.html
 
 Please keep pull requests compliant.
-
-## Other tools
-
-If you run Ant without any arguments you will get a list of possible targets.
-
-
-
