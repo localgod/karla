@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Polaroid Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class PolaroidTest extends \PHPUnit_Framework_TestCase
+class PolaroidTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -62,12 +63,11 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function polaroidTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->polaroid()
@@ -80,12 +80,11 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function polaroidInvalidAngle()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->polaroid('four')
@@ -97,12 +96,11 @@ class PolaroidTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function polaroidToBigAngle()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->polaroid(400)

@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Gravity Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class GravityTest extends \PHPUnit_Framework_TestCase
+class GravityTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class GravityTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -44,12 +45,11 @@ class GravityTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function gravity()
     {
+        $this->expectException(InvalidArgumentException::class);
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->gravity('Nowhere')

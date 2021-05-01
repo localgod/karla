@@ -10,6 +10,7 @@
  * @since    2012-04-05
  */
 use Karla\Karla;
+
 /**
  * Convert Test class
  *
@@ -17,7 +18,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class ConvertTest extends \PHPUnit_Framework_TestCase
+class ConvertTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -32,7 +33,7 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -43,12 +44,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function invalidInputfile()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo2.jpg')
             ->getCommand();
@@ -58,12 +58,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException RuntimeException
-     *
      * @return void
      */
     public function inputfileWithoutOutputfile()
     {
+        $this->expectException(RuntimeException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->getCommand();
@@ -73,12 +72,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException RuntimeException
-     *
      * @return void
      */
     public function outputfileWithoutInputfile()
     {
+        $this->expectException(RuntimeException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->out('test-1920x1200.png')
             ->getCommand();
@@ -88,12 +86,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function invalidOutputfile()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->out('/nowhere/test-1920x1200.png')
             ->getCommand();
@@ -156,12 +153,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException \InvalidArgumentException
-     *
      * @return void
      */
     public function densityWithInvalidWidth()
     {
+        $this->expectException(InvalidArgumentException::class);
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->density('chrismas')
@@ -175,12 +171,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException \InvalidArgumentException
-     *
      * @return void
      */
     public function densityWithInvalidHeight()
     {
+        $this->expectException(InvalidArgumentException::class);
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->density(72, 'chrismas')
@@ -194,12 +189,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function densityWithResample()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resample(200, 200, 72, 72)
@@ -230,12 +224,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function profileWithInvalidPath()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->profile($this->testDataPath.'/RGB_Color_Space_Profile.icm')
@@ -265,12 +258,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function changeProfileTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->changeProfile($this->testDataPath.'/sRGB_Color_Space_Profile.icm', $this->testDataPath.'/sRGB_Color_Space_Profile.icm')
@@ -283,12 +275,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function changeProfileInvalidNewProfile()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->changeProfile($this->testDataPath.'/sRGB_Color_Space_Profile.icm', $this->testDataPath.'/RGB_Color_Space_Profile.icm')
@@ -300,12 +291,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function changeProfileInvalidOldProfile()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->changeProfile($this->testDataPath.'/RGB_Color_Space_Profile.icm', $this->testDataPath.'/sRGB_Color_Space_Profile.icm')
@@ -335,12 +325,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function gravityTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
         $karla->convert()
             ->in($this->testDataPath.'/demo.jpg')
@@ -353,12 +342,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function __clone()
     {
+        $this->expectException(BadMethodCallException::class);
         $object = clone Karla::perform(PATH_TO_IMAGEMAGICK)->convert();
     }
 
@@ -440,12 +428,11 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function rotateTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->rotate(- 45, 'gray')

@@ -153,7 +153,7 @@ class Convert extends ImageMagick implements Program
      * @see ImageMagick::execute()
      * @return string
      */
-    public function execute()
+    public function execute($reset = true)
     {
         if ($this->cache instanceof Cache) {
             ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;

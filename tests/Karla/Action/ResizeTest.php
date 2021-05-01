@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Resize Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class ResizeTest extends \PHPUnit_Framework_TestCase
+class ResizeTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -62,12 +63,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function resizeWithResample()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resample(200, 200, 72, 72)
@@ -80,12 +80,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function resizeTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resize(200, 200)
@@ -98,12 +97,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function resizeWithNoArguments()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resize()
@@ -115,12 +113,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function resizeWithNonNumericWidth()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resize('christmas')
@@ -132,12 +129,11 @@ class ResizeTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function resizeWithNonNumericHeight()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resize(200, 'christmas')

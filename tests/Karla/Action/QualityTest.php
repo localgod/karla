@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Quality Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class QualityTest extends \PHPUnit_Framework_TestCase
+class QualityTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class QualityTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -62,12 +63,11 @@ class QualityTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function qualityTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->quality(80)
@@ -80,12 +80,11 @@ class QualityTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function qualityUnSupportedFormat()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->quality(80, 'pdf')
@@ -97,12 +96,11 @@ class QualityTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return void
      */
     public function qualityNotANumber()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->quality('pdf')
@@ -114,12 +112,11 @@ class QualityTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException RangeException
-     *
      * @return void
      */
     public function qualityNotAValidQuality()
     {
+        $this->expectException(RangeException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->quality(102)

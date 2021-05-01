@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Density Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class DensityTest extends \PHPUnit_Framework_TestCase
+class DensityTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class DensityTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -80,12 +81,11 @@ class DensityTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return crop
      */
     public function callDensityWithInvalidOutputSelection()
     {
+        $this->expectException(InvalidArgumentException::class);
     	Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
     	->in($this->testDataPath.'/demo.jpg')
     	->density(72, 72, 3)

@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Flatten Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class FlattenTest extends \PHPUnit_Framework_TestCase
+class FlattenTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class FlattenTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -62,12 +63,11 @@ class FlattenTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return void
      */
     public function flattenTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->flatten()

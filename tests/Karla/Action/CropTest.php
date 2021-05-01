@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Crop Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class CropTest extends \PHPUnit_Framework_TestCase
+class CropTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class CropTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -98,12 +99,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException BadMethodCallException
-     *
      * @return crop
      */
     public function cropTwice()
     {
+        $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100)
@@ -116,12 +116,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return crop
      */
     public function cropWithInvalidWidth()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->crop('chrismas', 100)
@@ -133,12 +132,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return crop
      */
     public function cropWithInvalidHeight()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 'chrismas')
@@ -150,12 +148,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return crop
      */
     public function cropWithInvalidXOffset()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100, 'chrismas')
@@ -167,12 +164,11 @@ class CropTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException InvalidArgumentException
-     *
      * @return crop
      */
     public function cropWithInvalidYOffset()
     {
+        $this->expectException(InvalidArgumentException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->crop(100, 100, 0, 'chrismas')

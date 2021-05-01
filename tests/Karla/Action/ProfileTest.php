@@ -1,6 +1,7 @@
 <?php
 use Karla\Karla;
 
+
 /**
  * Profile Test file
  *
@@ -18,7 +19,7 @@ use Karla\Karla;
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
-class ProfileTest extends \PHPUnit_Framework_TestCase
+class ProfileTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -33,7 +34,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return void
 	 */
-	protected function setUp()
+	protected function setUp(): void
 	{
 		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
@@ -80,12 +81,11 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
      * Test
      *
      * @test
-     * @expectedException LogicException
-     *
      * @return crop
      */
     public function profileWithBothPathAndProfilenameAsArgument()
     {
+        $this->expectException(LogicException::class);
     	Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
     	->in($this->testDataPath.'/demo.jpg')
     	->profile('tests/_data/sRGB_Color_Space_Profile.icm','sRGB.icc')
