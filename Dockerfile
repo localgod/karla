@@ -35,6 +35,7 @@ ARG php8_simplexml_version=8.0.2-r0
 ARG php8_dom_version=8.0.2-r0
 ARG php8_xml_version=8.0.2-r0
 ARG php8_fileinfo_version=8.0.2-r0
+ARG php8_pecl_xdebug=3.0.4-r0
 
 RUN apk --update --no-cache add \
     bash=${bash_version} \
@@ -54,4 +55,9 @@ RUN apk --update --no-cache add \
     php8-dom=${php8_dom_version} \
     php8-xml=${php8_xml_version} \
     php8-fileinfo=${php8_fileinfo_version} \
+    php8-pecl-xdebug=${php8_pecl_xdebug} \
     make=${make_version} && ln -s -f /usr/bin/php8 /usr/bin/php
+
+RUN echo zend_extension=xdebug.so > /etc/php8/conf.d/50_xdebug.ini && \
+    echo xdebug.mode=coverage >> /etc/php8/conf.d/50_xdebug.ini
+

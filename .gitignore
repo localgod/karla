@@ -8,3 +8,7 @@
 /.settings
 /target
 /build/tools/*.phar
+/clover.xml
+/junit.xml
+/html-coverage
+/tests/.phpunit.result.cache

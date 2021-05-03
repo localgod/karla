@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="bootstrap.php" backupGlobals="false" backupStaticAttributes="true" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="true">
+<phpunit bootstrap="bootstrap.php" 
+         backupGlobals="false" 
+		 backupStaticAttributes="true" 
+		 colors="true" 
+		 convertErrorsToExceptions="true" 
+		 convertNoticesToExceptions="true" 
+		 convertWarningsToExceptions="true" 
+		 processIsolation="false" 
+		 stopOnFailure="true">
 	<testsuites>
 		<testsuite name="unit">
 			<directory>./</directory>
@@ -7,6 +15,21 @@
 	</testsuites>
 
 	<logging>
-		<junit outputFile="../target/phpunit/junit.xml"/>
+		<junit outputFile="../junit.xml"/>
 	</logging>
+
+	<coverage
+          includeUncoveredFiles="true"
+          processUncoveredFiles="true"
+          pathCoverage="false"
+          ignoreDeprecatedCodeUnits="true"
+          disableCodeCoverageIgnore="true">
+		  <include>
+    <directory suffix=".php">../src</directory>
+</include>
+	<report>
+		<html outputDirectory="../html-coverage" lowUpperBound="50" highLowerBound="90"/>
+		<clover outputFile="../clover.xml"/>
+	</report>
+</coverage>
 </phpunit>
