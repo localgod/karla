@@ -38,9 +38,6 @@ jobs:
     - name: BDD test
       run: ./bin/behat
 
-    - name: phpdocumentor
-      run: which phpdoc
-
     - name: Codecov
       uses: codecov/codecov-action@v1.4.1
       with:
