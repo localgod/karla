@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Main
 
 on:
   push:
@@ -38,8 +38,9 @@ jobs:
     - name: BDD test
       run: ./bin/behat
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: phpdocumentor
+      run: which phpdoc
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Codecov
+      uses: codecov/codecov-action@v1.4.1
+        override_branch: php8_version
