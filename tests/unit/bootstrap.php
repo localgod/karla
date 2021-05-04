@@ -16,4 +16,4 @@ if ("" == shell_exec("which convert | grep '/opt/local/bin/'")) {
 } else {
     define('PATH_TO_IMAGEMAGICK', '/opt/local/bin/');
 }
-require_once realpath(__DIR__ . '/../vendor/autoload.php');
+require_once realpath(__DIR__ . '/../../vendor/autoload.php');

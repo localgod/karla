@@ -1,4 +1,0 @@
-#!/usr/bin/expect
-spawn pecl install imagick
-expect -re "Please.*"
-send "\r"

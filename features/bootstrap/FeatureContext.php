@@ -46,7 +46,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function iPerformTheIdentifyAction()
     {
         $this->output = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
-            ->in('tests/_data/demo.jpg')
+            ->in('tests/unit/_data/demo.jpg')
             ->execute();
     }
 
