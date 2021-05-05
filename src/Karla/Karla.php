@@ -3,7 +3,7 @@
 /**
  * Karla Imagemagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 7.4<
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>

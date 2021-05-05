@@ -5,7 +5,7 @@ use Karla\Karla;
 /**
  * Layers Test file
  *
- * PHP Version 5.3<
+ * PHP Version 7.4<
  *
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
