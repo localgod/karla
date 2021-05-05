@@ -12,6 +12,7 @@
  * @since    2013-05-26
  */
 
+declare(strict_types = 1);
 namespace Karla\Action;
 
 use Karla\Action;

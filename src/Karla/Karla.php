@@ -12,6 +12,7 @@
  * @since    2010-06-05
  */
 
+declare(strict_types = 1);
 namespace Karla;
 
 /**
