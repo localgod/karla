@@ -57,15 +57,16 @@ jobs:
         name: coverage
         path: |
           coverage
-          
-    - name: Clover
-      uses: actions/upload-artifact@v2
-      with:
-        name: clover coverage
-        path: clover.xml
   publish:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+    - uses: actions/download-artifact@v2
+      with:
+        name: coverage
+        path: coverage
     - name: Publish
-      run: echo Hello world
+      run: ls -la
