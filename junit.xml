@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="154" assertions="152" errors="0" warnings="0" failures="0" skipped="7" time="1.889900">
+    <testsuite name="unit" tests="154" assertions="152" errors="0" warnings="0" failures="0" skipped="7" time="1.889900">
+      <testsuite name="BackgroundTest" file="/workspaces/karla/tests/unit/Karla/Action/BackgroundTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.079918">
+        <testcase name="background" class="BackgroundTest" classname="BackgroundTest" file="/workspaces/karla/tests/unit/Karla/Action/BackgroundTest.php" line="51" assertions="1" time="0.051883"/>
+        <testcase name="backgroundTwice" class="BackgroundTest" classname="BackgroundTest" file="/workspaces/karla/tests/unit/Karla/Action/BackgroundTest.php" line="68" assertions="1" time="0.010721"/>
+        <testcase name="backgroundWithInvalidColor" class="BackgroundTest" classname="BackgroundTest" file="/workspaces/karla/tests/unit/Karla/Action/BackgroundTest.php" line="85" assertions="1" time="0.011282"/>
+        <testcase name="backgroundWithHexColor" class="BackgroundTest" classname="BackgroundTest" file="/workspaces/karla/tests/unit/Karla/Action/BackgroundTest.php" line="102" assertions="1" time="0.006032"/>
+      </testsuite>
+      <testsuite name="BordercolorTest" file="/workspaces/karla/tests/unit/Karla/Action/BordercolorTest.php" tests="5" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.035322">
+        <testcase name="bordercolorWithColorName" class="BordercolorTest" classname="BordercolorTest" file="/workspaces/karla/tests/unit/Karla/Action/BordercolorTest.php" line="51" assertions="1" time="0.009129"/>
+        <testcase name="bordercolorTwice" class="BordercolorTest" classname="BordercolorTest" file="/workspaces/karla/tests/unit/Karla/Action/BordercolorTest.php" line="69" assertions="1" time="0.005589"/>
+        <testcase name="bordercolorWithHexColor" class="BordercolorTest" classname="BordercolorTest" file="/workspaces/karla/tests/unit/Karla/Action/BordercolorTest.php" line="87" assertions="1" time="0.007943"/>
+        <testcase name="bordercolorWithRgbColor" class="BordercolorTest" classname="BordercolorTest" file="/workspaces/karla/tests/unit/Karla/Action/BordercolorTest.php" line="106" assertions="1" time="0.005786"/>
+        <testcase name="bordercolorWithInvalidColor" class="BordercolorTest" classname="BordercolorTest" file="/workspaces/karla/tests/unit/Karla/Action/BordercolorTest.php" line="124" assertions="1" time="0.006875"/>
+      </testsuite>
+      <testsuite name="ColorspaceTest" file="/workspaces/karla/tests/unit/Karla/Action/ColorspaceTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.044936">
+        <testcase name="colorspace" class="ColorspaceTest" classname="ColorspaceTest" file="/workspaces/karla/tests/unit/Karla/Action/ColorspaceTest.php" line="51" assertions="1" time="0.017089"/>
+        <testcase name="colorspaceTwice" class="ColorspaceTest" classname="ColorspaceTest" file="/workspaces/karla/tests/unit/Karla/Action/ColorspaceTest.php" line="68" assertions="1" time="0.016515"/>
+        <testcase name="colorspaceInvalid" class="ColorspaceTest" classname="ColorspaceTest" file="/workspaces/karla/tests/unit/Karla/Action/ColorspaceTest.php" line="85" assertions="1" time="0.011331"/>
+      </testsuite>
+      <testsuite name="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" tests="8" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.054523">
+        <testcase name="crop" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="51" assertions="1" time="0.008622"/>
+        <testcase name="cropWidthOffset" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="69" assertions="1" time="0.006425"/>
+        <testcase name="cropWidthNegativeOffset" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="87" assertions="1" time="0.006495"/>
+        <testcase name="cropTwice" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="104" assertions="1" time="0.007580"/>
+        <testcase name="cropWithInvalidWidth" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="121" assertions="1" time="0.006113"/>
+        <testcase name="cropWithInvalidHeight" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="137" assertions="1" time="0.006300"/>
+        <testcase name="cropWithInvalidXOffset" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="153" assertions="1" time="0.006255"/>
+        <testcase name="cropWithInvalidYOffset" class="CropTest" classname="CropTest" file="/workspaces/karla/tests/unit/Karla/Action/CropTest.php" line="169" assertions="1" time="0.006733"/>
+      </testsuite>
+      <testsuite name="DensityTest" file="/workspaces/karla/tests/unit/Karla/Action/DensityTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.020244">
+        <testcase name="density" class="DensityTest" classname="DensityTest" file="/workspaces/karla/tests/unit/Karla/Action/DensityTest.php" line="51" assertions="1" time="0.007432"/>
+        <testcase name="densityAsAnInputputArgument" class="DensityTest" classname="DensityTest" file="/workspaces/karla/tests/unit/Karla/Action/DensityTest.php" line="69" assertions="1" time="0.006825"/>
+        <testcase name="callDensityWithInvalidOutputSelection" class="DensityTest" classname="DensityTest" file="/workspaces/karla/tests/unit/Karla/Action/DensityTest.php" line="86" assertions="1" time="0.005987"/>
+      </testsuite>
+      <testsuite name="FlattenTest" file="/workspaces/karla/tests/unit/Karla/Action/FlattenTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.014712">
+        <testcase name="flatten" class="FlattenTest" classname="FlattenTest" file="/workspaces/karla/tests/unit/Karla/Action/FlattenTest.php" line="51" assertions="1" time="0.007695"/>
+        <testcase name="flattenTwice" class="FlattenTest" classname="FlattenTest" file="/workspaces/karla/tests/unit/Karla/Action/FlattenTest.php" line="68" assertions="1" time="0.007018"/>
+      </testsuite>
+      <testsuite name="FlipTest" file="/workspaces/karla/tests/unit/Karla/Action/FlipTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.015225">
+        <testcase name="flip" class="FlipTest" classname="FlipTest" file="/workspaces/karla/tests/unit/Karla/Action/FlipTest.php" line="51" assertions="1" time="0.007361"/>
+        <testcase name="flipTwice" class="FlipTest" classname="FlipTest" file="/workspaces/karla/tests/unit/Karla/Action/FlipTest.php" line="68" assertions="1" time="0.007864"/>
+      </testsuite>
+      <testsuite name="FlopTest" file="/workspaces/karla/tests/unit/Karla/Action/FlopTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.013796">
+        <testcase name="flop" class="FlopTest" classname="FlopTest" file="/workspaces/karla/tests/unit/Karla/Action/FlopTest.php" line="51" assertions="1" time="0.007071"/>
+        <testcase name="flopTwice" class="FlopTest" classname="FlopTest" file="/workspaces/karla/tests/unit/Karla/Action/FlopTest.php" line="68" assertions="1" time="0.006725"/>
+      </testsuite>
+      <testsuite name="GravityTest" file="/workspaces/karla/tests/unit/Karla/Action/GravityTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.014643">
+        <testcase name="gravity" class="GravityTest" classname="GravityTest" file="/workspaces/karla/tests/unit/Karla/Action/GravityTest.php" line="50" assertions="1" time="0.014643"/>
+      </testsuite>
+      <testsuite name="LayersTest" file="/workspaces/karla/tests/unit/Karla/Action/LayersTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.029404">
+        <testcase name="layers" class="LayersTest" classname="LayersTest" file="/workspaces/karla/tests/unit/Karla/Action/LayersTest.php" line="51" assertions="1" time="0.014743"/>
+        <testcase name="layersWithIvalidMethod" class="LayersTest" classname="LayersTest" file="/workspaces/karla/tests/unit/Karla/Action/LayersTest.php" line="68" assertions="1" time="0.014661"/>
+      </testsuite>
+      <testsuite name="PolaroidTest" file="/workspaces/karla/tests/unit/Karla/Action/PolaroidTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.029860">
+        <testcase name="polaroid" class="PolaroidTest" classname="PolaroidTest" file="/workspaces/karla/tests/unit/Karla/Action/PolaroidTest.php" line="51" assertions="1" time="0.011019"/>
+        <testcase name="polaroidTwice" class="PolaroidTest" classname="PolaroidTest" file="/workspaces/karla/tests/unit/Karla/Action/PolaroidTest.php" line="68" assertions="1" time="0.007233"/>
+        <testcase name="polaroidInvalidAngle" class="PolaroidTest" classname="PolaroidTest" file="/workspaces/karla/tests/unit/Karla/Action/PolaroidTest.php" line="85" assertions="1" time="0.005968"/>
+        <testcase name="polaroidToBigAngle" class="PolaroidTest" classname="PolaroidTest" file="/workspaces/karla/tests/unit/Karla/Action/PolaroidTest.php" line="101" assertions="1" time="0.005641"/>
+      </testsuite>
+      <testsuite name="ProfileTest" file="/workspaces/karla/tests/unit/Karla/Action/ProfileTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.023182">
+        <testcase name="profile" class="ProfileTest" classname="ProfileTest" file="/workspaces/karla/tests/unit/Karla/Action/ProfileTest.php" line="51" assertions="1" time="0.009274"/>
+        <testcase name="profileWithBuildinProfile" class="ProfileTest" classname="ProfileTest" file="/workspaces/karla/tests/unit/Karla/Action/ProfileTest.php" line="69" assertions="1" time="0.007675"/>
+        <testcase name="profileWithBothPathAndProfilenameAsArgument" class="ProfileTest" classname="ProfileTest" file="/workspaces/karla/tests/unit/Karla/Action/ProfileTest.php" line="86" assertions="1" time="0.006232"/>
+      </testsuite>
+      <testsuite name="QualityTest" file="/workspaces/karla/tests/unit/Karla/Action/QualityTest.php" tests="5" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.036009">
+        <testcase name="quality" class="QualityTest" classname="QualityTest" file="/workspaces/karla/tests/unit/Karla/Action/QualityTest.php" line="51" assertions="1" time="0.008588"/>
+        <testcase name="qualityTwice" class="QualityTest" classname="QualityTest" file="/workspaces/karla/tests/unit/Karla/Action/QualityTest.php" line="68" assertions="1" time="0.006155"/>
+        <testcase name="qualityUnSupportedFormat" class="QualityTest" classname="QualityTest" file="/workspaces/karla/tests/unit/Karla/Action/QualityTest.php" line="85" assertions="1" time="0.006953"/>
+        <testcase name="qualityNotANumber" class="QualityTest" classname="QualityTest" file="/workspaces/karla/tests/unit/Karla/Action/QualityTest.php" line="101" assertions="1" time="0.006730"/>
+        <testcase name="qualityNotAValidQuality" class="QualityTest" classname="QualityTest" file="/workspaces/karla/tests/unit/Karla/Action/QualityTest.php" line="117" assertions="1" time="0.007583"/>
+      </testsuite>
+      <testsuite name="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" tests="9" assertions="8" errors="0" warnings="0" failures="0" skipped="1" time="0.069495">
+        <testcase name="resample" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="51" assertions="1" time="0.008723"/>
+        <testcase name="resampleTwice" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="68" assertions="1" time="0.007634"/>
+        <testcase name="resampleWithResize" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="85" assertions="1" time="0.009050"/>
+        <testcase name="resampleWithDensity" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="103" assertions="1" time="0.006713"/>
+        <testcase name="resampleWidthNotNumeric" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="120" assertions="1" time="0.007893"/>
+        <testcase name="resampleHeightNotNumeric" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="136" assertions="1" time="0.005608"/>
+        <testcase name="resampleOriginalHeightNotNumeric" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="152" assertions="1" time="0.007797"/>
+        <testcase name="resampleOriginalWidthNotNumeric" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="168" assertions="1" time="0.005774"/>
+        <testcase name="resampleWithOnlyWidth" class="ResampleTest" classname="ResampleTest" file="/workspaces/karla/tests/unit/Karla/Action/ResampleTest.php" line="185" assertions="0" time="0.010302">
+          <skipped/>
+        </testcase>
+      </testsuite>
+      <testsuite name="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" tests="7" assertions="7" errors="0" warnings="0" failures="0" skipped="0" time="0.048133">
+        <testcase name="resize" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="51" assertions="1" time="0.007636"/>
+        <testcase name="resizeWithResample" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="68" assertions="1" time="0.005949"/>
+        <testcase name="resizeTwice" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="85" assertions="1" time="0.007019"/>
+        <testcase name="resizeWithNoArguments" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="102" assertions="1" time="0.006376"/>
+        <testcase name="resizeWithNonNumericWidth" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="118" assertions="1" time="0.006137"/>
+        <testcase name="resizeWithNonNumericHeight" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="134" assertions="1" time="0.007011"/>
+        <testcase name="resizeWithoutMaintainingAspectRatio" class="ResizeTest" classname="ResizeTest" file="/workspaces/karla/tests/unit/Karla/Action/ResizeTest.php" line="152" assertions="1" time="0.008005"/>
+      </testsuite>
+      <testsuite name="RotateTest" file="/workspaces/karla/tests/unit/Karla/Action/RotateTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.015323">
+        <testcase name="rotate" class="RotateTest" classname="RotateTest" file="/workspaces/karla/tests/unit/Karla/Action/RotateTest.php" line="51" assertions="1" time="0.007754"/>
+        <testcase name="rotateWithInvalidDegreeArgument" class="RotateTest" classname="RotateTest" file="/workspaces/karla/tests/unit/Karla/Action/RotateTest.php" line="68" assertions="1" time="0.007569"/>
+      </testsuite>
+      <testsuite name="SepiaTest" file="/workspaces/karla/tests/unit/Karla/Action/SepiaTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.027807">
+        <testcase name="sepia" class="SepiaTest" classname="SepiaTest" file="/workspaces/karla/tests/unit/Karla/Action/SepiaTest.php" line="51" assertions="1" time="0.008091"/>
+        <testcase name="sepiaTwice" class="SepiaTest" classname="SepiaTest" file="/workspaces/karla/tests/unit/Karla/Action/SepiaTest.php" line="68" assertions="1" time="0.006529"/>
+        <testcase name="sepiaInvalidThreshold" class="SepiaTest" classname="SepiaTest" file="/workspaces/karla/tests/unit/Karla/Action/SepiaTest.php" line="85" assertions="1" time="0.007085"/>
+        <testcase name="sepiaInvalidThresholdNumber" class="SepiaTest" classname="SepiaTest" file="/workspaces/karla/tests/unit/Karla/Action/SepiaTest.php" line="101" assertions="1" time="0.006102"/>
+      </testsuite>
+      <testsuite name="SizeTest" file="/workspaces/karla/tests/unit/Karla/Action/SizeTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.022256">
+        <testcase name="size" class="SizeTest" classname="SizeTest" file="/workspaces/karla/tests/unit/Karla/Action/SizeTest.php" line="51" assertions="1" time="0.008644"/>
+        <testcase name="sizeTwice" class="SizeTest" classname="SizeTest" file="/workspaces/karla/tests/unit/Karla/Action/SizeTest.php" line="68" assertions="1" time="0.006295"/>
+        <testcase name="sizeNoArguments" class="SizeTest" classname="SizeTest" file="/workspaces/karla/tests/unit/Karla/Action/SizeTest.php" line="85" assertions="1" time="0.007317"/>
+      </testsuite>
+      <testsuite name="StripTest" file="/workspaces/karla/tests/unit/Karla/Action/StripTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.015261">
+        <testcase name="strip" class="StripTest" classname="StripTest" file="/workspaces/karla/tests/unit/Karla/Action/StripTest.php" line="52" assertions="1" time="0.007935"/>
+        <testcase name="stripTwice" class="StripTest" classname="StripTest" file="/workspaces/karla/tests/unit/Karla/Action/StripTest.php" line="69" assertions="1" time="0.007326"/>
+      </testsuite>
+      <testsuite name="TypeTest" file="/workspaces/karla/tests/unit/Karla/Action/TypeTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.043548">
+        <testcase name="type" class="TypeTest" classname="TypeTest" file="/workspaces/karla/tests/unit/Karla/Action/TypeTest.php" line="51" assertions="1" time="0.014627"/>
+        <testcase name="typeTwice" class="TypeTest" classname="TypeTest" file="/workspaces/karla/tests/unit/Karla/Action/TypeTest.php" line="68" assertions="1" time="0.016132"/>
+        <testcase name="typeUnsupported" class="TypeTest" classname="TypeTest" file="/workspaces/karla/tests/unit/Karla/Action/TypeTest.php" line="85" assertions="1" time="0.012789"/>
+      </testsuite>
+      <testsuite name="FileTest" file="/workspaces/karla/tests/unit/Karla/Cache/FileTest.php" tests="1" assertions="0" errors="0" warnings="0" failures="0" skipped="1" time="0.008101">
+        <testcase name="setCache" class="FileTest" classname="FileTest" file="/workspaces/karla/tests/unit/Karla/Cache/FileTest.php" line="86" assertions="0" time="0.008101">
+          <skipped/>
+        </testcase>
+      </testsuite>
+      <testsuite name="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" tests="6" assertions="6" errors="0" warnings="0" failures="0" skipped="0" time="0.050003">
+        <testcase name="perform" class="KarlaTest" classname="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" line="63" assertions="1" time="0.007205"/>
+        <testcase name="privateMethods" class="KarlaTest" classname="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" line="75" assertions="1" time="0.006773"/>
+        <testcase name="raw" class="KarlaTest" classname="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" line="87" assertions="1" time="0.012802"/>
+        <testcase name="convert" class="KarlaTest" classname="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" line="100" assertions="1" time="0.007166"/>
+        <testcase name="identify" class="KarlaTest" classname="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" line="113" assertions="1" time="0.008656"/>
+        <testcase name="composite" class="KarlaTest" classname="KarlaTest" file="/workspaces/karla/tests/unit/Karla/KarlaTest.php" line="126" assertions="1" time="0.007402"/>
+      </testsuite>
+      <testsuite name="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" tests="25" assertions="26" errors="0" warnings="0" failures="0" skipped="1" time="0.732510">
+        <testcase name="getResolutionHeight" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="67" assertions="1" time="0.020400"/>
+        <testcase name="getResolutionHeightVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="82" assertions="1" time="0.041953"/>
+        <testcase name="getResolutionWidthVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="98" assertions="1" time="0.044034"/>
+        <testcase name="getResolutionWidth" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="114" assertions="1" time="0.017912"/>
+        <testcase name="parseMethods" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="129" assertions="1" time="0.019186"/>
+        <testcase name="parseMethodsVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="144" assertions="1" time="0.042917"/>
+        <testcase name="getFormatVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="160" assertions="1" time="0.041225"/>
+        <testcase name="getFormat" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="176" assertions="1" time="0.019234"/>
+        <testcase name="getDepthVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="191" assertions="1" time="0.045547"/>
+        <testcase name="getDepth" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="207" assertions="1" time="0.019497"/>
+        <testcase name="getColorspaceVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="222" assertions="1" time="0.041854"/>
+        <testcase name="getColorspace" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="238" assertions="1" time="0.019666"/>
+        <testcase name="getGeometryVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="253" assertions="2" time="0.043736"/>
+        <testcase name="getGeometry" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="270" assertions="2" time="0.018388"/>
+        <testcase name="getHeightVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="286" assertions="1" time="0.041102"/>
+        <testcase name="getHeight" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="302" assertions="1" time="0.019031"/>
+        <testcase name="getWidthVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="317" assertions="1" time="0.040221"/>
+        <testcase name="getWidth" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="333" assertions="1" time="0.020262"/>
+        <testcase name="listRawVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="348" assertions="1" time="0.045045"/>
+        <testcase name="listRaw" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="364" assertions="1" time="0.021628"/>
+        <testcase name="getUnitVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="379" assertions="1" time="0.042886"/>
+        <testcase name="getUnit" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="395" assertions="1" time="0.019013"/>
+        <testcase name="getHashVerbose" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="410" assertions="0" time="0.005982">
+          <skipped/>
+        </testcase>
+        <testcase name="getHash" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="431" assertions="1" time="0.021922"/>
+        <testcase name="getHashWithInvalidAlgorithm" class="MetaDataTest" classname="MetaDataTest" file="/workspaces/karla/tests/unit/Karla/MetaDataTest.php" line="445" assertions="1" time="0.019868"/>
+      </testsuite>
+      <testsuite name="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" tests="9" assertions="8" errors="0" warnings="0" failures="0" skipped="2" time="0.066974">
+        <testcase name="basefile" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="50" assertions="1" time="0.006320"/>
+        <testcase name="changefile" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="63" assertions="1" time="0.006380"/>
+        <testcase name="outputfile" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="76" assertions="1" time="0.006345"/>
+        <testcase name="raw" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="89" assertions="1" time="0.006999"/>
+        <testcase name="__clone" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="101" assertions="1" time="0.005814"/>
+        <testcase name="getCommand" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="114" assertions="1" time="0.013272"/>
+        <testcase name="execute" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="127" assertions="0" time="0.007070">
+          <skipped/>
+        </testcase>
+        <testcase name="reset" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="139" assertions="0" time="0.005916">
+          <skipped/>
+        </testcase>
+        <testcase name="validProgram" class="CompositeTest" classname="CompositeTest" file="/workspaces/karla/tests/unit/Karla/Program/CompositeTest.php" line="151" assertions="2" time="0.008859"/>
+      </testsuite>
+      <testsuite name="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" tests="25" assertions="25" errors="0" warnings="0" failures="0" skipped="1" time="0.190441">
+        <testcase name="invalidInputfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="49" assertions="1" time="0.006827"/>
+        <testcase name="inputfileWithoutOutputfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="63" assertions="1" time="0.007952"/>
+        <testcase name="outputfileWithoutInputfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="77" assertions="1" time="0.006527"/>
+        <testcase name="invalidOutputfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="91" assertions="1" time="0.007373"/>
+        <testcase name="inputfileAndOutputfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="106" assertions="1" time="0.006585"/>
+        <testcase name="removeProfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="123" assertions="1" time="0.007617"/>
+        <testcase name="density" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="141" assertions="1" time="0.005869"/>
+        <testcase name="densityWithInvalidWidth" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="158" assertions="1" time="0.008003"/>
+        <testcase name="densityWithInvalidHeight" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="176" assertions="1" time="0.006146"/>
+        <testcase name="densityWithResample" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="194" assertions="1" time="0.006946"/>
+        <testcase name="profile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="212" assertions="1" time="0.006037"/>
+        <testcase name="profileWithInvalidPath" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="229" assertions="1" time="0.008370"/>
+        <testcase name="changeProfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="246" assertions="1" time="0.006403"/>
+        <testcase name="changeProfileTwice" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="263" assertions="1" time="0.007666"/>
+        <testcase name="changeProfileInvalidNewProfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="280" assertions="1" time="0.007348"/>
+        <testcase name="changeProfileInvalidOldProfile" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="296" assertions="1" time="0.008513"/>
+        <testcase name="gravity" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="313" assertions="1" time="0.012355"/>
+        <testcase name="gravityTwice" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="330" assertions="1" time="0.017331"/>
+        <testcase name="__clone" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="347" assertions="1" time="0.006206"/>
+        <testcase name="getCommand" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="360" assertions="1" time="0.007210"/>
+        <testcase name="execute" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="376" assertions="0" time="0.005871">
+          <skipped/>
+        </testcase>
+        <testcase name="raw" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="388" assertions="1" time="0.007300"/>
+        <testcase name="validProgram" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="401" assertions="2" time="0.005832"/>
+        <testcase name="rotate" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="416" assertions="1" time="0.006846"/>
+        <testcase name="rotateTwice" class="ConvertTest" classname="ConvertTest" file="/workspaces/karla/tests/unit/Karla/Program/ConvertTest.php" line="433" assertions="1" time="0.007308"/>
+      </testsuite>
+      <testsuite name="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" tests="14" assertions="14" errors="0" warnings="0" failures="0" skipped="1" time="0.188275">
+        <testcase name="in" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="51" assertions="1" time="0.008893"/>
+        <testcase name="invalidInputfile" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="65" assertions="1" time="0.007544"/>
+        <testcase name="execute" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="80" assertions="1" time="0.019384"/>
+        <testcase name="executeNoRaw" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="95" assertions="1" time="0.018406"/>
+        <testcase name="executeNoRawVerbose" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="110" assertions="1" time="0.042285"/>
+        <testcase name="executeNoReset" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="126" assertions="1" time="0.020416"/>
+        <testcase name="executeNoResetNoRaw" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="141" assertions="1" time="0.018327"/>
+        <testcase name="verbose" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="156" assertions="1" time="0.009103"/>
+        <testcase name="verboseTwice" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="171" assertions="1" time="0.007724"/>
+        <testcase name="__clone" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="187" assertions="1" time="0.006967"/>
+        <testcase name="getCommand" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="200" assertions="1" time="0.008476"/>
+        <testcase name="reset" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="214" assertions="0" time="0.007625">
+          <skipped/>
+        </testcase>
+        <testcase name="raw" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="226" assertions="1" time="0.005727"/>
+        <testcase name="validProgram" class="IdentifyTest" classname="IdentifyTest" file="/workspaces/karla/tests/unit/Karla/Program/IdentifyTest.php" line="239" assertions="2" time="0.007396"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
