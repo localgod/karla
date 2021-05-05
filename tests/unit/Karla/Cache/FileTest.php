@@ -64,8 +64,7 @@ class FileTest extends PHPUnit\Framework\TestCase
 	
     /**
      * Test
-     *
-     * @todo For some reason this test works when it run as the only test but not in the entires suite
+     * @test
      */
     public function getCached()
     {
@@ -73,29 +72,23 @@ class FileTest extends PHPUnit\Framework\TestCase
         ->in($this->testDataPath.'/demo.jpg')
         ->crop(100, 100)
         ->background('red')
-        ->out($this->testDataPath.'/cached.png')
+        ->out($this->cacheDataPath.'/'.md5($this->testDataPath.'/demo.jpg').'.png')
         ->execute();
-        $this->assertEquals($this->cacheDataPath.'/324dc866d046ff712607f3c4decf1559.png', $actual);
+        $this->assertEquals('"'.$this->cacheDataPath.'/1ddd465aeac5809d158b06a7b5d7c42a.png'.'"', $actual);
     }
 
     /**
      * Test
-     *
      * @test
      */
     public function setCache()
     {
-        /*
         Karla::perform(PATH_TO_IMAGEMAGICK, new \Karla\Cache\File($this->cacheDataPath))->convert()
         ->in($this->testDataPath.'/demo.jpg')
         ->crop(100, 100)
         ->background('red')
-        ->out($this->testDataPath.'/cached.png')
+        ->out($this->cacheDataPath.'/'.md5($this->testDataPath.'/demo.jpg').'.png')
         ->execute();
-        $this->assertTrue(file_exists($this->cacheDataPath.'/324dc866d046ff712607f3c4decf1559.png'));
-        */
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-          );
+        $this->assertTrue(file_exists($this->cacheDataPath.'/1ddd465aeac5809d158b06a7b5d7c42a.png'));
     }
 }

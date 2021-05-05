@@ -400,28 +400,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Pixels Per Inch', $this->object->getUnit());
     }
 
-    /**
-     * Test
-     *
-     * @test
-     *
-     * @return void
-     */
-    public function getHashVerbose()
-    {
-        /*
-        $this->object = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
-            ->verbose()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->execute(true, false);
-        $this->assertEquals('b48a66ad34a1942857d8b22325ac9898', $this->object->getHash());
-        */
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-          );
-    }
-
-    /**
+     /**
      * Test
      *
      * @test

@@ -184,29 +184,22 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      */
     public function resampleWithOnlyWidth()
     {
-        /*
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resample(200)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200x0\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
-        */
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-          );
-    }
+     }
 
     /**
      * Test
      *
      * @return void
-     * @todo not working
      */
     public function resampleWithOnlyOriginalWidth()
     {
-        /*
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resample(200, 200, 72)
@@ -214,9 +207,5 @@ class ResampleTest extends PHPUnit\Framework\TestCase
             ->getCommand();
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72 -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
-        */
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-          );
     }
 }
