@@ -30,15 +30,15 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Check style
-      run: ./bin/phpcs
+      run: make style
 
     - name: Unit test
-      run: ./bin/phpunit --configuration ./tests/phpunit.xml
+      run: make unittest
       env:
         XDEBUG_MODE: coverage
 
     - name: BDD test
-      run: ./bin/behat
+      run: make integration
 
     - name: Codecov
       uses: codecov/codecov-action@v1.4.1
