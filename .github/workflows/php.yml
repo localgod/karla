@@ -51,5 +51,15 @@ jobs:
     - name: BDD test
       run: make integration
 
-    - name: Publish coverage
-      run: ./update-gh-pages.sh
+    - name: Coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: |
+          coverage
+          
+    - name: Clover
+      uses: actions/upload-artifact@v2
+      with:
+        name: clover coverage
+        path: clover.xml
