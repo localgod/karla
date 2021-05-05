@@ -1,7 +1,6 @@
 /composer.lock
 /bin
 /vendor
-/data
 /clover.xml
 /junit.xml
 /coverage
