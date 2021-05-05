@@ -1,4 +1,4 @@
-if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+#if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo -e "Starting to update gh-pages\n"
     #copy data we're interested in to other place
     #cp -R target/phpdoc $HOME/api
@@ -22,4 +22,4 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git commit -m "Github build ${GITHUB_RUN_ID} pushed to gh-pages"
     git push -fq origin gh-pages > /dev/null
     echo -e "Updated coverage\n"
-fi
+#fi
