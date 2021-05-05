@@ -70,5 +70,6 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: coverage
+        path: coverage
     - name: Display structure of downloaded files
-      run: ls -kaRh
+      run: ls -lah
