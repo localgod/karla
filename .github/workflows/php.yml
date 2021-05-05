@@ -72,6 +72,8 @@ jobs:
       with:
         name: coverage
         path: coverage
+    - name: list dir
+      run: ls -la coverage
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
