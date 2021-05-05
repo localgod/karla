@@ -67,7 +67,7 @@ jobs:
         persist-credentials: false
         fetch-depth: 0
     - name: Remove old coverage
-      run: rm -rf coverage
+      run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
     - uses: actions/download-artifact@v2
       with:
         name: coverage
