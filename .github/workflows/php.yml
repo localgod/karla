@@ -63,3 +63,9 @@ jobs:
       with:
         name: clover coverage
         path: clover.xml
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Publish
+      run: echo Hello world
