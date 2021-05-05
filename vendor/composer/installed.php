@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '610e1d57ae389d53de92bf8245a1277d71871f2b',
+    'reference' => 'cbad430aac339736c2a23f95bb159a6032289d5f',
     'name' => 'localgod/karla',
   ),
   'versions' => 
@@ -54,7 +54,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '610e1d57ae389d53de92bf8245a1277d71871f2b',
+      'reference' => 'cbad430aac339736c2a23f95bb159a6032289d5f',
     ),
     'myclabs/deep-copy' => 
     array (
