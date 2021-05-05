@@ -4,5 +4,5 @@
 /data
 /clover.xml
 /junit.xml
-/html-coverage
+/coverage
 /tests/unit/.phpunit.result.cache

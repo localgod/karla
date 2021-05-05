@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -51,3 +50,6 @@ jobs:
 
     - name: BDD test
       run: make integration
+
+    - name: Publish coverage
+      run: ./update-gh-pages.sh
