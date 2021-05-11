@@ -12,9 +12,11 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
+use Karla\Program;
 use Karla\Query;
 use Karla\Action;
 use Karla\Support;
@@ -35,7 +37,7 @@ class Colorspace implements Action
      *
      * @var string
      */
-    private $colorspace;
+    private string $colorspace;
 
     /**
      * Construct a new size action
@@ -47,7 +49,7 @@ class Colorspace implements Action
      *
      * @throws \InvalidArgumentException If he supplied colorspace is not supported by imagemagick.
      */
-    public function __construct($program, $colorspace)
+    public function __construct(Program $program, string $colorspace)
     {
         if (! Support::colorSpace($program, $colorspace)) {
             $message = 'The supplied colorspace (' . $colorspace . ') is not supported by imagemagick';
@@ -64,7 +66,7 @@ class Colorspace implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('colorspace', Query::ARGUMENT_TYPE_OUTPUT);
         $query->setOutputOption(" -colorspace " . $this->colorspace . ' ');

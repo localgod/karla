@@ -155,51 +155,16 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * @test
      * @return void
      */
-    public function densityWithInvalidWidth()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->density('chrismas')
-            ->out('test-200x200.png')
-            ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function densityWithInvalidHeight()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->density(72, 'chrismas')
-            ->out('test-200x200.png')
-            ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "tests/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
     public function densityWithResample()
     {
-        $this->expectException(BadMethodCallException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->resample(200, 200, 72, 72)
             ->density()
             ->out('test-200x200.png')
             ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**

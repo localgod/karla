@@ -75,20 +75,4 @@ class SizeTest extends PHPUnit\Framework\TestCase
             ->out('test-200x200.png')
             ->getCommand();
     }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function sizeNoArguments()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->size()
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
 }

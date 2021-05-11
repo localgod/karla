@@ -12,9 +12,11 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
+use Karla\Program;
 use Karla\Program\Identify;
 use Karla\Program\Convert;
 use Karla\Program\ImageMagick;
@@ -41,7 +43,7 @@ class Support
      * @return boolean
      * @throws \BadMethodCallException if called in a wrong context
      */
-    public static function gravity($program, $gravity)
+    public static function gravity(Program $program, string $gravity): bool
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Composite)) {
             $message = 'This method can not be used in this context. (' . get_class($program) . ')';
@@ -68,7 +70,7 @@ class Support
      *
      * @return boolean
      */
-    public static function imageTypes($program, $type)
+    public static function imageTypes(Program $program, string $type): bool
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             $message = 'This method can not be used in this context. (' . get_class($program) . ')';
@@ -95,7 +97,7 @@ class Support
      *
      * @return boolean
      */
-    public static function colorSpace($program, $colorSpace)
+    public static function colorSpace(Program $program, string $colorSpace): bool
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             $message = 'This method can not be used in this context. (' . get_class($program) . ')';
@@ -123,7 +125,7 @@ class Support
      * @return boolean
      * @throws \BadMethodCallException if called in a wrong context
      */
-    public static function layerMethod($program, $method)
+    public static function layerMethod(Program $program, string $method): bool
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');
@@ -150,7 +152,7 @@ class Support
      * @return boolean
      * @throws \BadMethodCallException if called in a wrong context
      */
-    public static function supportedFormat($program, $format)
+    public static function supportedFormat(Program $program, string $format): bool
     {
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');

@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -34,7 +35,7 @@ class Sepia implements Action
      *
      * @var integer
      */
-    private $threshold;
+    private int $threshold;
 
     /**
      * Construct a new size action
@@ -44,9 +45,9 @@ class Sepia implements Action
      *
      * @throws \InvalidArgumentException If The supplied threshold is not between 0 and 100
      */
-    public function __construct($threshold)
+    public function __construct(int $threshold)
     {
-        if (! is_integer($threshold) || $threshold > 100 || $threshold < 0) {
+        if ($threshold > 100 || $threshold < 0) {
             $message = 'The supplied threshold (' . $threshold . ') must be between 0 and 100';
             throw new \InvalidArgumentException($message);
         }
@@ -61,7 +62,7 @@ class Sepia implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('sepia-tone', Query::ARGUMENT_TYPE_OUTPUT);
         $query->setOutputOption(" -sepia-tone " . $this->threshold . '% ');

@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
@@ -45,21 +46,21 @@ class Query
      *
      * @var boolean
      */
-    private $dirty;
+    private bool $dirty;
 
     /**
      * Input option
      *
      * @var Array
      */
-    protected $inputOptions;
+    protected array $inputOptions;
 
     /**
      * Output option
      *
      * @var Array
      */
-    protected $outputOptions;
+    protected array $outputOptions;
 
     /**
      * Set input option
@@ -166,7 +167,7 @@ class Query
      *
      * @throws \BadMethodCallException
      */
-    public function notWith($method, $argumentType)
+    public function notWith(string $method, int $argumentType): void
     {
         if ($argumentType == Query::ARGUMENT_TYPE_INPUT) {
             if ($this->isOptionSet($method, $this->inputOptions)) {
@@ -189,7 +190,7 @@ class Query
      *
      * @return string
      */
-    final public function prepareOptions(array $options)
+    final public function prepareOptions(array $options): string
     {
         foreach ($options as $option) {
             if ($option == '') {

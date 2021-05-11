@@ -97,54 +97,6 @@ class ResizeTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
-     */
-    public function resizeWithNoArguments()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resize()
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function resizeWithNonNumericWidth()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resize('christmas')
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function resizeWithNonNumericHeight()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resize(200, 'christmas')
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
      * @covers Karla\Program\Convert::resize
      *
      * @return void

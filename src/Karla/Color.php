@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
@@ -34,11 +35,11 @@ class Color
      *
      * @return boolean
      */
-    public static function validHexColor($color)
+    public static function validHexColor(string $color): bool
     {
         $expr = '#?(([a-fA-F0-9]){3}){1,2}';
 
-        return preg_match('/^' . $expr . '$/', $color);
+        return boolval(preg_match('/^' . $expr . '$/', $color));
     }
 
     /**
@@ -49,12 +50,12 @@ class Color
      *
      * @return boolean
      */
-    public static function validColorName($color)
+    public static function validColorName(string $color): bool
     {
         $expr = '(aqua)|(black)|(blue)|(fuchsia)|(gray)|(green)|(lime)|(maroon)|(navy)|
                 (olive)|(orange)|(purple)|(red)|(silver)|(teal)|(white)|(yellow)';
 
-        return preg_match('/^' . $expr . '$/', $color);
+        return boolval(preg_match('/^' . $expr . '$/', $color));
     }
 
     /**
@@ -65,13 +66,13 @@ class Color
      *
      * @return boolean
      */
-    public static function validRgbColor($color)
+    public static function validRgbColor(string $color): bool
     {
         $expr = '(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
                 \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,
                 \s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|
                 (rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\))';
 
-        return preg_match('/^' . $expr . '$/x', $color);
+        return boolval(preg_match('/^' . $expr . '$/x', $color));
     }
 }

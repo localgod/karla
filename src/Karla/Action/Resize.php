@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -49,34 +50,34 @@ class Resize implements Action
      *
      * @var integer
      */
-    private $width;
+    private int $width;
 
     /**
      * Height of new image
      *
      * @var integer
      */
-    private $height;
+    private int $height;
 
     /**
      * Maintain aspect ratio
      *
      * @var boolean
      */
-    private $maintainAspectRatio;
+    private bool $maintainAspectRatio;
 
     /**
      * Don't scale up
      *
      * @var boolean
      */
-    private $dontScaleUp;
+    private bool $dontScaleUp;
 
     /**
      * Default we ignored aspect ratio
      * @var string
      */
-    private $aspect = self::ASPECT_FIT;
+    private string $aspect = self::ASPECT_FIT;
 
     /**
      * Construct a new size action
@@ -94,7 +95,7 @@ class Resize implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect = Resize::ASPECT_FIT)
+    public function __construct(int|null $width, int|null $height, bool $maintainAspectRatio, bool $dontScaleUp, string $aspect = Resize::ASPECT_FIT)
     {
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
@@ -108,22 +109,13 @@ class Resize implements Action
             $message = 'height must be an integer value or empty.';
             throw new InvalidArgumentException($message);
         }
-        if (! is_bool($maintainAspectRatio)) {
-            $message = 'maintainAspectRatio must be an boolean value.';
-            throw new InvalidArgumentException($message);
-        }
-        if (! is_bool($dontScaleUp)) {
-            $message = 'dontScaleUp must be an boolean value.';
-            throw new InvalidArgumentException($message);
-        }
-
         if (!in_array($aspect, array(Resize::ASPECT_FIT, Resize::ASPECT_FILL))) {
             $message = sprintf('aspect must be "%s" or "%s".', Resize::ASPECT_FIT, Resize::ASPECT_FILL);
             throw new \InvalidArgumentException($message);
         }
 
-        $this->width = (int) $width;
-        $this->height = (int) $height;
+        $this->width = $width;
+        $this->height = $height;
         $this->maintainAspectRatio = $maintainAspectRatio;
         $this->dontScaleUp = $dontScaleUp;
         $this->aspect = $aspect;
@@ -137,7 +129,7 @@ class Resize implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('resize', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('resample', Query::ARGUMENT_TYPE_INPUT);

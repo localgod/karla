@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -34,14 +35,14 @@ class Resample implements Action
      *
      * @var integer
      */
-    private $newWidth;
+    private int $newWidth;
 
     /**
      * New height
      *
      * @var integer
      */
-    private $newHeight;
+    private int $newHeight;
 
     /**
      * Construct a new size action
@@ -53,21 +54,10 @@ class Resample implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($newWidth, $newHeight)
+    public function __construct(int $newWidth, int|null $newHeight)
     {
-        if (! is_numeric($newWidth)) {
-            $message = 'You must supply new width as a integer.
-                    Was (' . $newWidth . ')';
-            throw new \InvalidArgumentException($message);
-        }
-        if ($newHeight != '' && ! is_numeric($newHeight)) {
-            $message = 'You must supply new height as a integer or as an empty string.
-                    Was (' . $newHeight . ')';
-            throw new \InvalidArgumentException($message);
-        }
-
-        $this->newWidth = (int) $newWidth;
-        $this->newHeight = (int) $newHeight;
+        $this->newWidth = $newWidth;
+        $newHeight == null ? $this->newHeight = 0 : $this->newHeight = $newHeight;
     }
 
     /**
@@ -78,7 +68,7 @@ class Resample implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('resample', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('resize', Query::ARGUMENT_TYPE_INPUT);

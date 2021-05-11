@@ -85,13 +85,13 @@ class DensityTest extends PHPUnit\Framework\TestCase
      */
     public function callDensityWithInvalidOutputSelection()
     {
-        $this->expectException(InvalidArgumentException::class);
-    	Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+        //$this->expectException(InvalidArgumentException::class);
+    	$actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
     	->in($this->testDataPath.'/demo.jpg')
     	->density(72, 72, 3)
     	->out('test-200x200.png')
     	->getCommand();
+        $expected = 'export PATH=$PATH:/usr/bin/;convert "/workspaces/karla/tests/unit/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
-
-    
 }

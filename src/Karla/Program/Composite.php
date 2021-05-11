@@ -12,7 +12,8 @@
  * @since    2012-04-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Program;
 
 /**
@@ -67,7 +68,7 @@ class Composite extends ImageMagick
      * @return Composite
      * @see ImageMagick::raw()
      */
-    public function raw($arguments, $input = true)
+    public function raw($arguments, $input = true): self
     {
         parent::raw($arguments, $input);
         return $this;

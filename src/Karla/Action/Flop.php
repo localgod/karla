@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -36,7 +37,7 @@ class Flop implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('flop', Query::ARGUMENT_TYPE_INPUT);
         $query->setInputOption(" -flop ");

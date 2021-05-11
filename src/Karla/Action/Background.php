@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -33,19 +34,19 @@ class Background implements Action
     /**
      * Color
      *
-     * @var integer
+     * @var string
      */
-    private $color;
+    private string $color;
 
     /**
      * Construct new background action
      *
-     * @param integer $color
+     * @param string $color
      *            Color
      *
      * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
-    public function __construct($color)
+    public function __construct(string $color)
     {
         if (Color::validHexColor($color) || Color::validRgbColor($color) || Color::validColorName($color)) {
             $this->color = $color;
@@ -62,7 +63,7 @@ class Background implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('background', Query::ARGUMENT_TYPE_INPUT);
         if (Color::validColorName($this->color)) {

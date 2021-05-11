@@ -55,7 +55,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
             ->resample(200, 200, 72, 72)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72  -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -102,77 +102,14 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      */
     public function resampleWithDensity()
     {
-        $this->expectException(BadMethodCallException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->density()
             ->resample(200, 200, 72, 72)
             ->out('test-200x200.png')
             ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function resampleWidthNotNumeric()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resample("christmas", 200, 72, 72)
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function resampleHeightNotNumeric()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resample(200, "christmas", 72, 72)
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function resampleOriginalHeightNotNumeric()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resample(200, 200, 72, "christmas")
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
-    public function resampleOriginalWidthNotNumeric()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->resample(200, 200, "christmas", 72)
-            ->out('test-200x200.png')
-            ->getCommand();
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $this->assertEquals($expected, $actual);
     }
 
     /**

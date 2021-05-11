@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -34,21 +35,21 @@ class Density implements Action
      *
      * @var integer
      */
-    private $width;
+    private int $width;
 
     /**
      * Height
      *
      * @var integer
      */
-    private $height;
+    private int $height;
 
     /**
      * Is it an output argument
      *
      * @var boolean
      */
-    private $output;
+    private bool $output;
 
     /**
      * Set the density of the output image.
@@ -63,22 +64,10 @@ class Density implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height, $output)
+    public function __construct(int $width, int $height, bool $output)
     {
-        if (! is_numeric($width)) {
-            $message = 'Width must be numeric values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($height)) {
-            $message = 'Height must be numeric values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_bool($output)) {
-            $message = 'Output must be a boolean values in the density method';
-            throw new \InvalidArgumentException($message);
-        }
-        $this->width = (int) $width;
-        $this->height = (int) $height;
+        $this->width = $width;
+        $this->height = $height;
         $this->output = $output;
     }
 
@@ -91,7 +80,7 @@ class Density implements Action
      * @see Action::perform()
      * @throws \BadMethodCallException if density has already been called
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('density', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('density', Query::ARGUMENT_TYPE_OUTPUT);

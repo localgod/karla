@@ -12,7 +12,8 @@
  * @since    2012-04-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
@@ -31,12 +32,12 @@ interface Program
      *
      * @return string
      */
-    public function execute();
+    public function execute(): string|object;
 
     /**
      * Get the command to run
      *
      * @return string
      */
-    public function getCommand();
+    public function getCommand(): string;
 }

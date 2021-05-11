@@ -58,20 +58,4 @@ class RotateTest extends PHPUnit\Framework\TestCase
         $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -rotate "45"  -background "#ffffff" "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"';
         $this->assertEquals($expected, $actual);
     }
-    
-    /**
-     * Test
-     *
-     * @test
-     * @return crop
-     */
-    public function rotateWithInvalidDegreeArgument()
-    {
-        $this->expectException(InvalidArgumentException::class);
-    	Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-    	->in($this->testDataPath.'/demo.jpg')
-    	->rotate('two')
-    	->out('test-200x200.png')
-    	->getCommand();
-    }
 }

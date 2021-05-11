@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -34,7 +35,7 @@ class Polaroid implements Action
      *
      * @var integer
      */
-    private $angle;
+    private int $angle;
 
     /**
      * Construct a new polaroid action
@@ -44,7 +45,7 @@ class Polaroid implements Action
      *
      * @throws \InvalidArgumentException If the supplied angle is not an integer between 0 and 360.
      */
-    public function __construct($angle)
+    public function __construct(int $angle)
     {
         if (! is_numeric($angle) || $angle > 360 || $angle < 0) {
             $message = 'The supplied angle (' . $angle . ') must be an integer between 0 and 360';
@@ -61,7 +62,7 @@ class Polaroid implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('polaroid', Query::ARGUMENT_TYPE_INPUT);
         $query->setInputOption(" -polaroid " . $this->angle . '');

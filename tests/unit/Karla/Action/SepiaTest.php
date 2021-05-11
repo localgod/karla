@@ -82,22 +82,6 @@ class SepiaTest extends PHPUnit\Framework\TestCase
      * @test
      * @return void
      */
-    public function sepiaInvalidThreshold()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->sepia('bobby')
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
     public function sepiaInvalidThresholdNumber()
     {
         $this->expectException(InvalidArgumentException::class);

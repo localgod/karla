@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -34,7 +35,7 @@ class Rotate implements Action
      *
      * @var integer
      */
-    private $degree;
+    private int $degree;
 
     /**
      * Rotate image
@@ -44,13 +45,9 @@ class Rotate implements Action
      *
      * @throws \InvalidArgumentException if degree is not an integer value
      */
-    public function __construct($degree)
+    public function __construct(int $degree)
     {
-        if (! is_numeric($degree)) {
-            $message = 'degree must be an integer value';
-            throw new \InvalidArgumentException($message);
-        }
-        $this->degree = (int) $degree;
+        $this->degree = $degree;
     }
 
     /**
@@ -61,7 +58,7 @@ class Rotate implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('rotate', Query::ARGUMENT_TYPE_INPUT);
         $query->setInputOption(' -rotate "' . $this->degree . '"');

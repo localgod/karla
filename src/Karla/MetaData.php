@@ -12,7 +12,8 @@
  * @since    2012-04-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
@@ -31,70 +32,70 @@ class MetaData extends \SplFileInfo
      *
      * @var string[]
      */
-    private $verboseImageinfo;
+    private array $verboseImageinfo;
 
     /**
      * Raw image info
      *
-     * @var string
+     * @var array
      */
-    private $imageinfo;
+    private array $imageinfo;
 
     /**
      * The image format.
      *
      * @var string
      */
-    private $format;
+    private string $format;
 
     /**
      * The image depth.
      *
      * @var integer
      */
-    private $depth;
+    private int $depth;
 
     /**
      * The image colorspace.
      *
      * @var string
      */
-    private $colorspace;
+    private string $colorspace;
 
     /**
      * The image geometry
      *
      * @var array
      */
-    private $geometry;
+    private array $geometry;
 
     /**
      * The image resolution
      *
      * @var array
      */
-    private $resolution;
+    private array $resolution;
 
     /**
      * The resolution unit is measured in Pixels Per Inch
      *
      * @var boolean
      */
-    private $isPpi;
+    private bool $isPpi;
 
     /**
      * The resolution unit is measured in Pixels Per Centimeter
      *
      * @var boolean
      */
-    private $isPpc;
+    private bool $isPpc;
 
     /**
      * Are we scanning in verbose output from identify
      *
      * @var boolean
      */
-    private $verbose;
+    private bool $verbose;
 
     /**
      * Construct a new image file.
@@ -104,7 +105,7 @@ class MetaData extends \SplFileInfo
      * @param boolean $verbose
      *            Should input be parsed as verbose
      */
-    public function __construct($imageinfo, $verbose = false)
+    public function __construct(string $imageinfo, bool $verbose = false)
     {
         $this->verbose = $verbose;
         if ($this->verbose) {
@@ -141,7 +142,7 @@ class MetaData extends \SplFileInfo
      *
      * @return array
      */
-    private function getResolution()
+    private function getResolution(): array
     {
         if ($this->verbose) {
             if ($this->isPpc) {
@@ -165,11 +166,10 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    public function getResolutionHeight()
+    public function getResolutionHeight(): int|null
     {
         $res = $this->getResolution();
-
-        return isset($res[1]) ? $res[1] : null;
+        return isset($res[1]) ? (int) $res[1] : null;
     }
 
     /**
@@ -177,11 +177,11 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    public function getResolutionWidth()
+    public function getResolutionWidth(): int|null
     {
         $res = $this->getResolution();
 
-        return isset($res[0]) ? $res[0] : null;
+        return isset($res[0]) ? (int) $res[0] : null;
     }
 
     /**
@@ -189,7 +189,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }
@@ -199,7 +199,7 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    public function getDepth()
+    public function getDepth(): int
     {
         return $this->depth;
     }
@@ -209,7 +209,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    public function getColorspace()
+    public function getColorspace(): string
     {
         return $this->colorspace;
     }
@@ -219,7 +219,7 @@ class MetaData extends \SplFileInfo
      *
      * @return array
      */
-    public function getGeometry()
+    public function getGeometry(): array
     {
         return $this->geometry;
     }
@@ -229,9 +229,9 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    public function getHeight()
+    public function getHeight(): int
     {
-        return $this->geometry[1];
+        return (int) $this->geometry[1];
     }
 
     /**
@@ -239,9 +239,9 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    public function getWidth()
+    public function getWidth(): int
     {
-        return $this->geometry[0];
+        return (int) $this->geometry[0];
     }
 
     /**
@@ -249,7 +249,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    public function listRaw()
+    public function listRaw(): string
     {
         $output = array();
         $output[] = "<ul>";
@@ -275,7 +275,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    private function parseFilename()
+    private function parseFilename(): string
     {
         return $this->verbose ? $this->parseVerbose('Image') : $this->parse('Image');
     }
@@ -283,16 +283,16 @@ class MetaData extends \SplFileInfo
     /**
      * Search for file format
      *
-     * @return string
+     * @return void
      */
-    private function parseFileformat()
+    private function parseFileformat(): void
     {
         $format = $this->verbose ? $this->parseVerbose('Format') : $this->parse('Format');
         $matches = [];
         preg_match("/^[\s]*[A-Z0-9]+/", $format, $matches);
         if (count($matches) == 1) {
             $this->format = strtolower(trim($matches[0]));
-        }
+        } 
     }
 
     /**
@@ -302,7 +302,7 @@ class MetaData extends \SplFileInfo
      *
      * @return void
      */
-    private function parseGeometry()
+    private function parseGeometry(): void
     {
         $geometry = $this->verbose ? $this->parseVerbose('Geometry') : $this->parse('Geometry');
         $matches = [];
@@ -317,7 +317,7 @@ class MetaData extends \SplFileInfo
      *
      * @return void
      */
-    private function parseColorspace()
+    private function parseColorspace(): void
     {
         $colorspace = $this->verbose ? $this->parseVerbose('Colorspace') : $this->parse('Colorspace');
         $matches = [];
@@ -330,7 +330,7 @@ class MetaData extends \SplFileInfo
      *
      * @return void
      */
-    private function parseDepth()
+    private function parseDepth(): void
     {
         $depth = $this->verbose ? $this->parseVerbose('Depth') : $this->parse('Depth');
         $matches = [];
@@ -343,7 +343,7 @@ class MetaData extends \SplFileInfo
      *
      * @return void
      */
-    private function parseResolution()
+    private function parseResolution(): void
     {
         $resolution = $this->verbose ? $this->parseVerbose('Resolution') : $this->parse('Resolution');
         $this->resolution = explode("x", $resolution);
@@ -358,7 +358,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    private function parseVerbose($search)
+    private function parseVerbose($search): string
     {
         foreach ($this->verboseImageinfo as $line) {
             if (preg_match("/^" . $search . ":/", trim($line))) {
@@ -376,7 +376,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    private function parse($search)
+    private function parse($search): string
     {
         return $this->imageinfo[$search];
     }
@@ -388,7 +388,7 @@ class MetaData extends \SplFileInfo
      *
      * @return void
      */
-    private function parseUnits()
+    private function parseUnits(): void
     {
         $units = $this->verbose ? $this->parseVerbose('Units') : $this->parse('Units');
         switch ($units) {
@@ -419,7 +419,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    public function getUnit()
+    public function getUnit(): string
     {
         if ($this->isPpi) {
             return 'Pixels Per Inch';
@@ -436,7 +436,7 @@ class MetaData extends \SplFileInfo
      *
      * @return string
      */
-    public function getHash($hash = 'md5')
+    public function getHash(string $hash = 'md5'): string
     {
         if ($hash == 'md5') {
             return md5_file($this->getPathname());
@@ -453,7 +453,7 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    private function ppc2ppi($value)
+    private function ppc2ppi(int $value): int
     {
         return intval(floor($value * 0.3937008));
     }
@@ -466,7 +466,7 @@ class MetaData extends \SplFileInfo
      *
      * @return integer
      */
-    private function ppi2ppc($value)
+    private function ppi2ppc(int $value): int
     {
         return intval(floor($value * 2.54));
     }

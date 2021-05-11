@@ -12,9 +12,11 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Action;
 
+use Karla\Program;
 use Karla\Query;
 use Karla\Action;
 use Karla\Support;
@@ -36,7 +38,7 @@ class Gravity implements Action
      *
      * @var string
      */
-    private $gravity;
+    private string $gravity;
 
     /**
      * Construct a new gravity action
@@ -48,7 +50,7 @@ class Gravity implements Action
      *
      * @throws \InvalidArgumentException If the supplied gravity is not supported by imagemagick.
      */
-    public function __construct($program, $gravity)
+    public function __construct(Program $program, string $gravity)
     {
         if (! Support::gravity($program, $gravity)) {
             $message = 'The supplied gravity (' . $gravity . ') is not supported by imagemagick';
@@ -65,7 +67,7 @@ class Gravity implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('gravity', Query::ARGUMENT_TYPE_INPUT);
         $query->setInputOption(" -gravity " . $this->gravity);

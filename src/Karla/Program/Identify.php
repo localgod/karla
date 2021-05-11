@@ -12,7 +12,8 @@
  * @since    2012-04-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Program;
 
 /**
@@ -68,7 +69,7 @@ class Identify extends ImageMagick
      * @see Imagemagick#execute()
      * @return string|\Karla\MetaData
      */
-    public function execute($reset = true, $raw = true)
+    public function execute($reset = true, $raw = true): string|object
     {
         $result = parent::execute(false);
 
@@ -90,7 +91,7 @@ class Identify extends ImageMagick
      *
      * @return Identify
      */
-    public function verbose()
+    public function verbose(): self
     {
         $this->getQuery()->notWith('verbose', \Karla\Query::ARGUMENT_TYPE_INPUT);
         $this->getQuery()->setInputOption("-verbose ");
@@ -104,7 +105,7 @@ class Identify extends ImageMagick
      * @see Imagemagick#getCommand()
      * @return string
      */
-    public function getCommand()
+    public function getCommand(): string
     {
         ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
@@ -123,7 +124,7 @@ class Identify extends ImageMagick
      * @return Identify
      * @see ImageMagick::raw()
      */
-    public function raw($arguments, $input = true)
+    public function raw($arguments, $input = true): self
     {
         parent::raw($arguments, $input);
 

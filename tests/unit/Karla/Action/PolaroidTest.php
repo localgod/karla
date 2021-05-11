@@ -82,22 +82,6 @@ class PolaroidTest extends PHPUnit\Framework\TestCase
      * @test
      * @return void
      */
-    public function polaroidInvalidAngle()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->polaroid('four')
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
     public function polaroidToBigAngle()
     {
         $this->expectException(InvalidArgumentException::class);

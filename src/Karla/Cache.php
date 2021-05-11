@@ -12,7 +12,8 @@
  * @since    2012-04-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
@@ -38,7 +39,7 @@ interface Cache
      *
      * @return boolean
      */
-    public function isCached($inputFile, $outputFile, $options);
+    public function isCached(string $inputFile, string $outputFile, array $options): bool;
 
     /**
      * Get cached version of the file
@@ -52,7 +53,7 @@ interface Cache
      *
      * @return string
      */
-    public function getCached($inputFile, $outputFile, $options);
+    public function getCached(string $inputFile, string $outputFile, array $options): string;
 
     /**
      * Set cached version of the file
@@ -66,5 +67,5 @@ interface Cache
      *
      * @return void
      */
-    public function setCache($inputFile, $outputFile, $options);
+    public function setCache(string $inputFile, string $outputFile, string $options): void;
 }

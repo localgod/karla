@@ -98,22 +98,6 @@ class QualityTest extends PHPUnit\Framework\TestCase
      * @test
      * @return void
      */
-    public function qualityNotANumber()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
-            ->in($this->testDataPath.'/demo.jpg')
-            ->quality('pdf')
-            ->out('test-200x200.png')
-            ->getCommand();
-    }
-
-    /**
-     * Test
-     *
-     * @test
-     * @return void
-     */
     public function qualityNotAValidQuality()
     {
         $this->expectException(RangeException::class);

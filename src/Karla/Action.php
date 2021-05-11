@@ -12,7 +12,8 @@
  * @since    2013-05-26
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 use Karla\Query;
@@ -34,5 +35,5 @@ interface Action
      *            The query to add the action to
      * @return Query
      */
-    public function perform(Query $query);
+    public function perform(Query $query): Query;
 }

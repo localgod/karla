@@ -12,7 +12,8 @@
  * @since    2010-06-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
@@ -30,14 +31,14 @@ class Karla
      *
      * @var string $binPath imagemagick binary
      */
-    private $binPath;
+    private string $binPath;
 
     /**
      * Cache controller
      *
      * @var Cache
      */
-    private $cache;
+    private Cache|null $cache;
 
     /**
      * Instance of a imagmagick object.
@@ -57,7 +58,7 @@ class Karla
      * @return Karla
      * @throws \InvalidArgumentException
      */
-    public static function perform($binPath = '/opt/local/bin/', Cache $cache = null)
+    public static function perform(string $binPath = '/opt/local/bin/', Cache|null $cache = null): Karla
     {
         if (! (Karla::$instance instanceof Karla)) {
             try {
@@ -80,7 +81,7 @@ class Karla
      *
      * @throws \InvalidArgumentException if path for imagemagick is invalid
      */
-    private function __construct($binPath, $cache)
+    private function __construct(string $binPath, Cache|null $cache)
     {
         if (! file_exists($binPath)) {
             throw new \InvalidArgumentException('Bin path not found');
@@ -108,7 +109,7 @@ class Karla
      * @return string Result of the command if any
      * @throws \InvalidArgumentException if you try to run a non ImageMagick program
      */
-    public function raw($program, $arguments = "")
+    public function raw(string $program, string $arguments = ""): string
     {
         if (! Program\ImageMagick::validProgram($program)) {
             throw new \InvalidArgumentException('ImageMagick could not be located at specified path');
@@ -123,7 +124,7 @@ class Karla
      *
      * @return Program\Convert
      */
-    public function convert()
+    public function convert(): Program\Convert
     {
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
             Program\ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : Program\ImageMagick::IMAGEMAGICK_CONVERT;
@@ -136,7 +137,7 @@ class Karla
      *
      * @return Program\Identify
      */
-    public function identify()
+    public function identify(): Program\Identify
     {
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
             Program\ImageMagick::IMAGEMAGICK_IDENTIFY . '.exe' : Program\ImageMagick::IMAGEMAGICK_IDENTIFY;
@@ -149,7 +150,7 @@ class Karla
      *
      * @return Program\Composite
      */
-    public function composite()
+    public function composite(): Program\Composite
     {
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
             Program\ImageMagick::IMAGEMAGICK_COMPOSITE . '.exe' : Program\ImageMagick::IMAGEMAGICK_COMPOSITE;

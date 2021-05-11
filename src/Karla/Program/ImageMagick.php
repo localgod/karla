@@ -12,7 +12,8 @@
  * @since    2012-04-05
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Karla\Program;
 
 use Karla\Query;
@@ -111,28 +112,28 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @var string
      */
-    public $binPath;
+    public string $binPath;
 
     /**
      * Name of binary
      *
      * @var string
      */
-    protected $bin;
+    protected string $bin;
 
     /**
      * Cache controller
      *
      * @var Cache
      */
-    protected $cache;
+    protected Cache|null $cache;
 
     /**
      * The current query
      *
      * @var Query
      */
-    private $query;
+    private Query $query;
 
     /**
      * Contructs a new program
@@ -146,7 +147,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @throws \InvalidArgumentException
      */
-    final public function __construct($binPath, $bin, $cache = null)
+    final public function __construct(string $binPath, string $bin, \Karla\Cache|null $cache = null)
     {
         if ($binPath == '') {
             throw new \InvalidArgumentException('Invalid bin path');
@@ -166,7 +167,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return Query
      */
-    public function getQuery()
+    public function getQuery(): Query
     {
         return $this->query;
     }
@@ -179,7 +180,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return void
      */
-    public function setQuery(Query $query)
+    public function setQuery(Query $query): void
     {
         $this->query = $query;
     }
@@ -189,7 +190,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return void
      */
-    final public function __clone()
+    final public function __clone(): void
     {
         throw new \BadMethodCallException("Clone is not allowed");
     }
@@ -199,7 +200,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return string
      */
-    public function getCommand()
+    public function getCommand(): string
     {
         return $this->binPath . $this->bin;
     }
@@ -212,7 +213,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return string
      */
-    public function execute($reset = true)
+    public function execute(bool $reset = true): string|object
     {
         $result = shell_exec($this->getCommand());
         if ($reset) {
@@ -230,15 +231,16 @@ abstract class ImageMagick implements \Karla\Program
      * @param boolean $input
      *            Defaults to an input option, use false to use it as an output option
      *
-     * @return void
+     * @return self
      */
-    public function raw($arguments, $input = true)
+    public function raw(string $arguments, bool $input = true): self
     {
         if ($input) {
             $this->getQuery()->setInputOption($arguments);
         } else {
             $this->getQuery()->setOutputOption($arguments);
         }
+        return $this;
     }
 
     /**
@@ -249,7 +251,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return boolean
      */
-    final public static function validProgram($program)
+    final public static function validProgram(string $program): bool
     {
         $class = new \ReflectionClass(__CLASS__);
         $constants = $class->getConstants();
