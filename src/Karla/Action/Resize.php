@@ -95,8 +95,13 @@ class Resize implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(int|null $width, int|null $height, bool $maintainAspectRatio, bool $dontScaleUp, string $aspect = Resize::ASPECT_FIT)
-    {
+    public function __construct(
+        int|null $width,
+        int|null $height,
+        bool $maintainAspectRatio,
+        bool $dontScaleUp,
+        string $aspect = Resize::ASPECT_FIT
+    ) {
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
             throw new InvalidArgumentException($message);

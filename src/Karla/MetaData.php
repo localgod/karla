@@ -292,7 +292,7 @@ class MetaData extends \SplFileInfo
         preg_match("/^[\s]*[A-Z0-9]+/", $format, $matches);
         if (count($matches) == 1) {
             $this->format = strtolower(trim($matches[0]));
-        } 
+        }
     }
 
     /**

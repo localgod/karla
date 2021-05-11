@@ -346,16 +346,19 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function resample(int $newWidth, int|null $newHeight = null, int|null $originalWidth = null, int|null $originalHeight = null): self
-    {
-        /*
-        if ($originalWidth != null && $originalHeight != null {
+    public function resample(
+        int $newWidth,
+        int|null $newHeight = null,
+        int|null $originalWidth = null,
+        int|null $originalHeight = null
+    ): self {
+        if ($originalWidth != null && $originalHeight != null) {
             $this->density($originalWidth, $originalHeight, false);
         }
-        if ($originalWidth != null && $originalHeight == null {
+        if ($originalWidth != null && $originalHeight == null) {
             $this->density($originalWidth, $originalWidth, false);
         }
-*/
+
         $action = new Resample($newWidth, $newHeight);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;

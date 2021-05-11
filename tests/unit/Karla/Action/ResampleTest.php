@@ -55,7 +55,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
             ->resample(200, 200, 72, 72)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -density 72x72  -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 
@@ -102,14 +102,13 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      */
     public function resampleWithDensity()
     {
-        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+        $this->expectException(BadMethodCallException::class);
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->density()
             ->resample(200, 200, 72, 72)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" -density 72x72 "./test-200x200.png"';
-        $this->assertEquals($expected, $actual);
     }
 
     /**
