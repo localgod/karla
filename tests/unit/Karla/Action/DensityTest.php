@@ -91,7 +91,7 @@ class DensityTest extends PHPUnit\Framework\TestCase
     	->density(72, 72, 3)
     	->out('test-200x200.png')
     	->getCommand();
-        $expected = 'export PATH=$PATH:/usr/bin/;convert "/workspaces/karla/tests/unit/_data/demo.jpg" -density 72x72 "./test-200x200.png"';
+        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "'.$this->testDataPath.'/demo.jpg" -density 72x72 "./test-200x200.png"';
         $this->assertEquals($expected, $actual);
     }
 }
