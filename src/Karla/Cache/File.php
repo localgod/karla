@@ -1,22 +1,26 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
+declare(strict_types=1);
+
 namespace Karla\Cache;
 
 /**
  * Class for file caching
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -28,7 +32,7 @@ class File implements \Karla\Cache
      *
      * @var string
      */
-    private $cacheDir;
+    private string $cacheDir;
 
     /**
      * Create a new file cache
@@ -38,7 +42,7 @@ class File implements \Karla\Cache
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($dirName)
+    public function __construct(string $dirName)
     {
         $this->setCacheDir($dirName);
     }
@@ -54,7 +58,7 @@ class File implements \Karla\Cache
      * @throws \InvalidArgumentException if path was not writeable
      * @throws \InvalidArgumentException if path was a directoy
      */
-    private function setCacheDir($dirName)
+    private function setCacheDir(string $dirName): void
     {
         if (! file_exists($dirName)) {
             throw new \InvalidArgumentException("Path not found", 0);
@@ -76,7 +80,7 @@ class File implements \Karla\Cache
      *
      * @return string
      */
-    private function options2string($options)
+    private function options2string(array $options): string
     {
         $output = array();
         foreach ($options as $option) {
@@ -105,9 +109,9 @@ class File implements \Karla\Cache
      * @param string[] $options
      *            Options
      *
-     * @return boolean
+     * @return string
      */
-    private function cacheName($inputFile, $outputFile, $options)
+    private function cacheName(string $inputFile, string $outputFile, array $options): string
     {
         $inputFile = str_replace('"', '', $inputFile);
         $outputFile = str_replace('"', '', $outputFile);
@@ -128,7 +132,7 @@ class File implements \Karla\Cache
      *
      * @return boolean
      */
-    public function isCached($inputFile, $outputFile, $options)
+    public function isCached(string $inputFile, string $outputFile, array $options): bool
     {
         $filename = $this->cacheName($inputFile, $outputFile, $options);
         return file_exists($filename);
@@ -146,7 +150,7 @@ class File implements \Karla\Cache
      *
      * @return string
      */
-    public function getCached($inputFile, $outputFile, $options)
+    public function getCached(string $inputFile, string $outputFile, array $options): string
     {
         return $this->cacheName($inputFile, $outputFile, $options);
     }
@@ -163,7 +167,7 @@ class File implements \Karla\Cache
      *
      * @return void
      */
-    public function setCache($inputFile, $outputFile, $options)
+    public function setCache(string $inputFile, string $outputFile, string $options): void
     {
         $filename = $this->cacheName($inputFile, $outputFile, $options);
         file_put_contents($filename, file_get_contents(str_replace('"', '', $outputFile)));

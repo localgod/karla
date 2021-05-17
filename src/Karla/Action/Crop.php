@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -19,7 +23,7 @@ use Karla\Action;
  * Class for handeling crop action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -30,25 +34,25 @@ class Crop implements Action
      * Width
      * @var integer
      */
-    private $width;
+    private int|null $width;
 
     /**
      * Height
      * @var integer
      */
-    private $height;
+    private int|null $height;
 
     /**
      * X offset
      * @var integer
      */
-    private $xOffset;
+    private int $xOffset;
 
     /**
      * Y offset
      * @var integer
      */
-    private $yOffset;
+    private int $yOffset;
 
     /**
      * Construct a new crop action
@@ -64,29 +68,12 @@ class Crop implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height, $xOffset, $yOffset)
+    public function __construct(int|null $width, int|null $height, int $xOffset, int $yOffset)
     {
-        if (! is_numeric($width) && $width != '') {
-            $message = 'width must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($height) && $height != '') {
-            $message = 'height must be an integer value or empty.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($xOffset)) {
-            $message = 'xOffset must be an integer value.';
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($yOffset)) {
-            $message = 'yOffset must be an integer value.';
-            throw new \InvalidArgumentException($message);
-        }
-
-        $this->width = (int) $width;
-        $this->height = (int) $height;
-        $this->xOffset = (int) $xOffset;
-        $this->yOffset = (int) $yOffset;
+        $this->width = $width;
+        $this->height = $height;
+        $this->xOffset = $xOffset;
+        $this->yOffset = $yOffset;
     }
 
     /**
@@ -97,7 +84,7 @@ class Crop implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('crop', Query::ARGUMENT_TYPE_INPUT);
 

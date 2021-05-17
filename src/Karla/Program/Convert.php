@@ -1,19 +1,23 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
+declare(strict_types=1);
+
 namespace Karla\Program;
 
-use \InvalidArgumentException;
-use \RuntimeException;
+use InvalidArgumentException;
+use RuntimeException;
 use Karla\Action\Resize;
 use Karla\Action\Gravity;
 use Karla\Action\Density;
@@ -42,7 +46,7 @@ use Karla\Query;
  * Class for wrapping ImageMagicks convert tool
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -72,7 +76,7 @@ class Convert extends ImageMagick implements Program
      * @return Convert
      * @throws \InvalidArgumentException
      */
-    public function in($filePath)
+    public function in(string $filePath): self
     {
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
@@ -99,7 +103,7 @@ class Convert extends ImageMagick implements Program
      * @throws \InvalidArgumentException
      * @todo Implement include options to filename
      */
-    public function out($filePath, $includeOptions = false)
+    public function out(string $filePath, bool $includeOptions = false): self
     {
         $pathinfo = pathinfo($filePath);
         if (! file_exists($pathinfo['dirname'])) {
@@ -127,7 +131,7 @@ class Convert extends ImageMagick implements Program
      * @see ImageMagick::getCommand()
      * @return string
      */
-    public function getCommand()
+    public function getCommand(): string
     {
         if ($this->outputFile == '') {
             throw new RuntimeException('Can not perform convert without an output file');
@@ -151,7 +155,7 @@ class Convert extends ImageMagick implements Program
      * @see ImageMagick::execute()
      * @return string
      */
-    public function execute()
+    public function execute($reset = true): string
     {
         if ($this->cache instanceof Cache) {
             ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
@@ -188,7 +192,7 @@ class Convert extends ImageMagick implements Program
      * @return Convert
      * @see ImageMagick::raw()
      */
-    public function raw($arguments, $input = true)
+    public function raw(string $arguments, bool $input = true): self
     {
         parent::raw($arguments, $input);
 
@@ -203,7 +207,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function gravity($gravity)
+    public function gravity(string $gravity): self
     {
         $action = new Gravity($this, $gravity);
         $this->setQuery($action->perform($this->getQuery()));
@@ -223,7 +227,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function density($width = 72, $height = 72, $output = true)
+    public function density(int $width = 72, int $height = 72, bool $output = true): self
     {
         $action = new Density($width, $height, $output);
         $this->setQuery($action->perform($this->getQuery()));
@@ -240,7 +244,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function profile($profilePath = "", $profileName = "")
+    public function profile(string $profilePath = "", string $profileName = ""): self
     {
         $action = new Profile($profilePath, $profileName);
         $this->setQuery($action->perform($this->getQuery()));
@@ -257,7 +261,7 @@ class Convert extends ImageMagick implements Program
      *
      * @todo get list of profiles from image (can be done by identify but might be too expensive)
      */
-    public function removeProfile($profileName)
+    public function removeProfile(string $profileName): self
     {
         $action = new Profile('', $profileName, true);
         $this->setQuery($action->perform($this->getQuery()));
@@ -275,7 +279,7 @@ class Convert extends ImageMagick implements Program
      * @return Convert
      * @throws \InvalidArgumentException
      */
-    public function changeProfile($profilePathFrom, $profilePathTo)
+    public function changeProfile(string $profilePathFrom, string $profilePathTo): self
     {
         $this->getQuery()->notWith('profile', Query::ARGUMENT_TYPE_OUTPUT);
         try {
@@ -299,13 +303,13 @@ class Convert extends ImageMagick implements Program
      *
      * @param integer $degree
      *            Degrees to rotate the image
-     * @param integer $background
+     * @param string $background
      *            The background color to apply to empty triangles in the corners,
      *            left over from rotating the image
      *
      * @return Convert
      */
-    public function rotate($degree, $background = '#ffffff')
+    public function rotate(int $degree, string $background = '#ffffff'): self
     {
         $action = new Rotate($degree);
         $this->setQuery($action->perform($this->getQuery()));
@@ -321,7 +325,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function background($color)
+    public function background(string $color): self
     {
         $action = new Background($color);
         $this->setQuery($action->perform($this->getQuery()));
@@ -342,12 +346,16 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function resample($newWidth, $newHeight = "", $originalWidth = "", $originalHeight = "")
-    {
-        if ($originalWidth != "" && $originalHeight != "") {
+    public function resample(
+        int $newWidth,
+        int|null $newHeight = null,
+        int|null $originalWidth = null,
+        int|null $originalHeight = null
+    ): self {
+        if ($originalWidth != null && $originalHeight != null) {
             $this->density($originalWidth, $originalHeight, false);
         }
-        if ($originalWidth != "" && $originalHeight == "") {
+        if ($originalWidth != null && $originalHeight == null) {
             $this->density($originalWidth, $originalWidth, false);
         }
 
@@ -366,7 +374,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function size($width = "", $height = "")
+    public function size(int|null $width, int|null $height): self
     {
         $action = new Size($width, $height);
         $this->setQuery($action->perform($this->getQuery()));
@@ -378,7 +386,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function flatten()
+    public function flatten(): self
     {
         $action = new Flatten();
         $this->setQuery($action->perform($this->getQuery()));
@@ -390,7 +398,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function strip()
+    public function strip(): self
     {
         $action = new Strip();
         $this->setQuery($action->perform($this->getQuery()));
@@ -402,7 +410,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function flip()
+    public function flip(): self
     {
         $action = new Flip();
         $this->setQuery($action->perform($this->getQuery()));
@@ -414,7 +422,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function flop()
+    public function flop(): self
     {
         $action = new Flop();
         $this->setQuery($action->perform($this->getQuery()));
@@ -429,7 +437,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function type($type)
+    public function type(string $type): self
     {
         $action = new Type($this, $type);
         $this->setQuery($action->perform($this->getQuery()));
@@ -444,7 +452,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function layers($method)
+    public function layers(string $method): self
     {
         $action = new Layers($this, $method);
         $this->setQuery($action->perform($this->getQuery()));
@@ -467,8 +475,13 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function resize($width = "", $height = "", $maintainAspectRatio = true, $dontScaleUp = true, $aspect = Resize::ASPECT_FIT)
-    {
+    public function resize(
+        int| null $width,
+        int| null $height,
+        bool $maintainAspectRatio = true,
+        bool $dontScaleUp = true,
+        string $aspect = Resize::ASPECT_FIT
+    ): self {
         $action = new Resize($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect);
         $this->setQuery($action->perform($this->getQuery()));
         return $this;
@@ -488,7 +501,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function crop($width, $height, $xOffset = 0, $yOffset = 0)
+    public function crop(int $width, int $height, int $xOffset = 0, int $yOffset = 0): self
     {
         $action = new Crop($width, $height, $xOffset, $yOffset);
         $this->setQuery($action->perform($this->getQuery()));
@@ -505,7 +518,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function quality($quality, $format = 'jpeg')
+    public function quality(int $quality, string $format = 'jpeg'): self
     {
         $action = new Quality($quality, $format);
         $this->setQuery($action->perform($this->getQuery()));
@@ -520,7 +533,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function colorspace($colorSpace)
+    public function colorspace(string $colorSpace): self
     {
         $action = new Colorspace($this, $colorSpace);
         $this->setQuery($action->perform($this->getQuery()));
@@ -530,12 +543,12 @@ class Convert extends ImageMagick implements Program
     /**
      * Sepia tone the image
      *
-     * @param string $threshold
+     * @param integer $threshold
      *            The threshold to use
      *
      * @return Convert
      */
-    public function sepia($threshold = 80)
+    public function sepia(int $threshold = 80): self
     {
         $action = new Sepia($threshold);
         $this->setQuery($action->perform($this->getQuery()));
@@ -550,7 +563,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function polaroid($angle = 0)
+    public function polaroid(int $angle = 0): self
     {
         $action = new Polaroid($angle);
         $this->setQuery($action->perform($this->getQuery()));
@@ -565,7 +578,7 @@ class Convert extends ImageMagick implements Program
      *
      * @return Convert
      */
-    public function bordercolor($color = '#DFDFDF')
+    public function bordercolor(string $color = '#DFDFDF'): self
     {
         $action = new Bordercolor($color);
         $this->setQuery($action->perform($this->getQuery()));

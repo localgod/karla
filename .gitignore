@@ -1,10 +1,8 @@
 /composer.lock
-/composer.phar
 /bin
 /vendor
-/data
-/.buildpath
-/.project
-/.settings
-/target
-/build/tools/*.phar
+/clover.xml
+/junit.xml
+/coverage
+/tests/unit/.phpunit.result.cache
+/tests/unit/_cache/*

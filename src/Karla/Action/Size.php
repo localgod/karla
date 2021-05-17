@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -19,7 +23,7 @@ use Karla\Action;
  * Class for handeling size action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -31,14 +35,14 @@ class Size implements Action
      *
      * @var integer
      */
-    private $width;
+    private int $width;
 
     /**
      * Height
      *
      * @var integer
      */
-    private $height;
+    private int $height;
 
     /**
      * Construct a new size action
@@ -47,17 +51,11 @@ class Size implements Action
      *            New width
      * @param integer $height
      *            New height
-     *
-     * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height)
+    public function __construct(int $width, int $height)
     {
-        if ($width == "" && $height == "") {
-            $message = 'You must supply height or width or both to size the image';
-            throw new \InvalidArgumentException($message);
-        }
-        $this->width = (int) $width;
-        $this->height = (int) $height;
+        $this->width = $width;
+        $this->height = $height;
     }
 
     /**
@@ -68,7 +66,7 @@ class Size implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('size', Query::ARGUMENT_TYPE_INPUT);
 

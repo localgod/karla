@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -19,7 +23,7 @@ use Karla\Action;
  * Class for handeling profile action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -31,21 +35,21 @@ class Profile implements Action
      *
      * @var string
      */
-    private $profilePath;
+    private string $profilePath;
 
     /**
      * Profile name
      *
      * @var string
      */
-    private $profileName;
-    
+    private string $profileName;
+
     /**
      * Remove profile
      *
      * @var boolean
      */
-    private $remove;
+    private bool $remove;
 
     /**
      * Construct a new profile action
@@ -60,7 +64,7 @@ class Profile implements Action
      * @throws \LogicException profilePath or profileName must be set, but not both.
      * @throws \InvalidArgumentException If profile input file (' . $profilePath . ') could not be found.
      */
-    public function __construct($profilePath = "", $profileName = "", $remove = false)
+    public function __construct(string $profilePath = "", string $profileName = "", $remove = false)
     {
         if (($profilePath == '' && $profileName == '') || ($profilePath != '' && $profileName != '')) {
             $message = 'profilePath or profileName must be set, but not both.';
@@ -84,12 +88,12 @@ class Profile implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         if ($this->profilePath != '') {
-            $query->setOutputOption(' '. ($this->remove ? '+' : '-') .'profile "' . $this->profilePath . '" ');
+            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile "' . $this->profilePath . '" ');
         } else {
-            $query->setOutputOption(' '. ($this->remove ? '+' : '-') .'profile ' . $this->profileName);
+            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . $this->profileName);
         }
 
         return $query;

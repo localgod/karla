@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -19,7 +23,7 @@ use Karla\Action;
  * Class for handeling rotate action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -31,7 +35,7 @@ class Rotate implements Action
      *
      * @var integer
      */
-    private $degree;
+    private int $degree;
 
     /**
      * Rotate image
@@ -41,13 +45,9 @@ class Rotate implements Action
      *
      * @throws \InvalidArgumentException if degree is not an integer value
      */
-    public function __construct($degree)
+    public function __construct(int $degree)
     {
-        if (! is_numeric($degree)) {
-            $message = 'degree must be an integer value';
-            throw new \InvalidArgumentException($message);
-        }
-        $this->degree = (int) $degree;
+        $this->degree = $degree;
     }
 
     /**
@@ -58,7 +58,7 @@ class Rotate implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('rotate', Query::ARGUMENT_TYPE_INPUT);
         $query->setInputOption(' -rotate "' . $this->degree . '"');

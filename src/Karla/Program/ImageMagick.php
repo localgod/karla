@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
+declare(strict_types=1);
+
 namespace Karla\Program;
 
 use Karla\Query;
@@ -19,7 +23,7 @@ use Karla\Cache;
  * Class for wrapping ImageMagick arguments used by all tools
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -31,105 +35,105 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @var string
      */
-    const IMAGEMAGICK_ANIMATE = 'animate';
+    public const IMAGEMAGICK_ANIMATE = 'animate';
 
     /**
      * ImageMagick tool compare
      *
      * @var string
      */
-    const IMAGEMAGICK_COMPARE = 'compare';
+    public const IMAGEMAGICK_COMPARE = 'compare';
 
     /**
      * ImageMagick tool composite
      *
      * @var string
      */
-    const IMAGEMAGICK_COMPOSITE = 'composite';
+    public const IMAGEMAGICK_COMPOSITE = 'composite';
 
     /**
      * ImageMagick tool
      *
      * @var string
      */
-    const IMAGEMAGICK_CONJURE = 'conjure';
+    public const IMAGEMAGICK_CONJURE = 'conjure';
 
     /**
      * ImageMagick tool conjure
      *
      * @var string
      */
-    const IMAGEMAGICK_CONVERT = 'convert';
+    public const IMAGEMAGICK_CONVERT = 'convert';
 
     /**
      * ImageMagick tool display
      *
      * @var string
      */
-    const IMAGEMAGICK_DISPLAY = 'display';
+    public const IMAGEMAGICK_DISPLAY = 'display';
 
     /**
      * ImageMagick tool identify
      *
      * @var string
      */
-    const IMAGEMAGICK_IDENTIFY = 'identify';
+    public const IMAGEMAGICK_IDENTIFY = 'identify';
 
     /**
      * ImageMagick tool import
      *
      * @var string
      */
-    const IMAGEMAGICK_IMPORT = 'import';
+    public const IMAGEMAGICK_IMPORT = 'import';
 
     /**
      * ImageMagick tool mogrify
      *
      * @var string
      */
-    const IMAGEMAGICK_MOGRIFY = 'mogrify';
+    public const IMAGEMAGICK_MOGRIFY = 'mogrify';
 
     /**
      * ImageMagick tool montage
      *
      * @var string
      */
-    const IMAGEMAGICK_MONTAGE = 'montage';
+    public const IMAGEMAGICK_MONTAGE = 'montage';
 
     /**
      * ImageMagick tool stream
      *
      * @var string
      */
-    const IMAGEMAGICK_STREAM = 'stream';
+    public const IMAGEMAGICK_STREAM = 'stream';
 
     /**
      * Path to binaries
      *
      * @var string
      */
-    public $binPath;
+    public string $binPath;
 
     /**
      * Name of binary
      *
      * @var string
      */
-    protected $bin;
+    protected string $bin;
 
     /**
      * Cache controller
      *
      * @var Cache
      */
-    protected $cache;
+    protected Cache|null $cache;
 
     /**
      * The current query
      *
      * @var Query
      */
-    private $query;
+    private Query $query;
 
     /**
      * Contructs a new program
@@ -143,7 +147,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @throws \InvalidArgumentException
      */
-    final public function __construct($binPath, $bin, $cache = null)
+    final public function __construct(string $binPath, string $bin, \Karla\Cache|null $cache = null)
     {
         if ($binPath == '') {
             throw new \InvalidArgumentException('Invalid bin path');
@@ -163,7 +167,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return Query
      */
-    public function getQuery()
+    public function getQuery(): Query
     {
         return $this->query;
     }
@@ -176,7 +180,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return void
      */
-    public function setQuery(Query $query)
+    public function setQuery(Query $query): void
     {
         $this->query = $query;
     }
@@ -186,7 +190,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return void
      */
-    final public function __clone()
+    final public function __clone(): void
     {
         throw new \BadMethodCallException("Clone is not allowed");
     }
@@ -196,7 +200,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return string
      */
-    public function getCommand()
+    public function getCommand(): string
     {
         return $this->binPath . $this->bin;
     }
@@ -209,7 +213,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return string
      */
-    public function execute($reset = true)
+    public function execute(bool $reset = true): string|object
     {
         $result = shell_exec($this->getCommand());
         if ($reset) {
@@ -227,15 +231,16 @@ abstract class ImageMagick implements \Karla\Program
      * @param boolean $input
      *            Defaults to an input option, use false to use it as an output option
      *
-     * @return void
+     * @return self
      */
-    public function raw($arguments, $input = true)
+    public function raw(string $arguments, bool $input = true): self
     {
         if ($input) {
             $this->getQuery()->setInputOption($arguments);
         } else {
             $this->getQuery()->setOutputOption($arguments);
         }
+        return $this;
     }
 
     /**
@@ -246,7 +251,7 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @return boolean
      */
-    final public static function validProgram($program)
+    final public static function validProgram(string $program): bool
     {
         $class = new \ReflectionClass(__CLASS__);
         $constants = $class->getConstants();

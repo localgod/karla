@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -19,7 +23,7 @@ use Karla\Action;
  * Class for handeling quality action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -31,14 +35,14 @@ class Quality implements Action
      *
      * @var integer
      */
-    private $quality;
+    private int $quality;
 
     /**
      * The format to use
      *
      * @var string
      */
-    private $format;
+    private string $format;
 
     /**
      * Construct a new quality action
@@ -51,21 +55,17 @@ class Quality implements Action
      * @throws \InvalidArgumentException
      * @throws \RangeException
      */
-    public function __construct($quality, $format)
+    public function __construct(int $quality, string $format)
     {
         if (! preg_match('/^jpeg|jpg|png$/', $format)) {
             $message = "'quality()' is only supported for the jpeg and png format. Used (" . $format . ")";
-            throw new \InvalidArgumentException($message);
-        }
-        if (! is_numeric($quality)) {
-            $message = "quality argument must be an integer value. Used (" . $quality . ")";
             throw new \InvalidArgumentException($message);
         }
         if (! ($quality >= 0 && $quality <= 100)) {
             $message = "quality argument must be between 0 and 100 both inclusive. Used (" . $quality . ")";
             throw new \RangeException($message);
         }
-        $this->quality = (int) $quality;
+        $this->quality = $quality;
         $this->format = $format;
     }
 
@@ -77,7 +77,7 @@ class Quality implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('quality', Query::ARGUMENT_TYPE_INPUT);
 

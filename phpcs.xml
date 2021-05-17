@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="PHP_CodeSniffer">
-	<description>visual-phpunit</description>
+	<description>Karla</description>
 
 	<file>src</file>
 
@@ -10,5 +10,5 @@
 	<arg name="report" value="full" />
 	<arg value="sp" />
 
-	<rule ref="PSR2" />
+	<rule ref="PSR12" />
 </ruleset>

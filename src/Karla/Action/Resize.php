@@ -1,26 +1,30 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Class for handeling resize action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -32,48 +36,48 @@ class Resize implements Action
      *
      * @var string
      */
-    const ASPECT_FILL = 'aspect_fill';
-    
+    public const ASPECT_FILL = 'aspect_fill';
+
     /**
      * Ignored aspect ratio
      *
      * @var string
      */
-    const ASPECT_FIT = 'aspect_fit';
+    public const ASPECT_FIT = 'aspect_fit';
 
     /**
      * Width of new image
      *
      * @var integer
      */
-    private $width;
+    private int $width;
 
     /**
      * Height of new image
      *
      * @var integer
      */
-    private $height;
+    private int $height;
 
     /**
      * Maintain aspect ratio
      *
      * @var boolean
      */
-    private $maintainAspectRatio;
+    private bool $maintainAspectRatio;
 
     /**
      * Don't scale up
      *
      * @var boolean
      */
-    private $dontScaleUp;
+    private bool $dontScaleUp;
 
     /**
      * Default we ignored aspect ratio
      * @var string
      */
-    private $aspect = self::ASPECT_FIT;
+    private string $aspect = self::ASPECT_FIT;
 
     /**
      * Construct a new size action
@@ -91,8 +95,13 @@ class Resize implements Action
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($width, $height, $maintainAspectRatio, $dontScaleUp, $aspect = Resize::ASPECT_FIT)
-    {
+    public function __construct(
+        int|null $width,
+        int|null $height,
+        bool $maintainAspectRatio,
+        bool $dontScaleUp,
+        string $aspect = Resize::ASPECT_FIT
+    ) {
         if ($width == "" && $height == "") {
             $message = 'You must supply height or width or both to resize the image';
             throw new InvalidArgumentException($message);
@@ -105,22 +114,13 @@ class Resize implements Action
             $message = 'height must be an integer value or empty.';
             throw new InvalidArgumentException($message);
         }
-        if (! is_bool($maintainAspectRatio)) {
-            $message = 'maintainAspectRatio must be an boolean value.';
-            throw new InvalidArgumentException($message);
-        }
-        if (! is_bool($dontScaleUp)) {
-            $message = 'dontScaleUp must be an boolean value.';
-            throw new InvalidArgumentException($message);
-        }
-
         if (!in_array($aspect, array(Resize::ASPECT_FIT, Resize::ASPECT_FILL))) {
             $message = sprintf('aspect must be "%s" or "%s".', Resize::ASPECT_FIT, Resize::ASPECT_FILL);
             throw new \InvalidArgumentException($message);
         }
 
-        $this->width = (int) $width;
-        $this->height = (int) $height;
+        $this->width = $width;
+        $this->height = $height;
         $this->maintainAspectRatio = $maintainAspectRatio;
         $this->dontScaleUp = $dontScaleUp;
         $this->aspect = $aspect;
@@ -134,7 +134,7 @@ class Resize implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('resize', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('resample', Query::ARGUMENT_TYPE_INPUT);

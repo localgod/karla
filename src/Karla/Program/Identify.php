@@ -1,22 +1,26 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
+declare(strict_types=1);
+
 namespace Karla\Program;
 
 /**
  * Class for wrapping ImageMagicks identify tool
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -65,7 +69,7 @@ class Identify extends ImageMagick
      * @see Imagemagick#execute()
      * @return string|\Karla\MetaData
      */
-    public function execute($reset = true, $raw = true)
+    public function execute($reset = true, $raw = true): string|object
     {
         $result = parent::execute(false);
 
@@ -87,7 +91,7 @@ class Identify extends ImageMagick
      *
      * @return Identify
      */
-    public function verbose()
+    public function verbose(): self
     {
         $this->getQuery()->notWith('verbose', \Karla\Query::ARGUMENT_TYPE_INPUT);
         $this->getQuery()->setInputOption("-verbose ");
@@ -101,7 +105,7 @@ class Identify extends ImageMagick
      * @see Imagemagick#getCommand()
      * @return string
      */
-    public function getCommand()
+    public function getCommand(): string
     {
         ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
@@ -120,7 +124,7 @@ class Identify extends ImageMagick
      * @return Identify
      * @see ImageMagick::raw()
      */
-    public function raw($arguments, $input = true)
+    public function raw($arguments, $input = true): self
     {
         parent::raw($arguments, $input);
 

@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla\Action;
 
 use Karla\Query;
@@ -20,7 +24,7 @@ use Karla\Color;
  * Class for handeling background action
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -30,19 +34,19 @@ class Background implements Action
     /**
      * Color
      *
-     * @var integer
+     * @var string
      */
-    private $color;
+    private string $color;
 
     /**
      * Construct new background action
      *
-     * @param integer $color
+     * @param string $color
      *            Color
      *
      * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
-    public function __construct($color)
+    public function __construct(string $color)
     {
         if (Color::validHexColor($color) || Color::validRgbColor($color) || Color::validColorName($color)) {
             $this->color = $color;
@@ -59,7 +63,7 @@ class Background implements Action
      * @return Query
      * @see Action::perform()
      */
-    public function perform(Query $query)
+    public function perform(Query $query): Query
     {
         $query->notWith('background', Query::ARGUMENT_TYPE_INPUT);
         if (Color::validColorName($this->color)) {

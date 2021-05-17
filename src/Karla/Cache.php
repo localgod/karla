@@ -1,22 +1,26 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2012-04-05
  */
+
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
  * Interface for Karla caching tools
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -35,7 +39,7 @@ interface Cache
      *
      * @return boolean
      */
-    public function isCached($inputFile, $outputFile, $options);
+    public function isCached(string $inputFile, string $outputFile, array $options): bool;
 
     /**
      * Get cached version of the file
@@ -49,7 +53,7 @@ interface Cache
      *
      * @return string
      */
-    public function getCached($inputFile, $outputFile, $options);
+    public function getCached(string $inputFile, string $outputFile, array $options): string;
 
     /**
      * Set cached version of the file
@@ -63,5 +67,5 @@ interface Cache
      *
      * @return void
      */
-    public function setCache($inputFile, $outputFile, $options);
+    public function setCache(string $inputFile, string $outputFile, string $options): void;
 }

@@ -1,22 +1,26 @@
 <?php
+
 /**
  * Karla ImageMagick wrapper library
  *
- * PHP Version 5.3<
+ * PHP Version 8.0<
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  * @since    2013-05-26
  */
+
+declare(strict_types=1);
+
 namespace Karla;
 
 /**
  * Class for maintaining query info
  *
  * @category Utility
- * @author   Johannes Skov Frandsen <localgod@heaven.dk>
+ * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
  * @link     https://github.com/localgod/karla Karla
  */
@@ -28,35 +32,35 @@ class Query
      *
      * @var interger
      */
-    const ARGUMENT_TYPE_INPUT = 0;
+    public const ARGUMENT_TYPE_INPUT = 0;
 
     /**
      * This argument is to be considered for the output image
      *
      * @var integer
      */
-    const ARGUMENT_TYPE_OUTPUT = 1;
+    public const ARGUMENT_TYPE_OUTPUT = 1;
 
     /**
      * Is the object dirty (has any arguments been set)
      *
      * @var boolean
      */
-    private $dirty;
+    private bool $dirty;
 
     /**
      * Input option
      *
      * @var Array
      */
-    protected $inputOptions;
+    protected array $inputOptions;
 
     /**
      * Output option
      *
      * @var Array
      */
-    protected $outputOptions;
+    protected array $outputOptions;
 
     /**
      * Set input option
@@ -163,7 +167,7 @@ class Query
      *
      * @throws \BadMethodCallException
      */
-    public function notWith($method, $argumentType)
+    public function notWith(string $method, int $argumentType): void
     {
         if ($argumentType == Query::ARGUMENT_TYPE_INPUT) {
             if ($this->isOptionSet($method, $this->inputOptions)) {
@@ -186,7 +190,7 @@ class Query
      *
      * @return string
      */
-    final public function prepareOptions(array $options)
+    final public function prepareOptions(array $options): string
     {
         foreach ($options as $option) {
             if ($option == '') {
