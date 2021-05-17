@@ -23,8 +23,7 @@ Karla is a ImageMagick wrapper written in php with support for method chaining.
  
 ### Platform support
 
-Karla is developed on OSX/Linux but Windows support is build in and **should** work. 
-Windows support is **not** tested during automated build.
+Karla is developed on OSX/Linux but Windows support is build in. 
 
 ### Documentation
 

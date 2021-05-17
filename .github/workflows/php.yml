@@ -1,7 +1,12 @@
 name: Main
 on:
   push:
-    branches: [ php8_version ]
+    branches:
+      - master
+      - 'feature/**'
+      - 'releases/**'
+    tags-ignore:
+      - v1.0.0
   pull_request:
     branches: [ php8_version ]
 jobs:
@@ -19,7 +24,7 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
-        coverage: xdebug #optional
+        coverage: xdebug
     - name: Check PHP Version
       run: php -v
 
@@ -54,31 +59,31 @@ jobs:
       with:
         name: coverage
         path: coverage/
-#  publish:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-#    - uses: actions/checkout@v2
-#      with:
-#        ref: gh-pages
-#        persist-credentials: false
-#        fetch-depth: 0
-#    - name: Remove old coverage
-#      run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
-#    - uses: actions/download-artifact@v2
-#      with:
-#        name: coverage
-#        path: coverage
-#    - name: list dir
-#      run: ls -la coverage
-#    - name: Commit files
-#      run: |
-#        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-#        git config --local user.name "github-actions[bot]"
-#        git add -A
-#        git commit -m "Updated coverage report"
-#    - name: Push changes
-#      uses: ad-m/github-push-action@master
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        branch: gh-pages
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Remove old coverage
+      run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
+    - uses: actions/download-artifact@v2
+      with:
+        name: coverage
+        path: coverage
+    - name: list dir
+      run: ls -la coverage
+    - name: Commit files
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add -A
+        git commit -m "Updated coverage report"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
