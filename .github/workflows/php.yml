@@ -9,8 +9,9 @@ jobs:
     strategy:
       matrix:
         php-versions: ['8.0']
+        os: ['ubuntu-latest','windows-latest','macOS-latest']
     runs-on: ubuntu-latest
-    name: PHP ${{ matrix.php-versions }} on ubuntu-latest
+    name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup PHP, with composer and extensions
@@ -38,17 +39,17 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Check style
-      run: make style
+      run: composer run cs
 
     - name: Unit test
-      run: make unit
+      run: composer run unit
       env:
         XDEBUG_MODE: coverage
 
     - name: BDD test
-      run: make integration
+      run: composer run integration
 
-    - name: Coverage report
+    - name: Save coverage report
       uses: actions/upload-artifact@v2
       with:
         name: coverage

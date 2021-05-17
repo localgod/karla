@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="PHP_CodeSniffer">
-	<description>visual-phpunit</description>
+	<description>Karla</description>
 
 	<file>src</file>
 

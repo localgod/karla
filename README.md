@@ -11,7 +11,13 @@ Karla is a ImageMagick wrapper written in php with support for method chaining.
 
 ## Requirements
 
- * Php version 7.3 or newer build with the following extension: pcre, SPL (default build-in in most distributions)
+ * Php version 8.0 or newer build with the following extension: pcre, SPL (default build-in in most distributions)
+ * Your php setup needs to allow [shell_exec()](http://php.net/manual/en/function.shell-exec.php)
+ * [ImageMagick](http://www.imagemagick.org/)
+
+### Legacy version
+
+ * For release 1.0.0 Php version 5.3.3 or newer build with the following extension: pcre, SPL (default build-in in most distributions)
  * Your php setup needs to allow [shell_exec()](http://php.net/manual/en/function.shell-exec.php)
  * [ImageMagick](http://www.imagemagick.org/)
  

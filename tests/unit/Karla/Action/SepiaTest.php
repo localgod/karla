@@ -5,7 +5,7 @@ use Karla\Karla;
 /**
  * Sepia Test file
  *
- * PHP Version 7.4<
+ * PHP Version 8.0<
  *
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT
