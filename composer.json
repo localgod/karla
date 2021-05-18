@@ -15,7 +15,7 @@
 	],
 	"scripts": {
 		"unit": [
-			"./bin/phpunit --configuration ./tests/unit/phpunit.xml"
+			"./bin/phpunit  --testdox --configuration ./tests/unit/phpunit.xml"
 		],
 		"integration": [
 			"./bin/behat"
