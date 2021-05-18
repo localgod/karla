@@ -1,4 +1,4 @@
-[![Main](https://github.com/localgod/karla/actions/workflows/php.yml/badge.svg?branch=php8_version)](https://github.com/localgod/karla/actions/workflows/php.yml)
+[![Main](https://github.com/localgod/karla/actions/workflows/php.yml/badge.svg?branch=master)](https://github.com/localgod/karla/actions/workflows/php.yml)
 [![Latest Stable Version](https://poser.pugx.org/localgod/karla/v/stable)](https://packagist.org/packages/localgod/karla) 
 [![Total Downloads](https://poser.pugx.org/localgod/karla/downloads)](https://packagist.org/packages/localgod/karla) 
 [![Latest Unstable Version](https://poser.pugx.org/localgod/karla/v/unstable)](https://packagist.org/packages/localgod/karla) 
@@ -27,7 +27,7 @@ Karla is developed on OSX/Linux but Windows support is build in.
 
 ### Documentation
 
-You can see examples and read about Karla [here] (http://localgod.github.com/karla/). 
+You can see examples and read about Karla [here] (http://localgod.github.io/karla/). 
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Flocalgod%2Fkarla.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Flocalgod%2Fkarla?ref=badge_large)
