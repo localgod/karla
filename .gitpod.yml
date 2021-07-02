@@ -9,9 +9,9 @@ github:
     addBadge: true
 gitConfig:
     alias.st: status 
-image:
-  file: Dockerfile
-  context: .
+#image:
+#  file: Dockerfile
+#  context: .
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
