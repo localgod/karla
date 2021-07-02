@@ -1,7 +1,17 @@
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: false
+    addComment: false
+    addBadge: true
+gitConfig:
+    alias.st: status 
 image:
   file: Dockerfile
   context: .
-
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
