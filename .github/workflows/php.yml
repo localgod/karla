@@ -11,6 +11,7 @@ on:
     branches: [ master ]
 jobs:
   build:
+    if: github.event.pull_request.draft == false
     strategy:
       matrix:
         php-versions: ['8.0']
@@ -54,11 +55,21 @@ jobs:
     - name: BDD test
       run: composer run integration
 
+    - name: Generate docs site
+      run: |
+        npm install
+        npm run docs:build 
+
     - name: Save coverage report
       uses: actions/upload-artifact@v2
       with:
         name: coverage
         path: coverage/
+    - name: Save docs site
+      uses: actions/upload-artifact@v2
+      with:
+        name: docs
+        path: docs/.vuepress/dist
   publish:
     needs: build
     runs-on: ubuntu-latest
@@ -74,6 +85,10 @@ jobs:
       with:
         name: coverage
         path: coverage
+    - uses: actions/download-artifact@v2
+      with:
+        name: docs
+        path: .
     - name: list dir
       run: ls -la coverage
     - name: Commit files
@@ -81,7 +96,7 @@ jobs:
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -A
-        git commit -m "Updated coverage report"
+        git commit -m "Updated documentation"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

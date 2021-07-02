@@ -6,3 +6,7 @@
 /coverage
 /tests/unit/.phpunit.result.cache
 /tests/unit/_cache/*
+node_modules
+.temp
+.cache
+/docs/.vuepress/dist
