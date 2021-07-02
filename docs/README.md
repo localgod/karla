@@ -271,3 +271,7 @@ Karla::perform()->convert()->raw('-vignette 5x65000 -gaussian-blur 20')->in('dem
 ```bash
 convert -vignette 5x65000 -gaussian-blur 20 "demo.jpg" "demo-magic.png"
 ```
+
+## Test coverage
+
+[Unit test coverage](/karla/coverage)
