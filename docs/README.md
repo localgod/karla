@@ -52,7 +52,10 @@ Or you can just use [Composer](http://getcomposer.org/).
 ## Examples
 
 The following sections illustrates common operations performed with Imagick, Karla and in the console.
+
 ### Change format to png.
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo.png)
 
 #### Imagick code
 ```php
