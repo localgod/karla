@@ -11,6 +11,7 @@ on:
     branches: [ master ]
 jobs:
   build:
+    if: github.event.pull_request.draft == false
     strategy:
       matrix:
         php-versions: ['8.0']
@@ -95,7 +96,7 @@ jobs:
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -A
-        git commit -m "Updated coverage report"
+        git commit -m "Updated documentation"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

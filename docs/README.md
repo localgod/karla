@@ -74,6 +74,8 @@ convert "demo.jpg" "demo.png"
 ```
 ### Resize image
 
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-100x100.jpg)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -90,9 +92,9 @@ Karla::perform()->convert()->resize(100, 100)->in('demo.jpg')->out('demo-100x100
 convert -resize 100x100\> "demo.jpg" "demo-100x100.jpg"
 ```
 
-
-
 ### Change quality
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-low.jpg)
 
 #### Imagick code
 
@@ -112,9 +114,9 @@ Karla::perform()->convert()->quality(10)->in('demo.jpg')->out('demo-low.jpg')->e
 convert -quality 10 "demo.jpg" "demo-low.jpg"
 ```
 
-
-
 ### Crop image
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-crop.jpg)
 
 #### Imagick code
 ```php
@@ -133,7 +135,9 @@ convert -crop 100x100+50+50 +repage "demo.jpg" "demo-crop.jpg"
 ```
 
 ### Mirror image vertical
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-flip.jpg)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -150,9 +154,10 @@ Karla::perform()->convert()->flip()->in('demo.jpg')->out('demo-flip.jpg')->execu
 convert -flip "demo.jpg" "demo-flip.jpg"
 ```
 
-
 ### Mirror image horizontal
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-flop.jpg)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -170,7 +175,9 @@ convert -flop "demo.jpg" "demo-flop.jpg"
 ```  
 
 ### Grayscale image
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-grayscale.jpg)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -187,9 +194,10 @@ Karla::perform()->convert()->type('Grayscale')->in('demo.jpg')->out('demo-graysc
 convert -type Grayscale "demo.jpg" "demo-grayscale.jpg"
 ```   
 
-
 ### Sepia tone image
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-sepia.jpg)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -208,7 +216,9 @@ convert "demo.jpg" -sepia-tone 80% "demo-sepia.jpg"
 ```
 
 ### Add polaroid effect to image
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-polaroid.png)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -226,7 +236,9 @@ convert -polaroid -10  -bordercolor "#ffffff"  -background "#000000" "demo.jpg" 
 ```
 
 ### Rotate image 45 degrees left
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-rotate.png)
+
 #### Imagick code
 ```php
 $image = new Imagick();
@@ -244,7 +256,9 @@ convert -rotate "-45"  -background "gray" "demo.jpg" "demo-rotate.png"
 ```
 
 ### Do 'magic' stuff
-demo demo
+
+![Demo image](/karla/images/demo.jpg) ![Demo image](/karla/images/demo-magic.png)
+
 #### Imagick code
 ```php
 //Not possible (but you can achive a similar result) 
