@@ -31,7 +31,6 @@ use Karla\Support;
  */
 class Colorspace implements Action
 {
-
     /**
      * Colorspace
      *

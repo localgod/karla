@@ -30,7 +30,6 @@ use Karla\Color;
  */
 class Bordercolor implements Action
 {
-
     /**
      * Color
      *

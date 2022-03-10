@@ -26,7 +26,6 @@ namespace Karla;
  */
 interface Cache
 {
-
     /**
      * Check if there exists a cached version of the file
      *

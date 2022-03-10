@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Polaroid implements Action
 {
-
     /**
      * Angle
      *

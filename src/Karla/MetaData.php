@@ -26,7 +26,6 @@ namespace Karla;
  */
 class MetaData extends \SplFileInfo
 {
-
     /**
      * Raw image info
      *

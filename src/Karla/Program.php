@@ -26,7 +26,6 @@ namespace Karla;
  */
 interface Program
 {
-
     /**
      * Execute the command
      *

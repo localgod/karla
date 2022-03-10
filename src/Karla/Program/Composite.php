@@ -26,7 +26,6 @@ namespace Karla\Program;
  */
 class Composite extends ImageMagick
 {
-
     /**
      * Add base file argument
      *

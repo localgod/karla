@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Resample implements Action
 {
-
     /**
      * New width
      *

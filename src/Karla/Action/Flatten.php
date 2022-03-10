@@ -29,7 +29,6 @@ use Karla\Query;
  */
 class Flatten implements Action
 {
-
     /**
      * (non-PHPdoc)
      *

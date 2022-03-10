@@ -26,7 +26,6 @@ namespace Karla;
  */
 class Query
 {
-
     /**
      * This argument is to be considered for the input image
      *

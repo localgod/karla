@@ -26,7 +26,6 @@ namespace Karla\Program;
  */
 class Identify extends ImageMagick
 {
-
     /**
      * Input file
      *

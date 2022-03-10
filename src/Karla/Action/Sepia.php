@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Sepia implements Action
 {
-
     /**
      * Threshold
      *

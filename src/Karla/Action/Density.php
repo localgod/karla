@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Density implements Action
 {
-
     /**
      * Width
      *

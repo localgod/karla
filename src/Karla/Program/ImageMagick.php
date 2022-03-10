@@ -29,7 +29,6 @@ use Karla\Cache;
  */
 abstract class ImageMagick implements \Karla\Program
 {
-
     /**
      * ImageMagick tool animate
      *

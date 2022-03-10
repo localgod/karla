@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Size implements Action
 {
-
     /**
      * Width
      *

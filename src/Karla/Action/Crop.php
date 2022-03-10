@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Crop implements Action
 {
-
     /**
      * Width
      * @var integer

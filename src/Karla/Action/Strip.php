@@ -30,7 +30,6 @@ use Karla\Action;
  */
 class Strip implements Action
 {
-
     /**
      * (non-PHPdoc)
      *

@@ -32,7 +32,6 @@ use Karla\Karla;
  */
 class Gravity implements Action
 {
-
     /**
      * The gravity of the image
      *

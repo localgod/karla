@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Quality implements Action
 {
-
     /**
      * The quality to use
      *

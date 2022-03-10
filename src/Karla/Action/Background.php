@@ -30,7 +30,6 @@ use Karla\Color;
  */
 class Background implements Action
 {
-
     /**
      * Color
      *

@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Profile implements Action
 {
-
     /**
      * Profile path
      *

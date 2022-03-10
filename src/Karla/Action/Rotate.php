@@ -29,7 +29,6 @@ use Karla\Action;
  */
 class Rotate implements Action
 {
-
     /**
      * Degrees to rotate the image
      *

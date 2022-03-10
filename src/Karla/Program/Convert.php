@@ -52,7 +52,6 @@ use Karla\Query;
  */
 class Convert extends ImageMagick implements Program
 {
-
     /**
      * Input file
      *

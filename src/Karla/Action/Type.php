@@ -30,7 +30,6 @@ use Karla\Action;
  */
 class Type implements Action
 {
-
     /**
      * The type to use
      *

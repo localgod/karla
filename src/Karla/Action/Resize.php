@@ -30,7 +30,6 @@ use InvalidArgumentException;
  */
 class Resize implements Action
 {
-
     /**
      * Preserve aspect ratio
      *

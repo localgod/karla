@@ -26,7 +26,6 @@ namespace Karla\Cache;
  */
 class File implements \Karla\Cache
 {
-
     /**
      * Cache directory
      *

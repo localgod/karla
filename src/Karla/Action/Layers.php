@@ -31,7 +31,6 @@ use Karla\Support;
  */
 class Layers implements Action
 {
-
     /**
      * Method
      *

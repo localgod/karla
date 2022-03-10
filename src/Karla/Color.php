@@ -26,7 +26,6 @@ namespace Karla;
  */
 class Color
 {
-
     /**
      * Check if supplied color is a valid hex color
      *
