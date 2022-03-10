@@ -28,6 +28,8 @@ ARG php8_pecl_xdebug=3.0.4-r0
 ARG pcre_version=8.44-r0
 ARG php_major_version=php8
 ARG php_version=8.0.13-r0
+ARG nodejs_version=14.19.0-r0
+ARG npm_version=14.19.0-r0
 
 RUN for value in phar iconv openssl curl mbstring tokenizer xmlwriter simplexml dom xml fileinfo; do apk --update --no-cache add ${php_major_version}-${value}=${php_version}; done
 
@@ -38,6 +40,8 @@ RUN apk --update --no-cache add \
     imagemagick=${imagemagick_version} \
     jq=${jq_version} \
     make=${make_version} \
+    nodejs=${nodejs_version} \
+    npm=${npm_version} \
     pcre=${pcre_version} \
     php8=${php8_version} \
     php8-pecl-xdebug=${php8_pecl_xdebug}
