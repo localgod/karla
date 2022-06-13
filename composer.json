@@ -39,7 +39,7 @@
 	},
 	"require-dev": {
 		"behat/behat": "v3.10.0",
-		"squizlabs/php_codesniffer": "3.6.2",
+		"squizlabs/php_codesniffer": "3.7.0",
 		"phpunit/phpunit": "9.5.19"
 	},
 	"autoload": {
