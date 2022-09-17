@@ -7,11 +7,20 @@ github:
     addCheck: false
     addComment: false
     addBadge: true
+tasks:
+  - before: |
+      sudo apt update -y
+      sudo apt install -y php8.1-mbstring php8.1-dom php8.1-fileinfo php8.1-xdebug
+      php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      sudo php composer-setup.php
+      php -r "unlink('composer-setup.php');"
+      sudo mv composer.phar /usr/bin/composer
+      npm install -g npm@latest
+    init: |
+      composer install --prefer-dist
 gitConfig:
-    alias.st: status 
-#image:
-#  file: Dockerfile
-#  context: .
+  alias.st: status
+  alias.co: checkout
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
