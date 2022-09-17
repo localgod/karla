@@ -6,26 +6,38 @@ description: How to install and use Karla
 
 # Why would you want to use Karla
 
-For most people who starts working with [php](https://www.php.net/) and [ImageMagick](https://imagemagick.org/index.php) you either install the [PECL extension Imagick](https://pecl.php.net/package/imagick) or work directly with ImageMagick through [shell_exec()](https://www.php.net/manual/en/function.shell-exec).
+For most people who starts working with [php](https://www.php.net/) and
+[ImageMagick](https://imagemagick.org/index.php) you either install the
+[PECL extension Imagick](https://pecl.php.net/package/imagick) or work
+directly with ImageMagick through [shell_exec()](https://www.php.net/manual/en/function.shell-exec).
 
-While Imagick has a much bigger feature set than Karla ever will, it is still a limited implementation of all the features available in ImageMagick's toolbox. Karla allows you to access all of ImageMagick like with the shell_exec() approach, and have focused on making some commen operations convinient.
+While Imagick has a much bigger feature set than Karla ever will, it is
+still a limited implementation of all the features available in ImageMagick's
+toolbox. Karla allows you to access all of ImageMagick like with
+`the shell_exec()` approach, and have focused on making some commen operations
+convinient.
 
-Karla offers a subset of the functionalities that Imagick provides, but with two destinct differences which is why Karla was written:
+Karla offers a subset of the functionalities that Imagick provides, but with
+two destinct differences which is why Karla was written:
 
 - You can chain your argument so your image operations are more query like.
-- You have direct access to ImageMagick's console tools in a convenient way, should you need the full power of ImageMagick.
+- You have direct access to ImageMagick's console tools in a convenient way,
+  should you need the full power of ImageMagick.
 
-Karla is tested complient with the 7.3, 7.4 and 8.0 version of php, and have a decent suite of unittests.
+Karla is tested complient with the 7.3, 7.4 and 8.0 version of php, and have
+a decent suite of unittests.
 
 ## Requirements
 
-- Php version 8.0< build with the following extension: pcre, SPL (default build-in in most distributions)
+- Php version 8.0< build with the following extension: pcre, SPL (default
+  build-in in most distributions)
 - Your php setup need to allow shell_exec()
 - ImageMagick
 
 ### Legacy version
 
-- For release 1.0.0 Php version 5.3.3 or newer build with the following extension: pcre, SPL (default build-in in most distributions)
+- For release 1.0.0 Php version 5.3.3 or newer build with the following
+  extension: pcre, SPL (default build-in in most distributions)
 - Your php setup needs to allow shell_exec()
 - ImageMagick
 
@@ -50,13 +62,14 @@ Or you can just use [Composer](http://getcomposer.org/).
 
 ## Examples
 
-The following sections illustrates common operations performed with Imagick, Karla and in the console.
+The following sections illustrates common operations performed with Imagick,
+Karla and in the console.
 
-### Change format to png.
+### Change format to png
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo.png)
 
-#### Imagick code
+#### Imagick code (to png)
 
 ```php
 $image = new Imagick();
@@ -65,13 +78,13 @@ $image->setImageFormat('png');
 $image->writeImage('demo.png', true);
 ```
 
-#### Karla code
+#### Karla code (to png)
 
 ```php
 Karla::perform()->convert()->in('demo.jpg')->out('demo.png')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (to png)
 
 ```bash
 convert "demo.jpg" "demo.png"
@@ -81,7 +94,7 @@ convert "demo.jpg" "demo.png"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-100x100.jpg)
 
-#### Imagick code
+#### Imagick code (resize)
 
 ```php
 $image = new Imagick();
@@ -90,13 +103,13 @@ $image->resizeImage(200, 200, Imagick::FILTER_LANCZOS, 0.9, true);
 $image->writeImage('demo-100x100.jpg', true);
 ```
 
-#### Karla code
+#### Karla code (resize)
 
 ```php
 Karla::perform()->convert()->resize(100, 100)->in('demo.jpg')->out('demo-100x100.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (resize)
 
 ```bash
 convert -resize 100x100\> "demo.jpg" "demo-100x100.jpg"
@@ -106,7 +119,7 @@ convert -resize 100x100\> "demo.jpg" "demo-100x100.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-low.jpg)
 
-#### Imagick code
+#### Imagick code (quality)
 
 ```php
 $image = new Imagick();
@@ -116,13 +129,13 @@ $image->setImageCompressionQuality(10);
 $image->writeImage('demo-low.jpg');
 ```
 
-#### Karla code
+#### Karla code (quality)
 
 ```php
 Karla::perform()->convert()->quality(10)->in('demo.jpg')->out('demo-low.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (quality)
 
 ```bash
 convert -quality 10 "demo.jpg" "demo-low.jpg"
@@ -132,7 +145,7 @@ convert -quality 10 "demo.jpg" "demo-low.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-crop.jpg)
 
-#### Imagick code
+#### Imagick code (crop)
 
 ```php
 $image = new Imagick();
@@ -141,13 +154,13 @@ $image->cropImage(100, 100, 50, 50);
 $image->writeImage('demo-crop.jpg');
 ```
 
-#### Karla code
+#### Karla code (crop)
 
 ```php
 Karla::perform()->convert()->crop(100, 100, 50, 50)->in('demo.jpg')->out('demo-crop.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (crop)
 
 ```bash
 convert -crop 100x100+50+50 +repage "demo.jpg" "demo-crop.jpg"
@@ -157,7 +170,7 @@ convert -crop 100x100+50+50 +repage "demo.jpg" "demo-crop.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-flip.jpg)
 
-#### Imagick code
+#### Imagick code (mirror vertical)
 
 ```php
 $image = new Imagick();
@@ -166,13 +179,13 @@ $image->flipImage();
 $image->writeImage('demo-flip.jpg');
 ```
 
-#### Karla code
+#### Karla code (mirror vertical)
 
 ```php
 Karla::perform()->convert()->flip()->in('demo.jpg')->out('demo-flip.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (mirror vertical)
 
 ```bash
 convert -flip "demo.jpg" "demo-flip.jpg"
@@ -182,7 +195,7 @@ convert -flip "demo.jpg" "demo-flip.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-flop.jpg)
 
-#### Imagick code
+#### Imagick code (mirror horizontal)
 
 ```php
 $image = new Imagick();
@@ -191,13 +204,13 @@ $image->flopImage();
 $image->writeImage('demo-flop.jpg');
 ```
 
-#### Karla code
+#### Karla code (mirror horizontal)
 
 ```php
 Karla::perform()->convert()->flop()->in('demo.jpg')->out('demo-flop.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (mirror horizontal)
 
 ```bash
 convert -flop "demo.jpg" "demo-flop.jpg"
@@ -207,7 +220,7 @@ convert -flop "demo.jpg" "demo-flop.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-grayscale.jpg)
 
-#### Imagick code
+#### Imagick code (grayscale)
 
 ```php
 $image = new Imagick();
@@ -216,13 +229,13 @@ $image->modulateImage(100,0,100);
 $image->writeImage('demo-grayscale.jpg');
 ```
 
-#### Karla code
+#### Karla code (grayscale)
 
 ```php
 Karla::perform()->convert()->type('Grayscale')->in('demo.jpg')->out('demo-grayscale.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (grayscale)
 
 ```bash
 convert -type Grayscale "demo.jpg" "demo-grayscale.jpg"
@@ -232,7 +245,7 @@ convert -type Grayscale "demo.jpg" "demo-grayscale.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-sepia.jpg)
 
-#### Imagick code
+#### Imagick code (sepia)
 
 ```php
 $image = new Imagick();
@@ -241,13 +254,13 @@ $image->sepiaToneImage();
 $image->writeImage('demo-sepia.jpg');
 ```
 
-#### Karla code
+#### Karla code (sepia)
 
 ```php
 Karla::perform()->convert()->sepia(80)->in('demo.jpg')->out('demo-sepia.jpg')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (sepia)
 
 ```bash
 convert "demo.jpg" -sepia-tone 80% "demo-sepia.jpg"
@@ -257,7 +270,7 @@ convert "demo.jpg" -sepia-tone 80% "demo-sepia.jpg"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-polaroid.png)
 
-#### Imagick code
+#### Imagick code (polaroid)
 
 ```php
 $image = new Imagick();
@@ -266,13 +279,13 @@ $image->polaroidImage(new ImagickDraw(), 25);
 $image->writeImage('demo-sepia.jpg');
 ```
 
-#### Karla code
+#### Karla code (polaroid)
 
 ```php
 Karla::perform()->convert()->polaroid(-10)->borderColor('#ffffff')->background('#000000')->in('demo.jpg')->out('demo-polaroid.png')->execute();
 ```
 
-#### Imagemagick in console
+#### Imagemagick in console (polaroid)
 
 ```bash
 convert -polaroid -10  -bordercolor "#ffffff"  -background "#000000" "demo.jpg" "demo-polaroid.png"
@@ -282,7 +295,7 @@ convert -polaroid -10  -bordercolor "#ffffff"  -background "#000000" "demo.jpg" 
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-rotate.png)
 
-#### Imagick code
+#### Imagick code (rotate)
 
 ```php
 $image = new Imagick();
@@ -291,13 +304,13 @@ $image->rotateImage(new ImagickPixel('gray'), -45);
 $image->writeImage('demo-rotate.jpg');
 ```
 
-#### Karla query code
+#### Karla query code (rotate)
 
 ```php
 Karla::perform()->convert()->rotate(-45, 'gray')->in('demo.jpg')->out('demo-rotate.png')->execute();
 ```
 
-#### Imagemagick query
+#### Imagemagick query (rotate)
 
 ```bash
 convert -rotate "-45"  -background "gray" "demo.jpg" "demo-rotate.png"
@@ -307,19 +320,19 @@ convert -rotate "-45"  -background "gray" "demo.jpg" "demo-rotate.png"
 
 ![Demo image](/images/demo.jpg) ![Demo image](/images/demo-magic.png)
 
-#### Imagick code
+#### Imagick code (magic)
 
 ```php
 //Not possible (but you can achive a similar result)
 ```
 
-#### Karla query code
+#### Karla query code (magic)
 
 ```php
 Karla::perform()->convert()->raw('-vignette 5x65000 -gaussian-blur 20')->in('demo.jpg')->out('demo-magic.png')->execute();
 ```
 
-#### Imagemagick query
+#### Imagemagick query (magic)
 
 ```bash
 convert -vignette 5x65000 -gaussian-blur 20 "demo.jpg" "demo-magic.png"
