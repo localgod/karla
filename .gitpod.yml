@@ -16,6 +16,7 @@ tasks:
       php -r "unlink('composer-setup.php');"
       sudo mv composer.phar /usr/bin/composer
       npm install -g npm@latest
+      npm install -g markdownlint-cli
     init: |
       composer install --prefer-dist
 gitConfig:
