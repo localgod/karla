@@ -1,20 +1,9 @@
-github:
-  prebuilds:
-    master: true
-    branches: true
-    pullRequests: true
-    pullRequestsFromForks: true
-    addCheck: false
-    addComment: false
-    addBadge: true
+
 tasks:
   - before: |
       sudo apt update -y
-      sudo apt install -y php8.1-mbstring php8.1-dom php8.1-fileinfo php8.1-xdebug
-      php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-      sudo php composer-setup.php
-      php -r "unlink('composer-setup.php');"
-      sudo mv composer.phar /usr/bin/composer
+      sudo apt install -y php8.4-mbstring php8.4-dom php8.4-fileinfo php8.4-xdebug
+      curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
       npm install -g npm@latest
       npm install -g markdownlint-cli
     init: |

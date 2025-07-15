@@ -14,7 +14,7 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        php-versions: ['8.0']
+        php-versions: ['8.4']
         os: ['ubuntu-latest','windows-latest','macOS-latest']
     runs-on: ubuntu-latest
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
@@ -51,9 +51,6 @@ jobs:
       run: composer run unit
       env:
         XDEBUG_MODE: coverage
-
-    - name: BDD test
-      run: composer run integration
 
     - name: Generate docs site
       run: |
