@@ -4,7 +4,7 @@
   "description": "Karla Documentation",
   "devDependencies": {
     "@vuepress/bundler-vite": "^2.0.0-rc.25",
-    "@vuepress/theme-default": "^2.0.0-rc.115",
+    "@vuepress/theme-default": "^2.0.0-rc.118",
     "sass-embedded": "^1.93.3",
     "vuepress": "^2.0.0-rc.25"
   },
