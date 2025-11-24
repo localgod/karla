@@ -35,7 +35,7 @@
 		"php": ">=8.0"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "4.0.0",
+		"squizlabs/php_codesniffer": "4.0.1",
 		"phpunit/phpunit": "9.6.x-dev"
 	},
 	"autoload": {
