@@ -22,7 +22,7 @@ use Karla\Action;
 use Karla\Support;
 
 /**
- * Class for handeling layers action
+ * Class for handling layers action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -39,12 +39,10 @@ class Layers implements Action
     private string $method;
 
     /**
-     * Contruct new action
+     * Construct new action
      *
-     * @param \Karla\Program $program
-     *            The program to use
-     * @param string $method
-     *            Method
+     * @param \Karla\Program $program The program to use
+     * @param string $method Method
      *
      * @throws \InvalidArgumentException If the supplied method is not supported by imagemagick.
      */
@@ -60,9 +58,8 @@ class Layers implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

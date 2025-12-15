@@ -32,7 +32,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -62,7 +62,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getResolutionHeight()
     {
@@ -77,7 +77,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getResolutionHeightVerbose()
     {
@@ -93,7 +93,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getResolutionWidthVerbose()
     {
@@ -109,7 +109,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getResolutionWidth()
     {
@@ -124,7 +124,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function parseMethods()
     {
@@ -139,7 +139,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function parseMethodsVerbose()
     {
@@ -155,7 +155,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getFormatVerbose()
     {
@@ -171,7 +171,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getFormat()
     {
@@ -186,7 +186,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getDepthVerbose()
     {
@@ -202,7 +202,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getDepth()
     {
@@ -217,7 +217,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getColorspaceVerbose()
     {
@@ -233,7 +233,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getColorspace()
     {
@@ -248,7 +248,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getGeometryVerbose()
     {
@@ -265,7 +265,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getGeometry()
     {
@@ -281,7 +281,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getHeightVerbose()
     {
@@ -297,7 +297,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getHeight()
     {
@@ -312,7 +312,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getWidthVerbose()
     {
@@ -328,7 +328,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getWidth()
     {
@@ -343,7 +343,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function listRawVerbose()
     {
@@ -359,7 +359,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function listRaw()
     {
@@ -374,7 +374,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getUnitVerbose()
     {
@@ -390,7 +390,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getUnit()
     {
@@ -405,7 +405,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getHash()
     {
@@ -419,7 +419,7 @@ class MetaDataTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function getHashWithInvalidAlgorithm()
     {

@@ -32,7 +32,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function in()
     {
@@ -60,7 +60,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function invalidInputfile()
     {
@@ -75,7 +75,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function execute()
     {
@@ -90,7 +90,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      * 
      * @test
      *
-     * @return void
+     * 
      */
     public function executeNoRaw()
     {
@@ -105,7 +105,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      * 
      * @test
      *
-     * @return void
+     * 
      */
     public function executeNoRawVerbose()
     {
@@ -121,7 +121,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function executeNoReset()
     {
@@ -136,7 +136,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function executeNoResetNoRaw()
     {
@@ -151,7 +151,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function verbose()
     {
@@ -166,7 +166,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function verboseTwice()
     {
@@ -182,7 +182,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function __clone()
     {
@@ -195,7 +195,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getCommand()
     {
@@ -209,7 +209,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function reset()
     {
@@ -221,7 +221,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function raw()
     {
@@ -234,7 +234,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function validProgram()
     {

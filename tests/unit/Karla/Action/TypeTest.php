@@ -32,7 +32,7 @@ class TypeTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class TypeTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function type()
     {
@@ -63,7 +63,7 @@ class TypeTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function typeTwice()
     {
@@ -80,7 +80,7 @@ class TypeTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function typeUnsupported()
     {

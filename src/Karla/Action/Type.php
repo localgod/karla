@@ -21,7 +21,7 @@ use Karla\Support;
 use Karla\Action;
 
 /**
- * Class for handeling type action
+ * Class for handling type action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -59,9 +59,8 @@ class Type implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

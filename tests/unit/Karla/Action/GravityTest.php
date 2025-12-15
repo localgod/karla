@@ -32,7 +32,7 @@ class GravityTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -45,7 +45,7 @@ class GravityTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function gravity()
     {

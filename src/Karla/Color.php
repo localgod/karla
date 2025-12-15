@@ -29,10 +29,7 @@ class Color
     /**
      * Check if supplied color is a valid hex color
      *
-     * @param string $color
-     *            Color to check
-     *
-     * @return boolean
+     * @param string $color Color to check
      */
     public static function validHexColor(string $color): bool
     {
@@ -44,10 +41,7 @@ class Color
     /**
      * Check if this is a valid color name
      *
-     * @param string $color
-     *            Color to check
-     *
-     * @return boolean
+     * @param string $color Color to check
      */
     public static function validColorName(string $color): bool
     {
@@ -60,10 +54,7 @@ class Color
     /**
      * Check if this is a valid rgb color definition
      *
-     * @param string $color
-     *            Color to check
-     *
-     * @return boolean
+     * @param string $color Color to check
      */
     public static function validRgbColor(string $color): bool
     {

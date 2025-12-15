@@ -31,7 +31,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -44,7 +44,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function invalidInputfile()
     {
@@ -58,7 +58,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function inputfileWithoutOutputfile()
     {
@@ -72,7 +72,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function outputfileWithoutInputfile()
     {
@@ -86,7 +86,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function invalidOutputfile()
     {
@@ -101,7 +101,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function inputfileAndOutputfile()
     {
@@ -118,7 +118,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function removeProfile()
     {
@@ -136,7 +136,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function density()
     {
@@ -153,7 +153,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function densityWithResample()
     {
@@ -171,7 +171,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function profile()
     {
@@ -188,7 +188,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function profileWithInvalidPath()
     {
@@ -205,7 +205,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function changeProfile()
     {
@@ -222,7 +222,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function changeProfileTwice()
     {
@@ -239,7 +239,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function changeProfileInvalidNewProfile()
     {
@@ -255,7 +255,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function changeProfileInvalidOldProfile()
     {
@@ -272,7 +272,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function gravity()
     {
@@ -289,7 +289,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function gravityTwice()
     {
@@ -306,7 +306,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function __clone()
     {
@@ -319,7 +319,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function getCommand()
     {
@@ -335,7 +335,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function execute()
     {
@@ -347,7 +347,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function raw()
     {
@@ -360,7 +360,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function validProgram()
     {
@@ -375,7 +375,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function rotate()
     {
@@ -392,7 +392,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function rotateTwice()
     {

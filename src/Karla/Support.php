@@ -23,7 +23,7 @@ use Karla\Program\ImageMagick;
 use Karla\Program\Composite;
 
 /**
- * Class for quering for supported features
+ * Class for querying for supported features
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -35,12 +35,9 @@ class Support
     /**
      * Check if a gravity is supported by ImageMagick.
      *
-     * @param Program $program
-     *            Program to check
-     * @param string $gravity
-     *            Gravity to check
+     * @param Program $program Program to check
+     * @param string $gravity Gravity to check
      *
-     * @return boolean
      * @throws \BadMethodCallException if called in a wrong context
      */
     public static function gravity(Program $program, string $gravity): bool
@@ -68,14 +65,10 @@ class Support
     }
 
     /**
-     * Check if a image type is supported by the ImageMagick program.
+     * Check if an image type is supported by the ImageMagick program.
      *
-     * @param Program $program
-     *            Program to check
-     * @param string $type
-     *            Type to check
-     *
-     * @return boolean
+     * @param Program $program Program to check
+     * @param string $type Type to check
      */
     public static function imageTypes(Program $program, string $type): bool
     {
@@ -104,12 +97,8 @@ class Support
     /**
      * Check if a colorspace is supported by the ImageMagick program.
      *
-     * @param Program $program
-     *            Program to check
-     * @param string $colorSpace
-     *            Colorspace to check
-     *
-     * @return boolean
+     * @param Program $program Program to check
+     * @param string $colorSpace Colorspace to check
      */
     public static function colorSpace(Program $program, string $colorSpace): bool
     {
@@ -139,12 +128,9 @@ class Support
     /**
      * Check if a method is supported by ImageMagick.
      *
-     * @param Program $program
-     *            Program to check
-     * @param string $method
-     *            Method to check
+     * @param Program $program Program to check
+     * @param string $method Method to check
      *
-     * @return boolean
      * @throws \BadMethodCallException if called in a wrong context
      */
     public static function layerMethod(Program $program, string $method): bool
@@ -173,12 +159,9 @@ class Support
     /**
      * Check if a format is supported by ImageMagick.
      *
-     * @param Program $program
-     *            Program to check
-     * @param string $format
-     *            Format to check
+     * @param Program $program Program to check
+     * @param string $format Format to check
      *
-     * @return boolean
      * @throws \BadMethodCallException if called in a wrong context
      */
     public static function supportedFormat(Program $program, string $format): bool

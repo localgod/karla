@@ -28,15 +28,11 @@ interface Program
 {
     /**
      * Execute the command
-     *
-     * @return string
      */
     public function execute(): string|object;
 
     /**
      * Get the command to run
-     *
-     * @return string
      */
     public function getCommand(): string;
 }

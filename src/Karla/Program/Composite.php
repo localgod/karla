@@ -28,30 +28,24 @@ class Composite extends ImageMagick
 {
     /**
      * Add base file argument
-     *
-     * @return Composite
      */
-    public function basefile()
+    public function basefile(): self
     {
         return $this;
     }
 
     /**
      * Add change file argument
-     *
-     * @return Composite
      */
-    public function changefile()
+    public function changefile(): self
     {
         return $this;
     }
 
     /**
      * Add output file argument
-     *
-     * @return Composite
      */
-    public function outputfile()
+    public function outputfile(): self
     {
         return $this;
     }
@@ -59,15 +53,12 @@ class Composite extends ImageMagick
     /**
      * Raw arguments directly to ImageMagick
      *
-     * @param string $arguments
-     *            Arguments
-     * @param boolean $input
-     *            Defaults to an input option, use false to use it as an output option
+     * @param string $arguments Arguments
+     * @param bool $input Defaults to an input option, use false to use it as an output option
      *
-     * @return Composite
      * @see ImageMagick::raw()
      */
-    public function raw($arguments, $input = true): self
+    public function raw(string $arguments, bool $input = true): self
     {
         parent::raw($arguments, $input);
         return $this;

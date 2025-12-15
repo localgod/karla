@@ -32,7 +32,7 @@ class RotateTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class RotateTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function rotate()
     {

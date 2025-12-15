@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling flip action
+ * Class for handling flip action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,9 +32,8 @@ class Flip implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

@@ -29,47 +29,44 @@ class Query
     /**
      * This argument is to be considered for the input image
      *
-     * @var interger
+     * @var int
      */
     public const ARGUMENT_TYPE_INPUT = 0;
 
     /**
      * This argument is to be considered for the output image
      *
-     * @var integer
+     * @var int
      */
     public const ARGUMENT_TYPE_OUTPUT = 1;
 
     /**
      * Is the object dirty (has any arguments been set)
      *
-     * @var boolean
+     * @var bool
      */
     private bool $dirty;
 
     /**
      * Input option
      *
-     * @var Array
+     * @var array<string>
      */
-    protected array $inputOptions;
+    protected array $inputOptions = [];
 
     /**
      * Output option
      *
-     * @var Array
+     * @var array<string>
      */
-    protected array $outputOptions;
+    protected array $outputOptions = [];
 
     /**
      * Set input option
      *
-     * @param string $option
-     *            Option to set
-     *
-     * @return void
+     * @param string $option Option to set
      */
-    public function setInputOption($option)
+    public function setInputOption(string $option): void
     {
         if ($option != "") {
             $this->inputOptions[] = $option;
@@ -80,9 +77,9 @@ class Query
     /**
      * Get input option
      *
-     * @return string[]
+     * @return array<string>
      */
-    public function getInputOptions()
+    public function getInputOptions(): array
     {
         return $this->inputOptions;
     }
@@ -90,12 +87,9 @@ class Query
     /**
      * Set output option
      *
-     * @param string $option
-     *            Option to set
-     *
-     * @return void
+     * @param string $option Option to set
      */
-    public function setOutputOption($option)
+    public function setOutputOption(string $option): void
     {
         if ($option != "") {
             $this->outputOptions[] = $option;
@@ -106,31 +100,27 @@ class Query
     /**
      * Get output options
      *
-     * @return string[]
+     * @return array<string>
      */
-    public function getOutputOptions()
+    public function getOutputOptions(): array
     {
         return $this->outputOptions;
     }
 
     /**
-     * Set the object as beeing dirty
+     * Set the object as being dirty
      *
-     * (Arguments has been set)
-     *
-     * @return void
+     * (Arguments have been set)
      */
-    public function dirty()
+    public function dirty(): void
     {
         $this->dirty = true;
     }
 
     /**
      * Reset the command
-     *
-     * @return void
      */
-    public function reset()
+    public function reset(): void
     {
         $this->inputOptions = array();
         $this->outputOptions = array();
@@ -140,14 +130,10 @@ class Query
     /**
      * Check if an option is already set
      *
-     * @param string $lookop
-     *            Option to look up
-     * @param array $optionList
-     *            Optionlist to look in
-     *
-     * @return boolean
+     * @param string $lookop Option to look up
+     * @param array<string> $optionList Optionlist to look in
      */
-    final public function isOptionSet($lookop, array $optionList)
+    final public function isOptionSet(string $lookop, array $optionList): bool
     {
         foreach ($optionList as $option) {
             if (strstr($option, trim($lookop))) {
@@ -159,10 +145,10 @@ class Query
     }
 
     /**
-     * Raise an error if a method is called in a invalid context
+     * Raise an error if a method is called in an invalid context
      *
-     * @param string  $method       Method to check
-     * @param integer $argumentType Is it an input or an output argument
+     * @param string $method Method to check
+     * @param int $argumentType Is it an input or an output argument
      *
      * @throws \BadMethodCallException
      */
@@ -184,10 +170,7 @@ class Query
     /**
      * Prepare option collection
      *
-     * @param array $options
-     *            Options
-     *
-     * @return string
+     * @param array<string> $options Options
      */
     final public function prepareOptions(array $options): string
     {

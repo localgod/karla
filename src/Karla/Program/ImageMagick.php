@@ -184,8 +184,6 @@ abstract class ImageMagick implements \Karla\Program
 
     /**
      * Get the current query
-     *
-     * @return Query
      */
     public function getQuery(): Query
     {
@@ -195,10 +193,7 @@ abstract class ImageMagick implements \Karla\Program
     /**
      * Set the current query
      *
-     * @param Query $query
-     *            Query to set
-     *
-     * @return void
+     * @param Query $query Query to set
      */
     public function setQuery(Query $query): void
     {
@@ -207,8 +202,6 @@ abstract class ImageMagick implements \Karla\Program
 
     /**
      * It should not be possible to clon the ImageMagick object.
-     *
-     * @return void
      */
     final public function __clone(): void
     {
@@ -218,8 +211,6 @@ abstract class ImageMagick implements \Karla\Program
     /**
      * Get the binary executable path (for use in -list commands, etc.)
      * This returns just the base binary without full command setup
-     *
-     * @return string
      */
     public function getBinary(): string
     {
@@ -235,8 +226,6 @@ abstract class ImageMagick implements \Karla\Program
 
     /**
      * Get the command to run
-     *
-     * @return string
      */
     public function getCommand(): string
     {
@@ -264,10 +253,7 @@ abstract class ImageMagick implements \Karla\Program
     /**
      * Execute the command
      *
-     * @param boolean $reset
-     *            Reset the query
-     *
-     * @return string
+     * @param bool $reset Reset the query
      */
     public function execute(bool $reset = true): string|object
     {
@@ -282,12 +268,8 @@ abstract class ImageMagick implements \Karla\Program
     /**
      * Raw arguments directly to ImageMagick
      *
-     * @param string $arguments
-     *            Arguments
-     * @param boolean $input
-     *            Defaults to an input option, use false to use it as an output option
-     *
-     * @return self
+     * @param string $arguments Arguments
+     * @param bool $input Defaults to an input option, use false to use it as an output option
      */
     public function raw(string $arguments, bool $input = true): self
     {
@@ -302,10 +284,7 @@ abstract class ImageMagick implements \Karla\Program
     /**
      * Check if the input is a valid ImageMagick program
      *
-     * @param string $program
-     *            Program name
-     *
-     * @return boolean
+     * @param string $program Program name
      */
     final public static function validProgram(string $program): bool
     {

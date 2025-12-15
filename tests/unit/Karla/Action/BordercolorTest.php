@@ -32,7 +32,7 @@ class BordercolorTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class BordercolorTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function bordercolorWithColorName()
     {
@@ -64,7 +64,7 @@ class BordercolorTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function bordercolorTwice()
     {
@@ -82,7 +82,7 @@ class BordercolorTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function bordercolorWithHexColor()
     {
@@ -101,7 +101,7 @@ class BordercolorTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function bordercolorWithRgbColor()
     {
@@ -119,7 +119,7 @@ class BordercolorTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function bordercolorWithInvalidColor()
     {

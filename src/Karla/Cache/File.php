@@ -36,8 +36,7 @@ class File implements \Karla\Cache
     /**
      * Create a new file cache
      *
-     * @param string $dirName
-     *            Path to cach directory
+     * @param string $dirName Path to cache directory
      *
      * @throws \InvalidArgumentException
      */
@@ -49,13 +48,11 @@ class File implements \Karla\Cache
     /**
      * Set the cache directory
      *
-     * @param string $dirName
-     *            Path to the cache directory
+     * @param string $dirName Path to the cache directory
      *
-     * @return void
      * @throws \InvalidArgumentException if path was not found
      * @throws \InvalidArgumentException if path was not writeable
-     * @throws \InvalidArgumentException if path was a directoy
+     * @throws \InvalidArgumentException if path was not a directory
      */
     private function setCacheDir(string $dirName): void
     {
@@ -74,10 +71,7 @@ class File implements \Karla\Cache
     /**
      * Create a string representation of the options used
      *
-     * @param string[] $options
-     *            Options
-     *
-     * @return string
+     * @param array<string> $options Options
      */
     private function options2string(array $options): string
     {
@@ -101,14 +95,9 @@ class File implements \Karla\Cache
     /**
      * Generate cache name
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return string
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string> $options Options
      */
     private function cacheName(string $inputFile, string $outputFile, array $options): string
     {
@@ -122,14 +111,9 @@ class File implements \Karla\Cache
     /**
      * Check if there exists a cached version of the file
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return boolean
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string> $options Options
      */
     public function isCached(string $inputFile, string $outputFile, array $options): bool
     {
@@ -140,14 +124,9 @@ class File implements \Karla\Cache
     /**
      * Get cached version of the file
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return string
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string> $options Options
      */
     public function getCached(string $inputFile, string $outputFile, array $options): string
     {
@@ -157,14 +136,9 @@ class File implements \Karla\Cache
     /**
      * Set cached version of the file
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return void
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string>|string $options Options
      */
     public function setCache(string $inputFile, string $outputFile, string $options): void
     {

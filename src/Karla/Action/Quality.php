@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling quality action
+ * Class for handling quality action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,7 +32,7 @@ class Quality implements Action
     /**
      * The quality to use
      *
-     * @var integer
+     * @var int
      */
     private int $quality;
 
@@ -46,10 +46,8 @@ class Quality implements Action
     /**
      * Construct a new quality action
      *
-     * @param integer $quality
-     *            Quality
-     * @param string $format
-     *            Format
+     * @param int $quality Quality
+     * @param string $format Format
      *
      * @throws \InvalidArgumentException
      * @throws \RangeException
@@ -71,9 +69,8 @@ class Quality implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

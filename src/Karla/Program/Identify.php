@@ -31,18 +31,16 @@ class Identify extends ImageMagick
      *
      * @var string
      */
-    protected $inputFile;
+    protected string $inputFile;
 
     /**
      * Add input argument
      *
-     * @param string $filePath
-     *            Input file path
+     * @param string $filePath Input file path
      *
-     * @return Identify
      * @throws \InvalidArgumentException
      */
-    public function in($filePath)
+    public function in(string $filePath): self
     {
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
@@ -60,15 +58,12 @@ class Identify extends ImageMagick
     /**
      * Execute the command
      *
-     * @param boolean $reset
-     *            Reset the query
-     * @param boolean $raw
-     *            Get the raw output
+     * @param bool $reset Reset the query
+     * @param bool $raw Get the raw output
      *
      * @see Imagemagick#execute()
-     * @return string|\Karla\MetaData
      */
-    public function execute($reset = true, $raw = true): string|object
+    public function execute(bool $reset = true, bool $raw = true): string|object
     {
         $result = parent::execute(false);
 
@@ -87,8 +82,6 @@ class Identify extends ImageMagick
 
     /**
      * Add verbose argument
-     *
-     * @return Identify
      */
     public function verbose(): self
     {
@@ -102,7 +95,6 @@ class Identify extends ImageMagick
      * (non-PHPdoc)
      *
      * @see Imagemagick#getCommand()
-     * @return string
      */
     public function getCommand(): string
     {
@@ -115,15 +107,12 @@ class Identify extends ImageMagick
     /**
      * Raw arguments directly to ImageMagick
      *
-     * @param string $arguments
-     *            Arguments
-     * @param boolean $input
-     *            Defaults to an input option, use false to use it as an output option
+     * @param string $arguments Arguments
+     * @param bool $input Defaults to an input option, use false to use it as an output option
      *
-     * @return Identify
      * @see ImageMagick::raw()
      */
-    public function raw($arguments, $input = true): self
+    public function raw(string $arguments, bool $input = true): self
     {
         parent::raw($arguments, $input);
 

@@ -20,7 +20,7 @@ use Karla\Action;
 use Karla\Query;
 
 /**
- * Class for handeling flatten action
+ * Class for handling flatten action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,9 +32,8 @@ class Flatten implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query
