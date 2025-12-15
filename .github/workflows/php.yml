@@ -35,7 +35,11 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
+        ini-values: memory_limit=256M
         coverage: none
+        update: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Check PHP Version
       run: php -v
 
@@ -81,7 +85,11 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
+        ini-values: memory_limit=256M
         coverage: xdebug
+        update: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Cache ImageMagick (Windows)
       if: runner.os == 'Windows'
@@ -142,7 +150,7 @@ jobs:
           echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
         elif [ "$RUNNER_OS" == "Windows" ]; then
           MAGICK_PATH=$(dirname $(which magick))
-          echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+          printf 'IMAGEMAGICK_PATH=%s/\n' "$MAGICK_PATH" >> "$GITHUB_ENV"
         fi
       shell: bash
 
