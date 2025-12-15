@@ -55,7 +55,8 @@ class Density implements Action
      *
      * @param int $width The width of the image
      * @param int $height The height of the image
-     * @param bool $output If output is true density is set for the resulting image, if output is false density is used for reading the input image
+     * @param bool $output If true, density is set for the resulting image;
+     *                     if false, density is used for reading the input image
      *
      * @throws \InvalidArgumentException
      */
