@@ -37,7 +37,10 @@ jobs:
         extensions: mbstring, dom, fileinfo
         ini-values: memory_limit=256M
         coverage: none
+        tools: composer:v2
         github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        RUNNER_TOOL_CACHE: /tmp/runner-tool-cache
     - name: Check PHP Version
       run: php -v
 
@@ -86,7 +89,10 @@ jobs:
         extensions: mbstring, dom, fileinfo
         ini-values: memory_limit=256M
         coverage: xdebug
+        tools: composer:v2
         github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        RUNNER_TOOL_CACHE: /tmp/runner-tool-cache
 
     - name: Cache ImageMagick (Windows)
       if: runner.os == 'Windows'
