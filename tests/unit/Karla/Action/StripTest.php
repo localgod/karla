@@ -36,7 +36,7 @@ class StripTest extends PHPUnit\Framework\TestCase
 	 */
 	protected function setUp(): void
 	{
-		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
+		if (! TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
 		$this->testDataPath = realpath(__DIR__.'/../../_data/');
@@ -56,7 +56,7 @@ class StripTest extends PHPUnit\Framework\TestCase
             ->strip()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -strip "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-strip "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
         $this->assertEquals($expected, $actual);
     }
 

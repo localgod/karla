@@ -41,6 +41,13 @@ class Karla
     private Cache|null $cache;
 
     /**
+     * ImageMagick major version
+     *
+     * @var int|null
+     */
+    private int|null $version = null;
+
+    /**
      * Instance of a imagmagick object.
      *
      * @var Karla $instance imagmagick object.
@@ -87,10 +94,49 @@ class Karla
             throw new \InvalidArgumentException('Bin path not found');
         }
 
-        if (shell_exec($binPath . 'convert -version | grep ImageMagick') == "") {
+        // Detect ImageMagick version - try both v6 (convert) and v7 (magick)
+        $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+        $magickBin = $isWindows ? 'magick.exe' : 'magick';
+        $convertBin = $isWindows ? 'convert.exe' : 'convert';
+        
+        $versionOutput = '';
+        
+        // Try ImageMagick 7 first (magick command)
+        if (file_exists($binPath . $magickBin)) {
+            $versionOutput = shell_exec($binPath . $magickBin . ' -version');
+            if ($versionOutput && stripos($versionOutput, 'ImageMagick') !== false) {
+                // Extract major version (e.g., "Version: ImageMagick 7.1.2" -> 7)
+                if (preg_match('/ImageMagick (\d+)/', $versionOutput, $matches)) {
+                    $this->version = (int)$matches[1];
+                }
+            }
+        }
+        
+        // Fallback to ImageMagick 6 (convert command)
+        if (empty($versionOutput) && file_exists($binPath . $convertBin)) {
+            $versionOutput = shell_exec($binPath . $convertBin . ' -version');
+            if ($versionOutput && stripos($versionOutput, 'ImageMagick') !== false) {
+                if (preg_match('/ImageMagick (\d+)/', $versionOutput, $matches)) {
+                    $this->version = (int)$matches[1];
+                } else {
+                    $this->version = 6; // Assume v6 if version not found but convert exists
+                }
+            }
+        }
+        
+        if (empty($versionOutput)) {
             throw new \InvalidArgumentException('ImageMagick could not be located at specified path');
         }
-        $this->binPath = 'export PATH=$PATH:' . $binPath . ';';
+        
+        // Set binPath appropriately for the OS
+        if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
+            // On Windows, just use the direct path
+            $this->binPath = rtrim($binPath, '/\\') . '/';
+        } else {
+            // On Unix, use export PATH
+            $this->binPath = 'export PATH=$PATH:' . $binPath . ';';
+        }
+        
         $this->cache = $cache;
     }
 
@@ -116,7 +162,16 @@ class Karla
         }
         strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? $bin = $program . '.exe' : $bin = $program;
 
-        return shell_exec($this->binPath . $bin . ' ' . $arguments);
+        // For ImageMagick 7+, prepend with magick command
+        if ($this->version !== null && $this->version >= 7) {
+            $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
+                Program\ImageMagick::IMAGEMAGICK_MAGICK . '.exe' : Program\ImageMagick::IMAGEMAGICK_MAGICK;
+            $result = shell_exec($this->binPath . $magickBin . ' ' . $program . ' ' . $arguments);
+        } else {
+            $result = shell_exec($this->binPath . $bin . ' ' . $arguments);
+        }
+
+        return $result !== null ? $result : '';
     }
 
     /**
@@ -129,7 +184,7 @@ class Karla
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
             Program\ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : Program\ImageMagick::IMAGEMAGICK_CONVERT;
 
-        return new Program\Convert($this->binPath, $bin, $this->cache);
+        return new Program\Convert($this->binPath, $bin, $this->cache, $this->version);
     }
 
     /**
@@ -142,7 +197,7 @@ class Karla
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
             Program\ImageMagick::IMAGEMAGICK_IDENTIFY . '.exe' : Program\ImageMagick::IMAGEMAGICK_IDENTIFY;
 
-        return new Program\Identify($this->binPath, $bin, $this->cache);
+        return new Program\Identify($this->binPath, $bin, $this->cache, $this->version);
     }
 
     /**
@@ -155,6 +210,6 @@ class Karla
         $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
             Program\ImageMagick::IMAGEMAGICK_COMPOSITE . '.exe' : Program\ImageMagick::IMAGEMAGICK_COMPOSITE;
 
-        return new Program\Composite($this->binPath, $bin, $this->cache);
+        return new Program\Composite($this->binPath, $bin, $this->cache, $this->version);
     }
 }

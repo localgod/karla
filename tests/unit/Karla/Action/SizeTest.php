@@ -36,7 +36,7 @@ class SizeTest extends PHPUnit\Framework\TestCase
 	 */
 	protected function setUp(): void
 	{
-		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
+		if (!TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
 		$this->testDataPath = realpath(__DIR__.'/../../_data/');
@@ -48,14 +48,14 @@ class SizeTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function size()
+    public function testSize()
     {
         $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath.'/demo.jpg')
             ->size(200, 200)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -size 200x200 "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-size 200x200 "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
         $this->assertEquals($expected, $actual);
     }
 
@@ -65,7 +65,7 @@ class SizeTest extends PHPUnit\Framework\TestCase
      * @test
      * @return void
      */
-    public function sizeTwice()
+    public function testSizeTwice()
     {
         $this->expectException(BadMethodCallException::class);
         Karla::perform(PATH_TO_IMAGEMAGICK)->convert()

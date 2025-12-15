@@ -109,7 +109,7 @@ class Identify extends ImageMagick
         ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
 
-        return $this->binPath . $this->bin . ' ' . ($options == '' ? '' : $options . ' ') . $this->inputFile;
+        return parent::getCommand() . ' ' . ($options == '' ? '' : $options . ' ') . $this->inputFile;
     }
 
     /**

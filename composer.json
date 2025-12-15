@@ -35,15 +35,15 @@
 		"php": ">=8.0"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "4.0.1",
-		"phpunit/phpunit": "9.6.x-dev"
+		"squizlabs/php_codesniffer": "^4.0",
+		"phpunit/phpunit": "^10.5"
 	},
 	"autoload": {
 		"psr-0": {
 			"Karla": "src/"
 		}
 	},
-	"minimum-stability": "dev",
+	"minimum-stability": "stable",
 	"support": {
 		"source": "https://github.com/localgod/karla",
 		"issues": "https://github.com/localgod/karla/issues",
@@ -51,6 +51,8 @@
 	},
 	"config": {
 		"bin-dir": "bin/",
-		"vendor-dir": "vendor/"
+		"vendor-dir": "vendor/",
+		"disable-tls": true,
+		"secure-http": false
 	}
 }

@@ -36,7 +36,7 @@ class FlattenTest extends PHPUnit\Framework\TestCase
 	 */
 	protected function setUp(): void
 	{
-		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
+		if (! TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
 		$this->testDataPath = realpath(__DIR__.'/../../_data/');
@@ -55,7 +55,7 @@ class FlattenTest extends PHPUnit\Framework\TestCase
             ->flatten()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert -flatten "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"';
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-flatten "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
         $this->assertEquals($expected, $actual);
     }
 

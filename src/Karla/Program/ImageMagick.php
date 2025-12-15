@@ -107,11 +107,25 @@ abstract class ImageMagick implements \Karla\Program
     public const IMAGEMAGICK_STREAM = 'stream';
 
     /**
+     * ImageMagick unified command (v7+)
+     *
+     * @var string
+     */
+    public const IMAGEMAGICK_MAGICK = 'magick';
+
+    /**
      * Path to binaries
      *
      * @var string
      */
     public string $binPath;
+
+    /**
+     * ImageMagick major version
+     *
+     * @var int|null
+     */
+    protected int|null $version = null;
 
     /**
      * Name of binary
@@ -143,10 +157,12 @@ abstract class ImageMagick implements \Karla\Program
      *            Binary
      * @param \Karla\Cache|null $cache
      *            Cache controller (default null = no cache)
+     * @param int|null $version
+     *            ImageMagick major version (6 or 7)
      *
      * @throws \InvalidArgumentException
      */
-    final public function __construct(string $binPath, string $bin, \Karla\Cache|null $cache = null)
+    final public function __construct(string $binPath, string $bin, \Karla\Cache|null $cache = null, int|null $version = null)
     {
         if ($binPath == '') {
             throw new \InvalidArgumentException('Invalid bin path');
@@ -157,6 +173,7 @@ abstract class ImageMagick implements \Karla\Program
         $this->binPath = $binPath;
         $this->bin = $bin;
         $this->cache = $cache;
+        $this->version = $version;
         $this->query = new Query();
         $this->getQuery()->reset();
     }
@@ -195,12 +212,45 @@ abstract class ImageMagick implements \Karla\Program
     }
 
     /**
+     * Get the binary executable path (for use in -list commands, etc.)
+     * This returns just the base binary without full command setup
+     *
+     * @return string
+     */
+    public function getBinary(): string
+    {
+        // For ImageMagick 7+, use 'magick' instead of separate tools
+        if ($this->version !== null && $this->version >= 7) {
+            $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+            return $this->binPath . $magickBin;
+        }
+        
+        return $this->binPath . $this->bin;
+    }
+
+    /**
      * Get the command to run
      *
      * @return string
      */
     public function getCommand(): string
     {
+        // For ImageMagick 7+, use 'magick' instead of separate tools
+        if ($this->version !== null && $this->version >= 7) {
+            // Get the base command name without .exe extension
+            $command = str_replace('.exe', '', $this->bin);
+            
+            // For convert, just use 'magick' (ImageMagick 7 combines convert functionality into magick)
+            // For identify and composite, use 'magick <subcommand>'
+            if ($command === self::IMAGEMAGICK_CONVERT) {
+                $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+                return $this->binPath . $magickBin;
+            } elseif (in_array($command, [self::IMAGEMAGICK_IDENTIFY, self::IMAGEMAGICK_COMPOSITE])) {
+                $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+                return $this->binPath . $magickBin . ' ' . $command;
+            }
+        }
+        
         return $this->binPath . $this->bin;
     }
 
