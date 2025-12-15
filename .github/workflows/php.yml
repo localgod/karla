@@ -138,18 +138,23 @@ jobs:
         fi
       shell: bash
 
-    - name: Set ImageMagick path
+    - name: Set ImageMagick path (Linux/macOS)
+      if: runner.os != 'Windows'
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
         elif [ "$RUNNER_OS" == "macOS" ]; then
           MAGICK_PATH=$(dirname $(which magick))
           echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
-        elif [ "$RUNNER_OS" == "Windows" ]; then
-          MAGICK_PATH=$(dirname $(which magick))
-          printf 'IMAGEMAGICK_PATH=%s/\n' "$MAGICK_PATH" >> "$GITHUB_ENV"
         fi
       shell: bash
+
+    - name: Set ImageMagick path (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        $magickPath = (Get-Command magick).Source | Split-Path
+        echo "IMAGEMAGICK_PATH=$magickPath/" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      shell: pwsh
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
