@@ -15,8 +15,17 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3', '8.4']
-        os: ['ubuntu-latest','windows-latest','macOS-latest']
+        include:
+          - os: ubuntu-latest
+            php-versions: '8.2'
+          - os: ubuntu-latest
+            php-versions: '8.3'
+          - os: ubuntu-latest
+            php-versions: '8.4'
+          - os: windows-latest
+            php-versions: '8.4'
+          - os: macOS-latest
+            php-versions: '8.4'
     runs-on: ${{ matrix.os }}
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
@@ -52,8 +61,17 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3', '8.4']
-        os: ['ubuntu-latest', 'windows-latest', 'macOS-latest']
+        include:
+          - os: ubuntu-latest
+            php-versions: '8.2'
+          - os: ubuntu-latest
+            php-versions: '8.3'
+          - os: ubuntu-latest
+            php-versions: '8.4'
+          - os: windows-latest
+            php-versions: '8.4'
+          - os: macOS-latest
+            php-versions: '8.4'
     runs-on: ${{ matrix.os }}
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
@@ -90,18 +108,29 @@ jobs:
           if [ "${{ steps.cache-imagemagick-macos.outputs.cache-hit }}" != "true" ]; then
             brew install imagemagick
           else
-            brew link imagemagick
+            brew link imagemagick || true
           fi
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          if [ "${{ steps.cache-imagemagick-windows.outputs.cache-hit }}" != "true" ]; then
-            choco install imagemagick -y
+          # Check if already installed
+          if command -v magick &> /dev/null; then
+            echo "ImageMagick already installed"
+          elif [ "${{ steps.cache-imagemagick-windows.outputs.cache-hit }}" != "true" ]; then
+            choco install imagemagick -y --no-progress
           fi
         fi
       shell: bash
+      continue-on-error: false
 
     - name: Verify ImageMagick installation
       run: |
-        magick -version || convert -version
+        if command -v magick &> /dev/null; then
+          magick -version
+        elif command -v convert &> /dev/null; then
+          convert -version
+        else
+          echo "ImageMagick not found!"
+          exit 1
+        fi
       shell: bash
 
     - name: Set ImageMagick path

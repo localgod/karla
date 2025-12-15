@@ -146,7 +146,7 @@ class Convert extends ImageMagick implements Program
 
         // Get the base command (handles ImageMagick 7 vs 6 automatically)
         $baseCommand = parent::getCommand();
-        
+
         return $baseCommand . ' ' . ($inOptions == '' ? '' : $inOptions . ' ') .
                $this->inputFile . ' ' . ($outOptions == '' ? '' : $outOptions . ' ') . $this->outputFile;
     }

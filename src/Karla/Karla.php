@@ -98,9 +98,9 @@ class Karla
         $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
         $magickBin = $isWindows ? 'magick.exe' : 'magick';
         $convertBin = $isWindows ? 'convert.exe' : 'convert';
-        
+
         $versionOutput = '';
-        
+
         // Try ImageMagick 7 first (magick command)
         if (file_exists($binPath . $magickBin)) {
             $versionOutput = shell_exec($binPath . $magickBin . ' -version');
@@ -111,7 +111,7 @@ class Karla
                 }
             }
         }
-        
+
         // Fallback to ImageMagick 6 (convert command)
         if (empty($versionOutput) && file_exists($binPath . $convertBin)) {
             $versionOutput = shell_exec($binPath . $convertBin . ' -version');
@@ -123,11 +123,11 @@ class Karla
                 }
             }
         }
-        
+
         if (empty($versionOutput)) {
             throw new \InvalidArgumentException('ImageMagick could not be located at specified path');
         }
-        
+
         // Set binPath appropriately for the OS
         if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
             // On Windows, just use the direct path
@@ -136,7 +136,7 @@ class Karla
             // On Unix, use export PATH
             $this->binPath = 'export PATH=$PATH:' . $binPath . ';';
         }
-        
+
         $this->cache = $cache;
     }
 
@@ -164,7 +164,7 @@ class Karla
 
         // For ImageMagick 7+, prepend with magick command
         if ($this->version !== null && $this->version >= 7) {
-            $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? 
+            $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
                 Program\ImageMagick::IMAGEMAGICK_MAGICK . '.exe' : Program\ImageMagick::IMAGEMAGICK_MAGICK;
             $result = shell_exec($this->binPath . $magickBin . ' ' . $program . ' ' . $arguments);
         } else {

@@ -49,15 +49,15 @@ class Support
             $message = 'This method can not be used in this context. (' . get_class($program) . ')';
             throw new \BadMethodCallException($message);
         }
-        
+
         // Use getBinary() to get the proper binary path for IM version
         $command = $program->getBinary() . ' -list gravity';
-        
+
         $gravities = shell_exec($command);
         if ($gravities === null) {
             return false;
         }
-        
+
         $gravities = explode("\n", $gravities);
         $count = count($gravities);
         for ($i = 0; $i < $count; $i++) {
@@ -83,15 +83,15 @@ class Support
             $message = 'This method can not be used in this context. (' . get_class($program) . ')';
             throw new \BadMethodCallException($message);
         }
-        
+
         // Use getBinary() to get the proper binary path for IM version
         $command = $program->getBinary() . ' -list type';
-        
+
         $types = shell_exec($command);
         if ($types === null) {
             return false;
         }
-        
+
         $types = explode("\n", $types);
         $count = count($types);
         for ($i = 0; $i < $count; $i++) {
@@ -117,16 +117,16 @@ class Support
             $message = 'This method can not be used in this context. (' . get_class($program) . ')';
             throw new \BadMethodCallException($message);
         }
-        
+
         // Use getBinary() to get the proper binary path for IM version
         $command = $program->getBinary() . ' -list colorspace';
-        
+
         $colorspaces = shell_exec($command);
         if ($colorspaces === null) {
             // Command failed, return false
             return false;
         }
-        
+
         $colorspaces = explode("\n", $colorspaces);
         $count = count($colorspaces);
         for ($i = 0; $i < $count; $i++) {
@@ -152,15 +152,15 @@ class Support
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');
         }
-        
+
         // Use getBinary() to get the proper binary path for IM version
         $command = $program->getBinary() . ' -list layers';
-        
+
         $methods = shell_exec($command);
         if ($methods === null) {
             return false;
         }
-        
+
         $methods = explode("\n", $methods);
         $count = count($methods);
         for ($i = 0; $i < $count; $i++) {
@@ -186,15 +186,15 @@ class Support
         if (! ($program instanceof Convert) && ! ($program instanceof Identify)) {
             throw new \BadMethodCallException('This method can not be used in this context');
         }
-        
+
         // Use getBinary() to get the proper binary path for IM version
         $command = $program->getBinary() . ' -list format';
-        
+
         $formats = shell_exec($command);
         if ($formats === null) {
             return false;
         }
-        
+
         $formats = explode("\n", $formats);
         $count = count($formats);
         for ($i = 0; $i < $count; $i++) {

@@ -162,8 +162,12 @@ abstract class ImageMagick implements \Karla\Program
      *
      * @throws \InvalidArgumentException
      */
-    final public function __construct(string $binPath, string $bin, \Karla\Cache|null $cache = null, int|null $version = null)
-    {
+    final public function __construct(
+        string $binPath,
+        string $bin,
+        \Karla\Cache|null $cache = null,
+        int|null $version = null
+    ) {
         if ($binPath == '') {
             throw new \InvalidArgumentException('Invalid bin path');
         }
@@ -221,10 +225,11 @@ abstract class ImageMagick implements \Karla\Program
     {
         // For ImageMagick 7+, use 'magick' instead of separate tools
         if ($this->version !== null && $this->version >= 7) {
-            $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+            $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+            $magickBin = $isWindows ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
             return $this->binPath . $magickBin;
         }
-        
+
         return $this->binPath . $this->bin;
     }
 
@@ -239,18 +244,20 @@ abstract class ImageMagick implements \Karla\Program
         if ($this->version !== null && $this->version >= 7) {
             // Get the base command name without .exe extension
             $command = str_replace('.exe', '', $this->bin);
-            
+
             // For convert, just use 'magick' (ImageMagick 7 combines convert functionality into magick)
             // For identify and composite, use 'magick <subcommand>'
             if ($command === self::IMAGEMAGICK_CONVERT) {
-                $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+                $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+                $magickBin = $isWindows ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
                 return $this->binPath . $magickBin;
             } elseif (in_array($command, [self::IMAGEMAGICK_IDENTIFY, self::IMAGEMAGICK_COMPOSITE])) {
-                $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+                $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+                $magickBin = $isWindows ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
                 return $this->binPath . $magickBin . ' ' . $command;
             }
         }
-        
+
         return $this->binPath . $this->bin;
     }
 
