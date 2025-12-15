@@ -217,8 +217,8 @@ jobs:
       with:
         name: docs
         path: .
-    - name: list dir
-      run: ls -la coverage
+    - name: Create .nojekyll file
+      run: touch .nojekyll
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
