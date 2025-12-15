@@ -21,7 +21,7 @@ use Karla\Support;
 use Karla\Action;
 
 /**
- * Class for handeling strip action
+ * Class for handling strip action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -33,9 +33,8 @@ class Strip implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

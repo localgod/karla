@@ -29,42 +29,27 @@ interface Cache
     /**
      * Check if there exists a cached version of the file
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return boolean
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string> $options Options
      */
     public function isCached(string $inputFile, string $outputFile, array $options): bool;
 
     /**
      * Get cached version of the file
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return string
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string> $options Options
      */
     public function getCached(string $inputFile, string $outputFile, array $options): string;
 
     /**
      * Set cached version of the file
      *
-     * @param string $inputFile
-     *            Path to file
-     * @param string $outputFile
-     *            Path to file
-     * @param string[] $options
-     *            Options
-     *
-     * @return void
+     * @param string $inputFile Path to file
+     * @param string $outputFile Path to file
+     * @param array<string>|string $options Options
      */
     public function setCache(string $inputFile, string $outputFile, string $options): void;
 }

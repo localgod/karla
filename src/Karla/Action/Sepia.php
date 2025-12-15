@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling sepia action
+ * Class for handling sepia action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,15 +32,14 @@ class Sepia implements Action
     /**
      * Threshold
      *
-     * @var integer
+     * @var int
      */
     private int $threshold;
 
     /**
      * Construct a new size action
      *
-     * @param integer $threshold
-     *            Threshold
+     * @param int $threshold Threshold
      *
      * @throws \InvalidArgumentException If The supplied threshold is not between 0 and 100
      */
@@ -56,9 +55,8 @@ class Sepia implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

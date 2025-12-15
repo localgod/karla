@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling density action
+ * Class for handling density action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,34 +32,31 @@ class Density implements Action
     /**
      * Width
      *
-     * @var integer
+     * @var int
      */
     private int $width;
 
     /**
      * Height
      *
-     * @var integer
+     * @var int
      */
     private int $height;
 
     /**
      * Is it an output argument
      *
-     * @var boolean
+     * @var bool
      */
     private bool $output;
 
     /**
      * Set the density of the output image.
      *
-     * @param integer $width
-     *            The width of the image
-     * @param integer $height
-     *            The height of the image
-     * @param boolean $output
-     *            If output is true density is set for the resulting image
-     *            If output is false density is used for reading the input image
+     * @param int $width The width of the image
+     * @param int $height The height of the image
+     * @param bool $output If true, density is set for the resulting image;
+     *                     if false, density is used for reading the input image
      *
      * @throws \InvalidArgumentException
      */
@@ -73,9 +70,8 @@ class Density implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      * @throws \BadMethodCallException if density has already been called
      */

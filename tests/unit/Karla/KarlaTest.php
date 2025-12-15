@@ -32,7 +32,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @expectedException RuntimeException
      *
-     * @return void
+     * 
      */
     public function getInstanceWithInvalidPath()
     {
@@ -58,7 +58,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function perform()
     {
@@ -70,7 +70,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function privateMethods()
     {
@@ -82,7 +82,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function raw()
     {
@@ -95,7 +95,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function convert()
     {
@@ -108,7 +108,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function identify()
     {
@@ -121,7 +121,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function composite()
     {

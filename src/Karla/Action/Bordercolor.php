@@ -21,7 +21,7 @@ use Karla\Action;
 use Karla\Color;
 
 /**
- * Class for handeling bordercolor action
+ * Class for handling bordercolor action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -40,8 +40,7 @@ class Bordercolor implements Action
     /**
      * Construct new bordercolor action
      *
-     * @param string $color
-     *            Color
+     * @param string $color Color
      *
      * @throws \InvalidArgumentException If the color supplied could not be parsed.
      */
@@ -57,9 +56,8 @@ class Bordercolor implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

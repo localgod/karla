@@ -11,36 +11,42 @@
 		}
 	],
 	"keywords": [
-		"Imagemagick"
+		"imagemagick",
+		"image",
+		"image-processing",
+		"image-manipulation",
+		"graphics",
+		"php"
 	],
 	"scripts": {
-		"unit": [
-			"./bin/phpunit  --testdox --configuration ./tests/unit/phpunit.xml"
-		],
-		"cs": [
-			"./bin/phpcs"
-		],
-		"cbf": [
-			"./bin/phpcbf"
-		],
+		"test": "@unit",
+		"unit": "phpunit --testdox --configuration ./tests/unit/phpunit.xml",
+		"cs": "phpcs",
+		"cs-fix": "phpcbf",
 		"clean": [
-			"if [ -f ./junit.xml ] ; then rm ./junit.xml; fi",
-			"if [ -f ./clover.xml ] ; then rm ./clover.xml; fi",
-			"if [ -d ./html-coverage ] ; then rm -r ./coverage; fi"
+			"@php -r \"file_exists('junit.xml') && unlink('junit.xml');\"",
+			"@php -r \"file_exists('clover.xml') && unlink('clover.xml');\"",
+			"@php -r \"is_dir('html-coverage') && rmdir('html-coverage');\""
 		]
 	},
-	"homepage": "http://localgod.github.io/karla/",
+	"homepage": "https://localgod.github.io/karla/",
 	"license": "MIT",
 	"require": {
-		"php": ">=8.0"
+		"php": "^8.0"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "^4.0",
-		"phpunit/phpunit": "^10.5"
+		"phpstan/phpstan": "^2.0",
+		"phpunit/phpunit": "^10.5",
+		"squizlabs/php_codesniffer": "^4.0"
 	},
 	"autoload": {
 		"psr-4": {
 			"Karla\\": "src/Karla/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Karla\\Tests\\": "tests/unit/"
 		}
 	},
 	"minimum-stability": "stable",
@@ -50,6 +56,9 @@
 		"wiki": "https://github.com/localgod/karla/wiki"
 	},
 	"config": {
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"preferred-install": "dist",
 		"bin-dir": "bin/",
 		"vendor-dir": "vendor/"
 	}

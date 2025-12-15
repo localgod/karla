@@ -32,7 +32,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function resample()
     {
@@ -63,7 +63,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function resampleTwice()
     {
@@ -80,7 +80,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function resampleWithResize()
     {
@@ -98,7 +98,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function resampleWithDensity()
     {
@@ -116,7 +116,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function resampleWithOnlyWidth()
     {
@@ -132,7 +132,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
     /**
      * Test
      *
-     * @return void
+     * 
      */
     public function resampleWithOnlyOriginalWidth()
     {

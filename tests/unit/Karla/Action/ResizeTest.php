@@ -32,7 +32,7 @@ class ResizeTest extends PHPUnit\Framework\TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @return void
+	 * 
 	 */
 	protected function setUp(): void
 	{
@@ -46,7 +46,7 @@ class ResizeTest extends PHPUnit\Framework\TestCase
      *
      * @test
      *
-     * @return void
+     * 
      */
     public function resize()
     {
@@ -63,7 +63,7 @@ class ResizeTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function resizeWithResample()
     {
@@ -80,7 +80,7 @@ class ResizeTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * @return void
+     * 
      */
     public function resizeTwice()
     {
@@ -99,7 +99,7 @@ class ResizeTest extends PHPUnit\Framework\TestCase
      * @test
      * @covers Karla\Program\Convert::resize
      *
-     * @return void
+     * 
      */
     public function resizeWithoutMaintainingAspectRatio()
     {

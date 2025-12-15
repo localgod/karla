@@ -29,80 +29,78 @@ class MetaData extends \SplFileInfo
     /**
      * Raw image info
      *
-     * @var string[]
+     * @var array<string>
      */
-    private array $verboseImageinfo;
+    private array $verboseImageinfo = [];
 
     /**
      * Raw image info
      *
-     * @var array
+     * @var array<string, string>
      */
-    private array $imageinfo;
+    private array $imageinfo = [];
 
     /**
      * The image format.
      *
      * @var string
      */
-    private string $format;
+    private string $format = '';
 
     /**
      * The image depth.
      *
-     * @var integer
+     * @var int
      */
-    private int $depth;
+    private int $depth = 0;
 
     /**
      * The image colorspace.
      *
      * @var string
      */
-    private string $colorspace;
+    private string $colorspace = '';
 
     /**
      * The image geometry
      *
-     * @var array
+     * @var array<int>
      */
-    private array $geometry;
+    private array $geometry = [];
 
     /**
      * The image resolution
      *
-     * @var array
+     * @var array<int>
      */
-    private array $resolution;
+    private array $resolution = [];
 
     /**
      * The resolution unit is measured in Pixels Per Inch
      *
-     * @var boolean
+     * @var bool
      */
-    private bool $isPpi;
+    private bool $isPpi = false;
 
     /**
      * The resolution unit is measured in Pixels Per Centimeter
      *
-     * @var boolean
+     * @var bool
      */
-    private bool $isPpc;
+    private bool $isPpc = false;
 
     /**
      * Are we scanning in verbose output from identify
      *
-     * @var boolean
+     * @var bool
      */
-    private bool $verbose;
+    private bool $verbose = false;
 
     /**
      * Construct a new image file.
      *
-     * @param string $imageinfo
-     *            Image info as string
-     * @param boolean $verbose
-     *            Should input be parsed as verbose
+     * @param string $imageinfo Image info as string
+     * @param bool $verbose Should input be parsed as verbose
      */
     public function __construct(string $imageinfo, bool $verbose = false)
     {
@@ -139,7 +137,7 @@ class MetaData extends \SplFileInfo
      * Get the image resolution.
      * If the resolution is in ppc we convert it to ppi
      *
-     * @return array
+     * @return array<int>
      */
     private function getResolution(): array
     {
@@ -162,8 +160,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get the resolution height.
-     *
-     * @return integer
      */
     public function getResolutionHeight(): int|null
     {
@@ -173,8 +169,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get the resolution width.
-     *
-     * @return integer
      */
     public function getResolutionWidth(): int|null
     {
@@ -185,8 +179,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get file format
-     *
-     * @return string
      */
     public function getFormat(): string
     {
@@ -195,8 +187,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get image depth
-     *
-     * @return integer
      */
     public function getDepth(): int
     {
@@ -205,8 +195,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get colorspace
-     *
-     * @return string
      */
     public function getColorspace(): string
     {
@@ -216,7 +204,7 @@ class MetaData extends \SplFileInfo
     /**
      * Get the image geometry
      *
-     * @return array
+     * @return array<int>
      */
     public function getGeometry(): array
     {
@@ -225,8 +213,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get the image height
-     *
-     * @return integer
      */
     public function getHeight(): int
     {
@@ -235,8 +221,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get the image width
-     *
-     * @return integer
      */
     public function getWidth(): int
     {
@@ -244,9 +228,7 @@ class MetaData extends \SplFileInfo
     }
 
     /**
-     * List the raw image information as a unorder list
-     *
-     * @return string
+     * List the raw image information as an unordered list
      */
     public function listRaw(): string
     {
@@ -271,8 +253,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Search for the name of the file
-     *
-     * @return string
      */
     private function parseFilename(): string
     {
@@ -281,8 +261,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Search for file format
-     *
-     * @return void
      */
     private function parseFileformat(): void
     {
@@ -297,9 +275,7 @@ class MetaData extends \SplFileInfo
     /**
      * Search for image geometry
      *
-     * @todo output not sanetized yet
-     *
-     * @return void
+     * @todo output not sanitized yet
      */
     private function parseGeometry(): void
     {
@@ -313,8 +289,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Search for image colorspace
-     *
-     * @return void
      */
     private function parseColorspace(): void
     {
@@ -326,8 +300,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Search for image depth
-     *
-     * @return void
      */
     private function parseDepth(): void
     {
@@ -339,8 +311,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Search for image resolution
-     *
-     * @return void
      */
     private function parseResolution(): void
     {
@@ -350,14 +320,11 @@ class MetaData extends \SplFileInfo
 
     /**
      * Parse the image info array for the search line and
-     * return it for futher processing
+     * return it for further processing
      *
-     * @param string $search
-     *            Search string
-     *
-     * @return string
+     * @param string $search Search string
      */
-    private function parseVerbose($search): string
+    private function parseVerbose(string $search): string
     {
         foreach ($this->verboseImageinfo as $line) {
             if (preg_match("/^" . $search . ":/", trim($line))) {
@@ -368,14 +335,11 @@ class MetaData extends \SplFileInfo
 
     /**
      * Parse the image info string for the search line and
-     * return it for futher processing
+     * return it for further processing
      *
-     * @param string $search
-     *            Search string
-     *
-     * @return string
+     * @param string $search Search string
      */
-    private function parse($search): string
+    private function parse(string $search): string
     {
         return $this->imageinfo[$search];
     }
@@ -384,8 +348,6 @@ class MetaData extends \SplFileInfo
      * Search for print unit.
      *
      * If not found we default to Pixels Per Inch.
-     *
-     * @return void
      */
     private function parseUnits(): void
     {
@@ -415,8 +377,6 @@ class MetaData extends \SplFileInfo
 
     /**
      * Get the resolution unit
-     *
-     * @return string
      */
     public function getUnit(): string
     {
@@ -430,10 +390,7 @@ class MetaData extends \SplFileInfo
     /**
      * Get hash of file
      *
-     * @param string $hash
-     *            Name of hash algorithm to use; default is md5
-     *
-     * @return string
+     * @param string $hash Name of hash algorithm to use; default is md5
      */
     public function getHash(string $hash = 'md5'): string
     {
@@ -447,10 +404,7 @@ class MetaData extends \SplFileInfo
     /**
      * Convert Pixels Per Centimeter (ppc) to Pixels Per Inch (ppi)
      *
-     * @param integer $value
-     *            Input value
-     *
-     * @return integer
+     * @param int $value Input value
      */
     private function ppc2ppi(int $value): int
     {
@@ -460,10 +414,7 @@ class MetaData extends \SplFileInfo
     /**
      * Convert Pixels Per Inch (ppi) to Pixels Per Centimeter (ppc)
      *
-     * @param integer $value
-     *            Input value
-     *
-     * @return integer
+     * @param int $value Input value
      */
     private function ppi2ppc(int $value): int
     {

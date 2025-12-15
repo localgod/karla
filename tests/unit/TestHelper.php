@@ -46,7 +46,7 @@ class TestHelper
     /**
      * Check if running on Windows
      *
-     * @return bool
+     * 
      */
     public static function isWindows(): bool
     {
@@ -59,7 +59,7 @@ class TestHelper
      * @param string $path ImageMagick path
      * @param string $command Command name (convert, identify, composite)
      * @param string $arguments Command arguments
-     * @return string Expected command
+     * 
      */
     public static function buildExpectedCommand(string $path, string $command, string $arguments): string
     {
@@ -103,7 +103,7 @@ class TestHelper
      * Check if ImageMagick executables are available
      *
      * @param string $path Path to ImageMagick binaries
-     * @return bool
+     * 
      */
     public static function isImageMagickAvailable(string $path): bool
     {

@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling crop action
+ * Class for handling crop action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -31,39 +31,39 @@ class Crop implements Action
 {
     /**
      * Width
-     * @var integer
+     *
+     * @var int
      */
     private int|null $width;
 
     /**
      * Height
-     * @var integer
+     *
+     * @var int
      */
     private int|null $height;
 
     /**
      * X offset
-     * @var integer
+     *
+     * @var int
      */
     private int $xOffset;
 
     /**
      * Y offset
-     * @var integer
+     *
+     * @var int
      */
     private int $yOffset;
 
     /**
      * Construct a new crop action
      *
-     * @param integer $width
-     *            Image width
-     * @param integer $height
-     *            Image height
-     * @param integer $xOffset
-     *            X offset from upper-left corner
-     * @param integer $yOffset
-     *            Y offset from upper-left corner
+     * @param int $width Image width
+     * @param int $height Image height
+     * @param int $xOffset X offset from upper-left corner
+     * @param int $yOffset Y offset from upper-left corner
      *
      * @throws \InvalidArgumentException
      */
@@ -78,9 +78,8 @@ class Crop implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

@@ -57,22 +57,20 @@ class Convert extends ImageMagick implements Program
      *
      * @var string
      */
-    protected $inputFile;
+    protected string $inputFile = '';
 
     /**
      * Output file
      *
      * @var string
      */
-    protected $outputFile;
+    protected string $outputFile = '';
 
     /**
      * Add input argument
      *
-     * @param string $filePath
-     *            Input file path
+     * @param string $filePath Input file path
      *
-     * @return Convert
      * @throws \InvalidArgumentException
      */
     public function in(string $filePath): self
@@ -93,12 +91,9 @@ class Convert extends ImageMagick implements Program
     /**
      * Add output argument
      *
-     * @param string $filePath
-     *            Output file path
-     * @param boolean $includeOptions
-     *            Include the used options as part of the filename
+     * @param string $filePath Output file path
+     * @param bool $includeOptions Include the used options as part of the filename
      *
-     * @return Convert
      * @throws \InvalidArgumentException
      * @todo Implement include options to filename
      */
@@ -128,7 +123,6 @@ class Convert extends ImageMagick implements Program
      * Get the command to run
      *
      * @see ImageMagick::getCommand()
-     * @return string
      */
     public function getCommand(): string
     {
@@ -154,10 +148,11 @@ class Convert extends ImageMagick implements Program
     /**
      * Execute the command
      *
+     * @param bool $reset Reset after execution
+     *
      * @see ImageMagick::execute()
-     * @return string
      */
-    public function execute($reset = true): string
+    public function execute(bool $reset = true): string
     {
         if ($this->cache instanceof Cache) {
             ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
@@ -186,12 +181,9 @@ class Convert extends ImageMagick implements Program
     /**
      * Raw arguments directly to ImageMagick
      *
-     * @param string $arguments
-     *            Arguments
-     * @param boolean $input
-     *            Defaults to an input option, use false to use it as an output option
+     * @param string $arguments Arguments
+     * @param bool $input Defaults to an input option, use false to use it as an output option
      *
-     * @return Convert
      * @see ImageMagick::raw()
      */
     public function raw(string $arguments, bool $input = true): self
@@ -204,10 +196,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Set the gravity
      *
-     * @param string $gravity
-     *            Gravity
-     *
-     * @return Convert
+     * @param string $gravity Gravity
      */
     public function gravity(string $gravity): self
     {
@@ -219,15 +208,10 @@ class Convert extends ImageMagick implements Program
     /**
      * Set the density of the output image.
      *
-     * @param integer $width
-     *            The width of the image
-     * @param integer $height
-     *            The height of the image
-     * @param boolean $output
-     *            If output is true density is set for the resulting image
-     *            If output is false density is used for reading the input image
-     *
-     * @return Convert
+     * @param int $width The width of the image
+     * @param int $height The height of the image
+     * @param bool $output If output is true density is set for the resulting image
+     *                     If output is false density is used for reading the input image
      */
     public function density(int $width = 72, int $height = 72, bool $output = true): self
     {
@@ -239,12 +223,8 @@ class Convert extends ImageMagick implements Program
     /**
      * Add a profile to the image.
      *
-     * @param string $profilePath
-     *            Profile path
-     * @param string $profileName
-     *            Profile name
-     *
-     * @return Convert
+     * @param string $profilePath Profile path
+     * @param string $profileName Profile name
      */
     public function profile(string $profilePath = "", string $profileName = ""): self
     {
@@ -256,10 +236,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Remove a profile from the image.
      *
-     * @param string $profileName
-     *            Profile name
-     *
-     * @return Convert
+     * @param string $profileName Profile name
      *
      * @todo get list of profiles from image (can be done by identify but might be too expensive)
      */
@@ -273,12 +250,9 @@ class Convert extends ImageMagick implements Program
     /**
      * Change profile on the image.
      *
-     * @param string $profilePathFrom
-     *            Path to the profile
-     * @param string $profilePathTo
-     *            Path to the profile
+     * @param string $profilePathFrom Path to the profile
+     * @param string $profilePathTo Path to the profile
      *
-     * @return Convert
      * @throws \InvalidArgumentException
      */
     public function changeProfile(string $profilePathFrom, string $profilePathTo): self
@@ -303,13 +277,9 @@ class Convert extends ImageMagick implements Program
     /**
      * Rotate image
      *
-     * @param integer $degree
-     *            Degrees to rotate the image
-     * @param string $background
-     *            The background color to apply to empty triangles in the corners,
-     *            left over from rotating the image
-     *
-     * @return Convert
+     * @param int $degree Degrees to rotate the image
+     * @param string $background The background color to apply to empty triangles in the corners,
+     *                           left over from rotating the image
      */
     public function rotate(int $degree, string $background = '#ffffff'): self
     {
@@ -322,10 +292,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Add a background color to a image
      *
-     * @param string $color
-     *            Color
-     *
-     * @return Convert
+     * @param string $color Color
      */
     public function background(string $color): self
     {
@@ -337,16 +304,10 @@ class Convert extends ImageMagick implements Program
     /**
      * Resample the image to a new resolution
      *
-     * @param integer $newWidth
-     *            New image resolution
-     * @param integer $newHeight
-     *            New image resolution
-     * @param integer $originalWidth
-     *            Original image resolution
-     * @param integer $originalHeight
-     *            Original image resolution
-     *
-     * @return Convert
+     * @param int $newWidth New image resolution
+     * @param int|null $newHeight New image resolution
+     * @param int|null $originalWidth Original image resolution
+     * @param int|null $originalHeight Original image resolution
      */
     public function resample(
         int $newWidth,
@@ -369,12 +330,8 @@ class Convert extends ImageMagick implements Program
     /**
      * Size the input image
      *
-     * @param integer $width
-     *            Image width
-     * @param integer $height
-     *            Image height
-     *
-     * @return Convert
+     * @param int|null $width Image width
+     * @param int|null $height Image height
      */
     public function size(int|null $width, int|null $height): self
     {
@@ -385,8 +342,6 @@ class Convert extends ImageMagick implements Program
 
     /**
      * Flatten layers in an image.
-     *
-     * @return Convert
      */
     public function flatten(): self
     {
@@ -397,8 +352,6 @@ class Convert extends ImageMagick implements Program
 
     /**
      * Strip image of any profiles or comments.
-     *
-     * @return Convert
      */
     public function strip(): self
     {
@@ -409,8 +362,6 @@ class Convert extends ImageMagick implements Program
 
     /**
      * Flip image
-     *
-     * @return Convert
      */
     public function flip(): self
     {
@@ -421,8 +372,6 @@ class Convert extends ImageMagick implements Program
 
     /**
      * Flop image
-     *
-     * @return Convert
      */
     public function flop(): self
     {
@@ -434,10 +383,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Set output image type
      *
-     * @param string $type
-     *            The output image type
-     *
-     * @return Convert
+     * @param string $type The output image type
      */
     public function type(string $type): self
     {
@@ -449,10 +395,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Apply a method to layers in images.
      *
-     * @param string $method
-     *            The method to use
-     *
-     * @return Convert
+     * @param string $method The method to use
      */
     public function layers(string $method): self
     {
@@ -464,18 +407,11 @@ class Convert extends ImageMagick implements Program
     /**
      * Resize the input image
      *
-     * @param integer $width
-     *            Image width
-     * @param integer $height
-     *            Image height
-     * @param boolean $maintainAspectRatio
-     *            Should we maintain aspect ratio? default is true
-     * @param boolean $dontScaleUp
-     *            Should we prohipped scaling up? default is true
-     * @param string $aspect
-     *            How should we handle aspect ratio?
-     *
-     * @return Convert
+     * @param int|null $width Image width
+     * @param int|null $height Image height
+     * @param bool $maintainAspectRatio Should we maintain aspect ratio? default is true
+     * @param bool $dontScaleUp Should we prohibit scaling up? default is true
+     * @param string $aspect How should we handle aspect ratio?
      */
     public function resize(
         int| null $width,
@@ -492,16 +428,10 @@ class Convert extends ImageMagick implements Program
     /**
      * Resize the input image
      *
-     * @param integer $width
-     *            Image width
-     * @param integer $height
-     *            Image height
-     * @param integer $xOffset
-     *            X offset from upper-left corner
-     * @param integer $yOffset
-     *            Y offset from upper-left corner
-     *
-     * @return Convert
+     * @param int $width Image width
+     * @param int $height Image height
+     * @param int $xOffset X offset from upper-left corner
+     * @param int $yOffset Y offset from upper-left corner
      */
     public function crop(int $width, int $height, int $xOffset = 0, int $yOffset = 0): self
     {
@@ -513,12 +443,8 @@ class Convert extends ImageMagick implements Program
     /**
      * Set the quality of the output image for jpeg an png.
      *
-     * @param integer $quality
-     *            A value between 0 - 100
-     * @param string $format
-     *            Format to use; default is jpeg
-     *
-     * @return Convert
+     * @param int $quality A value between 0 - 100
+     * @param string $format Format to use; default is jpeg
      */
     public function quality(int $quality, string $format = 'jpeg'): self
     {
@@ -530,10 +456,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Set the colorspace for the image
      *
-     * @param string $colorSpace
-     *            The colorspace to use
-     *
-     * @return Convert
+     * @param string $colorSpace The colorspace to use
      */
     public function colorspace(string $colorSpace): self
     {
@@ -545,10 +468,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Sepia tone the image
      *
-     * @param integer $threshold
-     *            The threshold to use
-     *
-     * @return Convert
+     * @param int $threshold The threshold to use
      */
     public function sepia(int $threshold = 80): self
     {
@@ -560,10 +480,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Add polaroid effect to the image
      *
-     * @param integer $angle
-     *            The threshold to use
-     *
-     * @return Convert
+     * @param int $angle The threshold to use
      */
     public function polaroid(int $angle = 0): self
     {
@@ -575,10 +492,7 @@ class Convert extends ImageMagick implements Program
     /**
      * Set the color of the border if border is set
      *
-     * @param string $color
-     *            The color of the border
-     *
-     * @return Convert
+     * @param string $color The color of the border
      */
     public function bordercolor(string $color = '#DFDFDF'): self
     {

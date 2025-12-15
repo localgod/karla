@@ -31,9 +31,7 @@ interface Action
     /**
      * Perform an action
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
      */
     public function perform(Query $query): Query;
 }

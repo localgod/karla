@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling rotate action
+ * Class for handling rotate action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,15 +32,14 @@ class Rotate implements Action
     /**
      * Degrees to rotate the image
      *
-     * @var integer
+     * @var int
      */
     private int $degree;
 
     /**
      * Rotate image
      *
-     * @param integer $degree
-     *            Degrees to rotate the image
+     * @param int $degree Degrees to rotate the image
      *
      * @throws \InvalidArgumentException if degree is not an integer value
      */
@@ -52,9 +51,8 @@ class Rotate implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

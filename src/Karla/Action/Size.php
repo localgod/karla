@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling size action
+ * Class for handling size action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,24 +32,22 @@ class Size implements Action
     /**
      * Width
      *
-     * @var integer
+     * @var int
      */
     private int $width;
 
     /**
      * Height
      *
-     * @var integer
+     * @var int
      */
     private int $height;
 
     /**
      * Construct a new size action
      *
-     * @param integer $width
-     *            New width
-     * @param integer $height
-     *            New height
+     * @param int $width New width
+     * @param int $height New height
      */
     public function __construct(int $width, int $height)
     {
@@ -60,9 +58,8 @@ class Size implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

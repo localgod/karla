@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling profile action
+ * Class for handling profile action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -46,19 +46,16 @@ class Profile implements Action
     /**
      * Remove profile
      *
-     * @var boolean
+     * @var bool
      */
     private bool $remove;
 
     /**
      * Construct a new profile action
      *
-     * @param string $profilePath
-     *            Profile path
-     * @param string $profileName
-     *            Profile name
-     * @param boolean $remove
-     *            Should the profile be removed? (default is false)
+     * @param string $profilePath Profile path
+     * @param string $profileName Profile name
+     * @param bool $remove Should the profile be removed? (default is false)
      *
      * @throws \LogicException profilePath or profileName must be set, but not both.
      * @throws \InvalidArgumentException If profile input file (' . $profilePath . ') could not be found.
@@ -82,9 +79,8 @@ class Profile implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

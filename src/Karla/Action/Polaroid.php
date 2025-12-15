@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling polaroid action
+ * Class for handling polaroid action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,15 +32,14 @@ class Polaroid implements Action
     /**
      * Angle
      *
-     * @var integer
+     * @var int
      */
     private int $angle;
 
     /**
      * Construct a new polaroid action
      *
-     * @param integer $angle
-     *            Angle
+     * @param int $angle Angle
      *
      * @throws \InvalidArgumentException If the supplied angle is not an integer between 0 and 360.
      */
@@ -56,9 +55,8 @@ class Polaroid implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

@@ -22,7 +22,7 @@ use Karla\Action;
 use Karla\Support;
 
 /**
- * Class for handeling colorspace action
+ * Class for handling colorspace action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -41,12 +41,10 @@ class Colorspace implements Action
     /**
      * Construct a new size action
      *
-     * @param \Karla\Program $program
-     *            The program to use
-     * @param string $colorspace
-     *            Colorspace
+     * @param \Karla\Program $program The program to use
+     * @param string $colorspace Colorspace
      *
-     * @throws \InvalidArgumentException If he supplied colorspace is not supported by imagemagick.
+     * @throws \InvalidArgumentException If the supplied colorspace is not supported by imagemagick.
      */
     public function __construct(Program $program, string $colorspace)
     {
@@ -60,9 +58,8 @@ class Colorspace implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

@@ -21,7 +21,7 @@ use Karla\Action;
 use InvalidArgumentException;
 
 /**
- * Class for handeling resize action
+ * Class for handling resize action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -47,28 +47,28 @@ class Resize implements Action
     /**
      * Width of new image
      *
-     * @var integer
+     * @var int|null
      */
-    private int $width;
+    private int|null $width;
 
     /**
      * Height of new image
      *
-     * @var integer
+     * @var int|null
      */
-    private int $height;
+    private int|null $height;
 
     /**
      * Maintain aspect ratio
      *
-     * @var boolean
+     * @var bool
      */
     private bool $maintainAspectRatio;
 
     /**
      * Don't scale up
      *
-     * @var boolean
+     * @var bool
      */
     private bool $dontScaleUp;
 
@@ -81,16 +81,11 @@ class Resize implements Action
     /**
      * Construct a new size action
      *
-     * @param integer $width
-     *            Image width
-     * @param integer $height
-     *            Image height
-     * @param boolean $maintainAspectRatio
-     *            Should we maintain aspect ratio?
-     * @param boolean $dontScaleUp
-     *            Should we prohipped scaling up?
-     * @param string $aspect
-     *            How should we handle aspect ratio?
+     * @param int|null $width Image width
+     * @param int|null $height Image height
+     * @param bool $maintainAspectRatio Should we maintain aspect ratio?
+     * @param bool $dontScaleUp Should we prohibit scaling up?
+     * @param string $aspect How should we handle aspect ratio?
      *
      * @throws \InvalidArgumentException
      */
@@ -126,11 +121,10 @@ class Resize implements Action
     }
 
     /**
-     * (non-PHPdoc)
+     * Perform the resize action
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

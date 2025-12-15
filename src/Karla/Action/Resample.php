@@ -20,7 +20,7 @@ use Karla\Query;
 use Karla\Action;
 
 /**
- * Class for handeling resample action
+ * Class for handling resample action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -32,24 +32,22 @@ class Resample implements Action
     /**
      * New width
      *
-     * @var integer
+     * @var int
      */
     private int $newWidth;
 
     /**
      * New height
      *
-     * @var integer
+     * @var int
      */
     private int $newHeight;
 
     /**
      * Construct a new size action
      *
-     * @param integer $newWidth
-     *            New width
-     * @param integer $newHeight
-     *            New height
+     * @param int $newWidth New width
+     * @param int|null $newHeight New height
      *
      * @throws \InvalidArgumentException
      */
@@ -62,9 +60,8 @@ class Resample implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

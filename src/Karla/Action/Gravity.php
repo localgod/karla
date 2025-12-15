@@ -23,7 +23,7 @@ use Karla\Support;
 use Karla\Karla;
 
 /**
- * Class for handeling gravity action
+ * Class for handling gravity action
  *
  * @category Utility
  * @author   Johannes Skov Frandsen <jsf@greenoak.dk>
@@ -42,10 +42,8 @@ class Gravity implements Action
     /**
      * Construct a new gravity action
      *
-     * @param \Karla\Program $program
-     *            The program to use
-     * @param string $gravity
-     *            Gravity
+     * @param \Karla\Program $program The program to use
+     * @param string $gravity Gravity
      *
      * @throws \InvalidArgumentException If the supplied gravity is not supported by imagemagick.
      */
@@ -61,9 +59,8 @@ class Gravity implements Action
     /**
      * (non-PHPdoc)
      *
-     * @param Query $query
-     *            The query to add the action to
-     * @return Query
+     * @param Query $query The query to add the action to
+     *
      * @see Action::perform()
      */
     public function perform(Query $query): Query

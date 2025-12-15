@@ -48,21 +48,18 @@ class Karla
     private int|null $version = null;
 
     /**
-     * Instance of a imagmagick object.
+     * Instance of an ImageMagick object.
      *
-     * @var Karla $instance imagmagick object.
+     * @var Karla|null
      */
-    private static $instance;
+    private static Karla|null $instance = null;
 
     /**
-     * Get a instance of Karla.
+     * Get an instance of Karla.
      *
-     * @param string $binPath
-     *            Path to imagemagic binaries (optional)
-     * @param Cache|null $cache
-     *            Cache controller (optional)
+     * @param string $binPath Path to ImageMagick binaries (optional)
+     * @param Cache|null $cache Cache controller (optional)
      *
-     * @return Karla
      * @throws \InvalidArgumentException
      */
     public static function perform(string $binPath = '/opt/local/bin/', Cache|null $cache = null): Karla
@@ -81,12 +78,10 @@ class Karla
     /**
      * Construct a new Karla object.
      *
-     * @param string $binPath
-     *            Path to imagemagic binaries
-     * @param Cache $cache
-     *            Cache controller
+     * @param string $binPath Path to ImageMagick binaries
+     * @param Cache|null $cache Cache controller
      *
-     * @throws \InvalidArgumentException if path for imagemagick is invalid
+     * @throws \InvalidArgumentException if path for ImageMagick is invalid
      */
     private function __construct(string $binPath, Cache|null $cache)
     {
@@ -145,14 +140,11 @@ class Karla
      *
      * Karla was never intended to wrap all of the functionality of ImageMagick
      * and likely never will, you will from time to time need to write arguments
-     * to ImageMagick like you would have done directly in the consol.
+     * to ImageMagick like you would have done directly in the console.
      *
-     * @param string $program
-     *            Imagemagick tool to use
-     * @param string $arguments
-     *            Arguments for the tool
+     * @param string $program ImageMagick tool to use
+     * @param string $arguments Arguments for the tool
      *
-     * @return string Result of the command if any
      * @throws \InvalidArgumentException if you try to run a non ImageMagick program
      */
     public function raw(string $program, string $arguments = ""): string
@@ -176,8 +168,6 @@ class Karla
 
     /**
      * Start a convert operation
-     *
-     * @return Program\Convert
      */
     public function convert(): Program\Convert
     {
@@ -188,9 +178,7 @@ class Karla
     }
 
     /**
-     * Start a identify operation
-     *
-     * @return Program\Identify
+     * Start an identify operation
      */
     public function identify(): Program\Identify
     {
@@ -202,8 +190,6 @@ class Karla
 
     /**
      * Start a composite operation
-     *
-     * @return Program\Composite
      */
     public function composite(): Program\Composite
     {
