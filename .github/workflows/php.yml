@@ -12,11 +12,21 @@ on:
 jobs:
   lint:
     if: github.event.pull_request.draft == false
+    timeout-minutes: 10
     strategy:
       matrix:
-        php-versions: ['8.4']
-        os: ['ubuntu-latest','windows-latest','macOS-latest']
-    runs-on: ubuntu-latest
+        include:
+          - os: ubuntu-latest
+            php-versions: '8.2'
+          - os: ubuntu-latest
+            php-versions: '8.3'
+          - os: ubuntu-latest
+            php-versions: '8.4'
+          - os: windows-latest
+            php-versions: '8.4'
+          - os: macOS-latest
+            php-versions: '8.4'
+    runs-on: ${{ matrix.os }}
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v6
@@ -25,7 +35,12 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
-        coverage: xdebug
+        ini-values: memory_limit=256M
+        coverage: none
+        tools: composer:v2
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        RUNNER_TOOL_CACHE: /tmp/runner-tool-cache
     - name: Check PHP Version
       run: php -v
 
@@ -45,14 +60,25 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Check style
+      if: runner.os == 'Linux'
       run: composer run cs
   test:
     if: github.event.pull_request.draft == false
+    timeout-minutes: 20
     strategy:
       matrix:
-        php-versions: ['8.4']
-        os: ['ubuntu-latest']
-    runs-on: ubuntu-latest
+        include:
+          - os: ubuntu-latest
+            php-versions: '8.2'
+          - os: ubuntu-latest
+            php-versions: '8.3'
+          - os: ubuntu-latest
+            php-versions: '8.4'
+          - os: windows-latest
+            php-versions: '8.4'
+          - os: macOS-latest
+            php-versions: '8.4'
+    runs-on: ${{ matrix.os }}
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v6
@@ -61,7 +87,80 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
+        ini-values: memory_limit=256M
         coverage: xdebug
+        tools: composer:v2
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        RUNNER_TOOL_CACHE: /tmp/runner-tool-cache
+
+    - name: Cache ImageMagick (Windows)
+      if: runner.os == 'Windows'
+      id: cache-imagemagick-windows
+      uses: actions/cache@v5
+      with:
+        path: C:\ProgramData\chocolatey\lib\imagemagick
+        key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
+
+    - name: Cache ImageMagick (macOS)
+      if: runner.os == 'macOS'
+      id: cache-imagemagick-macos
+      uses: actions/cache@v5
+      with:
+        path: /opt/homebrew/Cellar/imagemagick
+        key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
+
+    - name: Install ImageMagick
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          if [ "${{ steps.cache-imagemagick-macos.outputs.cache-hit }}" != "true" ]; then
+            brew install imagemagick
+          else
+            brew link imagemagick || true
+          fi
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          # Check if already installed
+          if command -v magick &> /dev/null; then
+            echo "ImageMagick already installed"
+          elif [ "${{ steps.cache-imagemagick-windows.outputs.cache-hit }}" != "true" ]; then
+            choco install imagemagick -y --no-progress
+          fi
+        fi
+      shell: bash
+      continue-on-error: false
+
+    - name: Verify ImageMagick installation
+      run: |
+        if command -v magick &> /dev/null; then
+          magick -version
+        elif command -v convert &> /dev/null; then
+          convert -version
+        else
+          echo "ImageMagick not found!"
+          exit 1
+        fi
+      shell: bash
+
+    - name: Set ImageMagick path (Linux/macOS)
+      if: runner.os != 'Windows'
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          MAGICK_PATH=$(dirname $(which magick))
+          echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+        fi
+      shell: bash
+
+    - name: Set ImageMagick path (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        $magickPath = (Get-Command magick).Source | Split-Path
+        echo "IMAGEMAGICK_PATH=$magickPath/" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      shell: pwsh
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
@@ -71,23 +170,42 @@ jobs:
       env:
         XDEBUG_MODE: coverage
 
+    - name: Save coverage report
+      uses: actions/upload-artifact@v6
+      with:
+        name: coverage-${{ matrix.os }}-${{ matrix.php-versions }}
+        path: coverage/
+      if: success()
+    
+    - name: List coverage files
+      if: success()
+      run: |
+        echo "Coverage directory contents:"
+        ls -laR coverage/ || echo "Coverage directory not found"
+  docs:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
     - name: Generate docs site
       run: |
         npm install
         npm run docs:build 
 
-    - name: Save coverage report
-      uses: actions/upload-artifact@v6
-      with:
-        name: coverage
-        path: coverage/
     - name: Save docs site
       uses: actions/upload-artifact@v6
       with:
         name: docs
         path: docs/.vuepress/dist
   publish:
-    needs: test
+    needs: [docs, test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
@@ -99,14 +217,14 @@ jobs:
       run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
     - uses: actions/download-artifact@v7
       with:
-        name: coverage
+        name: coverage-ubuntu-latest-8.4
         path: coverage
     - uses: actions/download-artifact@v7
       with:
         name: docs
         path: .
-    - name: list dir
-      run: ls -la coverage
+    - name: Create .nojekyll file
+      run: touch .nojekyll
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

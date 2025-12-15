@@ -144,7 +144,10 @@ class Convert extends ImageMagick implements Program
         $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
         $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
 
-        return $this->binPath . $this->bin . ' ' . ($inOptions == '' ? '' : $inOptions . ' ') .
+        // Get the base command (handles ImageMagick 7 vs 6 automatically)
+        $baseCommand = parent::getCommand();
+
+        return $baseCommand . ' ' . ($inOptions == '' ? '' : $inOptions . ' ') .
                $this->inputFile . ' ' . ($outOptions == '' ? '' : $outOptions . ' ') . $this->outputFile;
     }
 

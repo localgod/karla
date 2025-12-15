@@ -8,29 +8,41 @@
 [![Project Stats](https://www.openhub.net/p/Karla/widgets/project_thin_badge.gif)](https://www.openhub.net/p/Karla)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flocalgod%2Fkarla.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Flocalgod%2Fkarla?ref=badge_shield&issueType=license)
 
-Karla is a ImageMagick wrapper written in php with support for method chaining.
+Karla is an ImageMagick wrapper written in PHP with support for method chaining.
+
+✨ **Now with ImageMagick 7 support!** Automatically detects and works with both ImageMagick 6 and 7.
 
 ## Requirements
 
-- Php version 8.0 or newer build with the following extension: pcre, SPL
-  (default build-in in most distributions)
-- Your php setup needs to allow [shell_exec()](http://php.net/manual/en/function.shell-exec.php)
-- [ImageMagick](http://www.imagemagick.org/)
+- PHP 8.0+ (8.2+ recommended)
+- ImageMagick 6.x or 7.x
+- PHP extensions: pcre, SPL (default in most distributions)
+- [shell_exec()](http://php.net/manual/en/function.shell-exec.php) must be enabled
 
-### Legacy version
+## Installation
 
-- For release 1.0.0 Php version 5.3.3 or newer build with the following
-  extension: pcre, SPL (default build-in in most distributions)
-- Your php setup needs to allow [shell_exec()](http://php.net/manual/en/function.shell-exec.php)
-- [ImageMagick](http://www.imagemagick.org/)
+```bash
+composer require localgod/karla
+```
 
-### Platform support
+## Getting Started
 
-Karla is developed on OSX/Linux but Windows support is build in.
+```php
+use Karla\Karla;
 
-### Documentation
+$karla = new Karla('/path/to/imagemagick/');
+$karla->convert()
+    ->input('photo.jpg')
+    ->resize(800, 600)
+    ->output('photo-resized.jpg')
+    ->execute();
+```
 
-You can see examples and read about Karla [here](http://localgod.github.io/karla/).
+See the [documentation](http://localgod.github.io/karla/) for more examples and usage details.
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTE.md](CONTRIBUTE.md) for development setup, testing guidelines, and how to submit pull requests.
 
 ## License
 

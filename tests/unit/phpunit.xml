@@ -5,9 +5,9 @@
 		 colors="true" 
 		 convertErrorsToExceptions="true" 
 		 convertNoticesToExceptions="true" 
-		 convertWarningsToExceptions="true" 
-		 processIsolation="false" 
-		 stopOnFailure="true">
+	 convertWarningsToExceptions="true" 
+	 processIsolation="false" 
+	 stopOnFailure="false">
 	<testsuites>
 		<testsuite name="unit">
 			<directory>./</directory>

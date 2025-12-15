@@ -36,7 +36,7 @@ class ProfileTest extends PHPUnit\Framework\TestCase
 	 */
 	protected function setUp(): void
 	{
-		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
+		if (! TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
 		$this->testDataPath = realpath(__DIR__.'/../../_data/');
@@ -55,7 +55,7 @@ class ProfileTest extends PHPUnit\Framework\TestCase
             ->profile($this->testDataPath.'/sRGB_Color_Space_Profile.icm')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "'.$this->testDataPath.'/demo.jpg" -profile "'.$this->testDataPath.'/sRGB_Color_Space_Profile.icm" "./test-1920x1200.png"';
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -profile "'.$this->testDataPath.'/sRGB_Color_Space_Profile.icm" "./test-1920x1200.png"');
         $this->assertEquals($expected, $actual);
     }
     
@@ -73,7 +73,7 @@ class ProfileTest extends PHPUnit\Framework\TestCase
     	->profile('','sRGB.icc')
     	->out('test-1920x1200.png')
     	->getCommand();
-    	$expected = 'export PATH=$PATH:' . PATH_TO_IMAGEMAGICK . ';convert "'.$this->testDataPath.'/demo.jpg" -profile sRGB.icc "./test-1920x1200.png"';
+    	$expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -profile sRGB.icc "./test-1920x1200.png"');
     	$this->assertEquals($expected, $actual);
     }
     
