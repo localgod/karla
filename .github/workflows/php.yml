@@ -37,9 +37,7 @@ jobs:
         extensions: mbstring, dom, fileinfo
         ini-values: memory_limit=256M
         coverage: none
-        update: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Check PHP Version
       run: php -v
 
@@ -59,6 +57,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Check style
+      if: runner.os == 'Linux'
       run: composer run cs
   test:
     if: github.event.pull_request.draft == false
@@ -87,9 +86,7 @@ jobs:
         extensions: mbstring, dom, fileinfo
         ini-values: memory_limit=256M
         coverage: xdebug
-        update: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Cache ImageMagick (Windows)
       if: runner.os == 'Windows'
@@ -162,23 +159,35 @@ jobs:
       env:
         XDEBUG_MODE: coverage
 
+    - name: Save coverage report
+      uses: actions/upload-artifact@v6
+      with:
+        name: coverage-${{ matrix.os }}-${{ matrix.php-versions }}
+        path: coverage/
+  docs:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
     - name: Generate docs site
       run: |
         npm install
         npm run docs:build 
 
-    - name: Save coverage report
-      uses: actions/upload-artifact@v6
-      with:
-        name: coverage
-        path: coverage/
     - name: Save docs site
       uses: actions/upload-artifact@v6
       with:
         name: docs
         path: docs/.vuepress/dist
   publish:
-    needs: test
+    needs: [docs, test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
@@ -190,7 +199,7 @@ jobs:
       run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
     - uses: actions/download-artifact@v7
       with:
-        name: coverage
+        name: coverage-ubuntu-latest-8.4
         path: coverage
     - uses: actions/download-artifact@v7
       with:
