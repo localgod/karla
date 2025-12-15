@@ -14,9 +14,9 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        php-versions: ['8.4']
+        php-versions: ['8.2', '8.3', '8.4']
         os: ['ubuntu-latest','windows-latest','macOS-latest']
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v6
@@ -50,9 +50,9 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        php-versions: ['8.4']
-        os: ['ubuntu-latest']
-    runs-on: ubuntu-latest
+        php-versions: ['8.2', '8.3', '8.4']
+        os: ['ubuntu-latest', 'windows-latest', 'macOS-latest']
+    runs-on: ${{ matrix.os }}
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v6
@@ -60,8 +60,60 @@ jobs:
       uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
       with:
         php-version: ${{ matrix.php-versions }}
-        extensions: mbstring, dom, fileinfo
+        extensions: mbstring, dom, fileinfo, imagick
         coverage: xdebug
+
+    - name: Cache ImageMagick (Windows)
+      if: runner.os == 'Windows'
+      id: cache-imagemagick-windows
+      uses: actions/cache@v5
+      with:
+        path: C:\ProgramData\chocolatey\lib\imagemagick
+        key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
+
+    - name: Cache ImageMagick (macOS)
+      if: runner.os == 'macOS'
+      id: cache-imagemagick-macos
+      uses: actions/cache@v5
+      with:
+        path: /opt/homebrew/Cellar/imagemagick
+        key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
+
+    - name: Install ImageMagick
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          if [ "${{ steps.cache-imagemagick-macos.outputs.cache-hit }}" != "true" ]; then
+            brew install imagemagick
+          else
+            brew link imagemagick
+          fi
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          if [ "${{ steps.cache-imagemagick-windows.outputs.cache-hit }}" != "true" ]; then
+            choco install imagemagick -y
+          fi
+        fi
+      shell: bash
+
+    - name: Verify ImageMagick installation
+      run: |
+        magick -version || convert -version
+      shell: bash
+
+    - name: Set ImageMagick path
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          MAGICK_PATH=$(dirname $(which magick))
+          echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          MAGICK_PATH=$(dirname $(which magick))
+          echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+        fi
+      shell: bash
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress

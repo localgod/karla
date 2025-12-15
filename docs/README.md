@@ -18,47 +18,43 @@ toolbox. Karla allows you to access all of ImageMagick like with
 convinient.
 
 Karla offers a subset of the functionalities that Imagick provides, but with
-two destinct differences which is why Karla was written:
+two distinct differences which is why Karla was written:
 
-- You can chain your argument so your image operations are more query like.
+- You can chain your arguments so your image operations are more query-like.
 - You have direct access to ImageMagick's console tools in a convenient way,
   should you need the full power of ImageMagick.
 
-Karla is tested complient with the 7.3, 7.4 and 8.0 version of php, and have
-a decent suite of unittests.
+Karla is tested and compliant with PHP 8.2, 8.3, and 8.4, with full support for both ImageMagick 6 and 7. It has a comprehensive suite of unit tests running on Linux, macOS, and Windows.
 
 ## Requirements
 
-- Php version 8.0< build with the following extension: pcre, SPL (default
-  build-in in most distributions)
-- Your php setup need to allow shell_exec()
-- ImageMagick
-
-### Legacy version
-
-- For release 1.0.0 Php version 5.3.3 or newer build with the following
-  extension: pcre, SPL (default build-in in most distributions)
-- Your php setup needs to allow shell_exec()
-- ImageMagick
+- PHP 8.0+ (8.2+ recommended)
+- ImageMagick 6.x or 7.x (automatically detected)
+- PHP extensions: pcre, SPL (default in most distributions)
+- [shell_exec()](https://www.php.net/manual/en/function.shell-exec) must be enabled
 
 ## Installation
 
-Copy the Karla folder to your site, and add the following lines to you script:
+Install via [Composer](https://getcomposer.org/):
 
-```php
-spl_autoload_register(
-function ($name)
-{
-    if ('Karla\\' == substr($name, 0, 6)) {
-        $path = __DIR__ . '/../src' . DIRECTORY_SEPARATOR
-        . str_replace('\\', DIRECTORY_SEPARATOR, $name)
-        . '.php';
-        require_once $path;
-    }
-});
+```bash
+composer require localgod/karla
 ```
 
-Or you can just use [Composer](http://getcomposer.org/).
+Then use it in your code:
+
+```php
+use Karla\Karla;
+
+// Using static factory method (recommended - singleton pattern)
+Karla::perform('/path/to/imagemagick/')->convert()->in('input.jpg')->out('output.png')->execute();
+
+// Or instantiate directly
+$karla = new Karla('/path/to/imagemagick/');
+$karla->convert()->in('input.jpg')->out('output.png')->execute();
+```
+
+Karla uses PSR-4 autoloading and works automatically with Composer's autoloader.
 
 ## Examples
 
@@ -304,7 +300,7 @@ $image->rotateImage(new ImagickPixel('gray'), -45);
 $image->writeImage('demo-rotate.jpg');
 ```
 
-#### Karla query code (rotate)
+#### Karla code (rotate)
 
 ```php
 Karla::perform()->convert()->rotate(-45, 'gray')->in('demo.jpg')->out('demo-rotate.png')->execute();
@@ -326,13 +322,13 @@ convert -rotate "-45"  -background "gray" "demo.jpg" "demo-rotate.png"
 //Not possible (but you can achive a similar result)
 ```
 
-#### Karla query code (magic)
+#### Karla code (magic)
 
 ```php
 Karla::perform()->convert()->raw('-vignette 5x65000 -gaussian-blur 20')->in('demo.jpg')->out('demo-magic.png')->execute();
 ```
 
-#### Imagemagick query (magic)
+#### ImageMagick in console (magic)
 
 ```bash
 convert -vignette 5x65000 -gaussian-blur 20 "demo.jpg" "demo-magic.png"
