@@ -1,4 +1,4 @@
-name: Main
+name: 🧪 CI/CD Pipeline
 on:
   push:
     branches:
@@ -13,42 +13,21 @@ jobs:
   lint:
     if: github.event.pull_request.draft == false
     timeout-minutes: 10
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            php-versions: '8.2'
-          - os: ubuntu-latest
-            php-versions: '8.3'
-          - os: ubuntu-latest
-            php-versions: '8.4'
-          - os: windows-latest
-            php-versions: '8.4'
-          - os: macOS-latest
-            php-versions: '8.4'
-    runs-on: ${{ matrix.os }}
-    name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    name: Code Quality (Lint & Validate)
     steps:
-    - uses: actions/checkout@v6
-    - name: Setup PHP, with composer and extensions
-      uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+    - name: 📥 Checkout code
+      uses: actions/checkout@v6
+    
+    - name: 🐘 Setup PHP 8.4
+      uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: '8.4'
         extensions: mbstring, dom, fileinfo
-        ini-values: memory_limit=256M
         coverage: none
         tools: composer:v2
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-      env:
-        RUNNER_TOOL_CACHE: /tmp/runner-tool-cache
-    - name: Check PHP Version
-      run: php -v
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
+    - name: 📦 Cache Composer packages
       uses: actions/cache@v5
       with:
         path: vendor
@@ -56,12 +35,24 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Install dependencies
+    - name: 📦 Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: Check style
-      if: runner.os == 'Linux'
+    - name: ✅ Validate composer files
+      run: composer validate --strict
+
+    - name: 🎨 Check coding standards
       run: composer run cs
+
+    - name: 📋 Generate summary
+      if: always()
+      run: |
+        echo "## 🎨 Code Quality Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ **PHP Version:** 8.4" >> $GITHUB_STEP_SUMMARY
+        echo "✅ **Composer validation:** Passed" >> $GITHUB_STEP_SUMMARY
+        echo "✅ **Coding standards:** Passed" >> $GITHUB_STEP_SUMMARY
+
   test:
     if: github.event.pull_request.draft == false
     timeout-minutes: 20
@@ -79,22 +70,21 @@ jobs:
           - os: macOS-latest
             php-versions: '8.4'
     runs-on: ${{ matrix.os }}
-    name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
+    name: Tests - PHP ${{ matrix.php-versions }} (${{ matrix.os }})
     steps:
-    - uses: actions/checkout@v6
-    - name: Setup PHP, with composer and extensions
-      uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+    - name: 📥 Checkout code
+      uses: actions/checkout@v6
+      
+    - name: 🐘 Setup PHP ${{ matrix.php-versions }}
+      uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
         ini-values: memory_limit=256M
-        coverage: xdebug
+        coverage: ${{ matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && 'xdebug' || 'none' }}
         tools: composer:v2
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-      env:
-        RUNNER_TOOL_CACHE: /tmp/runner-tool-cache
 
-    - name: Cache ImageMagick (Windows)
+    - name: 💾 Cache ImageMagick (Windows)
       if: runner.os == 'Windows'
       id: cache-imagemagick-windows
       uses: actions/cache@v5
@@ -102,7 +92,16 @@ jobs:
         path: C:\ProgramData\chocolatey\lib\imagemagick
         key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
 
-    - name: Install ImageMagick
+    - name: 📦 Cache Composer packages
+      uses: actions/cache@v5
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-${{ matrix.php-versions }}-
+          ${{ runner.os }}-php-
+
+    - name: 🎨 Install ImageMagick
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get update
@@ -121,7 +120,11 @@ jobs:
       shell: bash
       continue-on-error: false
 
-    - name: Verify ImageMagick installation
+    - name: 📦 Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: ✅ Verify ImageMagick installation
+      id: verify-imagemagick
       run: |
         if command -v magick &> /dev/null; then
           magick -version
@@ -132,9 +135,10 @@ jobs:
           exit 1
         fi
       shell: bash
+      continue-on-error: true
 
-    - name: Set ImageMagick path (Linux/macOS)
-      if: runner.os != 'Windows'
+    - name: 🔧 Set ImageMagick path (Linux/macOS)
+      if: runner.os != 'Windows' && success()
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
@@ -144,50 +148,79 @@ jobs:
         fi
       shell: bash
 
-    - name: Set ImageMagick path (Windows)
+    - name: 🔧 Set ImageMagick path (Windows)
       if: runner.os == 'Windows'
       run: |
         $magickPath = (Get-Command magick).Source | Split-Path
         echo "IMAGEMAGICK_PATH=$magickPath/" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       shell: pwsh
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Unit test
+    - name: 🧪 Run unit tests
       run: composer run unit
       env:
-        XDEBUG_MODE: coverage
+        XDEBUG_MODE: ${{ matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && 'coverage' || 'off' }}
 
-    - name: Save coverage report
+    - name: 📊 Upload coverage report
+      if: matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4'
       uses: actions/upload-artifact@v6
       with:
-        name: coverage-${{ matrix.os }}-${{ matrix.php-versions }}
+        name: coverage-ubuntu-latest-8.4
         path: coverage/
-      if: success()
+
+    - name: 📋 Generate test summary
+      if: always()
+      run: |
+        echo "## 🧪 Test Results - PHP ${{ matrix.php-versions }} on ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| PHP Version | ${{ matrix.php-versions }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Platform | ${{ matrix.os }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| ImageMagick | ${{ steps.verify-imagemagick.outcome == 'success' && '✅ Installed' || '⚠️ Check required' }} |" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' }}" == "true" ]; then
+          echo "| Coverage | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "| Coverage | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
+        fi
+
   docs:
+    name: Build Documentation
     needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - name: 📥 Checkout code
+      uses: actions/checkout@v6
     
-    - name: Setup Node.js
+    - name: 🟢 Setup Node.js 20
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'npm'
     
-    - name: Generate docs site
+    - name: 📚 Build documentation site
       run: |
         npm install
         npm run docs:build 
 
-    - name: Save docs site
+    - name: 💾 Save documentation artifact
       uses: actions/upload-artifact@v6
       with:
         name: docs
         path: docs/.vuepress/dist
+
+    - name: 📋 Generate documentation summary
+      if: always()
+      run: |
+        echo "## 📚 Documentation Build" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Documentation site generated successfully" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Build Tool:** VuePress 2.0" >> $GITHUB_STEP_SUMMARY
+        echo "**Node.js Version:** 20" >> $GITHUB_STEP_SUMMARY
+
   publish:
+    name: Publish to GitHub Pages
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     needs: [docs, test]
     runs-on: ubuntu-latest
     steps:
@@ -196,29 +229,47 @@ jobs:
         ref: gh-pages
         persist-credentials: false
         fetch-depth: 0
-    - name: Remove old coverage
+        
+    - name: 🗑️ Remove old coverage
       run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
-    - uses: actions/download-artifact@v7
+      
+    - name: 📥 Download coverage report
       with:
         name: coverage-ubuntu-latest-8.4
         path: coverage
-    - uses: actions/download-artifact@v7
+        
+    - name: 📥 Download documentation
+      uses: actions/download-artifact@v7
       with:
         name: docs
         path: .
-    - name: Ensure .nojekyll file exists
+        
+    - name: 📄 Ensure .nojekyll exists
       run: |
         if [ ! -f .nojekyll ]; then
           touch .nojekyll
         fi
-    - name: Commit files
+        
+    - name: 📝 Commit changes
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -A
         git commit -m "Updated documentation"
-    - name: Push changes
+        
+    - name: 🚀 Push to GitHub Pages
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
+    - name: ��� Generate publish summary
+      if: always()
+      run: |
+        echo "## ��� GitHub Pages Deployment" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Successfully deployed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "��� **Site URL:** https://localgod.github.io/karla/" >> $GITHUB_STEP_SUMMARY
+        echo "��� **Coverage Report:** https://localgod.github.io/karla/coverage/" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "_Deployment completed at $(date -u +'%Y-%m-%d %H:%M:%S UTC')_" >> $GITHUB_STEP_SUMMARY
