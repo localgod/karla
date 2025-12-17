@@ -52,11 +52,20 @@ class Support
             }
             
             // IM6 - replace composite with convert
+            // Get the directory and construct convert path
             $dirPath = dirname($binary);
-            $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+            $isWindows = DIRECTORY_SEPARATOR === '\\';
             $convertBin = $isWindows ? 'convert.exe' : 'convert';
             
-            return rtrim($dirPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $convertBin;
+            $result = $dirPath . DIRECTORY_SEPARATOR . $convertBin;
+            
+            // If convert doesn't exist, try using the original binary anyway
+            // (it might work in some configurations)
+            if (!file_exists($result) && !is_executable($result)) {
+                return $binary;
+            }
+            
+            return $result;
         }
         
         // For Convert and Identify, use their binary as-is (they support -list)
@@ -83,6 +92,13 @@ class Support
         $command = self::getListBinary($program) . ' -list gravity 2>&1';
 
         $gravities = shell_exec($command);
+        
+        // If command fails, try without stderr redirect as fallback
+        if ($gravities === null || trim($gravities) === '') {
+            $command = self::getListBinary($program) . ' -list gravity';
+            $gravities = shell_exec($command);
+        }
+        
         if ($gravities === null || trim($gravities) === '') {
             return false;
         }
