@@ -35,7 +35,7 @@ class Support
     /**
      * Get the appropriate binary for -list commands.
      * For ImageMagick 7, use 'magick'.
-     * For ImageMagick 6, use 'convert' or 'identify' (not tool-specific like 'composite').
+     * For ImageMagick 6, use 'convert' or 'identify' (Composite doesn't support -list).
      *
      * @param Program $program Program instance to extract binary path from
      */
@@ -43,22 +43,24 @@ class Support
     {
         $binary = $program->getBinary();
         
-        // If it's 'convert' or 'identify', use as-is (they support -list)
-        if (strpos($binary, 'convert') !== false || strpos($binary, 'identify') !== false) {
-            return $binary;
+        // For Composite programs in IM6, we need to use 'convert' instead
+        // because 'composite' doesn't support -list commands
+        if ($program instanceof Composite) {
+            // If binary contains 'magick', it's IM7 - use as-is
+            if (strpos($binary, 'magick') !== false) {
+                return $binary;
+            }
+            
+            // IM6 - replace composite with convert
+            $dirPath = dirname($binary);
+            $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+            $convertBin = $isWindows ? 'convert.exe' : 'convert';
+            
+            return rtrim($dirPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $convertBin;
         }
         
-        // If it's 'magick' (IM7), use as-is
-        if (strpos($binary, 'magick') !== false) {
-            return $binary;
-        }
-        
-        // For other tools (like 'composite' in IM6), use 'convert' which supports -list
-        $dirPath = dirname($binary);
-        $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
-        $convertBin = $isWindows ? 'convert.exe' : 'convert';
-        
-        return rtrim($dirPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $convertBin;
+        // For Convert and Identify, use their binary as-is (they support -list)
+        return $binary;
     }
 
     /**
