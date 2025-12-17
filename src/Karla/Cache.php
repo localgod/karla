@@ -49,7 +49,7 @@ interface Cache
      *
      * @param string $inputFile Path to file
      * @param string $outputFile Path to file
-     * @param array<string>|string $options Options
+     * @param array<string> $options Options
      */
-    public function setCache(string $inputFile, string $outputFile, string $options): void;
+    public function setCache(string $inputFile, string $outputFile, array $options): void;
 }

@@ -102,7 +102,7 @@ karla/
 ├── tests/
 │   └── unit/           # PHPUnit tests
 │       ├── TestHelper.php  # Cross-platform test utilities
-│       └── bootstrap.php   # Test bootstrap with .env loading
+│       └── bootstrap.php   # Test bootstrap with auto-detection
 ├── demo/               # Usage examples
 └── docs/               # Documentation
 ```
@@ -147,7 +147,7 @@ $expected = TestHelper::buildExpectedCommand(
 ### Tests Failing with "ImageMagick not available"
 
 1. Verify ImageMagick is installed: `magick -version` or `convert -version`
-2. Check your `.env` file has the correct `IMAGEMAGICK_PATH`
+2. Check ImageMagick is in a standard location or update `bootstrap.php` detection paths
 3. Ensure the path includes a trailing slash
 
 ### Windows: "convert is not recognized"
@@ -155,7 +155,7 @@ $expected = TestHelper::buildExpectedCommand(
 Windows has a built-in `convert.exe` for disk operations. Solutions:
 1. Use ImageMagick 7 (uses `magick` instead)
 2. Ensure ImageMagick path comes before `C:\Windows\System32` in PATH
-3. Use absolute paths in your `.env` file
+3. Update the `$possiblePaths` array in `tests/unit/bootstrap.php` with your custom path
 
 ### PSR-4 Autoloading Issues
 

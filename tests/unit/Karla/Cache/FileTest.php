@@ -2,6 +2,8 @@
 use Karla\Karla;
 use Karla\Cache\File;
 
+require_once __DIR__ . '/../../TestHelper.php';
+
 /**
  * Karla ImageMagick wrapper library
  *
@@ -141,13 +143,30 @@ class FileTest extends PHPUnit\Framework\TestCase
 	
 	/**
 	 * Test setCache and isCached
-	 * Note: setCache has a type inconsistency - signature says string but uses array internally
 	 */
 	public function testSetCacheAndIsCached(): void
 	{
-	    $this->markTestIncomplete(
-	        'setCache() has type inconsistency: signature requires string but cacheName() expects array'
-	    );
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output.png';
+	    $options = ['-resize 100x100'];
+	    
+	    // Initially not cached
+	    $this->assertFalse($cache->isCached($inputFile, $outputFile, $options));
+	    
+	    // Create a dummy output file
+	    copy($inputFile, $outputFile);
+	    
+	    // Cache it
+	    $cache->setCache($inputFile, $outputFile, $options);
+	    
+	    // Now should be cached
+	    $this->assertTrue($cache->isCached($inputFile, $outputFile, $options));
+	    
+	    // Clean up
+	    @unlink($outputFile);
+	    $cachedFile = $cache->getCached($inputFile, $outputFile, $options);
+	    @unlink($cachedFile);
 	}
 	
 	/**
@@ -200,23 +219,60 @@ class FileTest extends PHPUnit\Framework\TestCase
 	
 	/**
 	 * Test getCached integration with Karla
-	 * Note: Full execution test skipped due to setCache type issues
 	 */
 	public function testGetCachedWithExecution(): void
 	{
-	    $this->markTestIncomplete(
-	        'Execution test skipped due to setCache() type inconsistency in source code'
-	    );
+	    if (!TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
+	        $this->markTestSkipped('ImageMagick is not available');
+	    }
+	    
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output_exec.png';
+	    $options = ['-resize 50x50'];
+	    
+	    // Initially not cached
+	    $this->assertFalse($cache->isCached($inputFile, $outputFile, $options));
+	    
+	    // Create output file and cache it
+	    copy($inputFile, $outputFile);
+	    $cache->setCache($inputFile, $outputFile, $options);
+	    
+	    // Verify cached file exists
+	    $cachedFile = $cache->getCached($inputFile, $outputFile, $options);
+	    $this->assertFileExists($cachedFile);
+	    
+	    // Clean up
+	    @unlink($outputFile);
+	    @unlink($cachedFile);
 	}
 	
 	/**
 	 * Test setCache creates file with correct content
-	 * Note: setCache has type inconsistency in source code
 	 */
 	public function testSetCacheFileContent(): void
 	{
-	    $this->markTestIncomplete(
-	        'setCache() has type inconsistency: signature requires string but implementation expects array'
-	    );
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output_content.png';
+	    $options = ['-resize 75x75'];
+	    
+	    // Create output file with known content
+	    copy($inputFile, $outputFile);
+	    $originalContent = file_get_contents($outputFile);
+	    
+	    // Cache it
+	    $cache->setCache($inputFile, $outputFile, $options);
+	    
+	    // Get cached file and verify content matches
+	    $cachedFile = $cache->getCached($inputFile, $outputFile, $options);
+	    $this->assertFileExists($cachedFile);
+	    
+	    $cachedContent = file_get_contents($cachedFile);
+	    $this->assertEquals($originalContent, $cachedContent);
+	    
+	    // Clean up
+	    @unlink($outputFile);
+	    @unlink($cachedFile);
 	}
 }
