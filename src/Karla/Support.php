@@ -34,7 +34,8 @@ class Support
 {
     /**
      * Get the appropriate binary for -list commands.
-     * For ImageMagick 6, use 'convert'; for IM7, use 'magick'.
+     * For ImageMagick 7, use 'magick'.
+     * For ImageMagick 6, use 'convert' or 'identify' (not tool-specific like 'composite').
      *
      * @param Program $program Program instance to extract binary path from
      */
@@ -42,18 +43,22 @@ class Support
     {
         $binary = $program->getBinary();
         
-        // If it's already 'magick' (IM7), return as-is
-        if (str_contains($binary, 'magick')) {
+        // If it's 'convert' or 'identify', use as-is (they support -list)
+        if (strpos($binary, 'convert') !== false || strpos($binary, 'identify') !== false) {
             return $binary;
         }
         
-        // For IM6, replace tool-specific binary with 'convert' which supports -list
-        // Extract path and replace binary name with 'convert'
-        $binPath = dirname($binary) . DIRECTORY_SEPARATOR;
+        // If it's 'magick' (IM7), use as-is
+        if (strpos($binary, 'magick') !== false) {
+            return $binary;
+        }
+        
+        // For other tools (like 'composite' in IM6), use 'convert' which supports -list
+        $dirPath = dirname($binary);
         $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
         $convertBin = $isWindows ? 'convert.exe' : 'convert';
         
-        return $binPath . $convertBin;
+        return rtrim($dirPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $convertBin;
     }
 
     /**
