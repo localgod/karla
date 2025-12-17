@@ -102,25 +102,14 @@ jobs:
         path: C:\ProgramData\chocolatey\lib\imagemagick
         key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
 
-    - name: Cache ImageMagick (macOS)
-      if: runner.os == 'macOS'
-      id: cache-imagemagick-macos
-      uses: actions/cache@v5
-      with:
-        path: /opt/homebrew/Cellar/imagemagick
-        key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
-
     - name: Install ImageMagick
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get update
           sudo apt-get install -y imagemagick
         elif [ "$RUNNER_OS" == "macOS" ]; then
-          if [ "${{ steps.cache-imagemagick-macos.outputs.cache-hit }}" != "true" ]; then
-            brew install imagemagick
-          else
-            brew link imagemagick || true
-          fi
+          # Always reinstall to ensure dependencies are present
+          brew install imagemagick
         elif [ "$RUNNER_OS" == "Windows" ]; then
           # Check if already installed
           if command -v magick &> /dev/null; then
