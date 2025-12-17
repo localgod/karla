@@ -20,7 +20,7 @@
 	],
 	"scripts": {
 		"test": "@unit",
-		"unit": "phpunit --testdox --configuration ./tests/unit/phpunit.xml --no-coverage",
+		"unit": "phpunit --testdox --configuration ./tests/unit/phpunit.xml",
 		"cs": "phpcs",
 		"cs-fix": "phpcbf",
 		"clean": [
