@@ -33,6 +33,30 @@ use Karla\Program\Composite;
 class Support
 {
     /**
+     * Get the appropriate binary for -list commands.
+     * For ImageMagick 6, use 'convert'; for IM7, use 'magick'.
+     *
+     * @param Program $program Program instance to extract binary path from
+     */
+    private static function getListBinary(Program $program): string
+    {
+        $binary = $program->getBinary();
+        
+        // If it's already 'magick' (IM7), return as-is
+        if (str_contains($binary, 'magick')) {
+            return $binary;
+        }
+        
+        // For IM6, replace tool-specific binary with 'convert' which supports -list
+        // Extract path and replace binary name with 'convert'
+        $binPath = dirname($binary) . DIRECTORY_SEPARATOR;
+        $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+        $convertBin = $isWindows ? 'convert.exe' : 'convert';
+        
+        return $binPath . $convertBin;
+    }
+
+    /**
      * Check if a gravity is supported by ImageMagick.
      *
      * @param Program $program Program to check
@@ -47,9 +71,9 @@ class Support
             throw new \BadMethodCallException($message);
         }
 
-        // Use getBinary() to get the proper binary path for IM version
+        // Use the appropriate binary for -list commands
         // Redirect stderr to stdout to capture all output
-        $command = $program->getBinary() . ' -list gravity 2>&1';
+        $command = self::getListBinary($program) . ' -list gravity 2>&1';
 
         $gravities = shell_exec($command);
         if ($gravities === null || trim($gravities) === '') {
@@ -78,9 +102,9 @@ class Support
             throw new \BadMethodCallException($message);
         }
 
-        // Use getBinary() to get the proper binary path for IM version
+        // Use the appropriate binary for -list commands
         // Redirect stderr to stdout to capture all output
-        $command = $program->getBinary() . ' -list type 2>&1';
+        $command = self::getListBinary($program) . ' -list type 2>&1';
 
         $types = shell_exec($command);
         if ($types === null || trim($types) === '') {
@@ -109,9 +133,9 @@ class Support
             throw new \BadMethodCallException($message);
         }
 
-        // Use getBinary() to get the proper binary path for IM version
+        // Use the appropriate binary for -list commands
         // Redirect stderr to stdout to capture all output
-        $command = $program->getBinary() . ' -list colorspace 2>&1';
+        $command = self::getListBinary($program) . ' -list colorspace 2>&1';
 
         $colorspaces = shell_exec($command);
         if ($colorspaces === null || trim($colorspaces) === '') {
@@ -142,9 +166,9 @@ class Support
             throw new \BadMethodCallException('This method can not be used in this context');
         }
 
-        // Use getBinary() to get the proper binary path for IM version
+        // Use the appropriate binary for -list commands
         // Redirect stderr to stdout to capture all output
-        $command = $program->getBinary() . ' -list layers 2>&1';
+        $command = self::getListBinary($program) . ' -list layers 2>&1';
 
         $methods = shell_exec($command);
         if ($methods === null || trim($methods) === '') {
@@ -174,9 +198,9 @@ class Support
             throw new \BadMethodCallException('This method can not be used in this context');
         }
 
-        // Use getBinary() to get the proper binary path for IM version
+        // Use the appropriate binary for -list commands
         // Redirect stderr to stdout to capture all output
-        $command = $program->getBinary() . ' -list format 2>&1';
+        $command = self::getListBinary($program) . ' -list format 2>&1';
 
         $formats = shell_exec($command);
         if ($formats === null || trim($formats) === '') {
