@@ -174,11 +174,11 @@ class Query
      */
     final public function prepareOptions(array $options): string
     {
-        foreach ($options as $option) {
-            if ($option == '') {
-                unset($option);
-            }
-        }
+        // Filter out empty strings
+        $options = array_filter($options, function($option) {
+            return $option !== '';
+        });
+        
         $options = implode(' ', $options);
         if (trim($options) == '') {
             return '';

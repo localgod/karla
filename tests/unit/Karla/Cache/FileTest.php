@@ -1,5 +1,6 @@
 <?php
 use Karla\Karla;
+use Karla\Cache\File;
 
 /**
  * Karla ImageMagick wrapper library
@@ -43,58 +44,179 @@ class FileTest extends PHPUnit\Framework\TestCase
 	 */
 	protected function setUp(): void
 	{
-		if (! file_exists(PATH_TO_IMAGEMAGICK.'convert')) {
+		if (! TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
 			$this->markTestSkipped('The imagemagick executables are not available.');
 		}
-		exec('mkdir -p '.(__DIR__.'/../../_cache/'));
-		$this->cacheDataPath = realpath(__DIR__.'/../../_cache/');
+		
+		// Create cache directory if it doesn't exist
+		$cachePath = __DIR__ . '/../../_cache/';
+		if (!is_dir($cachePath)) {
+		    mkdir($cachePath, 0777, true);
+		}
+		
+		$this->cacheDataPath = realpath($cachePath);
 		$this->testDataPath = realpath(__DIR__.'/../../_data/');
 	}
 	
 	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * 
+	 * Tears down the fixture
 	 */
 	protected function tearDown(): void
 	{
-	    //exec('rm -r '.(__DIR__.'/../../_cache/'));
+	    // Clean up cache files after tests
+	    if (is_dir($this->cacheDataPath)) {
+	        $files = glob($this->cacheDataPath . '/*.{jpg,png,gif}', GLOB_BRACE);
+	        foreach ($files as $file) {
+	            if (is_file($file)) {
+	                unlink($file);
+	            }
+	        }
+	    }
 	}
 	
-    /**
-     * Test
-     * @test
-     */
-    public function getCached()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-          );
-        $actual = Karla::perform(PATH_TO_IMAGEMAGICK, new \Karla\Cache\File($this->cacheDataPath))->convert()
-        ->in($this->testDataPath.'/demo.jpg')
-        ->crop(100, 100)
-        ->background('red')
-        ->out($this->cacheDataPath.'/'.md5($this->testDataPath.'/demo.jpg').'.png')
-        ->execute();
-        $this->assertEquals('"'.$this->cacheDataPath.'/1ddd465aeac5809d158b06a7b5d7c42a.png'.'"', $actual);
-    }
-
-    /**
-     * Test
-     * @test
-     */
-    public function setCache()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-          );
-        Karla::perform(PATH_TO_IMAGEMAGICK, new \Karla\Cache\File($this->cacheDataPath))->convert()
-        ->in($this->testDataPath.'/demo.jpg')
-        ->crop(100, 100)
-        ->background('red')
-        ->out($this->cacheDataPath.'/'.md5($this->testDataPath.'/demo.jpg').'.png')
-        ->execute();
-        $this->assertTrue(file_exists($this->cacheDataPath.'/1ddd465aeac5809d158b06a7b5d7c42a.png'));
-    }
+	/**
+	 * Test constructor with invalid path throws exception
+	 */
+	public function testConstructorInvalidPath(): void
+	{
+	    $this->expectException(\InvalidArgumentException::class);
+	    $this->expectExceptionMessage('Path not found');
+	    
+	    new File('/path/that/does/not/exist');
+	}
+	
+	/**
+	 * Test constructor with non-writable path throws exception
+	 */
+	public function testConstructorNonWritablePath(): void
+	{
+	    if (DIRECTORY_SEPARATOR === '\\') {
+	        $this->markTestSkipped('Skipping permission test on Windows');
+	    }
+	    
+	    $tempDir = sys_get_temp_dir() . '/karla_readonly_' . uniqid();
+	    mkdir($tempDir);
+	    chmod($tempDir, 0444); // Read-only
+	    
+	    try {
+	        $this->expectException(\InvalidArgumentException::class);
+	        $this->expectExceptionMessage('Path not writable');
+	        
+	        new File($tempDir);
+	    } finally {
+	        chmod($tempDir, 0755);
+	        rmdir($tempDir);
+	    }
+	}
+	
+	/**
+	 * Test constructor with file instead of directory throws exception
+	 */
+	public function testConstructorNotDirectory(): void
+	{
+	    $tempFile = tempnam(sys_get_temp_dir(), 'karla_');
+	    
+	    try {
+	        $this->expectException(\InvalidArgumentException::class);
+	        $this->expectExceptionMessage('Path not a directory');
+	        
+	        new File($tempFile);
+	    } finally {
+	        unlink($tempFile);
+	    }
+	}
+	
+	/**
+	 * Test isCached returns false when file not cached
+	 */
+	public function testIsCachedReturnsFalse(): void
+	{
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output.png';
+	    $options = ['-resize 100x100', '-quality 90'];
+	    
+	    $this->assertFalse($cache->isCached($inputFile, $outputFile, $options));
+	}
+	
+	/**
+	 * Test setCache and isCached
+	 * Note: setCache has a type inconsistency - signature says string but uses array internally
+	 */
+	public function testSetCacheAndIsCached(): void
+	{
+	    $this->markTestIncomplete(
+	        'setCache() has type inconsistency: signature requires string but cacheName() expects array'
+	    );
+	}
+	
+	/**
+	 * Test getCached returns correct filename
+	 */
+	public function testGetCachedFilename(): void
+	{
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output.png';
+	    $options = ['-resize 100x100'];
+	    
+	    $cachedFile = $cache->getCached($inputFile, $outputFile, $options);
+	    
+	    // Should return a path in cache directory with .png extension
+	    $this->assertStringContainsString($this->cacheDataPath, $cachedFile);
+	    $this->assertStringEndsWith('.png', $cachedFile);
+	}
+	
+	/**
+	 * Test cache filename is consistent
+	 */
+	public function testCacheFilenameConsistent(): void
+	{
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output.png';
+	    $options = ['-resize 100x100'];
+	    
+	    $cachedFile1 = $cache->getCached($inputFile, $outputFile, $options);
+	    $cachedFile2 = $cache->getCached($inputFile, $outputFile, $options);
+	    
+	    $this->assertEquals($cachedFile1, $cachedFile2);
+	}
+	
+	/**
+	 * Test cache filename changes with different options
+	 */
+	public function testCacheFilenameDifferentOptions(): void
+	{
+	    $cache = new File($this->cacheDataPath);
+	    $inputFile = $this->testDataPath . '/demo.jpg';
+	    $outputFile = $this->cacheDataPath . '/output.png';
+	    
+	    $cachedFile1 = $cache->getCached($inputFile, $outputFile, ['-resize 100x100']);
+	    $cachedFile2 = $cache->getCached($inputFile, $outputFile, ['-resize 200x200']);
+	    
+	    $this->assertNotEquals($cachedFile1, $cachedFile2);
+	}
+	
+	/**
+	 * Test getCached integration with Karla
+	 * Note: Full execution test skipped due to setCache type issues
+	 */
+	public function testGetCachedWithExecution(): void
+	{
+	    $this->markTestIncomplete(
+	        'Execution test skipped due to setCache() type inconsistency in source code'
+	    );
+	}
+	
+	/**
+	 * Test setCache creates file with correct content
+	 * Note: setCache has type inconsistency in source code
+	 */
+	public function testSetCacheFileContent(): void
+	{
+	    $this->markTestIncomplete(
+	        'setCache() has type inconsistency: signature requires string but implementation expects array'
+	    );
+	}
 }

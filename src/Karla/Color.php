@@ -45,8 +45,8 @@ class Color
      */
     public static function validColorName(string $color): bool
     {
-        $expr = '(aqua)|(black)|(blue)|(fuchsia)|(gray)|(green)|(lime)|(maroon)|(navy)|
-                (olive)|(orange)|(purple)|(red)|(silver)|(teal)|(white)|(yellow)';
+        $expr = '(?:aqua|black|blue|fuchsia|gray|green|lime|maroon|navy' .
+                '|olive|orange|purple|red|silver|teal|white|yellow)';
 
         return boolval(preg_match('/^' . $expr . '$/', $color));
     }
