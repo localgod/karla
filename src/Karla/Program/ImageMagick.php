@@ -262,7 +262,7 @@ abstract class ImageMagick implements \Karla\Program
             $this->getQuery()->reset();
         }
 
-        return $result;
+        return $result !== null && $result !== false ? $result : '';
     }
 
     /**

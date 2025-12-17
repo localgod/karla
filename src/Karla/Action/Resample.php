@@ -69,13 +69,7 @@ class Resample implements Action
         $query->notWith('resample', Query::ARGUMENT_TYPE_INPUT);
         $query->notWith('resize', Query::ARGUMENT_TYPE_INPUT);
 
-        $option = " -resample '";
-        if ($this->newWidth != "" && $this->newHeight != "") {
-            $option = $option . $this->newWidth . "x" . $this->newHeight;
-        } elseif ($this->newWidth != "") {
-            $option = $option . $this->newWidth;
-        }
-        $option = $option . "' ";
+        $option = " -resample '" . $this->newWidth . "x" . $this->newHeight . "' ";
         $query->setInputOption($option);
 
         return $query;

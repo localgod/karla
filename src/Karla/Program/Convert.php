@@ -83,7 +83,6 @@ class Convert extends ImageMagick implements Program
         if (is_writeable($filePath)) {
             $this->inputFile = '"' . $filePath . '"';
         }
-        $this->getQuery()->dirty();
 
         return $this;
     }
@@ -100,21 +99,21 @@ class Convert extends ImageMagick implements Program
     public function out(string $filePath, bool $includeOptions = false): self
     {
         $pathinfo = pathinfo($filePath);
-        if (! file_exists($pathinfo['dirname'])) {
-            $message = 'The output file path (' . $pathinfo['dirname'] . ') is invalid or could not be located.';
+        $dirname = $pathinfo['dirname'] ?? '.';
+        if (! file_exists($dirname)) {
+            $message = 'The output file path (' . $dirname . ') is invalid or could not be located.';
             throw new InvalidArgumentException($message);
         }
-        if (! is_writeable($pathinfo['dirname'])) {
-            $message = 'The output file path (' . $pathinfo['dirname'] . ') is not writable.';
+        if (! is_writeable($dirname)) {
+            $message = 'The output file path (' . $dirname . ') is not writable.';
             throw new InvalidArgumentException($message);
         }
         if (! $includeOptions) {
-            $this->outputFile = '"' . $pathinfo['dirname'] . '/' . $pathinfo['basename'] . '"';
+            $this->outputFile = '"' . $dirname . '/' . $pathinfo['basename'] . '"';
         } else {
             // TODO implement this feature
-            $this->outputFile = '"' . $pathinfo['dirname'] . '/' . $pathinfo['basename'] . '"';
+            $this->outputFile = '"' . $dirname . '/' . $pathinfo['basename'] . '"';
         }
-        $this->getQuery()->dirty();
 
         return $this;
     }
@@ -133,8 +132,6 @@ class Convert extends ImageMagick implements Program
             throw new RuntimeException('Can not perform convert without an input file');
         }
 
-        ! is_array($this->getQuery()->getOutputOptions()) ? $this->getQuery()->setOutputOption("") : null;
-        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
         $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
 
@@ -155,7 +152,6 @@ class Convert extends ImageMagick implements Program
     public function execute(bool $reset = true): string
     {
         if ($this->cache instanceof Cache) {
-            ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
             if (! $this->cache->isCached($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions())) {
                 parent::execute(false);
                 $this->cache->setCache($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions());

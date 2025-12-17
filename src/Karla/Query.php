@@ -41,13 +41,6 @@ class Query
     public const ARGUMENT_TYPE_OUTPUT = 1;
 
     /**
-     * Is the object dirty (has any arguments been set)
-     *
-     * @var bool
-     */
-    private bool $dirty;
-
-    /**
      * Input option
      *
      * @var array<string>
@@ -70,7 +63,6 @@ class Query
     {
         if ($option != "") {
             $this->inputOptions[] = $option;
-            $this->dirty();
         }
     }
 
@@ -93,7 +85,6 @@ class Query
     {
         if ($option != "") {
             $this->outputOptions[] = $option;
-            $this->dirty();
         }
     }
 
@@ -108,23 +99,12 @@ class Query
     }
 
     /**
-     * Set the object as being dirty
-     *
-     * (Arguments have been set)
-     */
-    public function dirty(): void
-    {
-        $this->dirty = true;
-    }
-
-    /**
      * Reset the command
      */
     public function reset(): void
     {
         $this->inputOptions = array();
         $this->outputOptions = array();
-        $this->dirty = false;
     }
 
     /**

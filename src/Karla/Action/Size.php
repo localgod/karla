@@ -32,24 +32,24 @@ class Size implements Action
     /**
      * Width
      *
-     * @var int
+     * @var int|null
      */
-    private int $width;
+    private int|null $width;
 
     /**
      * Height
      *
-     * @var int
+     * @var int|null
      */
-    private int $height;
+    private int|null $height;
 
     /**
      * Construct a new size action
      *
-     * @param int $width New width
-     * @param int $height New height
+     * @param int|null $width New width
+     * @param int|null $height New height
      */
-    public function __construct(int $width, int $height)
+    public function __construct(int|null $width, int|null $height)
     {
         $this->width = $width;
         $this->height = $height;

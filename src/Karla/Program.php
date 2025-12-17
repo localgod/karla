@@ -35,4 +35,9 @@ interface Program
      * Get the command to run
      */
     public function getCommand(): string;
+
+    /**
+     * Get the binary executable path
+     */
+    public function getBinary(): string;
 }

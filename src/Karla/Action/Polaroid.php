@@ -45,11 +45,11 @@ class Polaroid implements Action
      */
     public function __construct(int $angle)
     {
-        if (! is_numeric($angle) || $angle > 360 || $angle < 0) {
+        if ($angle > 360 || $angle < 0) {
             $message = 'The supplied angle (' . $angle . ') must be an integer between 0 and 360';
             throw new \InvalidArgumentException($message);
         }
-        $this->angle = (int) $angle;
+        $this->angle = $angle;
     }
 
     /**

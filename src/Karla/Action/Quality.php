@@ -37,13 +37,6 @@ class Quality implements Action
     private int $quality;
 
     /**
-     * The format to use
-     *
-     * @var string
-     */
-    private string $format;
-
-    /**
      * Construct a new quality action
      *
      * @param int $quality Quality
@@ -63,7 +56,6 @@ class Quality implements Action
             throw new \RangeException($message);
         }
         $this->quality = $quality;
-        $this->format = $format;
     }
 
     /**

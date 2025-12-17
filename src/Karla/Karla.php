@@ -163,7 +163,7 @@ class Karla
             $result = shell_exec($this->binPath . $bin . ' ' . $arguments);
         }
 
-        return $result !== null ? $result : '';
+        return $result !== null && $result !== false ? $result : '';
     }
 
     /**

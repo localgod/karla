@@ -94,12 +94,12 @@ class Support
         $gravities = shell_exec($command);
 
         // If command fails, try without stderr redirect as fallback
-        if ($gravities === null || trim($gravities) === '') {
+        if ($gravities === null || $gravities === false || trim($gravities) === '') {
             $command = self::getListBinary($program) . ' -list gravity';
             $gravities = shell_exec($command);
         }
 
-        if ($gravities === null || trim($gravities) === '') {
+        if ($gravities === null || $gravities === false || trim($gravities) === '') {
             return false;
         }
 
@@ -130,7 +130,7 @@ class Support
         $command = self::getListBinary($program) . ' -list type 2>&1';
 
         $types = shell_exec($command);
-        if ($types === null || trim($types) === '') {
+        if ($types === null || $types === false || trim($types) === '') {
             return false;
         }
 
@@ -161,7 +161,7 @@ class Support
         $command = self::getListBinary($program) . ' -list colorspace 2>&1';
 
         $colorspaces = shell_exec($command);
-        if ($colorspaces === null || trim($colorspaces) === '') {
+        if ($colorspaces === null || $colorspaces === false || trim($colorspaces) === '') {
             // Command failed, return false
             return false;
         }
@@ -194,7 +194,7 @@ class Support
         $command = self::getListBinary($program) . ' -list layers 2>&1';
 
         $methods = shell_exec($command);
-        if ($methods === null || trim($methods) === '') {
+        if ($methods === null || $methods === false || trim($methods) === '') {
             return false;
         }
 
@@ -226,7 +226,7 @@ class Support
         $command = self::getListBinary($program) . ' -list format 2>&1';
 
         $formats = shell_exec($command);
-        if ($formats === null || trim($formats) === '') {
+        if ($formats === null || $formats === false || trim($formats) === '') {
             return false;
         }
 

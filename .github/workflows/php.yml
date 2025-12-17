@@ -44,6 +44,9 @@ jobs:
     - name: 🎨 Check coding standards
       run: composer run cs
 
+    - name: 🔍 Run PHPStan analysis
+      run: composer run phpstan
+
     - name: 📋 Generate summary
       if: always()
       run: |
@@ -52,6 +55,7 @@ jobs:
         echo "✅ **PHP Version:** 8.4" >> $GITHUB_STEP_SUMMARY
         echo "✅ **Composer validation:** Passed" >> $GITHUB_STEP_SUMMARY
         echo "✅ **Coding standards:** Passed" >> $GITHUB_STEP_SUMMARY
+        echo "✅ **PHPStan analysis:** Passed" >> $GITHUB_STEP_SUMMARY
 
   test:
     if: github.event.pull_request.draft == false

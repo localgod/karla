@@ -50,7 +50,6 @@ class Identify extends ImageMagick
         if ($file->isReadable()) {
             $this->inputFile = '"' . $file->getPathname() . '"';
         }
-        $this->getQuery()->dirty();
 
         return $this;
     }
@@ -66,18 +65,20 @@ class Identify extends ImageMagick
     public function execute(bool $reset = true, bool $raw = true): string|object
     {
         $result = parent::execute(false);
+        // Ensure result is a string
+        $resultStr = is_string($result) ? $result : '';
 
         if (! $raw) {
             if ($this->getQuery()->isOptionSet('verbose', $this->getQuery()->getInputOptions())) {
                 $reset ? $this->getQuery()->reset() : null;
-                return new \Karla\MetaData($result, true);
+                return new \Karla\MetaData($resultStr, true);
             }
             $reset ? $this->getQuery()->reset() : null;
-            return new \Karla\MetaData($result);
+            return new \Karla\MetaData($resultStr);
         }
 
         $reset ? $this->getQuery()->reset() : null;
-        return trim($result);
+        return trim($resultStr);
     }
 
     /**
@@ -98,7 +99,6 @@ class Identify extends ImageMagick
      */
     public function getCommand(): string
     {
-        ! is_array($this->getQuery()->getInputOptions()) ? $this->getQuery()->setInputOption("") : null;
         $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
 
         return parent::getCommand() . ' ' . ($options == '' ? '' : $options . ' ') . $this->inputFile;

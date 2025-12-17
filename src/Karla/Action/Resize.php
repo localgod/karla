@@ -96,16 +96,8 @@ class Resize implements Action
         bool $dontScaleUp,
         string $aspect = Resize::ASPECT_FIT
     ) {
-        if ($width == "" && $height == "") {
+        if ($width === null && $height === null) {
             $message = 'You must supply height or width or both to resize the image';
-            throw new InvalidArgumentException($message);
-        }
-        if (! is_numeric($width) && $width != '') {
-            $message = 'width must be an integer value or empty.';
-            throw new InvalidArgumentException($message);
-        }
-        if (! is_numeric($height) && $height != '') {
-            $message = 'height must be an integer value or empty.';
             throw new InvalidArgumentException($message);
         }
         if (!in_array($aspect, array(Resize::ASPECT_FIT, Resize::ASPECT_FILL))) {

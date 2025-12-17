@@ -235,16 +235,12 @@ class MetaData extends \SplFileInfo
         $output = array();
         $output[] = "<ul>";
         $list = $this->verbose ? $this->verboseImageinfo : $this->imageinfo;
-        if (is_array($list)) {
-            foreach ($list as $key => $line) {
-                if ($this->verbose) {
-                    $output[] = "<li>" . $line . "</li>";
-                } else {
-                    $output[] = "<li>" . $key . ' : ' . $line . "</li>";
-                }
+        foreach ($list as $key => $line) {
+            if ($this->verbose) {
+                $output[] = "<li>" . $line . "</li>";
+            } else {
+                $output[] = "<li>" . $key . ' : ' . $line . "</li>";
             }
-        } else {
-            $output[] = "<li>" . $this->imageinfo . "</li>";
         }
         $output[] = "<ul>";
 
@@ -282,8 +278,8 @@ class MetaData extends \SplFileInfo
         $geometry = $this->verbose ? $this->parseVerbose('Geometry') : $this->parse('Geometry');
         $matches = [];
         preg_match("/^[0-9]*x[0-9]*/", $geometry, $matches);
-        if (count($matches) == 1) {
-            $this->geometry = explode("x", $matches[0]);
+        if (isset($matches[0]) && $matches[0] !== '') {
+            $this->geometry = array_map('intval', explode("x", $matches[0]));
         }
     }
 
@@ -295,7 +291,7 @@ class MetaData extends \SplFileInfo
         $colorspace = $this->verbose ? $this->parseVerbose('Colorspace') : $this->parse('Colorspace');
         $matches = [];
         preg_match("/^[a-zA-Z0-9]*/", $colorspace, $matches);
-        $this->colorspace = strtolower(trim($matches[0]));
+        $this->colorspace = isset($matches[0]) ? strtolower(trim($matches[0])) : '';
     }
 
     /**
@@ -306,7 +302,7 @@ class MetaData extends \SplFileInfo
         $depth = $this->verbose ? $this->parseVerbose('Depth') : $this->parse('Depth');
         $matches = [];
         preg_match("/^[0-9]*/", $depth, $matches);
-        $this->depth = (int) $matches[0];
+        $this->depth = isset($matches[0]) ? (int) $matches[0] : 0;
     }
 
     /**
@@ -315,7 +311,7 @@ class MetaData extends \SplFileInfo
     private function parseResolution(): void
     {
         $resolution = $this->verbose ? $this->parseVerbose('Resolution') : $this->parse('Resolution');
-        $this->resolution = explode("x", $resolution);
+        $this->resolution = array_map('intval', explode("x", $resolution));
     }
 
     /**
@@ -396,7 +392,11 @@ class MetaData extends \SplFileInfo
     public function getHash(string $hash = 'md5'): string
     {
         if ($hash == 'md5') {
-            return md5_file($this->getPathname());
+            $result = md5_file($this->getPathname());
+            if ($result === false) {
+                throw new \RuntimeException('Failed to calculate hash for file: ' . $this->getPathname());
+            }
+            return $result;
         } else {
             throw new \InvalidArgumentException($hash . ' is not a supported hash algorithm');
         }
@@ -409,16 +409,6 @@ class MetaData extends \SplFileInfo
      */
     private function ppc2ppi(int $value): int
     {
-        return intval(floor($value * 0.3937008));
-    }
-
-    /**
-     * Convert Pixels Per Inch (ppi) to Pixels Per Centimeter (ppc)
-     *
-     * @param int $value Input value
-     */
-    private function ppi2ppc(int $value): int
-    {
-        return intval(floor($value * 2.54));
+        return intval($value / 2.54);
     }
 }
