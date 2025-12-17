@@ -217,8 +217,11 @@ jobs:
       with:
         name: docs
         path: .
-    - name: Create .nojekyll file
-      run: touch .nojekyll
+    - name: Ensure .nojekyll file exists
+      run: |
+        if [ ! -f .nojekyll ]; then
+          touch .nojekyll
+        fi
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
