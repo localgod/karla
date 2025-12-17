@@ -177,11 +177,17 @@ jobs:
         echo "| PHP Version | ${{ matrix.php-versions }} |" >> $GITHUB_STEP_SUMMARY
         echo "| Platform | ${{ matrix.os }} |" >> $GITHUB_STEP_SUMMARY
         echo "| ImageMagick | ${{ steps.verify-imagemagick.outcome == 'success' && '✅ Installed' || '⚠️ Check required' }} |" >> $GITHUB_STEP_SUMMARY
-        if [ "${{ matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' }}" == "true" ]; then
-          echo "| Coverage | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "| Coverage | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
-        fi
+      shell: bash
+        
+    - name: 📋 Add coverage info to summary
+      if: always() && matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4'
+      run: echo "| Coverage | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
+      shell: bash
+      
+    - name: 📋 Add coverage skipped to summary  
+      if: always() && (matrix.os != 'ubuntu-latest' || matrix.php-versions != '8.4')
+      run: echo "| Coverage | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
+      shell: bash
 
   docs:
     name: Build Documentation
