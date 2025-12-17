@@ -48,10 +48,11 @@ class Support
         }
 
         // Use getBinary() to get the proper binary path for IM version
-        $command = $program->getBinary() . ' -list gravity';
+        // Redirect stderr to stdout to capture all output
+        $command = $program->getBinary() . ' -list gravity 2>&1';
 
         $gravities = shell_exec($command);
-        if ($gravities === null) {
+        if ($gravities === null || trim($gravities) === '') {
             return false;
         }
 
@@ -78,10 +79,11 @@ class Support
         }
 
         // Use getBinary() to get the proper binary path for IM version
-        $command = $program->getBinary() . ' -list type';
+        // Redirect stderr to stdout to capture all output
+        $command = $program->getBinary() . ' -list type 2>&1';
 
         $types = shell_exec($command);
-        if ($types === null) {
+        if ($types === null || trim($types) === '') {
             return false;
         }
 
@@ -108,10 +110,11 @@ class Support
         }
 
         // Use getBinary() to get the proper binary path for IM version
-        $command = $program->getBinary() . ' -list colorspace';
+        // Redirect stderr to stdout to capture all output
+        $command = $program->getBinary() . ' -list colorspace 2>&1';
 
         $colorspaces = shell_exec($command);
-        if ($colorspaces === null) {
+        if ($colorspaces === null || trim($colorspaces) === '') {
             // Command failed, return false
             return false;
         }
@@ -140,10 +143,11 @@ class Support
         }
 
         // Use getBinary() to get the proper binary path for IM version
-        $command = $program->getBinary() . ' -list layers';
+        // Redirect stderr to stdout to capture all output
+        $command = $program->getBinary() . ' -list layers 2>&1';
 
         $methods = shell_exec($command);
-        if ($methods === null) {
+        if ($methods === null || trim($methods) === '') {
             return false;
         }
 
@@ -171,10 +175,11 @@ class Support
         }
 
         // Use getBinary() to get the proper binary path for IM version
-        $command = $program->getBinary() . ' -list format';
+        // Redirect stderr to stdout to capture all output
+        $command = $program->getBinary() . ' -list format 2>&1';
 
         $formats = shell_exec($command);
-        if ($formats === null) {
+        if ($formats === null || trim($formats) === '') {
             return false;
         }
 
