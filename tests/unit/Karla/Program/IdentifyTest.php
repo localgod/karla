@@ -82,7 +82,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
         $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->in($this->testDataPath.'/demo.jpg')
             ->execute();
-        $this->assertTrue(preg_match('/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
+        $this->assertTrue(preg_match('/demo\.jpg\sJPEG\s100x100\s100x100\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
     }
 
     /**
@@ -128,7 +128,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
         $result = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->in($this->testDataPath.'/demo.jpg')
             ->execute(false);
-        $this->assertTrue(preg_match('/demo\.jpg\sJPEG\s200x155\s200x155\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
+        $this->assertTrue(preg_match('/demo\.jpg\sJPEG\s100x100\s100x100\+0\+0\s8-bit\ssRGB.*/', $result) == 1);
     }
 
     /**

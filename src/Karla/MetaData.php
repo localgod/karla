@@ -331,6 +331,7 @@ class MetaData extends \SplFileInfo
                 return trim(str_replace($search . ':', '', $line));
             }
         }
+        return '';
     }
 
     /**
