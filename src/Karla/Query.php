@@ -175,10 +175,10 @@ class Query
     final public function prepareOptions(array $options): string
     {
         // Filter out empty strings
-        $options = array_filter($options, function($option) {
+        $options = array_filter($options, function ($option) {
             return $option !== '';
         });
-        
+
         $options = implode(' ', $options);
         if (trim($options) == '') {
             return '';

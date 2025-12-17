@@ -42,7 +42,7 @@ class Support
     private static function getListBinary(Program $program): string
     {
         $binary = $program->getBinary();
-        
+
         // For Composite programs in IM6, we need to use 'convert' instead
         // because 'composite' doesn't support -list commands
         if ($program instanceof Composite) {
@@ -50,24 +50,24 @@ class Support
             if (strpos($binary, 'magick') !== false) {
                 return $binary;
             }
-            
+
             // IM6 - replace composite with convert
             // Get the directory and construct convert path
             $dirPath = dirname($binary);
             $isWindows = DIRECTORY_SEPARATOR === '\\';
             $convertBin = $isWindows ? 'convert.exe' : 'convert';
-            
+
             $result = $dirPath . DIRECTORY_SEPARATOR . $convertBin;
-            
+
             // If convert doesn't exist, try using the original binary anyway
             // (it might work in some configurations)
             if (!file_exists($result) && !is_executable($result)) {
                 return $binary;
             }
-            
+
             return $result;
         }
-        
+
         // For Convert and Identify, use their binary as-is (they support -list)
         return $binary;
     }
@@ -92,13 +92,13 @@ class Support
         $command = self::getListBinary($program) . ' -list gravity 2>&1';
 
         $gravities = shell_exec($command);
-        
+
         // If command fails, try without stderr redirect as fallback
         if ($gravities === null || trim($gravities) === '') {
             $command = self::getListBinary($program) . ' -list gravity';
             $gravities = shell_exec($command);
         }
-        
+
         if ($gravities === null || trim($gravities) === '') {
             return false;
         }
