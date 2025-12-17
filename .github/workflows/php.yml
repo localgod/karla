@@ -176,12 +176,6 @@ jobs:
         name: coverage-${{ matrix.os }}-${{ matrix.php-versions }}
         path: coverage/
       if: success()
-    
-    - name: List coverage files
-      if: success()
-      run: |
-        echo "Coverage directory contents:"
-        ls -laR coverage/ || echo "Coverage directory not found"
   docs:
     needs: [lint, test]
     runs-on: ubuntu-latest
