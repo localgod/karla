@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0]
+
 ### Added
 - ImageMagick 7 support with automatic version detection and cross-platform compatibility (Windows, macOS, Linux)
 - Comprehensive test coverage for `Color`, `Query`, `Support`, and `Cache\File` classes (63 new tests)

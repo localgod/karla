@@ -1,6 +1,6 @@
 {
   "name": "karla",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Karla Documentation",
   "devDependencies": {
     "@vuepress/bundler-vite": "^2.0.0-rc.26",
