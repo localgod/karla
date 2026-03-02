@@ -249,13 +249,13 @@ jobs:
       run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
       
     - name: 📥 Download coverage report
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: coverage-ubuntu-latest-8.4
         path: coverage
         
     - name: 📥 Download documentation
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: docs
         path: .
