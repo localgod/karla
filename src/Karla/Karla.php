@@ -90,9 +90,8 @@ class Karla
         }
 
         // Detect ImageMagick version - try both v6 (convert) and v7 (magick)
-        $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
-        $magickBin = $isWindows ? 'magick.exe' : 'magick';
-        $convertBin = $isWindows ? 'convert.exe' : 'convert';
+        $magickBin = Platform::getBinary('magick');
+        $convertBin = Platform::getBinary('convert');
 
         $versionOutput = '';
 
@@ -124,7 +123,7 @@ class Karla
         }
 
         // Set binPath appropriately for the OS
-        if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
+        if (Platform::isWindows()) {
             // On Windows, just use the direct path
             $this->binPath = rtrim($binPath, '/\\') . '/';
         } else {
@@ -152,12 +151,10 @@ class Karla
         if (! Program\ImageMagick::validProgram($program)) {
             throw new \InvalidArgumentException('ImageMagick could not be located at specified path');
         }
-        strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ? $bin = $program . '.exe' : $bin = $program;
-
+        $bin = Platform::getBinary($program);
         // For ImageMagick 7+, prepend with magick command
         if ($this->version !== null && $this->version >= 7) {
-            $magickBin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-                Program\ImageMagick::IMAGEMAGICK_MAGICK . '.exe' : Program\ImageMagick::IMAGEMAGICK_MAGICK;
+            $magickBin = Platform::getBinary(Program\ImageMagick::IMAGEMAGICK_MAGICK);
             $result = shell_exec($this->binPath . $magickBin . ' ' . $program . ' ' . $arguments);
         } else {
             $result = shell_exec($this->binPath . $bin . ' ' . $arguments);
@@ -171,8 +168,7 @@ class Karla
      */
     public function convert(): Program\Convert
     {
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            Program\ImageMagick::IMAGEMAGICK_CONVERT . '.exe' : Program\ImageMagick::IMAGEMAGICK_CONVERT;
+        $bin = Platform::getBinary(Program\ImageMagick::IMAGEMAGICK_CONVERT);
 
         return new Program\Convert($this->binPath, $bin, $this->cache, $this->version);
     }
@@ -182,8 +178,7 @@ class Karla
      */
     public function identify(): Program\Identify
     {
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            Program\ImageMagick::IMAGEMAGICK_IDENTIFY . '.exe' : Program\ImageMagick::IMAGEMAGICK_IDENTIFY;
+        $bin = Platform::getBinary(Program\ImageMagick::IMAGEMAGICK_IDENTIFY);
 
         return new Program\Identify($this->binPath, $bin, $this->cache, $this->version);
     }
@@ -193,8 +188,7 @@ class Karla
      */
     public function composite(): Program\Composite
     {
-        $bin = strtoupper(substr(PHP_OS, 0, 3)) == "WIN" ?
-            Program\ImageMagick::IMAGEMAGICK_COMPOSITE . '.exe' : Program\ImageMagick::IMAGEMAGICK_COMPOSITE;
+        $bin = Platform::getBinary(Program\ImageMagick::IMAGEMAGICK_COMPOSITE);
 
         return new Program\Composite($this->binPath, $bin, $this->cache, $this->version);
     }
