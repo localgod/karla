@@ -86,7 +86,7 @@ class Profile implements Action
     public function perform(Query $query): Query
     {
         if ($this->profilePath != '') {
-            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile "' . $this->profilePath . '" ');
+            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . escapeshellarg($this->profilePath) . ' ');
         } else {
             $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . $this->profileName);
         }
