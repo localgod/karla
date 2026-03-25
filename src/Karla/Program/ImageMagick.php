@@ -216,8 +216,7 @@ abstract class ImageMagick implements \Karla\Program
     {
         // For ImageMagick 7+, use 'magick' instead of separate tools
         if ($this->version !== null && $this->version >= 7) {
-            $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
-            $magickBin = $isWindows ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+            $magickBin = \Karla\Platform::getBinary(self::IMAGEMAGICK_MAGICK);
             return $this->binPath . $magickBin;
         }
 
@@ -237,12 +236,10 @@ abstract class ImageMagick implements \Karla\Program
             // For convert, just use 'magick' (ImageMagick 7 combines convert functionality into magick)
             // For identify and composite, use 'magick <subcommand>'
             if ($command === self::IMAGEMAGICK_CONVERT) {
-                $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
-                $magickBin = $isWindows ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+                $magickBin = \Karla\Platform::getBinary(self::IMAGEMAGICK_MAGICK);
                 return $this->binPath . $magickBin;
             } elseif (in_array($command, [self::IMAGEMAGICK_IDENTIFY, self::IMAGEMAGICK_COMPOSITE])) {
-                $isWindows = strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
-                $magickBin = $isWindows ? self::IMAGEMAGICK_MAGICK . '.exe' : self::IMAGEMAGICK_MAGICK;
+                $magickBin = \Karla\Platform::getBinary(self::IMAGEMAGICK_MAGICK);
                 return $this->binPath . $magickBin . ' ' . $command;
             }
         }
