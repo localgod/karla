@@ -55,7 +55,7 @@ class SepiaTest extends PHPUnit\Framework\TestCase
             ->sepia()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -sepia-tone 80% "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -sepia-tone 80% '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 

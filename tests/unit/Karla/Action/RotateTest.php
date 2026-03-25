@@ -55,7 +55,7 @@ class RotateTest extends PHPUnit\Framework\TestCase
             ->rotate(45)
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-rotate "45"  -background "#ffffff" "'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-rotate "45"  -background "#ffffff" '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 }

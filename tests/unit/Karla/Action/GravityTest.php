@@ -55,7 +55,7 @@ class GravityTest extends PHPUnit\Framework\TestCase
             ->gravity('Nowhere')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -density 72x72 "./test-1920x1200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -density 72x72 '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 }
