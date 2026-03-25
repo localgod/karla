@@ -18,6 +18,7 @@ namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
+use Karla\PathValidator;
 
 /**
  * Class for handling profile action
@@ -69,6 +70,9 @@ class Profile implements Action
         if ($profilePath != '' && ! file_exists($profilePath)) {
             $message = 'Profile input file (' . $profilePath . ') could not be found';
             throw new \InvalidArgumentException($message);
+        }
+        if ($profilePath !== '') {
+            $profilePath = PathValidator::validatePath($profilePath);
         }
 
         $this->profilePath = $profilePath;

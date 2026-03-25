@@ -41,6 +41,7 @@ use Karla\Action\Bordercolor;
 use Karla\Program;
 use Karla\Cache;
 use Karla\Query;
+use Karla\PathValidator;
 
 /**
  * Class for wrapping ImageMagicks convert tool
@@ -80,6 +81,8 @@ class Convert extends ImageMagick implements Program
             throw new InvalidArgumentException($message);
         }
 
+        $filePath = PathValidator::validatePath($filePath);
+
         if (is_writeable($filePath)) {
             $this->inputFile = escapeshellarg($filePath);
         }
@@ -108,6 +111,7 @@ class Convert extends ImageMagick implements Program
             $message = 'The output file path (' . $dirname . ') is not writable.';
             throw new InvalidArgumentException($message);
         }
+        $dirname = PathValidator::validateDirectory($dirname);
         if (! $includeOptions) {
             $this->outputFile = escapeshellarg($dirname . '/' . $pathinfo['basename']);
         } else {
