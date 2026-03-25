@@ -101,8 +101,8 @@ class File implements \Karla\Cache
      */
     private function cacheName(string $inputFile, string $outputFile, array $options): string
     {
-        $inputFile = str_replace('"', '', $inputFile);
-        $outputFile = str_replace('"', '', $outputFile);
+        $inputFile = trim($inputFile, "'\"");
+        $outputFile = trim($outputFile, "'\"");
         $ext = pathinfo(basename($outputFile), PATHINFO_EXTENSION);
         $filename = $inputFile . $this->options2string($options);
         return $this->cacheDir . '/' . md5($filename) . '.' . $ext;
@@ -143,7 +143,7 @@ class File implements \Karla\Cache
     public function setCache(string $inputFile, string $outputFile, array $options): void
     {
         $filename = $this->cacheName($inputFile, $outputFile, $options);
-        file_put_contents($filename, file_get_contents(str_replace('"', '', $outputFile)));
+        file_put_contents($filename, file_get_contents(trim($outputFile, "'\"")));
         shell_exec('chmod 666 ' . $filename);
     }
 }

@@ -55,7 +55,7 @@ class TypeTest extends PHPUnit\Framework\TestCase
             ->type('Grayscale')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -type Grayscale "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -type Grayscale '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 

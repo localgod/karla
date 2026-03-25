@@ -53,7 +53,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
         $command = Karla::perform(PATH_TO_IMAGEMAGICK)->identify()
             ->in($this->testDataPath.'/demo.jpg')
             ->getCommand();
-        $this->assertEquals(TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'identify', '"'.$this->testDataPath.'/demo.jpg'.'"'), $command);
+        $this->assertEquals(TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'identify', escapeshellarg($this->testDataPath.'/demo.jpg')), $command);
     }
 
     /**
@@ -159,7 +159,7 @@ class IdentifyTest extends PHPUnit\Framework\TestCase
             ->in($this->testDataPath.'/demo.jpg')
             ->verbose()
             ->getCommand();
-        $this->assertEquals(TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'identify', '-verbose "'.$this->testDataPath.'/demo.jpg'.'"'), $command);
+        $this->assertEquals(TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'identify', '-verbose '.escapeshellarg($this->testDataPath.'/demo.jpg')), $command);
     }
 
     /**

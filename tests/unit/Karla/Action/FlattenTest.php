@@ -55,7 +55,7 @@ class FlattenTest extends PHPUnit\Framework\TestCase
             ->flatten()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-flatten "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-flatten '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 

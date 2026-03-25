@@ -81,7 +81,7 @@ class Convert extends ImageMagick implements Program
         }
 
         if (is_writeable($filePath)) {
-            $this->inputFile = '"' . $filePath . '"';
+            $this->inputFile = escapeshellarg($filePath);
         }
 
         return $this;
@@ -109,10 +109,10 @@ class Convert extends ImageMagick implements Program
             throw new InvalidArgumentException($message);
         }
         if (! $includeOptions) {
-            $this->outputFile = '"' . $dirname . '/' . $pathinfo['basename'] . '"';
+            $this->outputFile = escapeshellarg($dirname . '/' . $pathinfo['basename']);
         } else {
             // TODO implement this feature
-            $this->outputFile = '"' . $dirname . '/' . $pathinfo['basename'] . '"';
+            $this->outputFile = escapeshellarg($dirname . '/' . $pathinfo['basename']);
         }
 
         return $this;
@@ -155,8 +155,7 @@ class Convert extends ImageMagick implements Program
             if (! $this->cache->isCached($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions())) {
                 parent::execute(false);
                 $this->cache->setCache($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions());
-                $temp = str_replace('"', '', $this->outputFile);
-                shell_exec('rm ' . $temp);
+                shell_exec('rm ' . $this->outputFile);
                 $out = $this->cache->getCached(
                     $this->inputFile,
                     $this->outputFile,
@@ -167,9 +166,8 @@ class Convert extends ImageMagick implements Program
             }
             return $this->cache->getCached($this->inputFile, $this->outputFile, $this->getQuery()->getInputOptions());
         } else {
-            $temp = str_replace('"', '', $this->outputFile);
             parent::execute();
-            shell_exec('chmod 666 ' . $temp);
+            shell_exec('chmod 666 ' . $this->outputFile);
             return $this->outputFile;
         }
     }

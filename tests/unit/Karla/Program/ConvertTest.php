@@ -109,7 +109,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->in($this->testDataPath.'/demo.jpg')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" "./test-1920x1200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -127,7 +127,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->removeProfile('iptc')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" +profile iptc "./test-1920x1200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' +profile iptc '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -145,7 +145,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->density()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -density 72x72 "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -density 72x72 '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -180,7 +180,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->profile($this->testDataPath.'/sRGB_Color_Space_Profile.icm')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -profile "'.$this->testDataPath.'/sRGB_Color_Space_Profile.icm" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -214,7 +214,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->changeProfile($this->testDataPath.'/sRGB_Color_Space_Profile.icm', $this->testDataPath.'/sRGB_Color_Space_Profile.icm')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '"'.$this->testDataPath.'/demo.jpg" -profile "'.$this->testDataPath.'/sRGB_Color_Space_Profile.icm"   -profile "'.$this->testDataPath.'/sRGB_Color_Space_Profile.icm" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').'   -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -281,7 +281,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->out('test-200x200.png')
             ->gravity('center')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-gravity center "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-gravity center '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -384,7 +384,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->rotate(- 45, 'gray')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-rotate "-45"  -background gray "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-rotate "-45"  -background gray '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -392,7 +392,8 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
-     * 
+     *
+     *
      */
     public function rotateTwice()
     {
@@ -403,5 +404,69 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->rotate(- 45, 'gray')
             ->out('test-200x200.png')
             ->getCommand();
+    }
+
+    /**
+     * Test that file paths with spaces are properly escaped using escapeshellarg()
+     *
+     * @test
+     *
+     *
+     */
+    public function inputfileWithSpacesIsEscaped()
+    {
+        $tempDir = sys_get_temp_dir() . '/karla-security-test';
+        if (! is_dir($tempDir)) {
+            mkdir($tempDir, 0777, true);
+        }
+        $tempFile = $tempDir . '/demo file.jpg';
+        copy($this->testDataPath . '/demo.jpg', $tempFile);
+
+        try {
+            $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+                ->in($tempFile)
+                ->out('test-output.png')
+                ->getCommand();
+            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($tempFile).' '.escapeshellarg('./test-output.png'));
+            $this->assertEquals($expected, $actual);
+            $this->assertStringContainsString(escapeshellarg($tempFile), $actual);
+        } finally {
+            if (file_exists($tempFile)) {
+                unlink($tempFile);
+            }
+            if (is_dir($tempDir)) {
+                rmdir($tempDir);
+            }
+        }
+    }
+
+    /**
+     * Test that output file paths with spaces are properly escaped using escapeshellarg()
+     *
+     * @test
+     *
+     *
+     */
+    public function outputfileWithSpacesIsEscaped()
+    {
+        $tempOutputDir = sys_get_temp_dir() . '/karla-output-test';
+        if (! is_dir($tempOutputDir)) {
+            mkdir($tempOutputDir, 0777, true);
+        }
+
+        try {
+            $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+                ->in($this->testDataPath . '/demo.jpg')
+                ->out($tempOutputDir . '/output file.png')
+                ->getCommand();
+            $expectedOutputPath = $tempOutputDir . '/output file.png';
+            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg($expectedOutputPath));
+            $this->assertEquals($expected, $actual);
+            $this->assertStringContainsString(escapeshellarg($expectedOutputPath), $actual);
+        } finally {
+            if (is_dir($tempOutputDir)) {
+                rmdir($tempOutputDir);
+            }
+        }
     }
 }

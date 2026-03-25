@@ -55,7 +55,7 @@ class CropTest extends PHPUnit\Framework\TestCase
             ->crop(100, 100)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-crop 100x100+0+0 +repage "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-crop 100x100+0+0 +repage '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -73,7 +73,7 @@ class CropTest extends PHPUnit\Framework\TestCase
             ->crop(100, 100, 10, 10)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-crop 100x100+10+10 +repage "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-crop 100x100+10+10 +repage '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -91,7 +91,7 @@ class CropTest extends PHPUnit\Framework\TestCase
             ->crop(100, 100, - 10, - 10)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-crop 100x100-10-10 +repage "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-crop 100x100-10-10 +repage '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 

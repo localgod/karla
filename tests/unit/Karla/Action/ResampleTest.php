@@ -55,7 +55,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
             ->resample(200, 200, 72, 72)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-density 72x72  -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-density 72x72  -resample \'200x200\' '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -125,7 +125,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
             ->resample(200)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-resample \'200x0\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-resample \'200x0\' '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
      }
 
@@ -141,7 +141,7 @@ class ResampleTest extends PHPUnit\Framework\TestCase
             ->resample(200, 200, 72)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-density 72x72 -resample \'200x200\' "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-density 72x72 -resample \'200x200\' '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 }

@@ -48,7 +48,7 @@ class Identify extends ImageMagick
         }
         $file = new \SplFileObject($filePath);
         if ($file->isReadable()) {
-            $this->inputFile = '"' . $file->getPathname() . '"';
+            $this->inputFile = escapeshellarg($file->getPathname());
         }
 
         return $this;

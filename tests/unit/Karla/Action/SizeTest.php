@@ -55,7 +55,7 @@ class SizeTest extends PHPUnit\Framework\TestCase
             ->size(200, 200)
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-size 200x200 "'.$this->testDataPath.'/demo.jpg" "./test-200x200.png"');
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-size 200x200 '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
