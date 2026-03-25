@@ -18,7 +18,7 @@ jobs:
     name: Code Quality (Lint & Validate)
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
     
     - name: 🐘 Setup PHP 8.4
       uses: shivammathur/setup-php@v2
@@ -29,7 +29,7 @@ jobs:
         tools: composer:v2
 
     - name: 📦 Cache Composer packages
-      uses: actions/cache@v5
+      uses: actions/cache@v4
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -78,7 +78,7 @@ jobs:
     name: Tests - PHP ${{ matrix.php-versions }} (${{ matrix.os }})
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
       
     - name: 🐘 Setup PHP ${{ matrix.php-versions }}
       uses: shivammathur/setup-php@v2
@@ -92,13 +92,13 @@ jobs:
     - name: 💾 Cache ImageMagick (Windows)
       if: runner.os == 'Windows'
       id: cache-imagemagick-windows
-      uses: actions/cache@v5
+      uses: actions/cache@v4
       with:
         path: C:\ProgramData\chocolatey\lib\imagemagick
         key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
 
     - name: 📦 Cache Composer packages
-      uses: actions/cache@v5
+      uses: actions/cache@v4
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
@@ -172,7 +172,7 @@ jobs:
 
     - name: 📊 Upload coverage report
       if: matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4'
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@v6
       with:
         name: coverage-ubuntu-latest-8.4
         path: coverage/
@@ -205,12 +205,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
     
-    - name: 🟢 Setup Node.js 20
-      uses: actions/setup-node@v6
+    - name: 🟢 Setup Node.js 24
+      uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '24'
         cache: 'npm'
     
     - name: 📚 Build documentation site
@@ -219,7 +219,7 @@ jobs:
         npm run docs:build 
 
     - name: 💾 Save documentation artifact
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@v6
       with:
         name: docs
         path: docs/.vuepress/dist
@@ -232,7 +232,7 @@ jobs:
         echo "✅ Documentation site generated successfully" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "**Build Tool:** VuePress 2.0" >> $GITHUB_STEP_SUMMARY
-        echo "**Node.js Version:** 20" >> $GITHUB_STEP_SUMMARY
+        echo "**Node.js Version:** 24" >> $GITHUB_STEP_SUMMARY
 
   publish:
     name: Publish to GitHub Pages
@@ -240,7 +240,7 @@ jobs:
     needs: [docs, test]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v4
       with:
         ref: gh-pages
         persist-credentials: false
@@ -250,13 +250,13 @@ jobs:
       run: if [ -d ./coverage ] ; then rm -r ./coverage; fi
       
     - name: 📥 Download coverage report
-      uses: actions/download-artifact@v8
+      uses: actions/download-artifact@v6
       with:
         name: coverage-ubuntu-latest-8.4
         path: coverage
         
     - name: 📥 Download documentation
-      uses: actions/download-artifact@v8
+      uses: actions/download-artifact@v6
       with:
         name: docs
         path: .
