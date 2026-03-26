@@ -95,7 +95,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function constructorWithExplicitVersion()
     {
-        $karla = new Karla(PATH_TO_IMAGEMAGICK, null, 7);
+        $karla = new Karla(sys_get_temp_dir(), null, 7);
         $this->assertInstanceOf('Karla\Karla', $karla);
 
         $ref = new \ReflectionProperty(Karla::class, 'version');
@@ -110,7 +110,7 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function performWithExplicitVersion()
     {
-        $karla = Karla::perform(PATH_TO_IMAGEMAGICK, null, 6);
+        $karla = Karla::perform(sys_get_temp_dir(), null, 6);
         $this->assertInstanceOf('Karla\Karla', $karla);
 
         $ref = new \ReflectionProperty(Karla::class, 'version');
