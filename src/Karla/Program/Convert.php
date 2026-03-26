@@ -69,11 +69,37 @@ class Convert extends ImageMagick implements Program
     protected string $outputFile = '';
 
     /**
+     * Add input file
+     *
+     * @param string $filePath Input file path
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function input(string $filePath): self
+    {
+        return $this->in($filePath);
+    }
+
+    /**
+     * Add output file
+     *
+     * @param string $filePath Output file path
+     * @param bool $includeOptions Include the used options as part of the filename
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function output(string $filePath, bool $includeOptions = false): self
+    {
+        return $this->out($filePath, $includeOptions);
+    }
+
+    /**
      * Add input argument
      *
      * @param string $filePath Input file path
      *
      * @throws \InvalidArgumentException
+     * @deprecated Since 1.2.0, use input() instead. Will be removed in 2.0.0.
      */
     public function in(string $filePath): self
     {
@@ -102,6 +128,7 @@ class Convert extends ImageMagick implements Program
      *
      * @throws \InvalidArgumentException
      * @todo Implement include options to filename
+     * @deprecated Since 1.2.0, use output() instead. Will be removed in 2.0.0.
      */
     public function out(string $filePath, bool $includeOptions = false): self
     {

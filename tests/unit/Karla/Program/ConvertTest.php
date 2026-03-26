@@ -469,4 +469,60 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             }
         }
     }
+
+    /**
+     * Test that input() method works identically to in()
+     *
+     * @test
+     */
+    public function inputMethodWorksLikeIn()
+    {
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->input($this->testDataPath.'/demo.jpg')
+            ->output('test-1920x1200.png')
+            ->getCommand();
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test that input() throws InvalidArgumentException for non-existent file
+     *
+     * @test
+     */
+    public function inputMethodThrowsOnInvalidFile()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->input($this->testDataPath.'/nonexistent.jpg')
+            ->getCommand();
+    }
+
+    /**
+     * Test that output() throws InvalidArgumentException for non-existent directory
+     *
+     * @test
+     */
+    public function outputMethodThrowsOnInvalidPath()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->output('/nowhere/test-1920x1200.png')
+            ->getCommand();
+    }
+
+    /**
+     * Test that input() and output() can be mixed with in() and out()
+     *
+     * @test
+     */
+    public function inputAndOutputCanMixWithInAndOut()
+    {
+        $actual = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->input($this->testDataPath.'/demo.jpg')
+            ->out('test-1920x1200.png')
+            ->getCommand();
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $this->assertEquals($expected, $actual);
+    }
 }
