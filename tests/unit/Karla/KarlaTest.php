@@ -89,6 +89,36 @@ class KarlaTest extends PHPUnit\Framework\TestCase
     }
 
     /**
+     * Test that the constructor accepts an explicit version and skips detection.
+     *
+     * @test
+     */
+    public function constructorWithExplicitVersion()
+    {
+        $karla = new Karla(PATH_TO_IMAGEMAGICK, null, 7);
+        $this->assertInstanceOf('Karla\Karla', $karla);
+
+        $ref = new \ReflectionProperty(Karla::class, 'version');
+        $ref->setAccessible(true);
+        $this->assertSame(7, $ref->getValue($karla));
+    }
+
+    /**
+     * Test that perform() accepts and passes through an explicit version.
+     *
+     * @test
+     */
+    public function performWithExplicitVersion()
+    {
+        $karla = Karla::perform(PATH_TO_IMAGEMAGICK, null, 6);
+        $this->assertInstanceOf('Karla\Karla', $karla);
+
+        $ref = new \ReflectionProperty(Karla::class, 'version');
+        $ref->setAccessible(true);
+        $this->assertSame(6, $ref->getValue($karla));
+    }
+
+    /**
      * Test that the constructor throws an exception for an invalid path.
      *
      * @test
