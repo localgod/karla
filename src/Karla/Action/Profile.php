@@ -67,6 +67,9 @@ class Profile implements Action
             $message = 'profilePath or profileName must be set, but not both.';
             throw new \LogicException($message);
         }
+        if ($profilePath != '' && str_contains($profilePath, "\0")) {
+            throw new \InvalidArgumentException('Path contains null bytes');
+        }
         if ($profilePath != '' && ! file_exists($profilePath)) {
             $message = 'Profile input file (' . $profilePath . ') could not be found';
             throw new \InvalidArgumentException($message);

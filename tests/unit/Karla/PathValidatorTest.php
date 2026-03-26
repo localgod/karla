@@ -146,7 +146,9 @@ class PathValidatorTest extends PHPUnit\Framework\TestCase
             unlink($link);
         }
 
-        symlink($target, $link);
+        if (!symlink($target, $link)) {
+            $this->markTestSkipped('Unable to create symlinks on this system.');
+        }
 
         try {
             $result = PathValidator::validatePath($link);
