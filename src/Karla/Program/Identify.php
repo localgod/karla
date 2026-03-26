@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace Karla\Program;
 
+use Karla\CommandBuilder;
 use Karla\PathValidator;
 
 /**
@@ -105,9 +106,9 @@ class Identify extends ImageMagick
      */
     public function getCommand(): string
     {
-        $options = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
-
-        return parent::getCommand() . ' ' . ($options == '' ? '' : $options . ' ') . $this->inputFile;
+        return (new CommandBuilder($this->getQuery(), $this->binPath, $this->bin, $this->version))
+            ->setInput($this->inputFile)
+            ->build();
     }
 
     /**
