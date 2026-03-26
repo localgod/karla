@@ -40,6 +40,7 @@ use Karla\Action\Polaroid;
 use Karla\Action\Bordercolor;
 use Karla\Program;
 use Karla\Cache;
+use Karla\CommandBuilder;
 use Karla\Query;
 use Karla\PathValidator;
 
@@ -141,14 +142,10 @@ class Convert extends ImageMagick implements Program
             throw new RuntimeException('Can not perform convert without an input file');
         }
 
-        $inOptions = $this->getQuery()->prepareOptions($this->getQuery()->getInputOptions());
-        $outOptions = $this->getQuery()->prepareOptions($this->getQuery()->getOutputOptions());
-
-        // Get the base command (handles ImageMagick 7 vs 6 automatically)
-        $baseCommand = parent::getCommand();
-
-        return $baseCommand . ' ' . ($inOptions == '' ? '' : $inOptions . ' ') .
-               $this->inputFile . ' ' . ($outOptions == '' ? '' : $outOptions . ' ') . $this->outputFile;
+        return (new CommandBuilder($this->getQuery(), $this->binPath, $this->bin, $this->version))
+            ->setInput($this->inputFile)
+            ->setOutput($this->outputFile)
+            ->build();
     }
 
     /**
