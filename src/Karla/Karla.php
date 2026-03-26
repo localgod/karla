@@ -62,7 +62,7 @@ class Karla
         try {
             return new self($binPath, $cache);
         } catch (\InvalidArgumentException $e) {
-            throw new \RuntimeException($e->getMessage() . '(' . $binPath . ')');
+            throw new \RuntimeException($e->getMessage() . ' (' . $binPath . ')', 0, $e);
         }
     }
 
