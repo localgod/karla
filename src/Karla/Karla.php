@@ -54,7 +54,7 @@ class Karla
      * @param Cache|null $cache Cache controller (optional)
      * @param int|null $version ImageMagick major version (optional, skips auto-detection when provided)
      *
-     * @deprecated Since 1.2.0, use `new Karla($binPath, $cache)` instead. Will be removed in 2.0.0.
+     * @deprecated Since 1.2.0, use `new Karla($binPath, $cache, $version)` instead. Will be removed in 2.0.0.
      *
      * @throws \RuntimeException
      */
