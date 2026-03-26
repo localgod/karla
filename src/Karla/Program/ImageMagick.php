@@ -203,17 +203,21 @@ abstract class ImageMagick implements \Karla\Program
     /**
      * Prevent cloning to avoid shared mutable Query state.
      *
-     * PHP's default clone behavior is shallow copy - object properties are copied by reference.
+     * PHP's default clone behavior is a shallow copy: scalar properties are copied by value,
+     * but object-typed properties keep referring to the same underlying objects unless they
+     * are explicitly cloned inside __clone().
      * Since this class holds a mutable Query object that accumulates command options,
-     * cloning would cause both the original and clone to share the same Query instance.
-     * This would lead to command options leaking between instances, causing silent bugs.
+     * cloning would cause both the original and the clone to share the same Query instance.
+     * Any modification of the Query in one instance (e.g. adding options) would affect the
+     * other instance as well, leading to command options leaking between instances and
+     * causing hard-to-diagnose bugs.
      *
      * Example of the problem if cloning were allowed:
      * <code>
      * $convert1 = $karla->convert()->input('file.jpg')->resize(100, 100);
-     * $convert2 = clone $convert1;  // Would share same Query!
+     * $convert2 = clone $convert1;  // Would share the same Query object!
      * $convert2->crop(50, 50);      // Modifies shared Query
-     * $convert1->getCommand();       // Contains BOTH resize AND crop (bug!)
+     * $convert1->getCommand();      // Contains BOTH resize AND crop (bug!)
      * </code>
      *
      * @throws \BadMethodCallException Always - cloning is not supported
