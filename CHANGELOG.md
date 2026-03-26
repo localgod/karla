@@ -11,10 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Public constructor for `Karla`: you can now instantiate directly with `new Karla($binPath, $cache)`.
+- `Convert::input()` method as the preferred alternative to `in()`.
+- `Convert::output()` method as the preferred alternative to `out()`.
 
 ### Deprecated
 - `Karla::perform()` static factory method is deprecated since 1.2.0 and will be removed in 2.0.0.
   Migrate by replacing `Karla::perform($binPath)` with `new Karla($binPath)`.
+- `Convert::in()` is deprecated since 1.2.0 and will be removed in 2.0.0. Use `input()` instead.
+- `Convert::out()` is deprecated since 1.2.0 and will be removed in 2.0.0. Use `output()` instead.
 
 ### Changed
 - `Karla::perform()` no longer caches a singleton instance; each call returns a fresh object.
