@@ -118,8 +118,9 @@ jobs:
           if [ "${{ matrix.imagemagick }}" == "6" ]; then
             sudo apt-get install -y imagemagick
           else
-            # Install ImageMagick 7 via snap (cryptographically signed)
-            sudo snap install imagemagick
+            # Install ImageMagick 7 portable binary from official distribution
+            wget -q "https://imagemagick.org/archive/binaries/magick" -O /tmp/magick
+            sudo install -m 755 /tmp/magick /usr/local/bin/magick
           fi
         elif [ "$RUNNER_OS" == "macOS" ]; then
           if [ "${{ matrix.imagemagick }}" == "6" ]; then
@@ -163,7 +164,7 @@ jobs:
           if [ "${{ matrix.imagemagick }}" == "6" ]; then
             echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
           else
-            echo "IMAGEMAGICK_PATH=/snap/bin/" >> $GITHUB_ENV
+            echo "IMAGEMAGICK_PATH=/usr/local/bin/" >> $GITHUB_ENV
           fi
         elif [ "$RUNNER_OS" == "macOS" ]; then
           if [ "${{ matrix.imagemagick }}" == "6" ]; then
