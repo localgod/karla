@@ -16,8 +16,9 @@ declare(strict_types=1);
 
 namespace Karla\Program;
 
-use Karla\Query;
 use Karla\Cache;
+use Karla\CommandResult;
+use Karla\Query;
 
 /**
  * Class for wrapping ImageMagick arguments used by all tools
@@ -270,18 +271,71 @@ abstract class ImageMagick implements \Karla\Program
     }
 
     /**
-     * Execute the command
+     * Execute a shell command using proc_open and return a CommandResult
      *
-     * @param bool $reset Reset the query
+     * @param string $command The full command string to execute
+     *
+     * @throws \RuntimeException When the process cannot be started
+     */
+    protected function executeCommand(string $command): CommandResult
+    {
+        $descriptors = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w'],
+        ];
+
+        $process = proc_open($command, $descriptors, $pipes);
+
+        if (!is_resource($process)) {
+            throw new \RuntimeException("Failed to execute command: {$command}");
+        }
+
+        fclose($pipes[0]);
+        $output = stream_get_contents($pipes[1]);
+        $error  = stream_get_contents($pipes[2]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+
+        $exitCode = proc_close($process);
+
+        return new CommandResult(
+            $output !== false ? $output : '',
+            $error !== false ? $error : '',
+            $exitCode
+        );
+    }
+
+    /**
+     * Execute the command and return its output
+     *
+     * @param bool $reset Reset the query after execution
+     *
+     * @deprecated Since 1.2.0, use executeWithResult() for better error handling. Will be removed in 2.0.0.
      */
     public function execute(bool $reset = true): string|object
     {
-        $result = shell_exec($this->getCommand());
+        $result = $this->executeCommand($this->getCommand());
         if ($reset) {
             $this->getQuery()->reset();
         }
 
-        return $result !== null && $result !== false ? $result : '';
+        return $result->output;
+    }
+
+    /**
+     * Execute the command and return a CommandResult with output, error and exit code
+     *
+     * @param bool $reset Reset the query after execution
+     */
+    public function executeWithResult(bool $reset = true): CommandResult
+    {
+        $result = $this->executeCommand($this->getCommand());
+        if ($reset) {
+            $this->getQuery()->reset();
+        }
+
+        return $result;
     }
 
     /**

@@ -346,6 +346,25 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      * Test
      *
      * @test
+     */
+    public function executeWithResultReturnsCommandResult()
+    {
+        $outputFile = '/tmp/karla-test-executeWithResult.jpg';
+        $result = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
+            ->in($this->testDataPath . '/demo.jpg')
+            ->out($outputFile)
+            ->executeWithResult();
+        $this->assertInstanceOf(\Karla\CommandResult::class, $result);
+        $this->assertTrue($result->isSuccess());
+        if (file_exists($outputFile)) {
+            unlink($outputFile);
+        }
+    }
+
+    /**
+     * Test
+     *
+     * @test
      *
      * 
      */
