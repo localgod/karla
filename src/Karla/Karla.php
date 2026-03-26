@@ -52,15 +52,16 @@ class Karla
      *
      * @param string $binPath Path to ImageMagick binaries (optional)
      * @param Cache|null $cache Cache controller (optional)
+     * @param int|null $version ImageMagick major version (optional, skips auto-detection when provided)
      *
-     * @deprecated Since 1.2.0, use `new Karla($binPath, $cache)` instead. Will be removed in 2.0.0.
+     * @deprecated Since 1.2.0, use `new Karla($binPath, $cache, $version)` instead. Will be removed in 2.0.0.
      *
      * @throws \RuntimeException
      */
-    public static function perform(string $binPath = '/opt/local/bin/', Cache|null $cache = null): Karla
+    public static function perform(string $binPath = '/opt/local/bin/', Cache|null $cache = null, int|null $version = null): Karla
     {
         try {
-            return new self($binPath, $cache);
+            return new self($binPath, $cache, $version);
         } catch (\InvalidArgumentException $e) {
             throw new \RuntimeException($e->getMessage() . ' (' . $binPath . ')', 0, $e);
         }
@@ -71,16 +72,52 @@ class Karla
      *
      * @param string $binPath Path to ImageMagick binaries
      * @param Cache|null $cache Cache controller
+     * @param int|null $version ImageMagick major version (optional, skips auto-detection when provided)
      *
      * @throws \InvalidArgumentException if path for ImageMagick is invalid
      */
-    public function __construct(string $binPath, Cache|null $cache = null)
+    public function __construct(string $binPath, Cache|null $cache = null, int|null $version = null)
     {
         if (! file_exists($binPath)) {
             throw new \InvalidArgumentException('Bin path not found');
         }
 
-        // Detect ImageMagick version - try both v6 (convert) and v7 (magick)
+        if ($version !== null) {
+            $this->version = $version;
+        } else {
+            $this->detectVersion($binPath);
+        }
+
+        // Set binPath appropriately for the OS
+        if (Platform::isWindows()) {
+            // On Windows, just use the direct path
+            $this->binPath = rtrim($binPath, '/\\') . '/';
+        } else {
+            // On Unix, use export PATH
+            $this->binPath = 'export PATH=$PATH:' . $binPath . ';';
+        }
+
+        $this->cache = $cache;
+    }
+
+    /**
+     * Detect the installed ImageMagick version and set $this->version.
+     *
+     * Results are cached statically per bin path to avoid repeated shell_exec calls.
+     *
+     * @param string $binPath Path to ImageMagick binaries
+     *
+     * @throws \InvalidArgumentException if ImageMagick cannot be located at the given path
+     */
+    private function detectVersion(string $binPath): void
+    {
+        static $versionCache = [];
+
+        if (isset($versionCache[$binPath])) {
+            $this->version = $versionCache[$binPath];
+            return;
+        }
+
         $magickBin = Platform::getBinary('magick');
         $convertBin = Platform::getBinary('convert');
 
@@ -113,16 +150,7 @@ class Karla
             throw new \InvalidArgumentException('ImageMagick could not be located at specified path');
         }
 
-        // Set binPath appropriately for the OS
-        if (Platform::isWindows()) {
-            // On Windows, just use the direct path
-            $this->binPath = rtrim($binPath, '/\\') . '/';
-        } else {
-            // On Unix, use export PATH
-            $this->binPath = 'export PATH=$PATH:' . $binPath . ';';
-        }
-
-        $this->cache = $cache;
+        $versionCache[$binPath] = $this->version;
     }
 
     /**
