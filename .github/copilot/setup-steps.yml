@@ -1,0 +1,11 @@
+steps:
+  - name: Setup PHP
+    uses: shivammathur/setup-php@v2
+    with:
+      php-version: '8.3'
+      extensions: mbstring, dom, fileinfo
+      tools: composer:v2
+      coverage: none
+
+  - name: Install Composer dependencies
+    run: composer install --prefer-dist --no-progress --no-interaction
