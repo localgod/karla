@@ -92,7 +92,7 @@ class FileTest extends PHPUnit\Framework\TestCase
 	 */
 	public function testConstructorNonWritablePath(): void
 	{
-	    if (DIRECTORY_SEPARATOR === '\\') {
+	    if (\Karla\Platform::isWindows()) {
 	        $this->markTestSkipped('Skipping permission test on Windows');
 	    }
 	    
