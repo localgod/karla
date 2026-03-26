@@ -225,8 +225,8 @@ abstract class ImageMagick implements \Karla\Program
     final public function __clone(): void
     {
         throw new \BadMethodCallException(
-            "Cloning ImageMagick command builders is not supported due to shared mutable state. " .
-            "Create a new instance instead: \$karla->convert() or \$karla->identify()"
+            'Cloning ImageMagick command builders is not supported due to shared mutable state. ' .
+            'Create a new instance instead: $karla->convert() or $karla->identify()'
         );
     }
 
