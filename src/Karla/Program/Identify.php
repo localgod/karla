@@ -16,6 +16,8 @@ declare(strict_types=1);
 
 namespace Karla\Program;
 
+use Karla\PathValidator;
+
 /**
  * Class for wrapping ImageMagicks identify tool
  *
@@ -42,10 +44,14 @@ class Identify extends ImageMagick
      */
     public function in(string $filePath): self
     {
+        if (str_contains($filePath, "\0")) {
+            throw new \InvalidArgumentException('Path contains null bytes');
+        }
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
             throw new \InvalidArgumentException($message);
         }
+        $filePath = PathValidator::validatePath($filePath);
         $file = new \SplFileObject($filePath);
         if ($file->isReadable()) {
             $this->inputFile = escapeshellarg($file->getPathname());

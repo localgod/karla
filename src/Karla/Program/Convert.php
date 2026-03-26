@@ -41,6 +41,7 @@ use Karla\Action\Bordercolor;
 use Karla\Program;
 use Karla\Cache;
 use Karla\Query;
+use Karla\PathValidator;
 
 /**
  * Class for wrapping ImageMagicks convert tool
@@ -75,10 +76,15 @@ class Convert extends ImageMagick implements Program
      */
     public function in(string $filePath): self
     {
+        if (str_contains($filePath, "\0")) {
+            throw new InvalidArgumentException('Path contains null bytes');
+        }
         if (! file_exists($filePath)) {
             $message = 'The input file path (' . $filePath . ') is invalid or the file could not be located.';
             throw new InvalidArgumentException($message);
         }
+
+        $filePath = PathValidator::validatePath($filePath);
 
         if (is_writeable($filePath)) {
             $this->inputFile = escapeshellarg($filePath);
@@ -100,6 +106,9 @@ class Convert extends ImageMagick implements Program
     {
         $pathinfo = pathinfo($filePath);
         $dirname = $pathinfo['dirname'] ?? '.';
+        if (str_contains($dirname, "\0")) {
+            throw new InvalidArgumentException('Path contains null bytes');
+        }
         if (! file_exists($dirname)) {
             $message = 'The output file path (' . $dirname . ') is invalid or could not be located.';
             throw new InvalidArgumentException($message);

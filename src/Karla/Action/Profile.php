@@ -18,6 +18,7 @@ namespace Karla\Action;
 
 use Karla\Query;
 use Karla\Action;
+use Karla\PathValidator;
 
 /**
  * Class for handling profile action
@@ -66,9 +67,15 @@ class Profile implements Action
             $message = 'profilePath or profileName must be set, but not both.';
             throw new \LogicException($message);
         }
+        if ($profilePath != '' && str_contains($profilePath, "\0")) {
+            throw new \InvalidArgumentException('Path contains null bytes');
+        }
         if ($profilePath != '' && ! file_exists($profilePath)) {
             $message = 'Profile input file (' . $profilePath . ') could not be found';
             throw new \InvalidArgumentException($message);
+        }
+        if ($profilePath !== '') {
+            $profilePath = PathValidator::validatePath($profilePath);
         }
 
         $this->profilePath = $profilePath;
@@ -86,9 +93,11 @@ class Profile implements Action
     public function perform(Query $query): Query
     {
         if ($this->profilePath != '') {
-            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . escapeshellarg($this->profilePath) . ' ');
+            $option = ' ' . ($this->remove ? '+' : '-') . 'profile ' . escapeshellarg($this->profilePath) . ' ';
+            $query->setOutputOption($option);
         } else {
-            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . $this->profileName);
+            $option = ' ' . ($this->remove ? '+' : '-') . 'profile ' . $this->profileName;
+            $query->setOutputOption($option);
         }
 
         return $query;
