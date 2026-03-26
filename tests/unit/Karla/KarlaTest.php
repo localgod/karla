@@ -36,11 +36,20 @@ class KarlaTest extends PHPUnit\Framework\TestCase
 	 */
 	protected function setUp(): void
 	{
-		if (! TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
-			$this->markTestSkipped('The imagemagick executables are not available.');
-		}
 		$this->testDataPath = realpath(__DIR__.'/../_data/');
 	}
+
+    /**
+     * Skip the current test if ImageMagick is not available.
+     *
+     * 
+     */
+    private function requireImageMagick(): void
+    {
+        if (! TestHelper::isImageMagickAvailable(PATH_TO_IMAGEMAGICK)) {
+            $this->markTestSkipped('The imagemagick executables are not available.');
+        }
+    }
     /**
      * Test
      *
@@ -62,19 +71,49 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function perform()
     {
+        $this->requireImageMagick();
         $this->assertInstanceOf('Karla\Karla', Karla::perform(PATH_TO_IMAGEMAGICK));
     }
 
     /**
-     * Test
+     * Test that the constructor is public and creates a valid Karla instance.
      *
      * @test
      *
      * 
      */
-    public function privateMethods()
+    public function constructor()
     {
-        $this->assertInstanceOf('Karla\Karla', Karla::perform(PATH_TO_IMAGEMAGICK));
+        $this->requireImageMagick();
+        $this->assertInstanceOf('Karla\Karla', new Karla(PATH_TO_IMAGEMAGICK));
+    }
+
+    /**
+     * Test that the constructor throws an exception for an invalid path.
+     *
+     * @test
+     *
+     * 
+     */
+    public function constructorWithInvalidPath()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        new Karla('/going/nowhere/');
+    }
+
+    /**
+     * Test that each call to perform() returns a fresh instance.
+     *
+     * @test
+     *
+     * 
+     */
+    public function performReturnsFreshInstance()
+    {
+        $this->requireImageMagick();
+        $first  = Karla::perform(PATH_TO_IMAGEMAGICK);
+        $second = Karla::perform(PATH_TO_IMAGEMAGICK);
+        $this->assertNotSame($first, $second);
     }
 
     /**
@@ -86,7 +125,8 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function raw()
     {
-        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
+        $this->requireImageMagick();
+        $karla = new Karla(PATH_TO_IMAGEMAGICK);
         $this->assertTrue(preg_match('/Version\:\sImageMagick/', $karla->raw('identify', '--version')) == 1);
     }
 
@@ -99,7 +139,8 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function convert()
     {
-        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
+        $this->requireImageMagick();
+        $karla = new Karla(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Karla\Program\Convert', $karla->convert());
     }
 
@@ -112,7 +153,8 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function identify()
     {
-        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
+        $this->requireImageMagick();
+        $karla = new Karla(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Karla\Program\Identify', $karla->identify());
     }
 
@@ -125,7 +167,8 @@ class KarlaTest extends PHPUnit\Framework\TestCase
      */
     public function composite()
     {
-        $karla = Karla::perform(PATH_TO_IMAGEMAGICK);
+        $this->requireImageMagick();
+        $karla = new Karla(PATH_TO_IMAGEMAGICK);
         $this->assertInstanceOf('Karla\Program\Composite', $karla->composite());
     }
 }
