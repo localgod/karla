@@ -60,22 +60,27 @@ jobs:
 
   test:
     if: github.event.pull_request.draft == false
-    timeout-minutes: 20
+    timeout-minutes: 30
     strategy:
       matrix:
-        include:
-          - os: ubuntu-latest
-            php-versions: '8.2'
-          - os: ubuntu-latest
-            php-versions: '8.3'
-          - os: ubuntu-latest
-            php-versions: '8.4'
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        php-versions: ['8.2', '8.3', '8.4']
+        imagemagick: ['6', '7']
+        exclude:
+          # ImageMagick 6 not available via Chocolatey on Windows
           - os: windows-latest
-            php-versions: '8.4'
-          - os: macOS-latest
-            php-versions: '8.4'
+            imagemagick: '6'
+          # Only test PHP 8.4 on Windows and macOS to reduce matrix size
+          - os: windows-latest
+            php-versions: '8.2'
+          - os: windows-latest
+            php-versions: '8.3'
+          - os: macos-latest
+            php-versions: '8.2'
+          - os: macos-latest
+            php-versions: '8.3'
     runs-on: ${{ matrix.os }}
-    name: Tests - PHP ${{ matrix.php-versions }} (${{ matrix.os }})
+    name: Tests - PHP ${{ matrix.php-versions }} - IM ${{ matrix.imagemagick }} (${{ matrix.os }})
     steps:
     - name: 📥 Checkout code
       uses: actions/checkout@v4
@@ -86,7 +91,7 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, fileinfo
         ini-values: memory_limit=256M
-        coverage: ${{ matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && 'xdebug' || 'none' }}
+        coverage: ${{ matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && matrix.imagemagick == '7' && 'xdebug' || 'none' }}
         tools: composer:v2
 
     - name: 💾 Cache ImageMagick (Windows)
@@ -95,7 +100,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: C:\ProgramData\chocolatey\lib\imagemagick
-        key: ${{ runner.os }}-imagemagick-${{ hashFiles('.github/workflows/php.yml') }}
+        key: ${{ runner.os }}-imagemagick-${{ matrix.imagemagick }}-${{ hashFiles('.github/workflows/php.yml') }}
 
     - name: 📦 Cache Composer packages
       uses: actions/cache@v4
@@ -106,14 +111,24 @@ jobs:
           ${{ runner.os }}-php-${{ matrix.php-versions }}-
           ${{ runner.os }}-php-
 
-    - name: 🎨 Install ImageMagick
+    - name: 🎨 Install ImageMagick ${{ matrix.imagemagick }}
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get update
-          sudo apt-get install -y imagemagick
+          if [ "${{ matrix.imagemagick }}" == "6" ]; then
+            sudo apt-get install -y imagemagick
+          else
+            # Install ImageMagick 7 portable binary from official distribution
+            wget -q "https://imagemagick.org/archive/binaries/magick" -O /tmp/magick
+            sudo install -m 755 /tmp/magick /usr/local/bin/magick
+          fi
         elif [ "$RUNNER_OS" == "macOS" ]; then
-          # Always reinstall to ensure dependencies are present
-          brew install imagemagick
+          if [ "${{ matrix.imagemagick }}" == "6" ]; then
+            brew install imagemagick@6
+          else
+            # Always reinstall to ensure dependencies are present
+            brew install imagemagick
+          fi
         elif [ "$RUNNER_OS" == "Windows" ]; then
           # Check if already installed
           if command -v magick &> /dev/null; then
@@ -146,10 +161,19 @@ jobs:
       if: runner.os != 'Windows' && success()
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
+          if [ "${{ matrix.imagemagick }}" == "6" ]; then
+            echo "IMAGEMAGICK_PATH=/usr/bin/" >> $GITHUB_ENV
+          else
+            echo "IMAGEMAGICK_PATH=/usr/local/bin/" >> $GITHUB_ENV
+          fi
         elif [ "$RUNNER_OS" == "macOS" ]; then
-          MAGICK_PATH=$(dirname $(which magick))
-          echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+          if [ "${{ matrix.imagemagick }}" == "6" ]; then
+            MAGICK_PATH=$(brew --prefix imagemagick@6)/bin
+            echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+          else
+            MAGICK_PATH=$(dirname $(which magick))
+            echo "IMAGEMAGICK_PATH=${MAGICK_PATH}/" >> $GITHUB_ENV
+          fi
         fi
       shell: bash
 
@@ -161,17 +185,17 @@ jobs:
       shell: pwsh
 
     - name: 🧪 Run unit tests (without coverage)
-      if: matrix.os != 'ubuntu-latest' || matrix.php-versions != '8.4'
+      if: matrix.os != 'ubuntu-latest' || matrix.php-versions != '8.4' || matrix.imagemagick != '7'
       run: composer run unit -- --no-coverage
 
     - name: 🧪 Run unit tests (with coverage)
-      if: matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4'
+      if: matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && matrix.imagemagick == '7'
       run: composer run unit
       env:
         XDEBUG_MODE: coverage
 
     - name: 📊 Upload coverage report
-      if: matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4'
+      if: matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && matrix.imagemagick == '7'
       uses: actions/upload-artifact@v6
       with:
         name: coverage-ubuntu-latest-8.4
@@ -180,22 +204,22 @@ jobs:
     - name: 📋 Generate test summary
       if: always()
       run: |
-        echo "## 🧪 Test Results - PHP ${{ matrix.php-versions }} on ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
+        echo "## 🧪 Test Results - PHP ${{ matrix.php-versions }} - IM ${{ matrix.imagemagick }} on ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
         echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
         echo "| PHP Version | ${{ matrix.php-versions }} |" >> $GITHUB_STEP_SUMMARY
         echo "| Platform | ${{ matrix.os }} |" >> $GITHUB_STEP_SUMMARY
-        echo "| ImageMagick | ${{ steps.verify-imagemagick.outcome == 'success' && '✅ Installed' || '⚠️ Check required' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| ImageMagick | ${{ matrix.imagemagick }} (${{ steps.verify-imagemagick.outcome == 'success' && '✅ Installed' || '⚠️ Check required' }}) |" >> $GITHUB_STEP_SUMMARY
       shell: bash
         
     - name: 📋 Add coverage info to summary
-      if: always() && matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4'
+      if: always() && matrix.os == 'ubuntu-latest' && matrix.php-versions == '8.4' && matrix.imagemagick == '7'
       run: echo "| Coverage | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
       shell: bash
       
     - name: 📋 Add coverage skipped to summary  
-      if: always() && (matrix.os != 'ubuntu-latest' || matrix.php-versions != '8.4')
+      if: always() && (matrix.os != 'ubuntu-latest' || matrix.php-versions != '8.4' || matrix.imagemagick != '7')
       run: echo "| Coverage | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
       shell: bash
 
