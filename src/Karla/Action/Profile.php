@@ -93,9 +93,11 @@ class Profile implements Action
     public function perform(Query $query): Query
     {
         if ($this->profilePath != '') {
-            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . escapeshellarg($this->profilePath) . ' ');
+            $option = ' ' . ($this->remove ? '+' : '-') . 'profile ' . escapeshellarg($this->profilePath) . ' ';
+            $query->setOutputOption($option);
         } else {
-            $query->setOutputOption(' ' . ($this->remove ? '+' : '-') . 'profile ' . $this->profileName);
+            $option = ' ' . ($this->remove ? '+' : '-') . 'profile ' . $this->profileName;
+            $query->setOutputOption($option);
         }
 
         return $query;

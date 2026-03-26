@@ -117,7 +117,6 @@ class Convert extends ImageMagick implements Program
             $message = 'The output file path (' . $dirname . ') is not writable.';
             throw new InvalidArgumentException($message);
         }
-        $dirname = PathValidator::validateDirectory($dirname);
         if (! $includeOptions) {
             $this->outputFile = escapeshellarg($dirname . '/' . $pathinfo['basename']);
         } else {
