@@ -13,11 +13,13 @@
  * @since    2010-06-05
  */
 
+// Load Platform class directly before the autoloader so we can use it for OS detection
+require_once __DIR__ . '/../../src/Karla/Platform.php';
+
 // Determine ImageMagick path with auto-detection
 $imageMagickPath = null;
-$isWindows = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
 
-if ($isWindows) {
+if (\Karla\Platform::isWindows()) {
     // Windows: check common locations and convert paths
     $possiblePaths = [
         'C:/dev/imagemagick/',
@@ -27,7 +29,7 @@ if ($isWindows) {
 
     foreach ($possiblePaths as $path) {
         // Check for both ImageMagick 6 (convert.exe) and 7 (magick.exe)
-        if (file_exists($path . 'magick.exe') || file_exists($path . 'convert.exe')) {
+        if (file_exists($path . \Karla\Platform::getBinary('magick')) || file_exists($path . \Karla\Platform::getBinary('convert'))) {
             $imageMagickPath = $path;
             break;
         }

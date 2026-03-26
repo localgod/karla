@@ -19,9 +19,8 @@ class TestHelper
      */
     public static function getImageMagickVersion(string $path): int
     {
-        $isWindows = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
-        $magickBin = $isWindows ? 'magick.exe' : 'magick';
-        $convertBin = $isWindows ? 'convert.exe' : 'convert';
+        $magickBin = \Karla\Platform::getBinary('magick');
+        $convertBin = \Karla\Platform::getBinary('convert');
         
         // Try ImageMagick 7 first
         if (file_exists($path . $magickBin)) {
@@ -50,7 +49,7 @@ class TestHelper
      */
     public static function isWindows(): bool
     {
-        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
+        return \Karla\Platform::isWindows();
     }
     
     /**
@@ -73,13 +72,13 @@ class TestHelper
             if ($version >= 7) {
                 // ImageMagick 7: use magick or magick <subcommand>
                 if ($command === 'convert') {
-                    return $binPath . 'magick.exe ' . $arguments;
+                    return $binPath . \Karla\Platform::getBinary('magick') . ' ' . $arguments;
                 } else {
-                    return $binPath . 'magick.exe ' . $command . ' ' . $arguments;
+                    return $binPath . \Karla\Platform::getBinary('magick') . ' ' . $command . ' ' . $arguments;
                 }
             } else {
                 // ImageMagick 6: use legacy commands
-                return $binPath . $command . '.exe ' . $arguments;
+                return $binPath . \Karla\Platform::getBinary($command) . ' ' . $arguments;
             }
         } else {
             // Unix: export PATH
@@ -88,13 +87,13 @@ class TestHelper
             if ($version >= 7) {
                 // ImageMagick 7: use magick or magick <subcommand>
                 if ($command === 'convert') {
-                    return $binPath . 'magick ' . $arguments;
+                    return $binPath . \Karla\Platform::getBinary('magick') . ' ' . $arguments;
                 } else {
-                    return $binPath . 'magick ' . $command . ' ' . $arguments;
+                    return $binPath . \Karla\Platform::getBinary('magick') . ' ' . $command . ' ' . $arguments;
                 }
             } else {
                 // ImageMagick 6: use legacy commands
-                return $binPath . $command . ' ' . $arguments;
+                return $binPath . \Karla\Platform::getBinary($command) . ' ' . $arguments;
             }
         }
     }
@@ -107,12 +106,11 @@ class TestHelper
      */
     public static function isImageMagickAvailable(string $path): bool
     {
-        $isWindows = self::isWindows();
-        
         // Check for both ImageMagick 6 and 7
-        $binaries = $isWindows 
-            ? ['magick.exe', 'convert.exe']
-            : ['magick', 'convert'];
+        $binaries = [
+            \Karla\Platform::getBinary('magick'),
+            \Karla\Platform::getBinary('convert'),
+        ];
         
         foreach ($binaries as $binary) {
             if (file_exists($path . $binary)) {

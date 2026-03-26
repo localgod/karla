@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace Karla;
 
+use Karla\Platform;
 use Karla\Program;
 use Karla\Program\Identify;
 use Karla\Program\Convert;
@@ -54,8 +55,7 @@ class Support
             // IM6 - replace composite with convert
             // Get the directory and construct convert path
             $dirPath = dirname($binary);
-            $isWindows = DIRECTORY_SEPARATOR === '\\';
-            $convertBin = $isWindows ? 'convert.exe' : 'convert';
+            $convertBin = Platform::getBinary('convert');
 
             $result = $dirPath . DIRECTORY_SEPARATOR . $convertBin;
 
