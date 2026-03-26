@@ -48,31 +48,22 @@ class Karla
     private int|null $version = null;
 
     /**
-     * Instance of an ImageMagick object.
-     *
-     * @var Karla|null
-     */
-    private static Karla|null $instance = null;
-
-    /**
      * Get an instance of Karla.
      *
      * @param string $binPath Path to ImageMagick binaries (optional)
      * @param Cache|null $cache Cache controller (optional)
      *
-     * @throws \InvalidArgumentException
+     * @deprecated Since 1.2.0, use `new Karla($binPath, $cache)` instead. Will be removed in 2.0.0.
+     *
+     * @throws \RuntimeException
      */
     public static function perform(string $binPath = '/opt/local/bin/', Cache|null $cache = null): Karla
     {
-        if (! (Karla::$instance instanceof Karla)) {
-            try {
-                Karla::$instance = new Karla($binPath, $cache);
-            } catch (\InvalidArgumentException $e) {
-                throw new \RuntimeException($e->getMessage() . '(' . $binPath . ')');
-            }
+        try {
+            return new self($binPath, $cache);
+        } catch (\InvalidArgumentException $e) {
+            throw new \RuntimeException($e->getMessage() . '(' . $binPath . ')');
         }
-
-        return Karla::$instance;
     }
 
     /**
@@ -83,7 +74,7 @@ class Karla
      *
      * @throws \InvalidArgumentException if path for ImageMagick is invalid
      */
-    private function __construct(string $binPath, Cache|null $cache)
+    public function __construct(string $binPath, Cache|null $cache = null)
     {
         if (! file_exists($binPath)) {
             throw new \InvalidArgumentException('Bin path not found');

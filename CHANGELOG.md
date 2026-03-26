@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0]
+
+### Added
+- Public constructor for `Karla`: you can now instantiate directly with `new Karla($binPath, $cache)`.
+
+### Deprecated
+- `Karla::perform()` static factory method is deprecated since 1.2.0 and will be removed in 2.0.0.
+  Migrate by replacing `Karla::perform($binPath)` with `new Karla($binPath)`.
+
+### Changed
+- `Karla::perform()` no longer caches a singleton instance; each call returns a fresh object.
+
 ## [1.1.0]
 
 ### Added
@@ -53,7 +65,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - First stable release after 4 years of development
 - Complete ImageMagick wrapper functionality
 
-[Unreleased]: https://github.com/localgod/karla/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/localgod/karla/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/localgod/karla/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/localgod/karla/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/localgod/karla/releases/tag/v1.0.2
 [1.0.1]: https://github.com/localgod/karla/releases/tag/v1.0.1
 [1.0.0]: https://github.com/localgod/karla/releases/tag/v1.0.0
