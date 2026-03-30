@@ -29,7 +29,7 @@ jobs:
         tools: composer:v2
 
     - name: 📦 Cache Composer packages
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -97,13 +97,13 @@ jobs:
     - name: 💾 Cache ImageMagick (Windows)
       if: runner.os == 'Windows'
       id: cache-imagemagick-windows
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: C:\ProgramData\chocolatey\lib\imagemagick
         key: ${{ runner.os }}-imagemagick-${{ matrix.imagemagick }}-${{ hashFiles('.github/workflows/php.yml') }}
 
     - name: 📦 Cache Composer packages
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
