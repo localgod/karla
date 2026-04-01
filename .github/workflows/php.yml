@@ -18,7 +18,7 @@ jobs:
     name: Code Quality (Lint & Validate)
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     
     - name: 🐘 Setup PHP 8.4
       uses: shivammathur/setup-php@v2
@@ -83,7 +83,7 @@ jobs:
     name: Tests - PHP ${{ matrix.php-versions }} - IM ${{ matrix.imagemagick }} (${{ matrix.os }})
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       
     - name: 🐘 Setup PHP ${{ matrix.php-versions }}
       uses: shivammathur/setup-php@v2
@@ -229,7 +229,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     
     - name: 🟢 Setup Node.js 24
       uses: actions/setup-node@v4
@@ -264,7 +264,7 @@ jobs:
     needs: [docs, test]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         ref: gh-pages
         persist-credentials: false
