@@ -118,9 +118,12 @@ jobs:
           if [ "${{ matrix.imagemagick }}" == "6" ]; then
             sudo apt-get install -y imagemagick
           else
-            # Install ImageMagick 7 portable binary from official distribution
-            wget -q "https://imagemagick.org/archive/binaries/magick" -O /tmp/magick
+            # Install ImageMagick 7 AppImage from the official GitHub releases
+            IM_VERSION=7.1.2-34
+            wget -q "https://github.com/ImageMagick/ImageMagick/releases/download/${IM_VERSION}/ImageMagick-${IM_VERSION}-gcc-x86_64.AppImage" -O /tmp/magick
             sudo install -m 755 /tmp/magick /usr/local/bin/magick
+            # Ubuntu 24.04 runners lack FUSE, so let the AppImage extract itself instead of mounting
+            echo "APPIMAGE_EXTRACT_AND_RUN=1" >> "$GITHUB_ENV"
           fi
         elif [ "$RUNNER_OS" == "macOS" ]; then
           if [ "${{ matrix.imagemagick }}" == "6" ]; then
