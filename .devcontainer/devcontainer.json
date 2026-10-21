@@ -1,0 +1,32 @@
+{
+	"name": "Karla",
+	"image": "mcr.microsoft.com/devcontainers/php:8.4",
+	"remoteUser": "vscode",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "24"
+		}
+	},
+	// Keep Claude Code's login, settings and project memory across container rebuilds.
+	"mounts": ["source=karla-claude-config-${devcontainerId},target=/home/vscode/.claude,type=volume"],
+	"containerEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
+	},
+	"onCreateCommand": "sudo apt-get update && sudo apt-get install -y --no-install-recommends imagemagick ghostscript && sudo rm -rf /var/lib/apt/lists/*",
+	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && npm install --global @anthropic-ai/claude-code && composer install && npm ci && printf 'xdebug.mode=debug,coverage\\nxdebug.start_with_request=trigger\\n' | sudo tee -a /usr/local/etc/php/conf.d/xdebug.ini",
+	"forwardPorts": [8080],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bmewburn.vscode-intelephense-client",
+				"xdebug.php-debug",
+				"swordev.phpstan",
+				"persoderlind.vscode-phpcbf",
+				"vue.volar"
+			],
+			"settings": {
+				"php.validate.executablePath": "/usr/local/bin/php"
+			}
+		}
+	}
+}
