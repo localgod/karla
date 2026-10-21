@@ -5,7 +5,8 @@
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "24"
-		}
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
 	},
 	// Keep Claude Code's login, settings and project memory across container rebuilds.
 	"mounts": ["source=karla-claude-config-${devcontainerId},target=/home/vscode/.claude,type=volume"],
