@@ -24,7 +24,7 @@ class TestHelper
         
         // Try ImageMagick 7 first
         if (file_exists($path . $magickBin)) {
-            $output = shell_exec($path . $magickBin . ' -version');
+            $output = shell_exec(escapeshellarg($path . $magickBin) . ' -version');
             if ($output && preg_match('/ImageMagick (\d+)/', $output, $matches)) {
                 return (int)$matches[1];
             }
@@ -32,7 +32,7 @@ class TestHelper
         
         // Try ImageMagick 6
         if (file_exists($path . $convertBin)) {
-            $output = shell_exec($path . $convertBin . ' -version');
+            $output = shell_exec(escapeshellarg($path . $convertBin) . ' -version');
             if ($output && preg_match('/ImageMagick (\d+)/', $output, $matches)) {
                 return (int)$matches[1];
             }
@@ -42,6 +42,21 @@ class TestHelper
         return 6; // Default to 6
     }
     
+    /**
+     * Escape a file path the way Karla does for input files
+     *
+     * Karla resolves input paths with realpath(), which also normalises
+     * directory separators on Windows, so expected commands must do the same.
+     *
+     * @param string $path File path
+     */
+    public static function escapePath(string $path): string
+    {
+        $realPath = realpath($path);
+
+        return escapeshellarg($realPath !== false ? $realPath : $path);
+    }
+
     /**
      * Check if running on Windows
      *
@@ -69,16 +84,18 @@ class TestHelper
             // Windows: direct path
             $binPath = rtrim($path, '/\\') . '/';
             
+            // The full executable path is quoted so paths with spaces work
             if ($version >= 7) {
                 // ImageMagick 7: use magick or magick <subcommand>
+                $magick = escapeshellarg($binPath . \Karla\Platform::getBinary('magick'));
                 if ($command === 'convert') {
-                    return $binPath . \Karla\Platform::getBinary('magick') . ' ' . $arguments;
+                    return $magick . ' ' . $arguments;
                 } else {
-                    return $binPath . \Karla\Platform::getBinary('magick') . ' ' . $command . ' ' . $arguments;
+                    return $magick . ' ' . $command . ' ' . $arguments;
                 }
             } else {
                 // ImageMagick 6: use legacy commands
-                return $binPath . \Karla\Platform::getBinary($command) . ' ' . $arguments;
+                return escapeshellarg($binPath . \Karla\Platform::getBinary($command)) . ' ' . $arguments;
             }
         } else {
             // Unix: export PATH

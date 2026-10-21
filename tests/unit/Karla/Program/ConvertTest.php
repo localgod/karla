@@ -109,7 +109,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->in($this->testDataPath.'/demo.jpg')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -127,7 +127,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->removeProfile('iptc')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' +profile iptc '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' +profile iptc '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -145,7 +145,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->density()
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -density 72x72 '.escapeshellarg('./test-200x200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' -density 72x72 '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -180,7 +180,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->profile($this->testDataPath.'/sRGB_Color_Space_Profile.icm')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-200x200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' -profile '.TestHelper::escapePath($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -214,7 +214,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->changeProfile($this->testDataPath.'/sRGB_Color_Space_Profile.icm', $this->testDataPath.'/sRGB_Color_Space_Profile.icm')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').'   -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-200x200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' -profile '.TestHelper::escapePath($this->testDataPath.'/sRGB_Color_Space_Profile.icm').'   -profile '.TestHelper::escapePath($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -281,7 +281,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->out('test-200x200.png')
             ->gravity('center')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-gravity center '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-gravity center '.TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -349,7 +349,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      */
     public function executeWithResultReturnsCommandResult()
     {
-        $outputFile = '/tmp/karla-test-executeWithResult.jpg';
+        $outputFile = sys_get_temp_dir() . '/karla-test-executeWithResult.jpg';
         $result = Karla::perform(PATH_TO_IMAGEMAGICK)->convert()
             ->in($this->testDataPath . '/demo.jpg')
             ->out($outputFile)
@@ -403,7 +403,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->rotate(- 45, 'gray')
             ->out('test-200x200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-rotate "-45"  -background gray '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-rotate "-45"  -background gray '.TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-200x200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -446,9 +446,9 @@ class ConvertTest extends PHPUnit\Framework\TestCase
                 ->in($tempFile)
                 ->out('test-output.png')
                 ->getCommand();
-            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($tempFile).' '.escapeshellarg('./test-output.png'));
+            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($tempFile).' '.escapeshellarg('./test-output.png'));
             $this->assertEquals($expected, $actual);
-            $this->assertStringContainsString(escapeshellarg($tempFile), $actual);
+            $this->assertStringContainsString(TestHelper::escapePath($tempFile), $actual);
         } finally {
             if (file_exists($tempFile)) {
                 unlink($tempFile);
@@ -479,7 +479,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
                 ->out($tempOutputDir . '/output file.png')
                 ->getCommand();
             $expectedOutputPath = $tempOutputDir . '/output file.png';
-            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg($expectedOutputPath));
+            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg($expectedOutputPath));
             $this->assertEquals($expected, $actual);
             $this->assertStringContainsString(escapeshellarg($expectedOutputPath), $actual);
         } finally {
@@ -500,7 +500,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->input($this->testDataPath.'/demo.jpg')
             ->output('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -541,7 +541,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
             ->input($this->testDataPath.'/demo.jpg')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 }

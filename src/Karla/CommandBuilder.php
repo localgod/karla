@@ -133,14 +133,14 @@ class CommandBuilder
             $magickBin = Platform::getBinary('magick');
 
             if ($command === 'convert') {
-                return $this->binPath . $magickBin;
+                return Platform::getExecutable($this->binPath, $magickBin);
             }
 
             if (in_array($command, ['identify', 'composite'])) {
-                return $this->binPath . $magickBin . ' ' . $command;
+                return Platform::getExecutable($this->binPath, $magickBin) . ' ' . $command;
             }
         }
 
-        return $this->binPath . $this->binary;
+        return Platform::getExecutable($this->binPath, $this->binary);
     }
 }

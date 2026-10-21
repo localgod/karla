@@ -55,7 +55,7 @@ class BackgroundTest extends PHPUnit\Framework\TestCase
             ->background('red')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-background red '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-background red '.TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 
@@ -106,7 +106,7 @@ class BackgroundTest extends PHPUnit\Framework\TestCase
             ->background('#666666')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-background "#666666" '.escapeshellarg($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', '-background "#666666" '.TestHelper::escapePath($this->testDataPath.'/demo.jpg').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
 }

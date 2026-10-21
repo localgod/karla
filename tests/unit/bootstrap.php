@@ -19,7 +19,12 @@ require_once __DIR__ . '/../../src/Karla/Platform.php';
 // Determine ImageMagick path with auto-detection
 $imageMagickPath = null;
 
-if (\Karla\Platform::isWindows()) {
+// An explicit path (e.g. set by CI) takes precedence over auto-detection
+$envPath = getenv('IMAGEMAGICK_PATH');
+
+if ($envPath !== false && $envPath !== '') {
+    $imageMagickPath = rtrim($envPath, '/\\') . '/';
+} elseif (\Karla\Platform::isWindows()) {
     // Windows: check common locations and convert paths
     $possiblePaths = [
         'C:/dev/imagemagick/',

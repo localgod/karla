@@ -28,11 +28,27 @@ use Karla\Query;
 class CommandBuilderTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Shared bin path used in every test (mirrors what Karla sets on Unix)
+     * Shared bin path used in every test (mirrors what Karla sets per platform)
      *
      * @var string
      */
-    private string $binPath = 'export PATH=$PATH:/usr/bin/;';
+    private string $binPath;
+
+    /**
+     * Use a Windows install path with a space so quoting is exercised there.
+     */
+    protected function setUp(): void
+    {
+        $this->binPath = Platform::isWindows() ? 'C:/Program Files/ImageMagick/' : 'export PATH=$PATH:/usr/bin/;';
+    }
+
+    /**
+     * Helper: expected invocation of a binary (the full path is quoted on Windows).
+     */
+    private function exe(string $binary): string
+    {
+        return Platform::isWindows() ? '"' . $this->binPath . $binary . '"' : $this->binPath . $binary;
+    }
 
     /**
      * Helper: create a fresh Query with optional input/output options.
@@ -66,7 +82,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->setOutput($outputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'convert ' . $inputFile . ' ' . $outputFile,
+            $this->exe('convert') . ' ' . $inputFile . ' ' . $outputFile,
             $command
         );
     }
@@ -86,7 +102,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->setOutput($outputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'convert -density 72x72 ' . $inputFile . ' ' . $outputFile,
+            $this->exe('convert') . ' -density 72x72 ' . $inputFile . ' ' . $outputFile,
             $command
         );
     }
@@ -106,7 +122,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->setOutput($outputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'convert ' . $inputFile . ' -quality 85 ' . $outputFile,
+            $this->exe('convert') . ' ' . $inputFile . ' -quality 85 ' . $outputFile,
             $command
         );
     }
@@ -126,7 +142,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->setOutput($outputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'convert -density 72x72 ' . $inputFile . ' -quality 85 ' . $outputFile,
+            $this->exe('convert') . ' -density 72x72 ' . $inputFile . ' -quality 85 ' . $outputFile,
             $command
         );
     }
@@ -146,7 +162,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
 
         $magickBin = Platform::getBinary('magick');
         $this->assertEquals(
-            $this->binPath . $magickBin . ' ' . $inputFile . ' ' . $outputFile,
+            $this->exe($magickBin) . ' ' . $inputFile . ' ' . $outputFile,
             $command
         );
     }
@@ -165,7 +181,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
 
         $magickBin = Platform::getBinary('magick');
         $this->assertEquals(
-            $this->binPath . $magickBin . ' identify ' . $inputFile,
+            $this->exe($magickBin) . ' identify ' . $inputFile,
             $command
         );
     }
@@ -183,7 +199,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'identify ' . $inputFile,
+            $this->exe('identify') . ' ' . $inputFile,
             $command
         );
     }
@@ -202,7 +218,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'identify -verbose ' . $inputFile,
+            $this->exe('identify') . ' -verbose ' . $inputFile,
             $command
         );
     }
@@ -221,7 +237,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
         $command = $builder->setInput($inputFile)->setOutput($outputFile)->build();
 
         $this->assertEquals(
-            $this->binPath . 'convert ' . $inputFile . ' ' . $outputFile,
+            $this->exe('convert') . ' ' . $inputFile . ' ' . $outputFile,
             $command
         );
     }
@@ -237,7 +253,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
 
         $command = $builder->build();
 
-        $this->assertEquals($this->binPath . 'convert', $command);
+        $this->assertEquals($this->exe('convert'), $command);
     }
 
     /**
@@ -266,7 +282,7 @@ class CommandBuilderTest extends PHPUnit\Framework\TestCase
 
         $magickBin = Platform::getBinary('magick');
         $this->assertEquals(
-            $this->binPath . $magickBin . ' composite',
+            $this->exe($magickBin) . ' composite',
             $command
         );
     }

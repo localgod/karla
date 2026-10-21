@@ -54,4 +54,22 @@ class Platform
     {
         return self::isWindows() ? $binary . '.exe' : $binary;
     }
+
+    /**
+     * Return the shell invocation of a binary in the given bin path.
+     *
+     * On Windows the bin path is a directory prefix, and the full path is quoted
+     * so install locations containing spaces (e.g. `C:\Program Files\...`) work.
+     * On other platforms the bin path is an `export PATH=...;` prefix and the
+     * binary is invoked by name.
+     *
+     * @param string $binPath Bin path prefix as stored by Karla
+     * @param string $binary  Platform binary name (see getBinary())
+     *
+     * @return string Executable invocation suitable for the current platform
+     */
+    public static function getExecutable(string $binPath, string $binary): string
+    {
+        return self::isWindows() ? escapeshellarg($binPath . $binary) : $binPath . $binary;
+    }
 }
