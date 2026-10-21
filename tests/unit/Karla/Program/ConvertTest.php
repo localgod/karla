@@ -434,7 +434,8 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      */
     public function inputfileWithSpacesIsEscaped()
     {
-        $tempDir = sys_get_temp_dir() . '/karla-security-test';
+        // Resolve symlinks (e.g. /var -> /private/var on macOS) as Karla does for input paths
+        $tempDir = realpath(sys_get_temp_dir()) . '/karla-security-test';
         if (! is_dir($tempDir)) {
             mkdir($tempDir, 0777, true);
         }
