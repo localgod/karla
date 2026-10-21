@@ -42,6 +42,19 @@ class Support
      */
     private static function getListBinary(Program $program): string
     {
+        $binary = self::resolveListBinary($program);
+
+        // Quote the full path on Windows so install locations with spaces work
+        return Platform::isWindows() ? escapeshellarg($binary) : $binary;
+    }
+
+    /**
+     * Resolve the binary path to use for -list commands.
+     *
+     * @param Program $program Program instance
+     */
+    private static function resolveListBinary(Program $program): string
+    {
         $binary = $program->getBinary();
 
         // For Composite programs in IM6, we need to use 'convert' instead

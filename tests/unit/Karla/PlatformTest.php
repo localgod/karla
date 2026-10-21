@@ -80,4 +80,18 @@ class PlatformTest extends PHPUnit\Framework\TestCase
             $this->assertSame('', $result);
         }
     }
+
+    /**
+     * Test getExecutable quotes the full path on Windows and leaves it unchanged elsewhere
+     */
+    public function testGetExecutableWithSpacesInPath(): void
+    {
+        if (Platform::isWindows()) {
+            $result = Platform::getExecutable('C:/Program Files/ImageMagick/', 'magick.exe');
+            $this->assertSame('"C:/Program Files/ImageMagick/magick.exe"', $result);
+        } else {
+            $result = Platform::getExecutable('export PATH=$PATH:/usr/bin/;', 'magick');
+            $this->assertSame('export PATH=$PATH:/usr/bin/;magick', $result);
+        }
+    }
 }

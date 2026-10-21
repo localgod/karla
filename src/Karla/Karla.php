@@ -129,7 +129,7 @@ class Karla
 
         // Try ImageMagick 7 first (magick command)
         if (file_exists($binPath . $magickBin)) {
-            $versionOutput = shell_exec($binPath . $magickBin . ' -version');
+            $versionOutput = shell_exec(escapeshellarg($binPath . $magickBin) . ' -version');
             if ($versionOutput && stripos($versionOutput, 'ImageMagick') !== false) {
                 // Extract major version (e.g., "Version: ImageMagick 7.1.2" -> 7)
                 if (preg_match('/ImageMagick (\d+)/', $versionOutput, $matches)) {
@@ -140,7 +140,7 @@ class Karla
 
         // Fallback to ImageMagick 6 (convert command)
         if (empty($versionOutput) && file_exists($binPath . $convertBin)) {
-            $versionOutput = shell_exec($binPath . $convertBin . ' -version');
+            $versionOutput = shell_exec(escapeshellarg($binPath . $convertBin) . ' -version');
             if ($versionOutput && stripos($versionOutput, 'ImageMagick') !== false) {
                 if (preg_match('/ImageMagick (\d+)/', $versionOutput, $matches)) {
                     $this->version = (int)$matches[1];
@@ -178,9 +178,10 @@ class Karla
         // For ImageMagick 7+, prepend with magick command
         if ($this->version !== null && $this->version >= 7) {
             $magickBin = Platform::getBinary(Program\ImageMagick::IMAGEMAGICK_MAGICK);
-            $result = shell_exec($this->binPath . $magickBin . ' ' . $program . ' ' . $arguments);
+            $magick = Platform::getExecutable($this->binPath, $magickBin);
+            $result = shell_exec($magick . ' ' . $program . ' ' . $arguments);
         } else {
-            $result = shell_exec($this->binPath . $bin . ' ' . $arguments);
+            $result = shell_exec(Platform::getExecutable($this->binPath, $bin) . ' ' . $arguments);
         }
 
         return $result !== null && $result !== false ? $result : '';
