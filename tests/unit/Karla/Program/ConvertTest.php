@@ -434,8 +434,7 @@ class ConvertTest extends PHPUnit\Framework\TestCase
      */
     public function inputfileWithSpacesIsEscaped()
     {
-        // Resolve symlinks (e.g. /var -> /private/var on macOS) as Karla does for input paths
-        $tempDir = realpath(sys_get_temp_dir()) . '/karla-security-test';
+        $tempDir = sys_get_temp_dir() . '/karla-security-test';
         if (! is_dir($tempDir)) {
             mkdir($tempDir, 0777, true);
         }
@@ -447,9 +446,9 @@ class ConvertTest extends PHPUnit\Framework\TestCase
                 ->in($tempFile)
                 ->out('test-output.png')
                 ->getCommand();
-            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($tempFile).' '.escapeshellarg('./test-output.png'));
+            $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($tempFile).' '.escapeshellarg('./test-output.png'));
             $this->assertEquals($expected, $actual);
-            $this->assertStringContainsString(escapeshellarg($tempFile), $actual);
+            $this->assertStringContainsString(TestHelper::escapePath($tempFile), $actual);
         } finally {
             if (file_exists($tempFile)) {
                 unlink($tempFile);
