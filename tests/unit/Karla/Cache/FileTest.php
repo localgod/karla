@@ -66,7 +66,8 @@ class FileTest extends PHPUnit\Framework\TestCase
 	protected function tearDown(): void
 	{
 	    // Clean up cache files after tests
-	    if (is_dir($this->cacheDataPath)) {
+	    // setUp() may have skipped the test before the cache path was set
+	    if ($this->cacheDataPath !== null && is_dir($this->cacheDataPath)) {
 	        $files = glob($this->cacheDataPath . '/*.{jpg,png,gif}', GLOB_BRACE);
 	        foreach ($files as $file) {
 	            if (is_file($file)) {
