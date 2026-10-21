@@ -1,35 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="bootstrap.php" 
-         backupGlobals="false" 
-		 backupStaticAttributes="true" 
-		 colors="true" 
-		 convertErrorsToExceptions="true" 
-		 convertNoticesToExceptions="true" 
-	 convertWarningsToExceptions="true" 
-	 processIsolation="false" 
-	 stopOnFailure="false">
-	<testsuites>
-		<testsuite name="unit">
-			<directory>./</directory>
-		</testsuite>
-	</testsuites>
-
-	<logging>
-		<junit outputFile="../../junit.xml"/>
-	</logging>
-
-	<coverage
-          includeUncoveredFiles="true"
-          processUncoveredFiles="true"
-          pathCoverage="false"
-          ignoreDeprecatedCodeUnits="true"
-          disableCodeCoverageIgnore="true">
-		  <include>
-    <directory suffix=".php">../../src</directory>
-</include>
-	<report>
-		<html outputDirectory="../../coverage" lowUpperBound="50" highLowerBound="90"/>
-		<clover outputFile="../../clover.xml"/>
-	</report>
-</coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="bootstrap.php" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="true">
+  <testsuites>
+    <testsuite name="unit">
+      <directory>./</directory>
+    </testsuite>
+  </testsuites>
+  <logging>
+    <junit outputFile="../../junit.xml"/>
+  </logging>
+  <coverage includeUncoveredFiles="true" pathCoverage="false" ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
+    <report>
+      <html outputDirectory="../../coverage" lowUpperBound="50" highLowerBound="90"/>
+      <clover outputFile="../../clover.xml"/>
+    </report>
+  </coverage>
+  <source>
+    <include>
+      <directory suffix=".php">../../src</directory>
+    </include>
+  </source>
 </phpunit>

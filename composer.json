@@ -46,9 +46,9 @@
 		}
 	},
 	"autoload-dev": {
-		"psr-4": {
-			"Karla\\Tests\\": "tests/unit/"
-		}
+		"classmap": [
+			"tests/unit/"
+		]
 	},
 	"minimum-stability": "stable",
 	"support": {

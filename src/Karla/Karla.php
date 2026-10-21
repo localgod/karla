@@ -58,8 +58,11 @@ class Karla
      *
      * @throws \RuntimeException
      */
-    public static function perform(string $binPath = '/opt/local/bin/', Cache|null $cache = null, int|null $version = null): Karla
-    {
+    public static function perform(
+        string $binPath = '/opt/local/bin/',
+        Cache|null $cache = null,
+        int|null $version = null
+    ): Karla {
         try {
             return new self($binPath, $cache, $version);
         } catch (\InvalidArgumentException $e) {
@@ -111,6 +114,7 @@ class Karla
      */
     private function detectVersion(string $binPath): void
     {
+        /** @var array<string, int|null> $versionCache */
         static $versionCache = [];
 
         if (isset($versionCache[$binPath])) {
