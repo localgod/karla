@@ -55,7 +55,7 @@ class ProfileTest extends PHPUnit\Framework\TestCase
             ->profile($this->testDataPath.'/sRGB_Color_Space_Profile.icm')
             ->out('test-1920x1200.png')
             ->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -profile '.escapeshellarg($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' -profile '.TestHelper::escapePath($this->testDataPath.'/sRGB_Color_Space_Profile.icm').' '.escapeshellarg('./test-1920x1200.png'));
         $this->assertEquals($expected, $actual);
     }
     
@@ -73,7 +73,7 @@ class ProfileTest extends PHPUnit\Framework\TestCase
     	->profile('','sRGB.icc')
     	->out('test-1920x1200.png')
     	->getCommand();
-        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', escapeshellarg($this->testDataPath.'/demo.jpg').' -profile sRGB.icc '.escapeshellarg('./test-1920x1200.png'));
+        $expected = TestHelper::buildExpectedCommand(PATH_TO_IMAGEMAGICK, 'convert', TestHelper::escapePath($this->testDataPath.'/demo.jpg').' -profile sRGB.icc '.escapeshellarg('./test-1920x1200.png'));
     	$this->assertEquals($expected, $actual);
     }
     
