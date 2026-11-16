@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "Karla Documentation",
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.31",
+    "@vuepress/bundler-vite": "2.0.0-rc.32",
     "@vuepress/theme-default": "^2.0.0-rc.137",
     "sass-embedded": "^1.107.1",
     "vuepress": "2.0.0-rc.31"
